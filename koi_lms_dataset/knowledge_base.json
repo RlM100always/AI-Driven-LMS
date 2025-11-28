@@ -1,0 +1,161 @@
+{
+  "institution": {
+    "name": "King's Own Institute",
+    "location": "Melbourne, Australia",
+    "website": "https://www.koi.edu.au",
+    "contact": {
+      "phone": "+61 3 9602 4110",
+      "email": "info@koi.edu.au",
+      "address": "340 Burnley Street, Richmond VIC 3121"
+    }
+  },
+  "policies": [
+    {
+      "policy_id": "POL001",
+      "title": "Academic Integrity Policy",
+      "category": "Academic",
+      "content": "Students must maintain academic honesty in all assessments. Plagiarism and cheating will result in severe penalties.",
+      "effective_date": "2024-01-01"
+    },
+    {
+      "policy_id": "POL002",
+      "title": "Late Submission Policy",
+      "category": "Assessment",
+      "content": "Late submissions will incur a 10% penalty per day unless prior approval is obtained.",
+      "effective_date": "2024-01-01"
+    },
+    {
+      "policy_id": "POL003",
+      "title": "Special Consideration",
+      "category": "Assessment",
+      "content": "Students facing extenuating circumstances may apply for special consideration with supporting documentation.",
+      "effective_date": "2024-01-01"
+    },
+    {
+      "policy_id": "POL004",
+      "title": "Attendance Policy",
+      "category": "Attendance",
+      "content": "Students must maintain 80% attendance in all courses. Failure to do so may result in academic penalties.",
+      "effective_date": "2024-01-01"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How do I access course materials?",
+      "answer": "Log in to Moodle with your KOI credentials and navigate to your enrolled courses.",
+      "category": "Technical"
+    },
+    {
+      "question": "What is the grading scale?",
+      "answer": "HD (80-100), D (70-79), C (60-69), P (50-59), F (0-49)",
+      "category": "Academic"
+    },
+    {
+      "question": "How do I apply for special consideration?",
+      "answer": "Submit the special consideration form with supporting documents at least 3 days before the due date.",
+      "category": "Assessment"
+    },
+    {
+      "question": "Can I withdraw from a course?",
+      "answer": "Yes, but you must withdraw before the census date to avoid academic and financial penalties.",
+      "category": "Enrollment"
+    },
+    {
+      "question": "How do I contact my instructor?",
+      "answer": "Use the messaging system in Moodle or email them directly. Check course outline for office hours.",
+      "category": "Communication"
+    }
+  ],
+  "courses": [
+    {
+      "course_code": "COMP101",
+      "course_name": "Introduction to Programming",
+      "instructor": "Prof. Peter Williams",
+      "credits": 12,
+      "description": "This course covers fundamental and advanced topics in Introduction to Programming.",
+      "learning_outcomes": [
+        "Understand fundamental concepts of Introduction to Programming",
+        "Apply practical skills in Introduction to Programming",
+        "Analyze and solve problems in Introduction to Programming",
+        "Demonstrate proficiency in Introduction to Programming"
+      ],
+      "assessment": {
+        "assignments": "40%",
+        "quizzes": "20%",
+        "final_exam": "40%"
+      }
+    },
+    {
+      "course_code": "COMP101",
+      "course_name": "Introduction to Programming",
+      "instructor": "Prof. James Chen",
+      "credits": 12,
+      "description": "This course covers fundamental and advanced topics in Introduction to Programming.",
+      "learning_outcomes": [
+        "Understand fundamental concepts of Introduction to Programming",
+        "Apply practical skills in Introduction to Programming",
+        "Analyze and solve problems in Introduction to Programming",
+        "Demonstrate proficiency in Introduction to Programming"
+      ],
+      "assessment": {
+        "assignments": "40%",
+        "quizzes": "20%",
+        "final_exam": "40%"
+      }
+    },
+    {
+      "course_code": "COMP101",
+      "course_name": "Introduction to Programming",
+      "instructor": "Prof. Lisa Anderson",
+      "credits": 12,
+      "description": "This course covers fundamental and advanced topics in Introduction to Programming.",
+      "learning_outcomes": [
+        "Understand fundamental concepts of Introduction to Programming",
+        "Apply practical skills in Introduction to Programming",
+        "Analyze and solve problems in Introduction to Programming",
+        "Demonstrate proficiency in Introduction to Programming"
+      ],
+      "assessment": {
+        "assignments": "40%",
+        "quizzes": "20%",
+        "final_exam": "40%"
+      }
+    },
+    {
+      "course_code": "COMP201",
+      "course_name": "Data Structures and Algorithms",
+      "instructor": "Dr. David Kumar",
+      "credits": 12,
+      "description": "This course covers fundamental and advanced topics in Data Structures and Algorithms.",
+      "learning_outcomes": [
+        "Understand fundamental concepts of Data Structures and Algorithms",
+        "Apply practical skills in Data Structures and Algorithms",
+        "Analyze and solve problems in Data Structures and Algorithms",
+        "Demonstrate proficiency in Data Structures and Algorithms"
+      ],
+      "assessment": {
+        "assignments": "40%",
+        "quizzes": "20%",
+        "final_exam": "40%"
+      }
+    },
+    {
+      "course_code": "COMP201",
+      "course_name": "Data Structures and Algorithms",
+      "instructor": "Dr. Mark Wilson",
+      "credits": 12,
+      "description": "This course covers fundamental and advanced topics in Data Structures and Algorithms.",
+      "learning_outcomes": [
+        "Understand fundamental concepts of Data Structures and Algorithms",
+        "Apply practical skills in Data Structures and Algorithms",
+        "Analyze and solve problems in Data Structures and Algorithms",
+        "Demonstrate proficiency in Data Structures and Algorithms"
+      ],
+      "assessment": {
+        "assignments": "40%",
+        "quizzes": "20%",
+        "final_exam": "40%"
+      }
+    }
+  ]
+}

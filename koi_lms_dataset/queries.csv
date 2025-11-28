@@ -1,0 +1,157 @@
+query_id,student_id,query_text,intent,timestamp,status,priority
+Q000001,KOI000013,When is Assignment 2 due for COMP101?,assignment_deadline,2025-11-27 10:44:17,Resolved,Low
+Q000002,KOI000474,When is Assignment 2 due for COMP101?,assignment_deadline,2025-11-27 10:43:58,Pending,Medium
+Q000003,KOI000487,When is Assignment 2 due for COMP101?,assignment_deadline,2025-11-27 10:42:07,Resolved,High
+Q000004,KOI000468,When is Assignment 2 due for COMP101?,assignment_deadline,2025-11-27 10:43:43,Resolved,Medium
+Q000005,KOI000391,What's the deadline for the programming assignment?,assignment_deadline,2025-11-27 10:44:40,Resolved,Low
+Q000006,KOI000098,What's the deadline for the programming assignment?,assignment_deadline,2025-11-27 10:47:25,Pending,Low
+Q000007,KOI000473,What's the deadline for the programming assignment?,assignment_deadline,2025-11-27 10:47:23,Resolved,Medium
+Q000008,KOI000047,What's the deadline for the programming assignment?,assignment_deadline,2025-11-27 10:43:05,Resolved,High
+Q000009,KOI000117,What's the deadline for the programming assignment?,assignment_deadline,2025-11-27 10:47:49,Resolved,High
+Q000010,KOI000385,What's the deadline for the programming assignment?,assignment_deadline,2025-11-27 10:46:26,Resolved,Low
+Q000011,KOI000212,Can you tell me when I need to submit my essay?,assignment_deadline,2025-11-27 10:46:59,Resolved,Low
+Q000012,KOI000045,Can you tell me when I need to submit my essay?,assignment_deadline,2025-11-27 10:42:42,Resolved,Medium
+Q000013,KOI000453,Can you tell me when I need to submit my essay?,assignment_deadline,2025-11-27 10:43:01,Pending,Low
+Q000014,KOI000304,Can you tell me when I need to submit my essay?,assignment_deadline,2025-11-27 10:46:10,Resolved,Low
+Q000015,KOI000494,Is there an extension for Assignment 3?,assignment_deadline,2025-11-27 10:47:10,Resolved,High
+Q000016,KOI000292,Is there an extension for Assignment 3?,assignment_deadline,2025-11-27 10:46:11,Resolved,Low
+Q000017,KOI000039,Is there an extension for Assignment 3?,assignment_deadline,2025-11-27 10:43:28,Resolved,Medium
+Q000018,KOI000328,Is there an extension for Assignment 3?,assignment_deadline,2025-11-27 10:42:28,Resolved,Low
+Q000019,KOI000440,Is there an extension for Assignment 3?,assignment_deadline,2025-11-27 10:43:45,Resolved,Medium
+Q000020,KOI000255,Is there an extension for Assignment 3?,assignment_deadline,2025-11-27 10:46:31,Resolved,Low
+Q000021,KOI000206,Is there an extension for Assignment 3?,assignment_deadline,2025-11-27 10:48:04,Resolved,Medium
+Q000022,KOI000452,Is there an extension for Assignment 3?,assignment_deadline,2025-11-27 10:44:54,Pending,Medium
+Q000023,KOI000383,What's my current grade in Data Structures?,grade_inquiry,2025-11-27 10:47:01,Resolved,Medium
+Q000024,KOI000087,What's my current grade in Data Structures?,grade_inquiry,2025-11-27 10:44:04,Pending,High
+Q000025,KOI000387,What's my current grade in Data Structures?,grade_inquiry,2025-11-27 10:44:21,Pending,Low
+Q000026,KOI000452,Have the quiz results been released?,grade_inquiry,2025-11-27 10:42:23,Resolved,High
+Q000027,KOI000111,Have the quiz results been released?,grade_inquiry,2025-11-27 10:42:48,Resolved,High
+Q000028,KOI000338,Have the quiz results been released?,grade_inquiry,2025-11-27 10:45:10,Resolved,High
+Q000029,KOI000096,Have the quiz results been released?,grade_inquiry,2025-11-27 10:43:51,Resolved,High
+Q000030,KOI000109,Why did I get this mark on my assignment?,grade_inquiry,2025-11-27 10:45:25,Resolved,High
+Q000031,KOI000435,Why did I get this mark on my assignment?,grade_inquiry,2025-11-27 10:44:41,Resolved,Medium
+Q000032,KOI000499,Why did I get this mark on my assignment?,grade_inquiry,2025-11-27 10:42:49,Resolved,Medium
+Q000033,KOI000162,Why did I get this mark on my assignment?,grade_inquiry,2025-11-27 10:44:50,Pending,High
+Q000034,KOI000114,Why did I get this mark on my assignment?,grade_inquiry,2025-11-27 10:44:34,Resolved,Low
+Q000035,KOI000062,Why did I get this mark on my assignment?,grade_inquiry,2025-11-27 10:45:56,Resolved,Low
+Q000036,KOI000350,Why did I get this mark on my assignment?,grade_inquiry,2025-11-27 10:42:59,Resolved,Medium
+Q000037,KOI000489,Can I see the marking rubric?,grade_inquiry,2025-11-27 10:44:51,Resolved,Medium
+Q000038,KOI000046,Can I see the marking rubric?,grade_inquiry,2025-11-27 10:44:51,Pending,Low
+Q000039,KOI000476,Can I see the marking rubric?,grade_inquiry,2025-11-27 10:43:47,Resolved,Medium
+Q000040,KOI000021,Where can I find lecture slides for Week 5?,course_content,2025-11-27 10:42:58,Pending,Medium
+Q000041,KOI000134,Where can I find lecture slides for Week 5?,course_content,2025-11-27 10:43:54,Resolved,High
+Q000042,KOI000105,Where can I find lecture slides for Week 5?,course_content,2025-11-27 10:43:32,Resolved,Medium
+Q000043,KOI000456,Where can I find lecture slides for Week 5?,course_content,2025-11-27 10:45:11,Resolved,Low
+Q000044,KOI000055,Where can I find lecture slides for Week 5?,course_content,2025-11-27 10:47:21,Resolved,Low
+Q000045,KOI000255,What topics are covered in the final exam?,course_content,2025-11-27 10:43:53,Resolved,Low
+Q000046,KOI000334,What topics are covered in the final exam?,course_content,2025-11-27 10:45:38,Resolved,High
+Q000047,KOI000059,What topics are covered in the final exam?,course_content,2025-11-27 10:46:07,Resolved,Low
+Q000048,KOI000444,What topics are covered in the final exam?,course_content,2025-11-27 10:46:32,Resolved,High
+Q000049,KOI000065,Are there any additional resources for this course?,course_content,2025-11-27 10:42:53,Resolved,High
+Q000050,KOI000322,Are there any additional resources for this course?,course_content,2025-11-27 10:44:05,Resolved,Low
+Q000051,KOI000421,Are there any additional resources for this course?,course_content,2025-11-27 10:45:42,Resolved,Medium
+Q000052,KOI000086,Are there any additional resources for this course?,course_content,2025-11-27 10:45:53,Resolved,Low
+Q000053,KOI000374,Are there any additional resources for this course?,course_content,2025-11-27 10:44:46,Resolved,Low
+Q000054,KOI000485,Can you explain the assessment criteria?,course_content,2025-11-27 10:42:27,Resolved,High
+Q000055,KOI000161,Can you explain the assessment criteria?,course_content,2025-11-27 10:42:12,Resolved,Low
+Q000056,KOI000199,Can you explain the assessment criteria?,course_content,2025-11-27 10:47:21,Resolved,Medium
+Q000057,KOI000261,Can you explain the assessment criteria?,course_content,2025-11-27 10:44:20,Resolved,High
+Q000058,KOI000490,Can you explain the assessment criteria?,course_content,2025-11-27 10:43:20,Resolved,Medium
+Q000059,KOI000338,Can you explain the assessment criteria?,course_content,2025-11-27 10:48:00,Resolved,Medium
+Q000060,KOI000323,How do I enroll in Web Development?,enrollment_help,2025-11-27 10:47:33,Pending,Medium
+Q000061,KOI000306,How do I enroll in Web Development?,enrollment_help,2025-11-27 10:42:59,Resolved,High
+Q000062,KOI000100,How do I enroll in Web Development?,enrollment_help,2025-11-27 10:44:29,Resolved,Low
+Q000063,KOI000354,How do I enroll in Web Development?,enrollment_help,2025-11-27 10:42:48,Pending,Low
+Q000064,KOI000113,How do I enroll in Web Development?,enrollment_help,2025-11-27 10:42:22,Pending,Medium
+Q000065,KOI000315,How do I enroll in Web Development?,enrollment_help,2025-11-27 10:45:05,Pending,Low
+Q000066,KOI000001,Can I change my course selection?,enrollment_help,2025-11-27 10:43:34,Pending,High
+Q000067,KOI000487,Can I change my course selection?,enrollment_help,2025-11-27 10:45:57,Resolved,High
+Q000068,KOI000441,Can I change my course selection?,enrollment_help,2025-11-27 10:45:20,Resolved,Low
+Q000069,KOI000309,Can I change my course selection?,enrollment_help,2025-11-27 10:47:19,Resolved,Low
+Q000070,KOI000152,Can I change my course selection?,enrollment_help,2025-11-27 10:46:34,Resolved,High
+Q000071,KOI000049,Can I change my course selection?,enrollment_help,2025-11-27 10:43:06,Resolved,Low
+Q000072,KOI000377,What are the prerequisites for AI course?,enrollment_help,2025-11-27 10:48:00,Resolved,Medium
+Q000073,KOI000217,What are the prerequisites for AI course?,enrollment_help,2025-11-27 10:47:06,Resolved,Medium
+Q000074,KOI000379,What are the prerequisites for AI course?,enrollment_help,2025-11-27 10:46:32,Resolved,Low
+Q000075,KOI000279,What are the prerequisites for AI course?,enrollment_help,2025-11-27 10:46:06,Resolved,High
+Q000076,KOI000486,What are the prerequisites for AI course?,enrollment_help,2025-11-27 10:46:51,Resolved,High
+Q000077,KOI000204,When is the enrollment deadline?,enrollment_help,2025-11-27 10:42:34,Resolved,Medium
+Q000078,KOI000264,When is the enrollment deadline?,enrollment_help,2025-11-27 10:47:13,Pending,Low
+Q000079,KOI000497,When is the enrollment deadline?,enrollment_help,2025-11-27 10:43:11,Resolved,High
+Q000080,KOI000161,When is the enrollment deadline?,enrollment_help,2025-11-27 10:46:08,Resolved,Low
+Q000081,KOI000399,I can't access the course materials,technical_issue,2025-11-27 10:42:07,Resolved,Low
+Q000082,KOI000290,I can't access the course materials,technical_issue,2025-11-27 10:44:23,Resolved,Medium
+Q000083,KOI000036,I can't access the course materials,technical_issue,2025-11-27 10:45:08,Resolved,High
+Q000084,KOI000087,I can't access the course materials,technical_issue,2025-11-27 10:43:10,Pending,Low
+Q000085,KOI000375,I can't access the course materials,technical_issue,2025-11-27 10:44:04,Resolved,Medium
+Q000086,KOI000307,The quiz submission isn't working,technical_issue,2025-11-27 10:46:27,Resolved,High
+Q000087,KOI000259,The quiz submission isn't working,technical_issue,2025-11-27 10:46:33,Resolved,Low
+Q000088,KOI000217,The quiz submission isn't working,technical_issue,2025-11-27 10:46:49,Resolved,Low
+Q000089,KOI000029,The quiz submission isn't working,technical_issue,2025-11-27 10:45:02,Pending,Medium
+Q000090,KOI000377,The quiz submission isn't working,technical_issue,2025-11-27 10:45:29,Resolved,High
+Q000091,KOI000429,The quiz submission isn't working,technical_issue,2025-11-27 10:43:27,Resolved,Low
+Q000092,KOI000095,The quiz submission isn't working,technical_issue,2025-11-27 10:43:14,Resolved,Low
+Q000093,KOI000109,Login issues with Moodle,technical_issue,2025-11-27 10:44:53,Resolved,High
+Q000094,KOI000072,Login issues with Moodle,technical_issue,2025-11-27 10:46:49,Pending,High
+Q000095,KOI000321,Login issues with Moodle,technical_issue,2025-11-27 10:45:43,Resolved,High
+Q000096,KOI000294,Login issues with Moodle,technical_issue,2025-11-27 10:45:37,Resolved,High
+Q000097,KOI000447,Login issues with Moodle,technical_issue,2025-11-27 10:42:33,Resolved,High
+Q000098,KOI000352,Login issues with Moodle,technical_issue,2025-11-27 10:44:50,Pending,High
+Q000099,KOI000079,Video lectures won't play,technical_issue,2025-11-27 10:47:02,Resolved,Medium
+Q000100,KOI000079,Video lectures won't play,technical_issue,2025-11-27 10:46:23,Pending,Low
+Q000101,KOI000024,Video lectures won't play,technical_issue,2025-11-27 10:45:36,Pending,Low
+Q000102,KOI000191,Video lectures won't play,technical_issue,2025-11-27 10:45:54,Pending,Low
+Q000103,KOI000115,Video lectures won't play,technical_issue,2025-11-27 10:46:39,Resolved,Low
+Q000104,KOI000055,Video lectures won't play,technical_issue,2025-11-27 10:45:50,Resolved,Low
+Q000105,KOI000321,Video lectures won't play,technical_issue,2025-11-27 10:44:27,Resolved,High
+Q000106,KOI000241,Video lectures won't play,technical_issue,2025-11-27 10:44:36,Pending,High
+Q000107,KOI000235,When is the final exam for COMP201?,exam_schedule,2025-11-27 10:43:29,Pending,Medium
+Q000108,KOI000283,When is the final exam for COMP201?,exam_schedule,2025-11-27 10:43:14,Resolved,Medium
+Q000109,KOI000225,When is the final exam for COMP201?,exam_schedule,2025-11-27 10:46:16,Pending,Low
+Q000110,KOI000201,When is the final exam for COMP201?,exam_schedule,2025-11-27 10:44:56,Resolved,High
+Q000111,KOI000283,When is the final exam for COMP201?,exam_schedule,2025-11-27 10:46:25,Resolved,Low
+Q000112,KOI000067,When is the final exam for COMP201?,exam_schedule,2025-11-27 10:44:56,Resolved,Medium
+Q000113,KOI000169,When is the final exam for COMP201?,exam_schedule,2025-11-27 10:47:46,Resolved,Medium
+Q000114,KOI000131,When is the final exam for COMP201?,exam_schedule,2025-11-27 10:44:27,Resolved,High
+Q000115,KOI000174,Where will the exam be held?,exam_schedule,2025-11-27 10:46:41,Resolved,Medium
+Q000116,KOI000102,Where will the exam be held?,exam_schedule,2025-11-27 10:47:27,Resolved,Medium
+Q000117,KOI000080,Where will the exam be held?,exam_schedule,2025-11-27 10:44:57,Resolved,Medium
+Q000118,KOI000271,Where will the exam be held?,exam_schedule,2025-11-27 10:47:05,Resolved,Medium
+Q000119,KOI000347,Where will the exam be held?,exam_schedule,2025-11-27 10:45:40,Resolved,High
+Q000120,KOI000315,Where will the exam be held?,exam_schedule,2025-11-27 10:45:10,Resolved,High
+Q000121,KOI000360,What's the exam format?,exam_schedule,2025-11-27 10:44:46,Resolved,Low
+Q000122,KOI000026,What's the exam format?,exam_schedule,2025-11-27 10:47:18,Pending,High
+Q000123,KOI000264,What's the exam format?,exam_schedule,2025-11-27 10:44:31,Resolved,Low
+Q000124,KOI000107,What's the exam format?,exam_schedule,2025-11-27 10:43:35,Resolved,Low
+Q000125,KOI000266,What's the exam format?,exam_schedule,2025-11-27 10:46:21,Resolved,Low
+Q000126,KOI000473,What's the exam format?,exam_schedule,2025-11-27 10:43:09,Pending,High
+Q000127,KOI000062,What's the exam format?,exam_schedule,2025-11-27 10:44:39,Resolved,Low
+Q000128,KOI000362,Can I get special consideration for exams?,exam_schedule,2025-11-27 10:47:18,Resolved,Low
+Q000129,KOI000359,Can I get special consideration for exams?,exam_schedule,2025-11-27 10:43:04,Resolved,High
+Q000130,KOI000211,Can I get special consideration for exams?,exam_schedule,2025-11-27 10:42:46,Pending,Low
+Q000131,KOI000011,Can I get special consideration for exams?,exam_schedule,2025-11-27 10:47:58,Resolved,Low
+Q000132,KOI000233,Can I get special consideration for exams?,exam_schedule,2025-11-27 10:45:43,Resolved,High
+Q000133,KOI000492,Can I get special consideration for exams?,exam_schedule,2025-11-27 10:44:54,Resolved,Low
+Q000134,KOI000445,Can I get special consideration for exams?,exam_schedule,2025-11-27 10:42:17,Resolved,Medium
+Q000135,KOI000434,How do I pay my tuition fees?,fee_payment,2025-11-27 10:43:13,Pending,Medium
+Q000136,KOI000050,How do I pay my tuition fees?,fee_payment,2025-11-27 10:42:07,Pending,High
+Q000137,KOI000286,How do I pay my tuition fees?,fee_payment,2025-11-27 10:42:24,Resolved,Low
+Q000138,KOI000362,How do I pay my tuition fees?,fee_payment,2025-11-27 10:42:25,Resolved,High
+Q000139,KOI000391,What's my outstanding balance?,fee_payment,2025-11-27 10:43:23,Resolved,Medium
+Q000140,KOI000045,What's my outstanding balance?,fee_payment,2025-11-27 10:44:41,Resolved,High
+Q000141,KOI000110,What's my outstanding balance?,fee_payment,2025-11-27 10:45:14,Resolved,Low
+Q000142,KOI000140,What's my outstanding balance?,fee_payment,2025-11-27 10:47:31,Resolved,High
+Q000143,KOI000380,What's my outstanding balance?,fee_payment,2025-11-27 10:44:01,Resolved,Low
+Q000144,KOI000334,Are there payment plans available?,fee_payment,2025-11-27 10:47:04,Resolved,Low
+Q000145,KOI000068,Are there payment plans available?,fee_payment,2025-11-27 10:47:35,Pending,High
+Q000146,KOI000054,Are there payment plans available?,fee_payment,2025-11-27 10:44:02,Pending,Medium
+Q000147,KOI000008,Are there payment plans available?,fee_payment,2025-11-27 10:42:41,Resolved,Medium
+Q000148,KOI000365,Are there payment plans available?,fee_payment,2025-11-27 10:44:05,Resolved,Low
+Q000149,KOI000020,Are there payment plans available?,fee_payment,2025-11-27 10:43:11,Pending,Medium
+Q000150,KOI000211,Are there payment plans available?,fee_payment,2025-11-27 10:47:33,Pending,Low
+Q000151,KOI000213,Are there payment plans available?,fee_payment,2025-11-27 10:43:03,Resolved,High
+Q000152,KOI000063,When is the fee deadline?,fee_payment,2025-11-27 10:44:50,Resolved,Low
+Q000153,KOI000185,When is the fee deadline?,fee_payment,2025-11-27 10:44:46,Pending,High
+Q000154,KOI000180,When is the fee deadline?,fee_payment,2025-11-27 10:42:39,Resolved,Medium
+Q000155,KOI000120,When is the fee deadline?,fee_payment,2025-11-27 10:43:50,Resolved,Medium
+Q000156,KOI000265,When is the fee deadline?,fee_payment,2025-11-27 10:42:06,Resolved,Low

@@ -1,0 +1,156 @@
+quiz_id,course_id,course_code,title,quiz_type,max_marks,duration_minutes,date,attempts_allowed,time_limit,shuffle_questions
+COMP101_Semester_1_2024_Q1,COMP101_Semester_1_2024,COMP101,Quiz 1: Module Assessment,Short Answer,25,30,2024-03-11 00:00:00,Unlimited,False,False
+COMP101_Semester_1_2024_Q2,COMP101_Semester_1_2024,COMP101,Quiz 2: Weekly Assessment,True/False,25,45,2024-03-09 00:00:00,Unlimited,True,False
+COMP101_Semester_2_2024_Q1,COMP101_Semester_2_2024,COMP101,Quiz 1: Module Assessment,Multiple Choice,30,60,2024-09-29 00:00:00,3,True,True
+COMP101_Semester_2_2024_Q2,COMP101_Semester_2_2024,COMP101,Quiz 2: Final Assessment,Short Answer,10,30,2024-09-03 00:00:00,Unlimited,False,False
+COMP101_Summer_2024/25_Q1,COMP101_Summer_2024/25,COMP101,Quiz 1: Module Assessment,True/False,25,90,2025-02-20 00:00:00,2,True,True
+COMP101_Summer_2024/25_Q2,COMP101_Summer_2024/25,COMP101,Quiz 2: Module Assessment,Multiple Choice,15,60,2025-01-13 00:00:00,3,False,True
+COMP101_Summer_2024/25_Q3,COMP101_Summer_2024/25,COMP101,Quiz 3: Module Assessment,Mixed,20,30,2025-01-13 00:00:00,1,False,False
+COMP201_Semester_1_2024_Q1,COMP201_Semester_1_2024,COMP201,Quiz 1: Final Assessment,Short Answer,10,90,2024-03-26 00:00:00,1,False,True
+COMP201_Semester_1_2024_Q2,COMP201_Semester_1_2024,COMP201,Quiz 2: Final Assessment,True/False,25,30,2024-04-18 00:00:00,1,False,False
+COMP201_Semester_1_2024_Q3,COMP201_Semester_1_2024,COMP201,Quiz 3: Final Assessment,True/False,20,60,2024-03-12 00:00:00,3,False,True
+COMP201_Semester_2_2024_Q1,COMP201_Semester_2_2024,COMP201,Quiz 1: Weekly Assessment,True/False,30,30,2024-10-10 00:00:00,2,True,True
+COMP201_Semester_2_2024_Q2,COMP201_Semester_2_2024,COMP201,Quiz 2: Final Assessment,Mixed,10,45,2024-08-14 00:00:00,1,False,False
+COMP201_Summer_2024/25_Q1,COMP201_Summer_2024/25,COMP201,Quiz 1: Mid-term Assessment,True/False,20,30,2025-01-23 00:00:00,1,False,True
+COMP201_Summer_2024/25_Q2,COMP201_Summer_2024/25,COMP201,Quiz 2: Mid-term Assessment,True/False,15,60,2025-02-12 00:00:00,3,False,True
+COMP301_Semester_1_2024_Q1,COMP301_Semester_1_2024,COMP301,Quiz 1: Module Assessment,True/False,10,60,2024-04-27 00:00:00,3,False,False
+COMP301_Semester_1_2024_Q2,COMP301_Semester_1_2024,COMP301,Quiz 2: Module Assessment,Short Answer,20,30,2024-05-26 00:00:00,2,False,True
+COMP301_Semester_1_2024_Q3,COMP301_Semester_1_2024,COMP301,Quiz 3: Weekly Assessment,Multiple Choice,10,45,2024-04-10 00:00:00,3,False,True
+COMP301_Semester_1_2024_Q4,COMP301_Semester_1_2024,COMP301,Quiz 4: Mid-term Assessment,True/False,25,30,2024-04-21 00:00:00,1,True,False
+COMP301_Semester_2_2024_Q1,COMP301_Semester_2_2024,COMP301,Quiz 1: Mid-term Assessment,Multiple Choice,30,90,2024-10-23 00:00:00,Unlimited,False,False
+COMP301_Semester_2_2024_Q2,COMP301_Semester_2_2024,COMP301,Quiz 2: Module Assessment,True/False,20,45,2024-08-15 00:00:00,3,True,False
+COMP301_Semester_2_2024_Q3,COMP301_Semester_2_2024,COMP301,Quiz 3: Mid-term Assessment,True/False,25,90,2024-08-31 00:00:00,3,True,False
+COMP301_Semester_2_2024_Q4,COMP301_Semester_2_2024,COMP301,Quiz 4: Mid-term Assessment,Mixed,25,45,2024-10-01 00:00:00,Unlimited,False,True
+COMP301_Summer_2024/25_Q1,COMP301_Summer_2024/25,COMP301,Quiz 1: Weekly Assessment,Short Answer,30,45,2024-12-25 00:00:00,3,False,False
+COMP301_Summer_2024/25_Q2,COMP301_Summer_2024/25,COMP301,Quiz 2: Mid-term Assessment,Multiple Choice,25,90,2025-01-18 00:00:00,2,False,True
+COMP301_Summer_2024/25_Q3,COMP301_Summer_2024/25,COMP301,Quiz 3: Final Assessment,Multiple Choice,15,30,2025-01-01 00:00:00,Unlimited,False,False
+COMP301_Summer_2024/25_Q4,COMP301_Summer_2024/25,COMP301,Quiz 4: Weekly Assessment,Multiple Choice,25,30,2024-12-21 00:00:00,2,True,True
+COMP401_Semester_1_2024_Q1,COMP401_Semester_1_2024,COMP401,Quiz 1: Final Assessment,Short Answer,20,45,2024-05-10 00:00:00,Unlimited,True,False
+COMP401_Semester_1_2024_Q2,COMP401_Semester_1_2024,COMP401,Quiz 2: Module Assessment,Mixed,30,30,2024-03-19 00:00:00,1,True,False
+COMP401_Semester_1_2024_Q3,COMP401_Semester_1_2024,COMP401,Quiz 3: Final Assessment,Short Answer,25,60,2024-04-30 00:00:00,Unlimited,True,True
+COMP401_Semester_1_2024_Q4,COMP401_Semester_1_2024,COMP401,Quiz 4: Mid-term Assessment,True/False,10,60,2024-06-04 00:00:00,Unlimited,False,False
+COMP401_Semester_2_2024_Q1,COMP401_Semester_2_2024,COMP401,Quiz 1: Module Assessment,Multiple Choice,15,60,2024-08-13 00:00:00,Unlimited,False,True
+COMP401_Semester_2_2024_Q2,COMP401_Semester_2_2024,COMP401,Quiz 2: Final Assessment,Mixed,20,90,2024-10-02 00:00:00,3,True,True
+COMP401_Semester_2_2024_Q3,COMP401_Semester_2_2024,COMP401,Quiz 3: Weekly Assessment,Short Answer,30,60,2024-07-27 00:00:00,3,True,False
+COMP401_Summer_2024/25_Q1,COMP401_Summer_2024/25,COMP401,Quiz 1: Mid-term Assessment,Mixed,20,90,2024-12-30 00:00:00,Unlimited,True,True
+COMP401_Summer_2024/25_Q2,COMP401_Summer_2024/25,COMP401,Quiz 2: Module Assessment,Multiple Choice,15,60,2025-01-14 00:00:00,2,True,True
+COMP401_Summer_2024/25_Q3,COMP401_Summer_2024/25,COMP401,Quiz 3: Weekly Assessment,Multiple Choice,30,30,2025-02-17 00:00:00,2,True,False
+WEB201_Semester_1_2024_Q1,WEB201_Semester_1_2024,WEB201,Quiz 1: Weekly Assessment,Mixed,30,90,2024-04-20 00:00:00,Unlimited,True,False
+WEB201_Semester_1_2024_Q2,WEB201_Semester_1_2024,WEB201,Quiz 2: Mid-term Assessment,Multiple Choice,25,90,2024-04-10 00:00:00,Unlimited,False,True
+WEB201_Semester_2_2024_Q1,WEB201_Semester_2_2024,WEB201,Quiz 1: Mid-term Assessment,Mixed,10,45,2024-08-26 00:00:00,1,False,True
+WEB201_Semester_2_2024_Q2,WEB201_Semester_2_2024,WEB201,Quiz 2: Module Assessment,Mixed,25,30,2024-09-24 00:00:00,3,True,False
+WEB201_Summer_2024/25_Q1,WEB201_Summer_2024/25,WEB201,Quiz 1: Module Assessment,True/False,30,30,2025-02-13 00:00:00,1,True,True
+WEB201_Summer_2024/25_Q2,WEB201_Summer_2024/25,WEB201,Quiz 2: Weekly Assessment,True/False,20,90,2025-01-26 00:00:00,2,False,True
+NET301_Semester_1_2024_Q1,NET301_Semester_1_2024,NET301,Quiz 1: Module Assessment,True/False,15,30,2024-05-06 00:00:00,2,True,False
+NET301_Semester_1_2024_Q2,NET301_Semester_1_2024,NET301,Quiz 2: Final Assessment,True/False,15,30,2024-03-12 00:00:00,Unlimited,False,False
+NET301_Semester_1_2024_Q3,NET301_Semester_1_2024,NET301,Quiz 3: Weekly Assessment,Mixed,25,45,2024-05-23 00:00:00,3,True,False
+NET301_Semester_1_2024_Q4,NET301_Semester_1_2024,NET301,Quiz 4: Final Assessment,Short Answer,25,60,2024-05-28 00:00:00,Unlimited,False,True
+NET301_Semester_2_2024_Q1,NET301_Semester_2_2024,NET301,Quiz 1: Module Assessment,Short Answer,25,60,2024-08-05 00:00:00,2,False,True
+NET301_Semester_2_2024_Q2,NET301_Semester_2_2024,NET301,Quiz 2: Final Assessment,Mixed,10,60,2024-08-13 00:00:00,Unlimited,True,False
+NET301_Summer_2024/25_Q1,NET301_Summer_2024/25,NET301,Quiz 1: Weekly Assessment,Multiple Choice,20,60,2025-01-30 00:00:00,2,False,True
+NET301_Summer_2024/25_Q2,NET301_Summer_2024/25,NET301,Quiz 2: Module Assessment,Mixed,20,90,2025-02-18 00:00:00,Unlimited,False,False
+NET301_Summer_2024/25_Q3,NET301_Summer_2024/25,NET301,Quiz 3: Module Assessment,Multiple Choice,20,90,2025-01-29 00:00:00,2,False,True
+SEC401_Semester_1_2024_Q1,SEC401_Semester_1_2024,SEC401,Quiz 1: Final Assessment,True/False,30,45,2024-04-30 00:00:00,2,True,False
+SEC401_Semester_1_2024_Q2,SEC401_Semester_1_2024,SEC401,Quiz 2: Mid-term Assessment,Multiple Choice,25,30,2024-03-20 00:00:00,3,False,True
+SEC401_Semester_1_2024_Q3,SEC401_Semester_1_2024,SEC401,Quiz 3: Mid-term Assessment,True/False,20,45,2024-05-26 00:00:00,2,False,True
+SEC401_Semester_2_2024_Q1,SEC401_Semester_2_2024,SEC401,Quiz 1: Weekly Assessment,Mixed,20,90,2024-11-01 00:00:00,2,True,True
+SEC401_Semester_2_2024_Q2,SEC401_Semester_2_2024,SEC401,Quiz 2: Mid-term Assessment,Multiple Choice,30,90,2024-07-26 00:00:00,Unlimited,True,True
+SEC401_Semester_2_2024_Q3,SEC401_Semester_2_2024,SEC401,Quiz 3: Module Assessment,Multiple Choice,15,45,2024-08-27 00:00:00,1,False,True
+SEC401_Summer_2024/25_Q1,SEC401_Summer_2024/25,SEC401,Quiz 1: Weekly Assessment,Mixed,10,30,2025-01-29 00:00:00,1,False,True
+SEC401_Summer_2024/25_Q2,SEC401_Summer_2024/25,SEC401,Quiz 2: Weekly Assessment,Multiple Choice,30,90,2024-12-10 00:00:00,2,False,False
+SEC401_Summer_2024/25_Q3,SEC401_Summer_2024/25,SEC401,Quiz 3: Mid-term Assessment,Mixed,20,90,2025-02-01 00:00:00,2,True,False
+DATA301_Semester_1_2024_Q1,DATA301_Semester_1_2024,DATA301,Quiz 1: Final Assessment,Short Answer,20,90,2024-05-16 00:00:00,1,True,False
+DATA301_Semester_1_2024_Q2,DATA301_Semester_1_2024,DATA301,Quiz 2: Module Assessment,Short Answer,20,45,2024-05-14 00:00:00,Unlimited,True,False
+DATA301_Semester_1_2024_Q3,DATA301_Semester_1_2024,DATA301,Quiz 3: Final Assessment,Mixed,30,30,2024-06-05 00:00:00,Unlimited,True,True
+DATA301_Semester_1_2024_Q4,DATA301_Semester_1_2024,DATA301,Quiz 4: Weekly Assessment,Short Answer,20,90,2024-04-23 00:00:00,1,False,False
+DATA301_Semester_2_2024_Q1,DATA301_Semester_2_2024,DATA301,Quiz 1: Mid-term Assessment,Multiple Choice,30,45,2024-11-02 00:00:00,2,False,True
+DATA301_Semester_2_2024_Q2,DATA301_Semester_2_2024,DATA301,Quiz 2: Weekly Assessment,Short Answer,30,90,2024-08-01 00:00:00,2,True,False
+DATA301_Summer_2024/25_Q1,DATA301_Summer_2024/25,DATA301,Quiz 1: Module Assessment,Mixed,15,30,2025-01-30 00:00:00,3,False,True
+DATA301_Summer_2024/25_Q2,DATA301_Summer_2024/25,DATA301,Quiz 2: Weekly Assessment,Short Answer,30,90,2025-01-12 00:00:00,3,True,False
+DATA301_Summer_2024/25_Q3,DATA301_Summer_2024/25,DATA301,Quiz 3: Final Assessment,Multiple Choice,10,90,2025-02-06 00:00:00,1,False,True
+SOFT301_Semester_1_2024_Q1,SOFT301_Semester_1_2024,SOFT301,Quiz 1: Mid-term Assessment,True/False,15,90,2024-03-24 00:00:00,1,True,False
+SOFT301_Semester_1_2024_Q2,SOFT301_Semester_1_2024,SOFT301,Quiz 2: Weekly Assessment,Short Answer,15,90,2024-05-06 00:00:00,Unlimited,True,False
+SOFT301_Semester_2_2024_Q1,SOFT301_Semester_2_2024,SOFT301,Quiz 1: Module Assessment,Mixed,30,60,2024-09-15 00:00:00,3,True,True
+SOFT301_Semester_2_2024_Q2,SOFT301_Semester_2_2024,SOFT301,Quiz 2: Weekly Assessment,Mixed,30,60,2024-08-28 00:00:00,Unlimited,False,True
+SOFT301_Summer_2024/25_Q1,SOFT301_Summer_2024/25,SOFT301,Quiz 1: Weekly Assessment,Short Answer,10,60,2024-12-26 00:00:00,Unlimited,True,True
+SOFT301_Summer_2024/25_Q2,SOFT301_Summer_2024/25,SOFT301,Quiz 2: Mid-term Assessment,Multiple Choice,20,45,2025-02-07 00:00:00,2,True,False
+SOFT301_Summer_2024/25_Q3,SOFT301_Summer_2024/25,SOFT301,Quiz 3: Mid-term Assessment,Multiple Choice,30,90,2025-01-20 00:00:00,2,True,False
+CLOUD401_Semester_1_2024_Q1,CLOUD401_Semester_1_2024,CLOUD401,Quiz 1: Weekly Assessment,Mixed,10,45,2024-05-14 00:00:00,3,False,False
+CLOUD401_Semester_1_2024_Q2,CLOUD401_Semester_1_2024,CLOUD401,Quiz 2: Module Assessment,Mixed,30,90,2024-05-17 00:00:00,3,True,True
+CLOUD401_Semester_1_2024_Q3,CLOUD401_Semester_1_2024,CLOUD401,Quiz 3: Weekly Assessment,Multiple Choice,15,60,2024-05-18 00:00:00,2,False,True
+CLOUD401_Semester_1_2024_Q4,CLOUD401_Semester_1_2024,CLOUD401,Quiz 4: Final Assessment,Mixed,30,60,2024-03-20 00:00:00,Unlimited,True,True
+CLOUD401_Semester_2_2024_Q1,CLOUD401_Semester_2_2024,CLOUD401,Quiz 1: Weekly Assessment,True/False,10,45,2024-10-30 00:00:00,2,True,False
+CLOUD401_Semester_2_2024_Q2,CLOUD401_Semester_2_2024,CLOUD401,Quiz 2: Module Assessment,Multiple Choice,10,45,2024-07-22 00:00:00,Unlimited,False,False
+CLOUD401_Summer_2024/25_Q1,CLOUD401_Summer_2024/25,CLOUD401,Quiz 1: Mid-term Assessment,True/False,30,90,2025-01-16 00:00:00,Unlimited,False,False
+CLOUD401_Summer_2024/25_Q2,CLOUD401_Summer_2024/25,CLOUD401,Quiz 2: Module Assessment,Mixed,30,30,2025-01-23 00:00:00,2,True,False
+CLOUD401_Summer_2024/25_Q3,CLOUD401_Summer_2024/25,CLOUD401,Quiz 3: Final Assessment,Short Answer,25,60,2024-12-27 00:00:00,1,False,False
+BUS101_Semester_1_2024_Q1,BUS101_Semester_1_2024,BUS101,Quiz 1: Module Assessment,Short Answer,20,90,2024-03-07 00:00:00,2,True,False
+BUS101_Semester_1_2024_Q2,BUS101_Semester_1_2024,BUS101,Quiz 2: Weekly Assessment,Multiple Choice,15,90,2024-04-20 00:00:00,3,True,True
+BUS101_Semester_2_2024_Q1,BUS101_Semester_2_2024,BUS101,Quiz 1: Module Assessment,Multiple Choice,20,60,2024-08-30 00:00:00,1,False,True
+BUS101_Semester_2_2024_Q2,BUS101_Semester_2_2024,BUS101,Quiz 2: Module Assessment,Short Answer,25,30,2024-10-12 00:00:00,3,False,True
+BUS101_Semester_2_2024_Q3,BUS101_Semester_2_2024,BUS101,Quiz 3: Mid-term Assessment,Short Answer,30,90,2024-10-03 00:00:00,Unlimited,True,False
+BUS101_Semester_2_2024_Q4,BUS101_Semester_2_2024,BUS101,Quiz 4: Mid-term Assessment,Multiple Choice,20,30,2024-10-25 00:00:00,2,True,True
+BUS101_Summer_2024/25_Q1,BUS101_Summer_2024/25,BUS101,Quiz 1: Mid-term Assessment,Multiple Choice,25,30,2025-01-31 00:00:00,3,True,False
+BUS101_Summer_2024/25_Q2,BUS101_Summer_2024/25,BUS101,Quiz 2: Mid-term Assessment,Mixed,20,45,2025-01-02 00:00:00,3,True,False
+ACC201_Semester_1_2024_Q1,ACC201_Semester_1_2024,ACC201,Quiz 1: Mid-term Assessment,Multiple Choice,15,45,2024-05-28 00:00:00,3,True,True
+ACC201_Semester_1_2024_Q2,ACC201_Semester_1_2024,ACC201,Quiz 2: Mid-term Assessment,Mixed,30,45,2024-04-29 00:00:00,Unlimited,True,True
+ACC201_Semester_1_2024_Q3,ACC201_Semester_1_2024,ACC201,Quiz 3: Module Assessment,Mixed,10,60,2024-04-12 00:00:00,Unlimited,True,False
+ACC201_Semester_2_2024_Q1,ACC201_Semester_2_2024,ACC201,Quiz 1: Mid-term Assessment,True/False,10,45,2024-08-05 00:00:00,3,True,True
+ACC201_Semester_2_2024_Q2,ACC201_Semester_2_2024,ACC201,Quiz 2: Mid-term Assessment,True/False,20,90,2024-10-30 00:00:00,1,True,False
+ACC201_Summer_2024/25_Q1,ACC201_Summer_2024/25,ACC201,Quiz 1: Weekly Assessment,Mixed,10,90,2025-01-02 00:00:00,3,True,False
+ACC201_Summer_2024/25_Q2,ACC201_Summer_2024/25,ACC201,Quiz 2: Module Assessment,Short Answer,15,45,2024-12-26 00:00:00,3,True,True
+ACC201_Summer_2024/25_Q3,ACC201_Summer_2024/25,ACC201,Quiz 3: Module Assessment,Short Answer,20,30,2025-01-15 00:00:00,Unlimited,False,False
+ACC201_Summer_2024/25_Q4,ACC201_Summer_2024/25,ACC201,Quiz 4: Final Assessment,True/False,10,90,2025-01-22 00:00:00,2,True,False
+MKT201_Semester_1_2024_Q1,MKT201_Semester_1_2024,MKT201,Quiz 1: Module Assessment,True/False,20,60,2024-05-25 00:00:00,1,True,False
+MKT201_Semester_1_2024_Q2,MKT201_Semester_1_2024,MKT201,Quiz 2: Final Assessment,Mixed,10,30,2024-03-31 00:00:00,2,False,True
+MKT201_Semester_1_2024_Q3,MKT201_Semester_1_2024,MKT201,Quiz 3: Module Assessment,Mixed,30,90,2024-05-02 00:00:00,1,False,True
+MKT201_Semester_2_2024_Q1,MKT201_Semester_2_2024,MKT201,Quiz 1: Mid-term Assessment,True/False,25,90,2024-09-05 00:00:00,3,False,True
+MKT201_Semester_2_2024_Q2,MKT201_Semester_2_2024,MKT201,Quiz 2: Module Assessment,Mixed,15,90,2024-08-14 00:00:00,2,True,False
+MKT201_Semester_2_2024_Q3,MKT201_Semester_2_2024,MKT201,Quiz 3: Final Assessment,Short Answer,25,90,2024-11-02 00:00:00,2,False,False
+MKT201_Semester_2_2024_Q4,MKT201_Semester_2_2024,MKT201,Quiz 4: Module Assessment,Short Answer,25,60,2024-10-06 00:00:00,1,True,True
+MKT201_Summer_2024/25_Q1,MKT201_Summer_2024/25,MKT201,Quiz 1: Module Assessment,Short Answer,30,30,2025-02-01 00:00:00,2,True,False
+MKT201_Summer_2024/25_Q2,MKT201_Summer_2024/25,MKT201,Quiz 2: Weekly Assessment,True/False,15,60,2025-02-14 00:00:00,1,True,False
+MKT201_Summer_2024/25_Q3,MKT201_Summer_2024/25,MKT201,Quiz 3: Module Assessment,Short Answer,25,45,2024-12-27 00:00:00,Unlimited,True,True
+MGT301_Semester_1_2024_Q1,MGT301_Semester_1_2024,MGT301,Quiz 1: Module Assessment,Mixed,10,45,2024-03-26 00:00:00,2,True,False
+MGT301_Semester_1_2024_Q2,MGT301_Semester_1_2024,MGT301,Quiz 2: Weekly Assessment,True/False,30,60,2024-03-15 00:00:00,1,False,True
+MGT301_Semester_2_2024_Q1,MGT301_Semester_2_2024,MGT301,Quiz 1: Final Assessment,Short Answer,15,90,2024-08-03 00:00:00,Unlimited,False,True
+MGT301_Semester_2_2024_Q2,MGT301_Semester_2_2024,MGT301,Quiz 2: Mid-term Assessment,Short Answer,15,60,2024-10-27 00:00:00,2,False,False
+MGT301_Semester_2_2024_Q3,MGT301_Semester_2_2024,MGT301,Quiz 3: Final Assessment,Short Answer,30,30,2024-08-27 00:00:00,3,False,True
+MGT301_Summer_2024/25_Q1,MGT301_Summer_2024/25,MGT301,Quiz 1: Weekly Assessment,Mixed,20,60,2024-12-31 00:00:00,1,False,True
+MGT301_Summer_2024/25_Q2,MGT301_Summer_2024/25,MGT301,Quiz 2: Weekly Assessment,Short Answer,15,30,2025-01-07 00:00:00,2,False,False
+FIN301_Semester_1_2024_Q1,FIN301_Semester_1_2024,FIN301,Quiz 1: Final Assessment,True/False,25,45,2024-04-16 00:00:00,3,False,False
+FIN301_Semester_1_2024_Q2,FIN301_Semester_1_2024,FIN301,Quiz 2: Final Assessment,Multiple Choice,20,90,2024-05-29 00:00:00,2,True,False
+FIN301_Semester_2_2024_Q1,FIN301_Semester_2_2024,FIN301,Quiz 1: Mid-term Assessment,Short Answer,10,60,2024-09-26 00:00:00,1,False,True
+FIN301_Semester_2_2024_Q2,FIN301_Semester_2_2024,FIN301,Quiz 2: Module Assessment,True/False,30,90,2024-08-11 00:00:00,Unlimited,True,False
+FIN301_Semester_2_2024_Q3,FIN301_Semester_2_2024,FIN301,Quiz 3: Final Assessment,Short Answer,10,60,2024-10-13 00:00:00,Unlimited,False,True
+FIN301_Semester_2_2024_Q4,FIN301_Semester_2_2024,FIN301,Quiz 4: Final Assessment,Mixed,25,60,2024-10-07 00:00:00,3,True,True
+FIN301_Summer_2024/25_Q1,FIN301_Summer_2024/25,FIN301,Quiz 1: Final Assessment,Multiple Choice,15,30,2025-02-15 00:00:00,3,False,True
+FIN301_Summer_2024/25_Q2,FIN301_Summer_2024/25,FIN301,Quiz 2: Final Assessment,Short Answer,10,90,2025-02-12 00:00:00,3,True,True
+FIN301_Summer_2024/25_Q3,FIN301_Summer_2024/25,FIN301,Quiz 3: Final Assessment,Mixed,10,60,2025-02-09 00:00:00,3,False,False
+MATH101_Semester_1_2024_Q1,MATH101_Semester_1_2024,MATH101,Quiz 1: Mid-term Assessment,Mixed,15,60,2024-04-10 00:00:00,3,False,True
+MATH101_Semester_1_2024_Q2,MATH101_Semester_1_2024,MATH101,Quiz 2: Module Assessment,Mixed,10,30,2024-04-30 00:00:00,3,True,False
+MATH101_Semester_1_2024_Q3,MATH101_Semester_1_2024,MATH101,Quiz 3: Weekly Assessment,Multiple Choice,30,30,2024-04-04 00:00:00,2,True,False
+MATH101_Semester_1_2024_Q4,MATH101_Semester_1_2024,MATH101,Quiz 4: Module Assessment,Mixed,25,45,2024-04-28 00:00:00,Unlimited,True,True
+MATH101_Semester_2_2024_Q1,MATH101_Semester_2_2024,MATH101,Quiz 1: Mid-term Assessment,True/False,30,30,2024-09-07 00:00:00,Unlimited,True,False
+MATH101_Semester_2_2024_Q2,MATH101_Semester_2_2024,MATH101,Quiz 2: Module Assessment,Short Answer,25,30,2024-10-11 00:00:00,2,False,True
+MATH101_Semester_2_2024_Q3,MATH101_Semester_2_2024,MATH101,Quiz 3: Final Assessment,Multiple Choice,15,60,2024-11-06 00:00:00,3,True,True
+MATH101_Summer_2024/25_Q1,MATH101_Summer_2024/25,MATH101,Quiz 1: Final Assessment,True/False,25,60,2025-02-20 00:00:00,2,False,True
+MATH101_Summer_2024/25_Q2,MATH101_Summer_2024/25,MATH101,Quiz 2: Weekly Assessment,Mixed,20,30,2025-01-29 00:00:00,Unlimited,True,True
+MATH101_Summer_2024/25_Q3,MATH101_Summer_2024/25,MATH101,Quiz 3: Weekly Assessment,Mixed,20,90,2025-01-31 00:00:00,3,True,True
+STAT201_Semester_1_2024_Q1,STAT201_Semester_1_2024,STAT201,Quiz 1: Module Assessment,True/False,10,60,2024-03-06 00:00:00,Unlimited,False,False
+STAT201_Semester_1_2024_Q2,STAT201_Semester_1_2024,STAT201,Quiz 2: Final Assessment,Short Answer,30,30,2024-05-12 00:00:00,3,False,False
+STAT201_Semester_2_2024_Q1,STAT201_Semester_2_2024,STAT201,Quiz 1: Final Assessment,True/False,25,90,2024-11-04 00:00:00,2,True,False
+STAT201_Semester_2_2024_Q2,STAT201_Semester_2_2024,STAT201,Quiz 2: Final Assessment,Multiple Choice,30,30,2024-08-23 00:00:00,Unlimited,False,True
+STAT201_Semester_2_2024_Q3,STAT201_Semester_2_2024,STAT201,Quiz 3: Module Assessment,Mixed,20,60,2024-08-17 00:00:00,Unlimited,False,True
+STAT201_Summer_2024/25_Q1,STAT201_Summer_2024/25,STAT201,Quiz 1: Weekly Assessment,Mixed,30,90,2025-02-21 00:00:00,Unlimited,True,False
+STAT201_Summer_2024/25_Q2,STAT201_Summer_2024/25,STAT201,Quiz 2: Final Assessment,True/False,25,45,2025-02-18 00:00:00,Unlimited,True,True
+COMM101_Semester_1_2024_Q1,COMM101_Semester_1_2024,COMM101,Quiz 1: Weekly Assessment,Multiple Choice,30,60,2024-03-31 00:00:00,2,True,False
+COMM101_Semester_1_2024_Q2,COMM101_Semester_1_2024,COMM101,Quiz 2: Final Assessment,Mixed,15,90,2024-05-13 00:00:00,3,False,False
+COMM101_Semester_1_2024_Q3,COMM101_Semester_1_2024,COMM101,Quiz 3: Mid-term Assessment,Mixed,30,90,2024-05-23 00:00:00,2,False,False
+COMM101_Semester_2_2024_Q1,COMM101_Semester_2_2024,COMM101,Quiz 1: Final Assessment,True/False,15,90,2024-08-27 00:00:00,3,True,False
+COMM101_Semester_2_2024_Q2,COMM101_Semester_2_2024,COMM101,Quiz 2: Final Assessment,True/False,10,90,2024-10-27 00:00:00,Unlimited,False,False
+COMM101_Semester_2_2024_Q3,COMM101_Semester_2_2024,COMM101,Quiz 3: Mid-term Assessment,True/False,15,30,2024-08-15 00:00:00,Unlimited,True,False
+COMM101_Summer_2024/25_Q1,COMM101_Summer_2024/25,COMM101,Quiz 1: Weekly Assessment,Short Answer,10,60,2025-01-09 00:00:00,1,False,True
+COMM101_Summer_2024/25_Q2,COMM101_Summer_2024/25,COMM101,Quiz 2: Final Assessment,Mixed,15,45,2024-12-29 00:00:00,Unlimited,True,False
+COMM101_Summer_2024/25_Q3,COMM101_Summer_2024/25,COMM101,Quiz 3: Module Assessment,Multiple Choice,10,45,2024-12-25 00:00:00,Unlimited,False,True
+COMM101_Summer_2024/25_Q4,COMM101_Summer_2024/25,COMM101,Quiz 4: Weekly Assessment,True/False,25,30,2025-02-03 00:00:00,3,True,True
