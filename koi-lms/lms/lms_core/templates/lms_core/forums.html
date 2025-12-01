@@ -1,0 +1,48 @@
+{% extends 'lms_core/base.html' %}
+
+{% block title %}Forums - KOI LMS{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1><i class="fas fa-comments text-primary"></i> Discussion Forums</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">All Forum Topics</h5>
+            </div>
+            <div class="card-body">
+                {% if forums %}
+                <div class="list-group">
+                    {% for forum in forums %}
+                    <div class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{ forum.topic }}</h5>
+                            <small>{{ forum.created_date|date:"M d, Y" }}</small>
+                        </div>
+                        <p class="mb-1">
+                            <strong>Course:</strong> {{ forum.course.course_code }} | 
+                            <strong>Created by:</strong> {{ forum.created_by }}
+                        </p>
+                        <small>
+                            <i class="fas fa-comment"></i> {{ forum.posts_count }} posts | 
+                            <i class="fas fa-eye"></i> {{ forum.views }} views | 
+                            <span class="badge {% if forum.status == 'Open' %}bg-success{% else %}bg-secondary{% endif %}">
+                                {{ forum.status }}
+                            </span>
+                        </small>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="text-muted">No forum discussions yet.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
