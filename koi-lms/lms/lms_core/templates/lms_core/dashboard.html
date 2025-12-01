@@ -1,0 +1,184 @@
+{% extends 'lms_core/base.html' %}
+
+{% block title %}Dashboard - KOI LMS{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">
+            <i class="fas fa-tachometer-alt text-primary"></i>
+            Welcome, {{ student.user.first_name }}!
+        </h1>
+    </div>
+</div>
+
+<!-- Stats Section -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card bg-primary text-white shadow">
+            <div class="card-body">
+                <h5 class="card-title"><i class="fas fa-book"></i> Enrolled Courses</h5>
+                <h2 class="mb-0">{{ total_courses }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card bg-success text-white shadow">
+            <div class="card-body">
+                <h5 class="card-title"><i class="fas fa-chart-line"></i> Average Grade</h5>
+                <h2 class="mb-0">{{ avg_grade }}%</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card bg-warning text-white shadow">
+            <div class="card-body">
+                <h5 class="card-title"><i class="fas fa-tasks"></i> Pending Tasks</h5>
+                <h2 class="mb-0">{{ upcoming_assignments|length }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card bg-info text-white shadow">
+            <div class="card-body">
+                <h5 class="card-title"><i class="fas fa-graduation-cap"></i> GPA</h5>
+                <h2 class="mb-0">{{ student.gpa }}</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+
+    <!-- Left Column -->
+    <div class="col-md-8">
+
+        <!-- My Courses -->
+        <div class="card mb-4 shadow">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">
+                    <i class="fas fa-book-open"></i> My Courses
+                </h5>
+            </div>
+
+            <div class="card-body">
+                {% if enrollments %}
+                <div class="list-group">
+
+                    {% for enrollment in enrollments %}
+                    <a href="{% url 'course_detail' enrollment.course.course_id %}"
+                       class="list-group-item list-group-item-action">
+
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{ enrollment.course.course_code }}</h5>
+                            <small class="text-muted">{{ enrollment.course.term }}</small>
+                        </div>
+
+                        <p class="mb-1">{{ enrollment.course.course_name }}</p>
+                        <small class="text-muted">Instructor: {{ enrollment.course.instructor }}</small>
+                    </a>
+                    {% endfor %}
+
+                </div>
+                {% else %}
+                <p class="text-muted">No enrolled courses yet.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Upcoming Assignments -->
+        <div class="card shadow">
+            <div class="card-header bg-warning text-dark">
+                <h5 class="mb-0">
+                    <i class="fas fa-clock"></i> Upcoming Assignments
+                </h5>
+            </div>
+            <div class="card-body">
+                {% if upcoming_assignments %}
+                <div class="list-group">
+
+                    {% for assignment in upcoming_assignments %}
+                    <div class="list-group-item">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">
+                                {{ assignment.course.course_code }}: {{ assignment.title }}
+                            </h6>
+                            <small class="text-danger">
+                                <i class="fas fa-calendar-alt"></i>
+                                {{ assignment.due_date|date:"M d, Y H:i" }}
+                            </small>
+                        </div>
+                        <p class="mb-1 small">
+                            {{ assignment.assignment_type }} - {{ assignment.max_marks }} marks
+                        </p>
+                    </div>
+                    {% endfor %}
+
+                </div>
+                {% else %}
+                <p class="text-muted">No upcoming assignments.</p>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Right Column -->
+    <div class="col-md-4">
+
+        <!-- Recent Grades -->
+        <div class="card mb-4 shadow">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0">
+                    <i class="fas fa-chart-bar"></i> Recent Grades
+                </h5>
+            </div>
+
+            <div class="card-body">
+                {% if recent_grades %}
+                <div class="list-group">
+
+                    {% for grade in recent_grades %}
+                    <div class="list-group-item">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">{{ grade.course.course_code }}</h6>
+                            <span class="badge bg-primary rounded-pill">{{ grade.percentage }}%</span>
+                        </div>
+                        <small>
+                            {{ grade.assessment_type }}:
+                            {{ grade.marks_obtained }}/{{ grade.max_marks }}
+                        </small>
+                    </div>
+                    {% endfor %}
+
+                </div>
+                {% else %}
+                <p class="text-muted">No grades yet.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- AI Assistant -->
+        <div class="card shadow">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">
+                    <i class="fas fa-robot"></i> AI Assistant
+                </h5>
+            </div>
+
+            <div class="card-body">
+                <p>Need help? Ask our AI assistant!</p>
+                <a href="{% url 'ai_query' %}" class="btn btn-info w-100">
+                    <i class="fas fa-comments"></i> Ask a Question
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
