@@ -1,0 +1,108 @@
+{% extends 'lms_core/base.html' %}
+
+{% block title %}AI Assistant - KOI LMS{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1><i class="fas fa-robot text-primary"></i> AI Assistant</h1>
+        <p class="lead">Ask me anything about your courses, assignments, grades, or general queries!</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="fas fa-comments"></i> Ask a Question</h5>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Ask AI Assistant
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        {% if response %}
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0">
+                    <i class="fas fa-check-circle"></i> AI Response
+                    <span class="badge bg-light text-dark float-end">
+                        Confidence: {{ confidence|floatformat:0 }}%
+                    </span>
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-light">
+                    <strong>Your Question:</strong>
+                    <p class="mb-0">{{ query }}</p>
+                </div>
+                <div class="response-text">
+                    {{ response|linebreaks }}
+                </div>
+                <hr>
+                <small class="text-muted">
+                    <i class="fas fa-tag"></i> Detected Intent: <strong>{{ intent }}</strong>
+                </small>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card mb-4">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="fas fa-lightbulb"></i> Example Questions</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <i class="fas fa-chevron-right text-primary"></i>
+                        "When is COMP101 Assignment 2 due?"
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-chevron-right text-primary"></i>
+                        "Show me my grades for WEB201"
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-chevron-right text-primary"></i>
+                        "What's the exam schedule for DATA303?"
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-chevron-right text-primary"></i>
+                        "I'm having login issues"
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-chevron-right text-primary"></i>
+                        "How do I access course materials?"
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        {% if recent_queries %}
+        <div class="card">
+            <div class="card-header bg-secondary text-white">
+                <h5 class="mb-0"><i class="fas fa-history"></i> Recent Queries</h5>
+            </div>
+            <div class="card-body">
+                <div class="list-group">
+                    {% for q in recent_queries %}
+                    <div class="list-group-item">
+                        <small class="text-muted">{{ q.timestamp|date:"M d, H:i" }}</small>
+                        <p class="mb-1 small">{{ q.query_text|truncatewords:10 }}</p>
+                        <span class="badge bg-primary">{{ q.intent }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
