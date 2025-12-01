@@ -1,0 +1,64 @@
+<!-- ============================================ -->
+<!-- FILE: lms_core/templates/lms_core/quizzes.html -->
+<!-- ============================================ -->
+{% extends 'lms_core/base.html' %}
+
+{% block title %}Quizzes - KOI LMS{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1><i class="fas fa-question-circle text-primary"></i> My Quizzes</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">All Quizzes & Exams</h5>
+            </div>
+            <div class="card-body">
+                {% if quizzes %}
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Course</th>
+                                <th>Title</th>
+                                <th>Type</th>
+                                <th>Date</th>
+                                <th>Duration</th>
+                                <th>Max Marks</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for quiz in quizzes %}
+                            <tr>
+                                <td><strong>{{ quiz.course.course_code }}</strong></td>
+                                <td>{{ quiz.title }}</td>
+                                <td><span class="badge bg-info">{{ quiz.quiz_type }}</span></td>
+                                <td>{{ quiz.date|date:"M d, Y H:i" }}</td>
+                                <td>{{ quiz.duration_minutes }} min</td>
+                                <td>{{ quiz.max_marks }}</td>
+                                <td>
+                                    {% if quiz.quiz_id in completed_quizzes %}
+                                    <span class="badge bg-success">Completed</span>
+                                    {% else %}
+                                    <span class="badge bg-warning">Upcoming</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p class="text-muted">No quizzes scheduled.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
