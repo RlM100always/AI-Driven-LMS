@@ -1,0 +1,64 @@
+<!-- ============================================ -->
+<!-- FILE: lms_core/templates/lms_core/assignments.html -->
+<!-- ============================================ -->
+{% extends 'lms_core/base.html' %}
+
+{% block title %}Assignments - KOI LMS{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1><i class="fas fa-tasks text-primary"></i> My Assignments</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">All Assignments</h5>
+            </div>
+            <div class="card-body">
+                {% if assignments %}
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Course</th>
+                                <th>Title</th>
+                                <th>Type</th>
+                                <th>Due Date</th>
+                                <th>Max Marks</th>
+                                <th>Weight</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for assignment in assignments %}
+                            <tr>
+                                <td><strong>{{ assignment.course.course_code }}</strong></td>
+                                <td>{{ assignment.title }}</td>
+                                <td><span class="badge bg-info">{{ assignment.assignment_type }}</span></td>
+                                <td>{{ assignment.due_date|date:"M d, Y H:i" }}</td>
+                                <td>{{ assignment.max_marks }}</td>
+                                <td>{{ assignment.weight }}%</td>
+                                <td>
+                                    {% if assignment.assignment_id in submitted_assignments %}
+                                    <span class="badge bg-success">Submitted</span>
+                                    {% else %}
+                                    <span class="badge bg-warning">Pending</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p class="text-muted">No assignments available.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
