@@ -1,0 +1,40 @@
+{% extends 'lms_core/base.html' %}
+
+{% block title %}Login - KOI LMS{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-4">
+        <div class="card shadow">
+            <div class="card-body p-5">
+                <h2 class="text-center mb-4">
+                    <i class="fas fa-sign-in-alt text-primary"></i>
+                    Login
+                </h2>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="rememberMe">
+                        <label class="form-check-label" for="rememberMe">Remember me</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                </form>
+                <hr>
+                <p class="text-center mb-0">
+                    Don't have an account? <a href="{% url 'signup' %}">Sign up</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
