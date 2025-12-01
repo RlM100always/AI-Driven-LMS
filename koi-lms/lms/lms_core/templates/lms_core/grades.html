@@ -1,0 +1,119 @@
+{% extends 'lms_core/base.html' %}
+
+{% block title %}Grades - KOI LMS{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1><i class="fas fa-chart-bar text-primary"></i> My Grades</h1>
+    </div>
+</div>
+
+{% for course_data in course_grades %}
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">
+                        {{ course_data.course.course_code }}: {{ course_data.course.course_name }}
+                    </h5>
+                    <span class="badge bg-light text-dark">
+                        Average: {{ course_data.average }}%
+                    </span>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th>Assessment</th>
+                                <th>Type</th>
+                                <th>Score</th>
+                                <th>Percentage</th>
+                                <th>Graded Date</th>
+                                <th>Feedback</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for grade in course_data.grades %}
+                            <tr>
+                                <td>{{ grade.assessment_id }}</td>
+
+                                <td>
+                                    <span class="badge bg-info">
+                                        {{ grade.assessment_type }}
+                                    </span>
+                                </td>
+
+                                <td>{{ grade.marks_obtained }}/{{ grade.max_marks }}</td>
+
+                                <td>
+                                    <strong 
+                                        {% if grade.percentage >= 85 %}class="text-success"
+                                        {% elif grade.percentage >= 75 %}class="text-primary"
+                                        {% elif grade.percentage >= 65 %}class="text-info"
+                                        {% elif grade.percentage >= 50 %}class="text-warning"
+                                        {% else %}class="text-danger"
+                                        {% endif %}
+                                    >
+                                        {{ grade.percentage }}%
+                                    </strong>
+                                </td>
+
+                                <td>{{ grade.graded_date|date:"M d, Y" }}</td>
+
+                                <td>
+                                    {% if grade.feedback %}
+                                    <button class="btn btn-sm btn-outline-info"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#feedbackModal{{ grade.id }}">
+                                        View Feedback
+                                    </button>
+                                    {% else %}
+                                        <span class="text-muted">No feedback</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+
+                            <!-- FEEDBACK MODAL -->
+                            <div class="modal fade" id="feedbackModal{{ grade.id }}" tabindex="-1">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Feedback for {{ grade.assessment_id }}</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <p>{{ grade.feedback }}</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END MODAL -->
+
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% if not course_grades %}
+<div class="alert alert-info">
+    <i class="fas fa-info-circle"></i>
+    No grades available yet. Grades will appear here once your work has been assessed.
+</div>
+{% endif %}
+
+{% endblock %}
