@@ -1,0 +1,406 @@
+forum_id,course_id,course_code,topic,created_by,created_date,posts_count,views,status
+COMP101_Semester_1_2024_F1,COMP101_Semester_1_2024,COMP101,Technical Issues,Student,2024-05-15,25,197,Closed
+COMP101_Semester_1_2024_F2,COMP101_Semester_1_2024,COMP101,General Questions,Instructor,2024-03-24,27,428,Closed
+COMP101_Semester_1_2024_F3,COMP101_Semester_1_2024,COMP101,Week 1 Discussion,Instructor,2024-03-06,39,129,Open
+COMP101_Semester_1_2024_F4,COMP101_Semester_1_2024,COMP101,Exam Preparation,Student,2024-05-07,44,259,Closed
+COMP101_Semester_1_2024_F5,COMP101_Semester_1_2024,COMP101,Project Collaboration,Student,2024-04-08,7,27,Pinned
+COMP101_Semester_1_2024_F6,COMP101_Semester_1_2024,COMP101,Course Feedback,Student,2024-04-20,13,309,Closed
+COMP101_Semester_1_2024_F7,COMP101_Semester_1_2024,COMP101,Assignment Help,Instructor,2024-04-18,34,105,Pinned
+COMP101_Semester_1_2024_F8,COMP101_Semester_1_2024,COMP101,Week 1 Discussion,Instructor,2024-02-29,14,353,Closed
+COMP101_Semester_1_2024_F9,COMP101_Semester_1_2024,COMP101,Week 1 Discussion,Instructor,2024-06-01,22,387,Pinned
+COMP101_Semester_2_2024_F1,COMP101_Semester_2_2024,COMP101,Technical Issues,Instructor,2024-10-08,32,111,Pinned
+COMP101_Semester_2_2024_F2,COMP101_Semester_2_2024,COMP101,General Questions,Instructor,2024-10-08,14,50,Pinned
+COMP101_Semester_2_2024_F3,COMP101_Semester_2_2024,COMP101,Week 1 Discussion,Student,2024-09-07,26,212,Closed
+COMP101_Semester_2_2024_F4,COMP101_Semester_2_2024,COMP101,Exam Preparation,Student,2024-09-28,7,441,Pinned
+COMP101_Semester_2_2024_F5,COMP101_Semester_2_2024,COMP101,Project Collaboration,Student,2024-08-15,33,414,Pinned
+COMP101_Semester_2_2024_F6,COMP101_Semester_2_2024,COMP101,Technical Issues,Student,2024-07-26,34,291,Pinned
+COMP101_Summer_2024/25_F1,COMP101_Summer_2024/25,COMP101,Resource Sharing,Student,2025-02-09,40,385,Closed
+COMP101_Summer_2024/25_F2,COMP101_Summer_2024/25,COMP101,Technical Issues,Student,2025-01-14,6,60,Closed
+COMP101_Summer_2024/25_F3,COMP101_Summer_2024/25,COMP101,Assignment Help,Student,2024-12-15,39,441,Closed
+COMP101_Summer_2024/25_F4,COMP101_Summer_2024/25,COMP101,Exam Preparation,Instructor,2025-02-10,42,454,Pinned
+COMP101_Summer_2024/25_F5,COMP101_Summer_2024/25,COMP101,Week 1 Discussion,Student,2025-01-10,38,372,Open
+COMP101_Summer_2024/25_F6,COMP101_Summer_2024/25,COMP101,Study Group,Student,2025-02-14,7,20,Pinned
+COMP101_Summer_2024/25_F7,COMP101_Summer_2024/25,COMP101,Study Group,Instructor,2025-01-10,49,262,Pinned
+COMP201_Semester_1_2024_F1,COMP201_Semester_1_2024,COMP201,Exam Preparation,Student,2024-03-22,34,448,Closed
+COMP201_Semester_1_2024_F2,COMP201_Semester_1_2024,COMP201,Course Feedback,Student,2024-03-23,10,19,Open
+COMP201_Semester_1_2024_F3,COMP201_Semester_1_2024,COMP201,Study Group,Instructor,2024-05-02,25,490,Closed
+COMP201_Semester_1_2024_F4,COMP201_Semester_1_2024,COMP201,Week 1 Discussion,Instructor,2024-02-29,4,459,Closed
+COMP201_Semester_1_2024_F5,COMP201_Semester_1_2024,COMP201,General Questions,Student,2024-06-12,7,59,Closed
+COMP201_Semester_1_2024_F6,COMP201_Semester_1_2024,COMP201,General Questions,Instructor,2024-03-14,47,236,Closed
+COMP201_Semester_1_2024_F7,COMP201_Semester_1_2024,COMP201,Resource Sharing,Instructor,2024-05-31,15,120,Closed
+COMP201_Semester_1_2024_F8,COMP201_Semester_1_2024,COMP201,General Questions,Student,2024-05-28,39,201,Closed
+COMP201_Semester_1_2024_F9,COMP201_Semester_1_2024,COMP201,Exam Preparation,Instructor,2024-05-10,16,374,Pinned
+COMP201_Semester_2_2024_F1,COMP201_Semester_2_2024,COMP201,Exam Preparation,Instructor,2024-07-24,2,286,Closed
+COMP201_Semester_2_2024_F2,COMP201_Semester_2_2024,COMP201,General Questions,Student,2024-08-15,4,164,Closed
+COMP201_Semester_2_2024_F3,COMP201_Semester_2_2024,COMP201,Study Group,Student,2024-11-01,35,237,Closed
+COMP201_Semester_2_2024_F4,COMP201_Semester_2_2024,COMP201,Assignment Help,Instructor,2024-07-27,45,394,Pinned
+COMP201_Semester_2_2024_F5,COMP201_Semester_2_2024,COMP201,Technical Issues,Student,2024-09-04,32,202,Open
+COMP201_Semester_2_2024_F6,COMP201_Semester_2_2024,COMP201,Assignment Help,Instructor,2024-07-19,22,163,Pinned
+COMP201_Semester_2_2024_F7,COMP201_Semester_2_2024,COMP201,Resource Sharing,Student,2024-09-30,49,44,Closed
+COMP201_Semester_2_2024_F8,COMP201_Semester_2_2024,COMP201,Study Group,Instructor,2024-10-24,23,389,Open
+COMP201_Semester_2_2024_F9,COMP201_Semester_2_2024,COMP201,Course Feedback,Instructor,2024-10-26,44,460,Closed
+COMP201_Summer_2024/25_F1,COMP201_Summer_2024/25,COMP201,Resource Sharing,Instructor,2024-12-27,5,101,Open
+COMP201_Summer_2024/25_F2,COMP201_Summer_2024/25,COMP201,Week 1 Discussion,Student,2024-12-08,37,482,Open
+COMP201_Summer_2024/25_F3,COMP201_Summer_2024/25,COMP201,Project Collaboration,Instructor,2024-12-20,50,25,Open
+COMP201_Summer_2024/25_F4,COMP201_Summer_2024/25,COMP201,Project Collaboration,Instructor,2024-12-21,44,240,Open
+COMP201_Summer_2024/25_F5,COMP201_Summer_2024/25,COMP201,Study Group,Student,2024-12-21,46,138,Open
+COMP201_Summer_2024/25_F6,COMP201_Summer_2024/25,COMP201,Study Group,Student,2025-01-15,47,137,Open
+COMP201_Summer_2024/25_F7,COMP201_Summer_2024/25,COMP201,Assignment Help,Instructor,2024-12-24,20,428,Pinned
+COMP201_Summer_2024/25_F8,COMP201_Summer_2024/25,COMP201,General Questions,Student,2024-12-10,5,159,Pinned
+COMP201_Summer_2024/25_F9,COMP201_Summer_2024/25,COMP201,Technical Issues,Instructor,2024-12-14,33,303,Closed
+COMP301_Semester_1_2024_F1,COMP301_Semester_1_2024,COMP301,General Questions,Instructor,2024-04-27,49,255,Closed
+COMP301_Semester_1_2024_F2,COMP301_Semester_1_2024,COMP301,Project Collaboration,Instructor,2024-05-05,42,322,Open
+COMP301_Semester_1_2024_F3,COMP301_Semester_1_2024,COMP301,Assignment Help,Instructor,2024-03-30,7,263,Open
+COMP301_Semester_1_2024_F4,COMP301_Semester_1_2024,COMP301,Technical Issues,Student,2024-04-05,35,402,Open
+COMP301_Semester_1_2024_F5,COMP301_Semester_1_2024,COMP301,Assignment Help,Student,2024-05-02,6,472,Closed
+COMP301_Semester_1_2024_F6,COMP301_Semester_1_2024,COMP301,Resource Sharing,Instructor,2024-05-13,47,487,Closed
+COMP301_Semester_1_2024_F7,COMP301_Semester_1_2024,COMP301,Exam Preparation,Instructor,2024-03-18,6,125,Open
+COMP301_Semester_1_2024_F8,COMP301_Semester_1_2024,COMP301,Project Collaboration,Instructor,2024-05-26,43,453,Pinned
+COMP301_Semester_2_2024_F1,COMP301_Semester_2_2024,COMP301,Exam Preparation,Instructor,2024-10-28,40,470,Closed
+COMP301_Semester_2_2024_F2,COMP301_Semester_2_2024,COMP301,Resource Sharing,Instructor,2024-07-30,40,212,Closed
+COMP301_Semester_2_2024_F3,COMP301_Semester_2_2024,COMP301,General Questions,Student,2024-10-13,6,151,Closed
+COMP301_Semester_2_2024_F4,COMP301_Semester_2_2024,COMP301,Technical Issues,Instructor,2024-07-17,28,172,Pinned
+COMP301_Semester_2_2024_F5,COMP301_Semester_2_2024,COMP301,Course Feedback,Student,2024-08-23,50,269,Closed
+COMP301_Semester_2_2024_F6,COMP301_Semester_2_2024,COMP301,General Questions,Instructor,2024-08-15,29,271,Closed
+COMP301_Semester_2_2024_F7,COMP301_Semester_2_2024,COMP301,Technical Issues,Student,2024-08-03,7,356,Closed
+COMP301_Summer_2024/25_F1,COMP301_Summer_2024/25,COMP301,General Questions,Instructor,2024-12-09,37,312,Pinned
+COMP301_Summer_2024/25_F2,COMP301_Summer_2024/25,COMP301,Study Group,Instructor,2025-01-29,32,204,Pinned
+COMP301_Summer_2024/25_F3,COMP301_Summer_2024/25,COMP301,Technical Issues,Instructor,2024-12-17,43,451,Closed
+COMP301_Summer_2024/25_F4,COMP301_Summer_2024/25,COMP301,Week 1 Discussion,Instructor,2024-12-02,9,97,Pinned
+COMP301_Summer_2024/25_F5,COMP301_Summer_2024/25,COMP301,Technical Issues,Student,2025-01-07,50,92,Pinned
+COMP401_Semester_1_2024_F1,COMP401_Semester_1_2024,COMP401,Project Collaboration,Student,2024-03-18,12,236,Pinned
+COMP401_Semester_1_2024_F2,COMP401_Semester_1_2024,COMP401,Project Collaboration,Instructor,2024-04-08,1,368,Open
+COMP401_Semester_1_2024_F3,COMP401_Semester_1_2024,COMP401,Study Group,Student,2024-05-17,33,336,Open
+COMP401_Semester_1_2024_F4,COMP401_Semester_1_2024,COMP401,Exam Preparation,Student,2024-04-12,28,469,Closed
+COMP401_Semester_1_2024_F5,COMP401_Semester_1_2024,COMP401,Project Collaboration,Instructor,2024-06-04,43,400,Pinned
+COMP401_Semester_1_2024_F6,COMP401_Semester_1_2024,COMP401,Exam Preparation,Student,2024-04-27,39,343,Pinned
+COMP401_Semester_1_2024_F7,COMP401_Semester_1_2024,COMP401,Technical Issues,Student,2024-03-22,39,373,Open
+COMP401_Semester_2_2024_F1,COMP401_Semester_2_2024,COMP401,General Questions,Instructor,2024-10-13,14,379,Pinned
+COMP401_Semester_2_2024_F2,COMP401_Semester_2_2024,COMP401,General Questions,Instructor,2024-10-19,25,293,Closed
+COMP401_Semester_2_2024_F3,COMP401_Semester_2_2024,COMP401,Course Feedback,Student,2024-10-29,2,341,Pinned
+COMP401_Semester_2_2024_F4,COMP401_Semester_2_2024,COMP401,Study Group,Student,2024-11-03,24,200,Pinned
+COMP401_Semester_2_2024_F5,COMP401_Semester_2_2024,COMP401,Technical Issues,Student,2024-09-19,19,177,Closed
+COMP401_Semester_2_2024_F6,COMP401_Semester_2_2024,COMP401,Exam Preparation,Student,2024-09-26,14,12,Pinned
+COMP401_Semester_2_2024_F7,COMP401_Semester_2_2024,COMP401,General Questions,Student,2024-08-07,48,498,Closed
+COMP401_Semester_2_2024_F8,COMP401_Semester_2_2024,COMP401,Project Collaboration,Instructor,2024-08-20,2,476,Pinned
+COMP401_Semester_2_2024_F9,COMP401_Semester_2_2024,COMP401,Assignment Help,Instructor,2024-08-26,9,86,Open
+COMP401_Semester_2_2024_F10,COMP401_Semester_2_2024,COMP401,Resource Sharing,Student,2024-10-09,24,19,Closed
+COMP401_Summer_2024/25_F1,COMP401_Summer_2024/25,COMP401,General Questions,Instructor,2024-12-09,27,211,Closed
+COMP401_Summer_2024/25_F2,COMP401_Summer_2024/25,COMP401,Study Group,Student,2025-02-04,47,399,Open
+COMP401_Summer_2024/25_F3,COMP401_Summer_2024/25,COMP401,Project Collaboration,Student,2025-01-23,24,388,Pinned
+COMP401_Summer_2024/25_F4,COMP401_Summer_2024/25,COMP401,Technical Issues,Instructor,2024-12-30,7,156,Pinned
+COMP401_Summer_2024/25_F5,COMP401_Summer_2024/25,COMP401,General Questions,Student,2024-12-31,28,100,Open
+WEB201_Semester_1_2024_F1,WEB201_Semester_1_2024,WEB201,Project Collaboration,Student,2024-04-17,29,229,Open
+WEB201_Semester_1_2024_F2,WEB201_Semester_1_2024,WEB201,Study Group,Instructor,2024-03-06,44,267,Open
+WEB201_Semester_1_2024_F3,WEB201_Semester_1_2024,WEB201,Technical Issues,Instructor,2024-03-29,4,35,Open
+WEB201_Semester_1_2024_F4,WEB201_Semester_1_2024,WEB201,Project Collaboration,Student,2024-04-28,34,405,Pinned
+WEB201_Semester_1_2024_F5,WEB201_Semester_1_2024,WEB201,Course Feedback,Student,2024-03-06,18,67,Pinned
+WEB201_Semester_1_2024_F6,WEB201_Semester_1_2024,WEB201,Technical Issues,Instructor,2024-03-24,39,318,Closed
+WEB201_Semester_1_2024_F7,WEB201_Semester_1_2024,WEB201,Technical Issues,Instructor,2024-05-12,43,457,Pinned
+WEB201_Semester_1_2024_F8,WEB201_Semester_1_2024,WEB201,Study Group,Instructor,2024-04-23,16,268,Open
+WEB201_Semester_1_2024_F9,WEB201_Semester_1_2024,WEB201,Study Group,Student,2024-06-04,28,293,Pinned
+WEB201_Semester_1_2024_F10,WEB201_Semester_1_2024,WEB201,Study Group,Student,2024-03-05,34,307,Pinned
+WEB201_Semester_2_2024_F1,WEB201_Semester_2_2024,WEB201,Resource Sharing,Instructor,2024-08-02,29,117,Pinned
+WEB201_Semester_2_2024_F2,WEB201_Semester_2_2024,WEB201,Exam Preparation,Instructor,2024-10-06,25,188,Open
+WEB201_Semester_2_2024_F3,WEB201_Semester_2_2024,WEB201,General Questions,Instructor,2024-09-06,22,29,Closed
+WEB201_Semester_2_2024_F4,WEB201_Semester_2_2024,WEB201,Study Group,Student,2024-09-08,35,261,Open
+WEB201_Semester_2_2024_F5,WEB201_Semester_2_2024,WEB201,Resource Sharing,Instructor,2024-07-25,8,306,Pinned
+WEB201_Semester_2_2024_F6,WEB201_Semester_2_2024,WEB201,Course Feedback,Instructor,2024-08-29,25,492,Pinned
+WEB201_Summer_2024/25_F1,WEB201_Summer_2024/25,WEB201,Exam Preparation,Instructor,2025-01-14,43,110,Open
+WEB201_Summer_2024/25_F2,WEB201_Summer_2024/25,WEB201,Project Collaboration,Instructor,2024-12-21,39,475,Pinned
+WEB201_Summer_2024/25_F3,WEB201_Summer_2024/25,WEB201,Resource Sharing,Instructor,2025-02-06,35,212,Closed
+WEB201_Summer_2024/25_F4,WEB201_Summer_2024/25,WEB201,General Questions,Instructor,2024-12-26,27,349,Pinned
+WEB201_Summer_2024/25_F5,WEB201_Summer_2024/25,WEB201,Exam Preparation,Instructor,2025-02-20,35,55,Open
+WEB201_Summer_2024/25_F6,WEB201_Summer_2024/25,WEB201,Technical Issues,Student,2024-12-11,29,243,Pinned
+WEB201_Summer_2024/25_F7,WEB201_Summer_2024/25,WEB201,Technical Issues,Student,2025-01-09,29,353,Pinned
+NET301_Semester_1_2024_F1,NET301_Semester_1_2024,NET301,Technical Issues,Instructor,2024-05-27,35,44,Pinned
+NET301_Semester_1_2024_F2,NET301_Semester_1_2024,NET301,Week 1 Discussion,Student,2024-06-08,42,305,Closed
+NET301_Semester_1_2024_F3,NET301_Semester_1_2024,NET301,Project Collaboration,Student,2024-03-18,33,496,Pinned
+NET301_Semester_1_2024_F4,NET301_Semester_1_2024,NET301,Study Group,Instructor,2024-03-24,3,195,Open
+NET301_Semester_1_2024_F5,NET301_Semester_1_2024,NET301,Technical Issues,Student,2024-05-25,3,352,Closed
+NET301_Semester_1_2024_F6,NET301_Semester_1_2024,NET301,General Questions,Student,2024-06-02,9,208,Open
+NET301_Semester_2_2024_F1,NET301_Semester_2_2024,NET301,Study Group,Instructor,2024-10-22,10,153,Pinned
+NET301_Semester_2_2024_F2,NET301_Semester_2_2024,NET301,Technical Issues,Student,2024-08-17,13,209,Closed
+NET301_Semester_2_2024_F3,NET301_Semester_2_2024,NET301,Assignment Help,Student,2024-08-20,50,320,Open
+NET301_Semester_2_2024_F4,NET301_Semester_2_2024,NET301,Course Feedback,Student,2024-07-29,49,211,Open
+NET301_Semester_2_2024_F5,NET301_Semester_2_2024,NET301,Study Group,Instructor,2024-07-17,38,164,Open
+NET301_Summer_2024/25_F1,NET301_Summer_2024/25,NET301,Study Group,Student,2025-02-20,31,103,Closed
+NET301_Summer_2024/25_F2,NET301_Summer_2024/25,NET301,Technical Issues,Student,2024-12-17,14,316,Pinned
+NET301_Summer_2024/25_F3,NET301_Summer_2024/25,NET301,Resource Sharing,Student,2025-02-02,49,85,Closed
+NET301_Summer_2024/25_F4,NET301_Summer_2024/25,NET301,Course Feedback,Student,2024-12-10,3,15,Closed
+NET301_Summer_2024/25_F5,NET301_Summer_2024/25,NET301,General Questions,Student,2025-01-18,15,270,Pinned
+NET301_Summer_2024/25_F6,NET301_Summer_2024/25,NET301,Resource Sharing,Instructor,2025-02-19,2,306,Pinned
+NET301_Summer_2024/25_F7,NET301_Summer_2024/25,NET301,Course Feedback,Student,2025-01-28,28,470,Pinned
+NET301_Summer_2024/25_F8,NET301_Summer_2024/25,NET301,General Questions,Student,2025-01-23,42,418,Closed
+SEC401_Semester_1_2024_F1,SEC401_Semester_1_2024,SEC401,Week 1 Discussion,Student,2024-04-01,5,456,Closed
+SEC401_Semester_1_2024_F2,SEC401_Semester_1_2024,SEC401,Week 1 Discussion,Student,2024-03-16,33,396,Closed
+SEC401_Semester_1_2024_F3,SEC401_Semester_1_2024,SEC401,Study Group,Student,2024-04-03,47,320,Closed
+SEC401_Semester_1_2024_F4,SEC401_Semester_1_2024,SEC401,Resource Sharing,Student,2024-04-16,15,438,Closed
+SEC401_Semester_1_2024_F5,SEC401_Semester_1_2024,SEC401,Resource Sharing,Instructor,2024-06-05,25,440,Closed
+SEC401_Semester_1_2024_F6,SEC401_Semester_1_2024,SEC401,Exam Preparation,Instructor,2024-05-17,46,41,Closed
+SEC401_Semester_1_2024_F7,SEC401_Semester_1_2024,SEC401,Technical Issues,Student,2024-03-30,30,82,Open
+SEC401_Semester_1_2024_F8,SEC401_Semester_1_2024,SEC401,General Questions,Instructor,2024-06-11,45,229,Closed
+SEC401_Semester_1_2024_F9,SEC401_Semester_1_2024,SEC401,Exam Preparation,Instructor,2024-05-02,49,175,Open
+SEC401_Semester_1_2024_F10,SEC401_Semester_1_2024,SEC401,Study Group,Instructor,2024-05-31,1,85,Closed
+SEC401_Semester_2_2024_F1,SEC401_Semester_2_2024,SEC401,General Questions,Student,2024-10-08,50,196,Pinned
+SEC401_Semester_2_2024_F2,SEC401_Semester_2_2024,SEC401,Week 1 Discussion,Student,2024-08-29,27,422,Pinned
+SEC401_Semester_2_2024_F3,SEC401_Semester_2_2024,SEC401,Technical Issues,Student,2024-10-05,45,298,Open
+SEC401_Semester_2_2024_F4,SEC401_Semester_2_2024,SEC401,Course Feedback,Instructor,2024-08-28,21,65,Closed
+SEC401_Semester_2_2024_F5,SEC401_Semester_2_2024,SEC401,Resource Sharing,Instructor,2024-10-27,36,203,Pinned
+SEC401_Summer_2024/25_F1,SEC401_Summer_2024/25,SEC401,Week 1 Discussion,Instructor,2024-12-25,28,274,Open
+SEC401_Summer_2024/25_F2,SEC401_Summer_2024/25,SEC401,General Questions,Instructor,2024-12-13,32,185,Open
+SEC401_Summer_2024/25_F3,SEC401_Summer_2024/25,SEC401,Week 1 Discussion,Instructor,2025-01-21,26,323,Pinned
+SEC401_Summer_2024/25_F4,SEC401_Summer_2024/25,SEC401,Assignment Help,Student,2024-12-19,24,281,Closed
+SEC401_Summer_2024/25_F5,SEC401_Summer_2024/25,SEC401,Study Group,Instructor,2025-01-23,10,453,Closed
+SEC401_Summer_2024/25_F6,SEC401_Summer_2024/25,SEC401,Project Collaboration,Student,2025-02-06,23,493,Closed
+SEC401_Summer_2024/25_F7,SEC401_Summer_2024/25,SEC401,Resource Sharing,Instructor,2025-01-01,14,102,Open
+SEC401_Summer_2024/25_F8,SEC401_Summer_2024/25,SEC401,Assignment Help,Student,2025-01-10,48,284,Pinned
+SEC401_Summer_2024/25_F9,SEC401_Summer_2024/25,SEC401,Project Collaboration,Student,2024-12-04,50,52,Open
+DATA301_Semester_1_2024_F1,DATA301_Semester_1_2024,DATA301,Resource Sharing,Instructor,2024-05-01,29,215,Pinned
+DATA301_Semester_1_2024_F2,DATA301_Semester_1_2024,DATA301,Study Group,Instructor,2024-04-10,4,132,Pinned
+DATA301_Semester_1_2024_F3,DATA301_Semester_1_2024,DATA301,Assignment Help,Student,2024-05-23,28,308,Closed
+DATA301_Semester_1_2024_F4,DATA301_Semester_1_2024,DATA301,Week 1 Discussion,Student,2024-03-01,1,188,Pinned
+DATA301_Semester_1_2024_F5,DATA301_Semester_1_2024,DATA301,Exam Preparation,Student,2024-05-31,46,43,Open
+DATA301_Semester_1_2024_F6,DATA301_Semester_1_2024,DATA301,Exam Preparation,Instructor,2024-06-10,27,472,Open
+DATA301_Semester_1_2024_F7,DATA301_Semester_1_2024,DATA301,Assignment Help,Instructor,2024-05-19,34,446,Closed
+DATA301_Semester_1_2024_F8,DATA301_Semester_1_2024,DATA301,Project Collaboration,Instructor,2024-05-14,46,423,Pinned
+DATA301_Semester_1_2024_F9,DATA301_Semester_1_2024,DATA301,Assignment Help,Instructor,2024-03-20,30,433,Open
+DATA301_Semester_2_2024_F1,DATA301_Semester_2_2024,DATA301,Exam Preparation,Instructor,2024-10-11,34,84,Open
+DATA301_Semester_2_2024_F2,DATA301_Semester_2_2024,DATA301,Project Collaboration,Student,2024-10-15,9,289,Closed
+DATA301_Semester_2_2024_F3,DATA301_Semester_2_2024,DATA301,Course Feedback,Student,2024-07-26,9,268,Pinned
+DATA301_Semester_2_2024_F4,DATA301_Semester_2_2024,DATA301,Study Group,Instructor,2024-10-01,50,338,Open
+DATA301_Semester_2_2024_F5,DATA301_Semester_2_2024,DATA301,Course Feedback,Student,2024-10-19,4,194,Open
+DATA301_Summer_2024/25_F1,DATA301_Summer_2024/25,DATA301,Course Feedback,Student,2024-12-24,4,174,Closed
+DATA301_Summer_2024/25_F2,DATA301_Summer_2024/25,DATA301,Week 1 Discussion,Instructor,2025-01-10,48,64,Pinned
+DATA301_Summer_2024/25_F3,DATA301_Summer_2024/25,DATA301,Assignment Help,Instructor,2025-01-21,42,219,Open
+DATA301_Summer_2024/25_F4,DATA301_Summer_2024/25,DATA301,Project Collaboration,Student,2025-02-15,48,280,Pinned
+DATA301_Summer_2024/25_F5,DATA301_Summer_2024/25,DATA301,Exam Preparation,Student,2025-02-18,17,323,Pinned
+SOFT301_Semester_1_2024_F1,SOFT301_Semester_1_2024,SOFT301,Course Feedback,Student,2024-03-25,18,17,Pinned
+SOFT301_Semester_1_2024_F2,SOFT301_Semester_1_2024,SOFT301,Study Group,Student,2024-02-29,23,167,Closed
+SOFT301_Semester_1_2024_F3,SOFT301_Semester_1_2024,SOFT301,Assignment Help,Instructor,2024-05-06,32,338,Open
+SOFT301_Semester_1_2024_F4,SOFT301_Semester_1_2024,SOFT301,Resource Sharing,Student,2024-02-26,33,244,Closed
+SOFT301_Semester_1_2024_F5,SOFT301_Semester_1_2024,SOFT301,Course Feedback,Student,2024-05-09,3,182,Closed
+SOFT301_Semester_2_2024_F1,SOFT301_Semester_2_2024,SOFT301,General Questions,Instructor,2024-10-27,2,449,Pinned
+SOFT301_Semester_2_2024_F2,SOFT301_Semester_2_2024,SOFT301,Week 1 Discussion,Student,2024-08-11,26,13,Pinned
+SOFT301_Semester_2_2024_F3,SOFT301_Semester_2_2024,SOFT301,Project Collaboration,Student,2024-07-31,41,210,Open
+SOFT301_Semester_2_2024_F4,SOFT301_Semester_2_2024,SOFT301,Resource Sharing,Instructor,2024-08-17,7,80,Pinned
+SOFT301_Semester_2_2024_F5,SOFT301_Semester_2_2024,SOFT301,Study Group,Student,2024-08-19,4,223,Closed
+SOFT301_Semester_2_2024_F6,SOFT301_Semester_2_2024,SOFT301,Resource Sharing,Student,2024-08-27,28,438,Open
+SOFT301_Semester_2_2024_F7,SOFT301_Semester_2_2024,SOFT301,Resource Sharing,Instructor,2024-09-20,23,326,Open
+SOFT301_Semester_2_2024_F8,SOFT301_Semester_2_2024,SOFT301,Course Feedback,Student,2024-09-16,42,200,Pinned
+SOFT301_Summer_2024/25_F1,SOFT301_Summer_2024/25,SOFT301,Exam Preparation,Student,2025-02-05,32,285,Pinned
+SOFT301_Summer_2024/25_F2,SOFT301_Summer_2024/25,SOFT301,Study Group,Student,2024-12-17,37,368,Open
+SOFT301_Summer_2024/25_F3,SOFT301_Summer_2024/25,SOFT301,Assignment Help,Student,2024-12-10,32,146,Open
+SOFT301_Summer_2024/25_F4,SOFT301_Summer_2024/25,SOFT301,Technical Issues,Instructor,2025-01-09,37,441,Pinned
+SOFT301_Summer_2024/25_F5,SOFT301_Summer_2024/25,SOFT301,Week 1 Discussion,Instructor,2025-02-05,21,455,Open
+SOFT301_Summer_2024/25_F6,SOFT301_Summer_2024/25,SOFT301,Assignment Help,Student,2025-02-04,2,313,Open
+SOFT301_Summer_2024/25_F7,SOFT301_Summer_2024/25,SOFT301,Week 1 Discussion,Instructor,2025-01-06,30,226,Closed
+SOFT301_Summer_2024/25_F8,SOFT301_Summer_2024/25,SOFT301,Technical Issues,Instructor,2024-12-03,49,403,Closed
+CLOUD401_Semester_1_2024_F1,CLOUD401_Semester_1_2024,CLOUD401,Project Collaboration,Instructor,2024-05-01,11,51,Open
+CLOUD401_Semester_1_2024_F2,CLOUD401_Semester_1_2024,CLOUD401,Assignment Help,Instructor,2024-06-09,9,233,Pinned
+CLOUD401_Semester_1_2024_F3,CLOUD401_Semester_1_2024,CLOUD401,Exam Preparation,Instructor,2024-05-22,16,258,Closed
+CLOUD401_Semester_1_2024_F4,CLOUD401_Semester_1_2024,CLOUD401,Study Group,Instructor,2024-03-17,15,495,Open
+CLOUD401_Semester_1_2024_F5,CLOUD401_Semester_1_2024,CLOUD401,Week 1 Discussion,Instructor,2024-04-17,7,144,Closed
+CLOUD401_Semester_1_2024_F6,CLOUD401_Semester_1_2024,CLOUD401,General Questions,Instructor,2024-05-14,32,283,Open
+CLOUD401_Semester_2_2024_F1,CLOUD401_Semester_2_2024,CLOUD401,Project Collaboration,Student,2024-11-02,14,419,Open
+CLOUD401_Semester_2_2024_F2,CLOUD401_Semester_2_2024,CLOUD401,General Questions,Student,2024-08-13,17,334,Open
+CLOUD401_Semester_2_2024_F3,CLOUD401_Semester_2_2024,CLOUD401,Resource Sharing,Student,2024-07-29,21,216,Pinned
+CLOUD401_Semester_2_2024_F4,CLOUD401_Semester_2_2024,CLOUD401,Exam Preparation,Student,2024-10-24,49,282,Open
+CLOUD401_Semester_2_2024_F5,CLOUD401_Semester_2_2024,CLOUD401,Resource Sharing,Instructor,2024-08-17,3,35,Pinned
+CLOUD401_Semester_2_2024_F6,CLOUD401_Semester_2_2024,CLOUD401,Resource Sharing,Student,2024-07-29,45,395,Open
+CLOUD401_Summer_2024/25_F1,CLOUD401_Summer_2024/25,CLOUD401,Assignment Help,Student,2025-01-26,31,436,Closed
+CLOUD401_Summer_2024/25_F2,CLOUD401_Summer_2024/25,CLOUD401,Week 1 Discussion,Instructor,2024-12-15,21,148,Open
+CLOUD401_Summer_2024/25_F3,CLOUD401_Summer_2024/25,CLOUD401,Course Feedback,Student,2025-01-02,30,286,Open
+CLOUD401_Summer_2024/25_F4,CLOUD401_Summer_2024/25,CLOUD401,Course Feedback,Instructor,2025-01-26,31,242,Pinned
+CLOUD401_Summer_2024/25_F5,CLOUD401_Summer_2024/25,CLOUD401,Project Collaboration,Instructor,2025-01-09,19,460,Pinned
+CLOUD401_Summer_2024/25_F6,CLOUD401_Summer_2024/25,CLOUD401,Course Feedback,Instructor,2025-01-15,23,352,Pinned
+CLOUD401_Summer_2024/25_F7,CLOUD401_Summer_2024/25,CLOUD401,Assignment Help,Student,2025-02-13,18,228,Closed
+CLOUD401_Summer_2024/25_F8,CLOUD401_Summer_2024/25,CLOUD401,Assignment Help,Student,2025-01-28,17,66,Closed
+CLOUD401_Summer_2024/25_F9,CLOUD401_Summer_2024/25,CLOUD401,Assignment Help,Instructor,2024-12-05,1,454,Closed
+BUS101_Semester_1_2024_F1,BUS101_Semester_1_2024,BUS101,Exam Preparation,Instructor,2024-06-13,26,210,Closed
+BUS101_Semester_1_2024_F2,BUS101_Semester_1_2024,BUS101,Course Feedback,Student,2024-06-08,19,448,Closed
+BUS101_Semester_1_2024_F3,BUS101_Semester_1_2024,BUS101,Resource Sharing,Instructor,2024-04-18,50,457,Pinned
+BUS101_Semester_1_2024_F4,BUS101_Semester_1_2024,BUS101,Exam Preparation,Instructor,2024-04-11,32,486,Closed
+BUS101_Semester_1_2024_F5,BUS101_Semester_1_2024,BUS101,Exam Preparation,Student,2024-05-19,24,319,Pinned
+BUS101_Semester_1_2024_F6,BUS101_Semester_1_2024,BUS101,Resource Sharing,Instructor,2024-06-10,11,349,Open
+BUS101_Semester_1_2024_F7,BUS101_Semester_1_2024,BUS101,Project Collaboration,Student,2024-04-22,50,418,Open
+BUS101_Semester_2_2024_F1,BUS101_Semester_2_2024,BUS101,Course Feedback,Instructor,2024-10-29,28,102,Open
+BUS101_Semester_2_2024_F2,BUS101_Semester_2_2024,BUS101,Exam Preparation,Student,2024-07-18,18,271,Closed
+BUS101_Semester_2_2024_F3,BUS101_Semester_2_2024,BUS101,Assignment Help,Student,2024-08-14,7,169,Closed
+BUS101_Semester_2_2024_F4,BUS101_Semester_2_2024,BUS101,General Questions,Instructor,2024-08-08,26,121,Pinned
+BUS101_Semester_2_2024_F5,BUS101_Semester_2_2024,BUS101,Resource Sharing,Instructor,2024-07-22,43,201,Open
+BUS101_Semester_2_2024_F6,BUS101_Semester_2_2024,BUS101,Study Group,Instructor,2024-09-17,43,194,Open
+BUS101_Summer_2024/25_F1,BUS101_Summer_2024/25,BUS101,Study Group,Instructor,2025-02-17,44,110,Closed
+BUS101_Summer_2024/25_F2,BUS101_Summer_2024/25,BUS101,Exam Preparation,Instructor,2024-12-05,7,494,Closed
+BUS101_Summer_2024/25_F3,BUS101_Summer_2024/25,BUS101,Week 1 Discussion,Instructor,2025-01-29,32,269,Closed
+BUS101_Summer_2024/25_F4,BUS101_Summer_2024/25,BUS101,Technical Issues,Instructor,2025-02-07,20,167,Closed
+BUS101_Summer_2024/25_F5,BUS101_Summer_2024/25,BUS101,Study Group,Student,2025-02-10,11,393,Open
+BUS101_Summer_2024/25_F6,BUS101_Summer_2024/25,BUS101,Study Group,Instructor,2024-12-24,31,400,Closed
+BUS101_Summer_2024/25_F7,BUS101_Summer_2024/25,BUS101,Assignment Help,Student,2025-02-04,36,92,Open
+BUS101_Summer_2024/25_F8,BUS101_Summer_2024/25,BUS101,Resource Sharing,Student,2025-01-23,43,494,Pinned
+BUS101_Summer_2024/25_F9,BUS101_Summer_2024/25,BUS101,Project Collaboration,Instructor,2025-01-13,8,120,Pinned
+BUS101_Summer_2024/25_F10,BUS101_Summer_2024/25,BUS101,Resource Sharing,Student,2025-02-09,20,17,Pinned
+ACC201_Semester_1_2024_F1,ACC201_Semester_1_2024,ACC201,Project Collaboration,Student,2024-04-14,18,24,Closed
+ACC201_Semester_1_2024_F2,ACC201_Semester_1_2024,ACC201,Study Group,Student,2024-06-03,10,304,Pinned
+ACC201_Semester_1_2024_F3,ACC201_Semester_1_2024,ACC201,Exam Preparation,Instructor,2024-04-22,48,259,Closed
+ACC201_Semester_1_2024_F4,ACC201_Semester_1_2024,ACC201,Exam Preparation,Student,2024-03-22,29,258,Pinned
+ACC201_Semester_1_2024_F5,ACC201_Semester_1_2024,ACC201,Week 1 Discussion,Student,2024-04-23,8,269,Open
+ACC201_Semester_1_2024_F6,ACC201_Semester_1_2024,ACC201,Project Collaboration,Student,2024-05-01,10,178,Open
+ACC201_Semester_1_2024_F7,ACC201_Semester_1_2024,ACC201,Assignment Help,Instructor,2024-06-04,39,171,Closed
+ACC201_Semester_1_2024_F8,ACC201_Semester_1_2024,ACC201,Resource Sharing,Student,2024-06-12,5,309,Pinned
+ACC201_Semester_2_2024_F1,ACC201_Semester_2_2024,ACC201,Project Collaboration,Instructor,2024-07-27,24,482,Open
+ACC201_Semester_2_2024_F2,ACC201_Semester_2_2024,ACC201,Course Feedback,Student,2024-07-31,16,169,Pinned
+ACC201_Semester_2_2024_F3,ACC201_Semester_2_2024,ACC201,Project Collaboration,Instructor,2024-09-08,5,228,Open
+ACC201_Semester_2_2024_F4,ACC201_Semester_2_2024,ACC201,Technical Issues,Instructor,2024-09-20,42,351,Closed
+ACC201_Semester_2_2024_F5,ACC201_Semester_2_2024,ACC201,Project Collaboration,Instructor,2024-10-10,20,166,Closed
+ACC201_Semester_2_2024_F6,ACC201_Semester_2_2024,ACC201,Study Group,Instructor,2024-10-28,32,362,Closed
+ACC201_Summer_2024/25_F1,ACC201_Summer_2024/25,ACC201,Week 1 Discussion,Instructor,2025-01-20,24,205,Pinned
+ACC201_Summer_2024/25_F2,ACC201_Summer_2024/25,ACC201,Assignment Help,Student,2025-01-15,28,491,Pinned
+ACC201_Summer_2024/25_F3,ACC201_Summer_2024/25,ACC201,Assignment Help,Student,2025-02-18,44,493,Closed
+ACC201_Summer_2024/25_F4,ACC201_Summer_2024/25,ACC201,Assignment Help,Student,2025-02-12,31,126,Open
+ACC201_Summer_2024/25_F5,ACC201_Summer_2024/25,ACC201,Technical Issues,Student,2024-12-05,34,148,Open
+ACC201_Summer_2024/25_F6,ACC201_Summer_2024/25,ACC201,Assignment Help,Instructor,2025-02-07,18,46,Pinned
+MKT201_Semester_1_2024_F1,MKT201_Semester_1_2024,MKT201,Course Feedback,Instructor,2024-05-21,1,326,Open
+MKT201_Semester_1_2024_F2,MKT201_Semester_1_2024,MKT201,Technical Issues,Instructor,2024-03-14,37,201,Closed
+MKT201_Semester_1_2024_F3,MKT201_Semester_1_2024,MKT201,Assignment Help,Student,2024-05-05,23,62,Closed
+MKT201_Semester_1_2024_F4,MKT201_Semester_1_2024,MKT201,Resource Sharing,Instructor,2024-03-31,18,308,Pinned
+MKT201_Semester_1_2024_F5,MKT201_Semester_1_2024,MKT201,Resource Sharing,Student,2024-04-11,35,406,Open
+MKT201_Semester_1_2024_F6,MKT201_Semester_1_2024,MKT201,Course Feedback,Student,2024-06-10,14,206,Pinned
+MKT201_Semester_1_2024_F7,MKT201_Semester_1_2024,MKT201,Week 1 Discussion,Student,2024-05-13,12,314,Closed
+MKT201_Semester_1_2024_F8,MKT201_Semester_1_2024,MKT201,Exam Preparation,Instructor,2024-05-22,34,35,Pinned
+MKT201_Semester_2_2024_F1,MKT201_Semester_2_2024,MKT201,Study Group,Instructor,2024-09-28,25,433,Pinned
+MKT201_Semester_2_2024_F2,MKT201_Semester_2_2024,MKT201,Project Collaboration,Instructor,2024-10-15,30,375,Open
+MKT201_Semester_2_2024_F3,MKT201_Semester_2_2024,MKT201,Study Group,Instructor,2024-08-22,39,319,Open
+MKT201_Semester_2_2024_F4,MKT201_Semester_2_2024,MKT201,Technical Issues,Instructor,2024-10-27,20,380,Closed
+MKT201_Semester_2_2024_F5,MKT201_Semester_2_2024,MKT201,Project Collaboration,Student,2024-08-20,22,11,Open
+MKT201_Semester_2_2024_F6,MKT201_Semester_2_2024,MKT201,Week 1 Discussion,Instructor,2024-07-20,25,353,Open
+MKT201_Semester_2_2024_F7,MKT201_Semester_2_2024,MKT201,Project Collaboration,Student,2024-10-10,46,380,Open
+MKT201_Summer_2024/25_F1,MKT201_Summer_2024/25,MKT201,Week 1 Discussion,Instructor,2024-12-28,33,255,Open
+MKT201_Summer_2024/25_F2,MKT201_Summer_2024/25,MKT201,Study Group,Instructor,2025-01-07,2,100,Closed
+MKT201_Summer_2024/25_F3,MKT201_Summer_2024/25,MKT201,Exam Preparation,Instructor,2025-02-15,46,81,Closed
+MKT201_Summer_2024/25_F4,MKT201_Summer_2024/25,MKT201,General Questions,Instructor,2024-12-09,14,410,Closed
+MKT201_Summer_2024/25_F5,MKT201_Summer_2024/25,MKT201,Study Group,Student,2025-01-30,40,448,Closed
+MKT201_Summer_2024/25_F6,MKT201_Summer_2024/25,MKT201,Week 1 Discussion,Student,2024-12-08,14,84,Pinned
+MKT201_Summer_2024/25_F7,MKT201_Summer_2024/25,MKT201,Exam Preparation,Instructor,2025-02-09,22,309,Open
+MKT201_Summer_2024/25_F8,MKT201_Summer_2024/25,MKT201,Project Collaboration,Student,2025-01-31,15,192,Open
+MKT201_Summer_2024/25_F9,MKT201_Summer_2024/25,MKT201,Resource Sharing,Instructor,2025-02-04,11,224,Pinned
+MKT201_Summer_2024/25_F10,MKT201_Summer_2024/25,MKT201,Resource Sharing,Student,2025-01-15,38,115,Open
+MGT301_Semester_1_2024_F1,MGT301_Semester_1_2024,MGT301,Study Group,Student,2024-06-01,13,403,Closed
+MGT301_Semester_1_2024_F2,MGT301_Semester_1_2024,MGT301,Resource Sharing,Instructor,2024-06-08,13,356,Pinned
+MGT301_Semester_1_2024_F3,MGT301_Semester_1_2024,MGT301,Resource Sharing,Student,2024-05-31,19,84,Closed
+MGT301_Semester_1_2024_F4,MGT301_Semester_1_2024,MGT301,Week 1 Discussion,Student,2024-05-10,4,376,Open
+MGT301_Semester_1_2024_F5,MGT301_Semester_1_2024,MGT301,Course Feedback,Student,2024-06-10,11,249,Closed
+MGT301_Semester_1_2024_F6,MGT301_Semester_1_2024,MGT301,Week 1 Discussion,Student,2024-03-26,6,142,Pinned
+MGT301_Semester_1_2024_F7,MGT301_Semester_1_2024,MGT301,Study Group,Instructor,2024-05-20,25,158,Open
+MGT301_Semester_2_2024_F1,MGT301_Semester_2_2024,MGT301,Assignment Help,Instructor,2024-10-21,28,197,Closed
+MGT301_Semester_2_2024_F2,MGT301_Semester_2_2024,MGT301,Project Collaboration,Instructor,2024-10-19,42,399,Open
+MGT301_Semester_2_2024_F3,MGT301_Semester_2_2024,MGT301,Resource Sharing,Student,2024-08-13,12,229,Open
+MGT301_Semester_2_2024_F4,MGT301_Semester_2_2024,MGT301,Week 1 Discussion,Student,2024-08-09,9,286,Pinned
+MGT301_Semester_2_2024_F5,MGT301_Semester_2_2024,MGT301,General Questions,Instructor,2024-09-15,13,276,Closed
+MGT301_Summer_2024/25_F1,MGT301_Summer_2024/25,MGT301,Resource Sharing,Student,2025-01-21,39,477,Pinned
+MGT301_Summer_2024/25_F2,MGT301_Summer_2024/25,MGT301,Study Group,Student,2025-01-27,37,163,Closed
+MGT301_Summer_2024/25_F3,MGT301_Summer_2024/25,MGT301,Course Feedback,Instructor,2024-12-21,10,176,Open
+MGT301_Summer_2024/25_F4,MGT301_Summer_2024/25,MGT301,Technical Issues,Student,2025-01-18,32,174,Open
+MGT301_Summer_2024/25_F5,MGT301_Summer_2024/25,MGT301,Project Collaboration,Student,2025-02-12,30,191,Closed
+MGT301_Summer_2024/25_F6,MGT301_Summer_2024/25,MGT301,Resource Sharing,Student,2024-12-05,7,93,Pinned
+FIN301_Semester_1_2024_F1,FIN301_Semester_1_2024,FIN301,Resource Sharing,Student,2024-06-08,13,284,Open
+FIN301_Semester_1_2024_F2,FIN301_Semester_1_2024,FIN301,Exam Preparation,Student,2024-04-27,27,226,Closed
+FIN301_Semester_1_2024_F3,FIN301_Semester_1_2024,FIN301,Technical Issues,Instructor,2024-06-06,14,51,Pinned
+FIN301_Semester_1_2024_F4,FIN301_Semester_1_2024,FIN301,Week 1 Discussion,Instructor,2024-02-26,11,75,Pinned
+FIN301_Semester_1_2024_F5,FIN301_Semester_1_2024,FIN301,Assignment Help,Instructor,2024-05-13,15,339,Pinned
+FIN301_Semester_1_2024_F6,FIN301_Semester_1_2024,FIN301,Course Feedback,Student,2024-04-02,23,412,Open
+FIN301_Semester_1_2024_F7,FIN301_Semester_1_2024,FIN301,Project Collaboration,Instructor,2024-04-12,5,164,Closed
+FIN301_Semester_1_2024_F8,FIN301_Semester_1_2024,FIN301,Course Feedback,Instructor,2024-05-07,22,157,Pinned
+FIN301_Semester_1_2024_F9,FIN301_Semester_1_2024,FIN301,Resource Sharing,Student,2024-03-07,19,298,Pinned
+FIN301_Semester_2_2024_F1,FIN301_Semester_2_2024,FIN301,Study Group,Student,2024-09-05,34,112,Pinned
+FIN301_Semester_2_2024_F2,FIN301_Semester_2_2024,FIN301,General Questions,Student,2024-07-20,10,200,Closed
+FIN301_Semester_2_2024_F3,FIN301_Semester_2_2024,FIN301,Study Group,Instructor,2024-09-22,40,448,Open
+FIN301_Semester_2_2024_F4,FIN301_Semester_2_2024,FIN301,Resource Sharing,Instructor,2024-09-28,49,183,Open
+FIN301_Semester_2_2024_F5,FIN301_Semester_2_2024,FIN301,Assignment Help,Student,2024-09-26,5,260,Open
+FIN301_Semester_2_2024_F6,FIN301_Semester_2_2024,FIN301,Project Collaboration,Student,2024-09-17,27,494,Open
+FIN301_Semester_2_2024_F7,FIN301_Semester_2_2024,FIN301,Exam Preparation,Instructor,2024-10-11,48,140,Closed
+FIN301_Semester_2_2024_F8,FIN301_Semester_2_2024,FIN301,Assignment Help,Student,2024-11-02,31,409,Closed
+FIN301_Semester_2_2024_F9,FIN301_Semester_2_2024,FIN301,Exam Preparation,Instructor,2024-07-22,2,289,Open
+FIN301_Summer_2024/25_F1,FIN301_Summer_2024/25,FIN301,Assignment Help,Instructor,2024-12-04,14,429,Open
+FIN301_Summer_2024/25_F2,FIN301_Summer_2024/25,FIN301,General Questions,Instructor,2025-02-05,7,376,Open
+FIN301_Summer_2024/25_F3,FIN301_Summer_2024/25,FIN301,Study Group,Student,2024-12-14,24,64,Open
+FIN301_Summer_2024/25_F4,FIN301_Summer_2024/25,FIN301,Assignment Help,Student,2024-12-18,39,272,Open
+FIN301_Summer_2024/25_F5,FIN301_Summer_2024/25,FIN301,General Questions,Instructor,2024-12-29,10,294,Closed
+FIN301_Summer_2024/25_F6,FIN301_Summer_2024/25,FIN301,Project Collaboration,Instructor,2025-01-23,17,74,Open
+FIN301_Summer_2024/25_F7,FIN301_Summer_2024/25,FIN301,Exam Preparation,Instructor,2024-12-19,41,78,Closed
+FIN301_Summer_2024/25_F8,FIN301_Summer_2024/25,FIN301,General Questions,Instructor,2025-02-15,19,145,Closed
+FIN301_Summer_2024/25_F9,FIN301_Summer_2024/25,FIN301,Study Group,Student,2025-02-12,7,182,Pinned
+FIN301_Summer_2024/25_F10,FIN301_Summer_2024/25,FIN301,Week 1 Discussion,Student,2025-01-04,21,73,Pinned
+MATH101_Semester_1_2024_F1,MATH101_Semester_1_2024,MATH101,Technical Issues,Student,2024-05-08,32,291,Pinned
+MATH101_Semester_1_2024_F2,MATH101_Semester_1_2024,MATH101,Week 1 Discussion,Instructor,2024-04-18,44,73,Pinned
+MATH101_Semester_1_2024_F3,MATH101_Semester_1_2024,MATH101,Resource Sharing,Instructor,2024-04-14,14,101,Closed
+MATH101_Semester_1_2024_F4,MATH101_Semester_1_2024,MATH101,Course Feedback,Student,2024-04-01,12,110,Open
+MATH101_Semester_1_2024_F5,MATH101_Semester_1_2024,MATH101,Exam Preparation,Instructor,2024-06-06,22,191,Closed
+MATH101_Semester_1_2024_F6,MATH101_Semester_1_2024,MATH101,Exam Preparation,Instructor,2024-05-12,14,108,Pinned
+MATH101_Semester_1_2024_F7,MATH101_Semester_1_2024,MATH101,Exam Preparation,Instructor,2024-05-25,6,27,Closed
+MATH101_Semester_1_2024_F8,MATH101_Semester_1_2024,MATH101,Technical Issues,Instructor,2024-05-12,37,242,Open
+MATH101_Semester_2_2024_F1,MATH101_Semester_2_2024,MATH101,Study Group,Instructor,2024-08-22,23,160,Closed
+MATH101_Semester_2_2024_F2,MATH101_Semester_2_2024,MATH101,Resource Sharing,Instructor,2024-08-11,30,490,Pinned
+MATH101_Semester_2_2024_F3,MATH101_Semester_2_2024,MATH101,Technical Issues,Student,2024-09-21,41,408,Open
+MATH101_Semester_2_2024_F4,MATH101_Semester_2_2024,MATH101,Exam Preparation,Instructor,2024-09-10,12,459,Open
+MATH101_Semester_2_2024_F5,MATH101_Semester_2_2024,MATH101,Resource Sharing,Student,2024-08-20,19,21,Pinned
+MATH101_Semester_2_2024_F6,MATH101_Semester_2_2024,MATH101,Study Group,Instructor,2024-08-31,40,323,Pinned
+MATH101_Summer_2024/25_F1,MATH101_Summer_2024/25,MATH101,Exam Preparation,Instructor,2025-02-01,39,380,Closed
+MATH101_Summer_2024/25_F2,MATH101_Summer_2024/25,MATH101,Week 1 Discussion,Student,2024-12-14,45,297,Closed
+MATH101_Summer_2024/25_F3,MATH101_Summer_2024/25,MATH101,Technical Issues,Student,2025-02-06,37,302,Pinned
+MATH101_Summer_2024/25_F4,MATH101_Summer_2024/25,MATH101,Study Group,Instructor,2025-01-22,37,340,Open
+MATH101_Summer_2024/25_F5,MATH101_Summer_2024/25,MATH101,Project Collaboration,Student,2025-02-11,18,209,Open
+MATH101_Summer_2024/25_F6,MATH101_Summer_2024/25,MATH101,General Questions,Instructor,2025-01-26,43,52,Pinned
+MATH101_Summer_2024/25_F7,MATH101_Summer_2024/25,MATH101,Week 1 Discussion,Instructor,2024-12-28,10,158,Open
+MATH101_Summer_2024/25_F8,MATH101_Summer_2024/25,MATH101,Resource Sharing,Student,2025-02-16,8,263,Closed
+MATH101_Summer_2024/25_F9,MATH101_Summer_2024/25,MATH101,Course Feedback,Student,2025-01-08,14,470,Closed
+STAT201_Semester_1_2024_F1,STAT201_Semester_1_2024,STAT201,Resource Sharing,Instructor,2024-04-09,13,94,Closed
+STAT201_Semester_1_2024_F2,STAT201_Semester_1_2024,STAT201,Week 1 Discussion,Instructor,2024-04-03,33,406,Pinned
+STAT201_Semester_1_2024_F3,STAT201_Semester_1_2024,STAT201,Exam Preparation,Student,2024-06-11,28,266,Closed
+STAT201_Semester_1_2024_F4,STAT201_Semester_1_2024,STAT201,Course Feedback,Student,2024-03-17,35,436,Pinned
+STAT201_Semester_1_2024_F5,STAT201_Semester_1_2024,STAT201,Project Collaboration,Instructor,2024-05-02,5,55,Closed
+STAT201_Semester_1_2024_F6,STAT201_Semester_1_2024,STAT201,General Questions,Instructor,2024-05-14,4,374,Pinned
+STAT201_Semester_2_2024_F1,STAT201_Semester_2_2024,STAT201,Exam Preparation,Student,2024-08-15,49,53,Closed
+STAT201_Semester_2_2024_F2,STAT201_Semester_2_2024,STAT201,Project Collaboration,Student,2024-09-03,14,412,Pinned
+STAT201_Semester_2_2024_F3,STAT201_Semester_2_2024,STAT201,Exam Preparation,Student,2024-07-30,44,414,Closed
+STAT201_Semester_2_2024_F4,STAT201_Semester_2_2024,STAT201,Study Group,Instructor,2024-09-16,2,184,Closed
+STAT201_Semester_2_2024_F5,STAT201_Semester_2_2024,STAT201,Technical Issues,Student,2024-08-20,5,349,Open
+STAT201_Semester_2_2024_F6,STAT201_Semester_2_2024,STAT201,Study Group,Instructor,2024-10-26,43,405,Open
+STAT201_Semester_2_2024_F7,STAT201_Semester_2_2024,STAT201,Technical Issues,Student,2024-09-18,37,222,Open
+STAT201_Semester_2_2024_F8,STAT201_Semester_2_2024,STAT201,Course Feedback,Student,2024-10-16,36,206,Pinned
+STAT201_Semester_2_2024_F9,STAT201_Semester_2_2024,STAT201,Technical Issues,Instructor,2024-08-18,22,454,Pinned
+STAT201_Semester_2_2024_F10,STAT201_Semester_2_2024,STAT201,Project Collaboration,Instructor,2024-09-19,17,471,Open
+STAT201_Summer_2024/25_F1,STAT201_Summer_2024/25,STAT201,Assignment Help,Student,2025-01-08,37,151,Closed
+STAT201_Summer_2024/25_F2,STAT201_Summer_2024/25,STAT201,General Questions,Instructor,2024-12-18,11,186,Pinned
+STAT201_Summer_2024/25_F3,STAT201_Summer_2024/25,STAT201,Course Feedback,Student,2025-01-26,3,227,Open
+STAT201_Summer_2024/25_F4,STAT201_Summer_2024/25,STAT201,Week 1 Discussion,Instructor,2024-12-18,36,32,Pinned
+STAT201_Summer_2024/25_F5,STAT201_Summer_2024/25,STAT201,Project Collaboration,Instructor,2025-01-10,42,304,Pinned
+STAT201_Summer_2024/25_F6,STAT201_Summer_2024/25,STAT201,Assignment Help,Student,2025-01-28,8,418,Closed
+COMM101_Semester_1_2024_F1,COMM101_Semester_1_2024,COMM101,Assignment Help,Student,2024-04-09,1,193,Open
+COMM101_Semester_1_2024_F2,COMM101_Semester_1_2024,COMM101,Course Feedback,Student,2024-04-09,1,350,Open
+COMM101_Semester_1_2024_F3,COMM101_Semester_1_2024,COMM101,Study Group,Student,2024-05-02,31,332,Closed
+COMM101_Semester_1_2024_F4,COMM101_Semester_1_2024,COMM101,General Questions,Student,2024-06-07,15,411,Closed
+COMM101_Semester_1_2024_F5,COMM101_Semester_1_2024,COMM101,Project Collaboration,Instructor,2024-05-07,12,97,Closed
+COMM101_Semester_1_2024_F6,COMM101_Semester_1_2024,COMM101,Project Collaboration,Student,2024-03-16,9,173,Pinned
+COMM101_Semester_1_2024_F7,COMM101_Semester_1_2024,COMM101,Project Collaboration,Instructor,2024-04-09,45,304,Pinned
+COMM101_Semester_1_2024_F8,COMM101_Semester_1_2024,COMM101,General Questions,Student,2024-06-02,22,118,Pinned
+COMM101_Semester_1_2024_F9,COMM101_Semester_1_2024,COMM101,Exam Preparation,Instructor,2024-03-17,19,74,Closed
+COMM101_Semester_1_2024_F10,COMM101_Semester_1_2024,COMM101,Week 1 Discussion,Instructor,2024-06-13,30,154,Pinned
+COMM101_Semester_2_2024_F1,COMM101_Semester_2_2024,COMM101,Project Collaboration,Instructor,2024-09-28,24,354,Open
+COMM101_Semester_2_2024_F2,COMM101_Semester_2_2024,COMM101,Exam Preparation,Student,2024-09-24,49,330,Open
+COMM101_Semester_2_2024_F3,COMM101_Semester_2_2024,COMM101,Technical Issues,Student,2024-09-24,33,448,Open
+COMM101_Semester_2_2024_F4,COMM101_Semester_2_2024,COMM101,Week 1 Discussion,Instructor,2024-07-19,36,341,Pinned
+COMM101_Semester_2_2024_F5,COMM101_Semester_2_2024,COMM101,Assignment Help,Instructor,2024-10-18,10,167,Closed
+COMM101_Semester_2_2024_F6,COMM101_Semester_2_2024,COMM101,Exam Preparation,Instructor,2024-10-23,17,462,Open
+COMM101_Semester_2_2024_F7,COMM101_Semester_2_2024,COMM101,Course Feedback,Instructor,2024-09-04,39,421,Closed
+COMM101_Semester_2_2024_F8,COMM101_Semester_2_2024,COMM101,Week 1 Discussion,Instructor,2024-09-28,1,321,Closed
+COMM101_Semester_2_2024_F9,COMM101_Semester_2_2024,COMM101,Week 1 Discussion,Student,2024-10-31,44,136,Closed
+COMM101_Semester_2_2024_F10,COMM101_Semester_2_2024,COMM101,Assignment Help,Student,2024-09-15,40,49,Open
+COMM101_Summer_2024/25_F1,COMM101_Summer_2024/25,COMM101,Resource Sharing,Instructor,2024-12-03,16,70,Closed
+COMM101_Summer_2024/25_F2,COMM101_Summer_2024/25,COMM101,Week 1 Discussion,Instructor,2025-01-30,43,442,Closed
+COMM101_Summer_2024/25_F3,COMM101_Summer_2024/25,COMM101,Study Group,Instructor,2025-01-02,32,316,Closed
+COMM101_Summer_2024/25_F4,COMM101_Summer_2024/25,COMM101,Week 1 Discussion,Student,2025-02-13,4,167,Pinned
+COMM101_Summer_2024/25_F5,COMM101_Summer_2024/25,COMM101,Study Group,Student,2025-01-18,49,255,Closed
+COMM101_Summer_2024/25_F6,COMM101_Summer_2024/25,COMM101,Course Feedback,Student,2025-02-15,12,403,Closed
+COMM101_Summer_2024/25_F7,COMM101_Summer_2024/25,COMM101,Study Group,Student,2025-02-06,6,262,Open
+COMM101_Summer_2024/25_F8,COMM101_Summer_2024/25,COMM101,Week 1 Discussion,Instructor,2024-12-29,21,127,Open

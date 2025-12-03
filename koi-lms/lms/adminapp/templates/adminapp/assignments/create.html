@@ -1,0 +1,119 @@
+<!-- ============================================ -->
+<!-- FILE: adminapp/templates/adminapp/assignments/create.html -->
+<!-- ============================================ -->
+{% extends 'adminapp/base.html' %}
+
+{% block title %}Create Assignment{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1><i class="fas fa-plus-square"></i> Create New Assignment</h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'assignment_list' %}">Assignments</a></li>
+            <li class="breadcrumb-item active">Create</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="data-table p-4">
+            <form method="post">
+                {% csrf_token %}
+                
+                <h5 class="mb-4 text-primary"><i class="fas fa-info-circle"></i> Basic Information</h5>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Assignment ID *</label>
+                        {{ form.assignment_id }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Course *</label>
+                        {{ form.course }}
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Title *</label>
+                    {{ form.title }}
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Assignment Type *</label>
+                        {{ form.assignment_type }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Submission Type *</label>
+                        {{ form.submission_type }}
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    {{ form.description }}
+                </div>
+                
+                <hr class="my-4">
+                
+                <h5 class="mb-4 text-primary"><i class="fas fa-chart-line"></i> Grading & Deadline</h5>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Max Marks *</label>
+                        {{ form.max_marks }}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Weight (%) *</label>
+                        {{ form.weight }}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Due Date *</label>
+                        {{ form.due_date }}
+                    </div>
+                </div>
+                
+                <hr class="my-4">
+                
+                <h5 class="mb-4 text-primary"><i class="fas fa-cog"></i> Settings</h5>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="form-check">
+                            {{ form.allow_late }}
+                            <label class="form-check-label">Allow Late Submissions</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Late Penalty (%)</label>
+                        {{ form.late_penalty }}
+                    </div>
+                </div>
+                
+                <hr class="my-4">
+                
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary-custom btn-custom">
+                        <i class="fas fa-save"></i> Create Assignment
+                    </button>
+                    <a href="{% url 'assignment_list' %}" class="btn btn-secondary btn-custom">
+                        <i class="fas fa-times"></i> Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="stat-card info">
+            <h6><i class="fas fa-info-circle"></i> Guidelines</h6>
+            <p class="small text-muted">
+                Weight represents the percentage this assignment contributes to the final grade.
+            </p>
+            <p class="small text-muted">
+                Late penalty is deducted per day after the due date.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

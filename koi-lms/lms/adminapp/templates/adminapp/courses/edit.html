@@ -1,0 +1,124 @@
+{% extends 'adminapp/base.html' %}
+
+{% block title %}Edit Course{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1><i class="fas fa-edit"></i> Edit Course</h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'course_list' %}">Courses</a></li>
+            <li class="breadcrumb-item active">Edit</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="data-table p-4">
+            <form method="post">
+                {% csrf_token %}
+                
+                <h5 class="mb-4 text-primary"><i class="fas fa-info-circle"></i> Basic Information</h5>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Course ID *</label>
+                        {{ form.course_id }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Course Code *</label>
+                        {{ form.course_code }}
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Course Name *</label>
+                    {{ form.course_name }}
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Instructor *</label>
+                        {{ form.instructor }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Term *</label>
+                        {{ form.term }}
+                    </div>
+                </div>
+                
+                <hr class="my-4">
+                
+                <h5 class="mb-4 text-primary"><i class="fas fa-cog"></i> Course Details</h5>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Level</label>
+                        {{ form.level }}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Credits *</label>
+                        {{ form.credits }}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Department *</label>
+                        {{ form.department }}
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Max Students</label>
+                        {{ form.max_students }}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Current Enrolled</label>
+                        {{ form.enrolled_count }}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Delivery Mode *</label>
+                        {{ form.mode }}
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Start Date</label>
+                        {{ form.start_date }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">End Date</label>
+                        {{ form.end_date }}
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    {{ form.description }}
+                </div>
+                
+                <hr class="my-4">
+                
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary-custom btn-custom">
+                        <i class="fas fa-save"></i> Update Course
+                    </button>
+                    <a href="{% url 'course_detail' course.pk %}" class="btn btn-secondary btn-custom">
+                        <i class="fas fa-times"></i> Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="stat-card success">
+            <div class="icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <h6>Current Enrollment</h6>
+            <h2>{{ course.enrolled_count }}/{{ course.max_students }}</h2>
+        </div>
+    </div>
+</div>
+{% endblock %}

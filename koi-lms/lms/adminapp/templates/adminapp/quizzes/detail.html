@@ -1,0 +1,158 @@
+{% extends 'adminapp/base.html' %}
+
+{% block title %}Quiz Details{% endblock %}
+
+{% block content %}
+<div class="page-header d-flex justify-content-between align-items-center">
+    <div>
+        <h1><i class="fas fa-question-circle"></i> Quiz Details</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'quiz_list' %}">Quizzes</a></li>
+                <li class="breadcrumb-item active">{{ quiz.quiz_id }}</li>
+            </ol>
+        </nav>
+    </div>
+    <div>
+        <a href="{% url 'quiz_edit' quiz.pk %}" class="btn btn-warning btn-custom">
+            <i class="fas fa-edit"></i> Edit
+        </a>
+        <a href="{% url 'quiz_delete' quiz.pk %}" class="btn btn-danger btn-custom">
+            <i class="fas fa-trash"></i> Delete
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="data-table p-4 mb-4">
+            <h5 class="mb-4"><i class="fas fa-info-circle text-primary"></i> Quiz Information</h5>
+            <table class="table table-bordered">
+                <tr>
+                    <th width="30%">Quiz ID</th>
+                    <td><strong>{{ quiz.quiz_id }}</strong></td>
+                </tr>
+                <tr>
+                    <th>Title</th>
+                    <td>{{ quiz.title }}</td>
+                </tr>
+                <tr>
+                    <th>Course</th>
+                    <td>
+                        <span class="badge bg-primary">{{ quiz.course.course_code }}</span>
+                        {{ quiz.course.course_name }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Type</th>
+                    <td>{{ quiz.quiz_type }}</td>
+                </tr>
+                <tr>
+                    <th>Max Marks</th>
+                    <td><strong>{{ quiz.max_marks }}</strong></td>
+                </tr>
+                <tr>
+                    <th>Duration</th>
+                    <td>{{ quiz.duration_minutes }} minutes</td>
+                </tr>
+                <tr>
+                    <th>Date</th>
+                    <td>{{ quiz.date|date:"l, F d, Y h:i A" }}</td>
+                </tr>
+                <tr>
+                    <th>Attempts Allowed</th>
+                    <td>{{ quiz.attempts_allowed }}</td>
+                </tr>
+                <tr>
+                    <th>Time Limit</th>
+                    <td>
+                        {% if quiz.time_limit %}
+                            <span class="badge bg-success">Enforced</span>
+                        {% else %}
+                            <span class="badge bg-secondary">Not Enforced</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Shuffle Questions</th>
+                    <td>
+                        {% if quiz.shuffle_questions %}
+                            <span class="badge bg-success">Yes</span>
+                        {% else %}
+                            <span class="badge bg-secondary">No</span>
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        <!-- Student Results -->
+        <div class="data-table">
+            <div class="p-3 border-bottom">
+                <h5 class="mb-0"><i class="fas fa-chart-bar"></i> Student Results</h5>
+            </div>
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Name</th>
+                        <th>Score</th>
+                        <th>Percentage</th>
+                        <th>Attempts</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for result in results %}
+                    <tr>
+                        <td><strong>{{ result.student.student_id }}</strong></td>
+                        <td>{{ result.student.user.get_full_name }}</td>
+                        <td>{{ result.marks_obtained }}/{{ quiz.max_marks }}</td>
+                        <td><strong>{{ result.percentage }}%</strong></td>
+                        <td>{{ result.attempts_used }}/{{ quiz.attempts_allowed }}</td>
+                        <td>
+                            {% if result.completed %}
+                                <span class="badge bg-success">Completed</span>
+                            {% else %}
+                                <span class="badge bg-warning">In Progress</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center py-3 text-muted">No results yet</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="stat-card primary">
+            <div class="icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <h6>Total Participants</h6>
+            <h2>{{ total_participants }}</h2>
+        </div>
+        
+        <div class="stat-card success mt-3">
+            <div class="icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h6>Completed</h6>
+            <h2>{{ completed_count }}</h2>
+        </div>
+        
+        <div class="stat-card info mt-3">
+            <div class="icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <h6>Average Score</h6>
+            <h2>{{ average_score|default:"N/A" }}%</h2>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,176 @@
+<!-- ============================================ -->
+<!-- FILE: adminapp/templates/adminapp/assignments/detail.html -->
+<!-- ============================================ -->
+{% extends 'adminapp/base.html' %}
+
+{% block title %}Assignment Details{% endblock %}
+
+{% block content %}
+<div class="page-header d-flex justify-content-between align-items-center">
+    <div>
+        <h1><i class="fas fa-tasks"></i> Assignment Details</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'assignment_list' %}">Assignments</a></li>
+                <li class="breadcrumb-item active">{{ assignment.assignment_id }}</li>
+            </ol>
+        </nav>
+    </div>
+    <div>
+        <a href="{% url 'assignment_edit' assignment.pk %}" class="btn btn-warning btn-custom">
+            <i class="fas fa-edit"></i> Edit
+        </a>
+        <a href="{% url 'assignment_delete' assignment.pk %}" class="btn btn-danger btn-custom">
+            <i class="fas fa-trash"></i> Delete
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="data-table p-4 mb-4">
+            <h5 class="mb-4"><i class="fas fa-info-circle text-primary"></i> Assignment Information</h5>
+            <table class="table table-bordered">
+                <tr>
+                    <th width="30%">Assignment ID</th>
+                    <td><strong>{{ assignment.assignment_id }}</strong></td>
+                </tr>
+                <tr>
+                    <th>Title</th>
+                    <td>{{ assignment.title }}</td>
+                </tr>
+                <tr>
+                    <th>Course</th>
+                    <td>
+                        <span class="badge bg-primary">{{ assignment.course.course_code }}</span>
+                        {{ assignment.course.course_name }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Type</th>
+                    <td>{{ assignment.assignment_type }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ assignment.description|default:"No description available" }}</td>
+                </tr>
+                <tr>
+                    <th>Max Marks</th>
+                    <td><strong>{{ assignment.max_marks }}</strong></td>
+                </tr>
+                <tr>
+                    <th>Weight</th>
+                    <td>{{ assignment.weight }}%</td>
+                </tr>
+                <tr>
+                    <th>Due Date</th>
+                    <td>
+                        {% if assignment.due_date %}
+                            {{ assignment.due_date|date:"l, F d, Y h:i A" }}
+                        {% else %}
+                            No due date set
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Submission Type</th>
+                    <td>{{ assignment.submission_type }}</td>
+                </tr>
+                <tr>
+                    <th>Late Submissions</th>
+                    <td>
+                        {% if assignment.allow_late %}
+                            <span class="badge bg-success">Allowed</span>
+                            ({{ assignment.late_penalty }}% penalty per day)
+                        {% else %}
+                            <span class="badge bg-danger">Not Allowed</span>
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        <!-- Submissions/Grades -->
+        <div class="data-table">
+            <div class="p-3 border-bottom">
+                <h5 class="mb-0"><i class="fas fa-file-upload"></i> Submissions & Grades</h5>
+            </div>
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Student Name</th>
+                        <th>Submitted</th>
+                        <th>Marks</th>
+                        <th>Percentage</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for grade in grades %}
+                    <tr>
+                        <td><strong>{{ grade.student.student_id }}</strong></td>
+                        <td>{{ grade.student.user.get_full_name }}</td>
+                        <td>
+                            {% if grade.submitted_date %}
+                                {{ grade.submitted_date|date:"M d, Y" }}
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+                        <td>{{ grade.marks_obtained }}/{{ grade.max_marks }}</td>
+                        <td><strong>{{ grade.percentage }}%</strong></td>
+                        <td>
+                            {% if grade.graded_date %}
+                                <span class="badge bg-success">Graded</span>
+                            {% else %}
+                                <span class="badge bg-warning">Pending</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center py-3 text-muted">No submissions yet</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="stat-card primary">
+            <div class="icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <h6>Total Students</h6>
+            <h2>{{ total_students }}</h2>
+        </div>
+        
+        <div class="stat-card success mt-3">
+            <div class="icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h6>Submitted</h6>
+            <h2>{{ submitted_count }}</h2>
+        </div>
+        
+        <div class="stat-card warning mt-3">
+            <div class="icon">
+                <i class="fas fa-clock"></i>
+            </div>
+            <h6>Pending</h6>
+            <h2>{{ pending_count }}</h2>
+        </div>
+        
+        <div class="stat-card info mt-3">
+            <div class="icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <h6>Average Score</h6>
+            <h2>{{ average_score|default:"N/A" }}%</h2>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,129 @@
+<!-- ============================================ -->
+<!-- FILE: adminapp/templates/adminapp/enrollments/list.html -->
+<!-- ============================================ -->
+{% extends 'adminapp/base.html' %}
+
+{% block title %}Enrollments{% endblock %}
+
+{% block content %}
+<div class="page-header d-flex justify-content-between align-items-center">
+    <div>
+        <h1><i class="fas fa-user-check"></i> Enrollments</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
+                <li class="breadcrumb-item active">Enrollments</li>
+            </ol>
+        </nav>
+    </div>
+    <div>
+        <a href="{% url 'enrollment_create' %}" class="btn btn-primary-custom btn-custom">
+            <i class="fas fa-plus"></i> New Enrollment
+        </a>
+    </div>
+</div>
+
+<!-- Search and Filter -->
+<div class="search-box">
+    <form method="get" class="row g-3">
+        <div class="col-md-4">
+            <input type="text" name="student" class="form-control" placeholder="Student ID...">
+        </div>
+        <div class="col-md-4">
+            <select name="course" class="form-control">
+                <option value="">All Courses</option>
+                {% for course in all_courses %}
+                <option value="{{ course.course_code }}">{{ course.course_code }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-2">
+            <select name="status" class="form-control">
+                <option value="">All Status</option>
+                <option value="Enrolled">Enrolled</option>
+                <option value="Completed">Completed</option>
+                <option value="Withdrawn">Withdrawn</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary-custom w-100">
+                <i class="fas fa-search"></i> Search
+            </button>
+        </div>
+    </form>
+</div>
+
+<!-- Enrollments Table -->
+<div class="data-table">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Enrollment ID</th>
+                <th>Student</th>
+                <th>Course</th>
+                <th>Enrollment Date</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for enrollment in enrollments %}
+            <tr>
+                <td><strong>{{ enrollment.enrollment_id }}</strong></td>
+                <td>
+                    {{ enrollment.student.student_id }}<br>
+                    <small class="text-muted">{{ enrollment.student.user.get_full_name }}</small>
+                </td>
+                <td><span class="badge bg-primary">{{ enrollment.course.course_code }}</span></td>
+                <td>{{ enrollment.enrollment_date|date:"M d, Y" }}</td>
+                <td>{{ enrollment.role }}</td>
+                <td>
+                    <span class="status-badge status-{% if enrollment.status == 'Enrolled' %}active{% elif enrollment.status == 'Completed' %}pending{% else %}inactive{% endif %}">
+                        {{ enrollment.status }}
+                    </span>
+                </td>
+               
+                <td>
+                    <a href="{% url 'enrollment_detail' enrollment.pk %}" class="btn btn-sm btn-info" title="View">
+                        <i class="fas fa-eye"></i>
+                    </a>
+                    <a href="{% url 'enrollment_edit' enrollment.pk %}" class="btn btn-sm btn-warning" title="Edit">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="{% url 'enrollment_delete' enrollment.pk %}" class="btn btn-sm btn-danger" title="Delete">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8" class="text-center py-4">
+                    <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                    <p class="text-muted">No enrollments found.</p>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Pagination -->
+{% if enrollments.has_other_pages %}
+<nav aria-label="Page navigation" class="mt-4">
+    <ul class="pagination justify-content-center">
+        {% if enrollments.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{ enrollments.previous_page_number }}">Previous</a></li>
+        {% endif %}
+        {% for num in enrollments.paginator.page_range %}
+        <li class="page-item {% if enrollments.number == num %}active{% endif %}">
+            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+        </li>
+        {% endfor %}
+        {% if enrollments.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ enrollments.next_page_number }}">Next</a></li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+{% endblock %}

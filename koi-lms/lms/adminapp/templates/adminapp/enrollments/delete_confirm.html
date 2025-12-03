@@ -1,0 +1,154 @@
+<!-- ============================================ -->
+<!-- FILE: templates/lms_core/enrollments/delete_confirm.html -->
+<!-- ============================================ -->
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block title %}Delete Enrollment - KOI LMS{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-exclamation-triangle"></i> Confirm Deletion
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <!-- Warning Alert -->
+                    <div class="alert alert-danger" role="alert">
+                        <h5 class="alert-heading">
+                            <i class="fas fa-exclamation-circle"></i> Warning!
+                        </h5>
+                        <p>You are about to delete an enrollment record. This action cannot be undone.</p>
+                        <hr>
+                        <p class="mb-0">
+                            <strong>Note:</strong> Deleting this enrollment will:
+                        </p>
+                        <ul class="mt-2">
+                            <li>Remove the student from this course</li>
+                            <li>Affect enrollment statistics</li>
+                            <li>Not delete associated grades (they will be preserved)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Enrollment Details to be Deleted -->
+                    <div class="card bg-light mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Enrollment Details</h5>
+                            <hr>
+                            <p><strong>Enrollment ID:</strong> {{ enrollment.enrollment_id }}</p>
+                            <p><strong>Student:</strong> 
+                                {{ enrollment.student.user.get_full_name }} 
+                                ({{ enrollment.student.student_id }})
+                            </p>
+                            <p><strong>Course:</strong> 
+                                {{ enrollment.course.course_code }} - {{ enrollment.course.course_name }}
+                            </p>
+                            <p><strong>Status:</strong> 
+                                <span class="badge bg-secondary">{{ enrollment.status }}</span>
+                            </p>
+                            <p><strong>Enrollment Date:</strong> {{ enrollment.enrollment_date|date:"M d, Y" }}</p>
+                            {% if enrollment.final_grade %}
+                            <p><strong>Final Grade:</strong> {{ enrollment.final_grade }}%</p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Confirmation Form -->
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <!-- Confirmation Checkbox -->
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="checkbox" id="confirmCheck" required>
+                            <label class="form-check-label fw-bold" for="confirmCheck">
+                                I understand this action cannot be undone
+                            </label>
+                        </div>
+
+                        <!-- Reason for Deletion (Optional) -->
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Reason for Deletion (Optional)</label>
+                            <select name="deletion_reason" class="form-select mb-2">
+                                <option value="">-- Select Reason --</option>
+                                <option value="duplicate">Duplicate Entry</option>
+                                <option value="error">Enrollment Error</option>
+                                <option value="student_request">Student Request</option>
+                                <option value="administrative">Administrative Decision</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <textarea name="deletion_notes" class="form-control" rows="3" 
+                                      placeholder="Additional notes (optional)..."></textarea>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'enrollment_detail' enrollment.pk %}" class="btn btn-secondary">
+                                <i class="fas fa-times"></i> Cancel
+                            </a>
+                            <button type="submit" class="btn btn-danger" id="deleteBtn" disabled>
+                                <i class="fas fa-trash"></i> Delete Enrollment
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Alternative Actions -->
+            <div class="card mt-4">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-lightbulb"></i> Alternative Actions
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p>Instead of deleting, you might want to:</p>
+                    <div class="list-group">
+                        <a href="{% url 'enrollment_edit' enrollment.pk %}" class="list-group-item list-group-item-action">
+                            <i class="fas fa-edit text-warning"></i>
+                            <strong>Change Status to "Dropped"</strong><br>
+                            <small>Keeps record for historical purposes</small>
+                        </a>
+                        <a href="{% url 'enrollment_edit' enrollment.pk %}" class="list-group-item list-group-item-action">
+                            <i class="fas fa-ban text-danger"></i>
+                            <strong>Change Status to "Withdrawn"</strong><br>
+                            <small>Indicates formal withdrawal</small>
+                        </a>
+                        <a href="{% url 'enrollment_edit' enrollment.pk %}" class="list-group-item list-group-item-action">
+                            <i class="fas fa-pause text-secondary"></i>
+                            <strong>Change Status to "Suspended"</strong><br>
+                            <small>Temporarily inactive enrollment</small>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Enable delete button only when checkbox is checked
+document.getElementById('confirmCheck').addEventListener('change', function() {
+    document.getElementById('deleteBtn').disabled = !this.checked;
+});
+
+// Additional confirmation before submission
+document.querySelector('form').addEventListener('submit', function(e) {
+    if (!confirm('Are you absolutely sure you want to delete this enrollment? This action cannot be undone.')) {
+        e.preventDefault();
+    }
+});
+</script>
+
+<style>
+.card.border-danger {
+    border-width: 3px;
+}
+.list-group-item:hover {
+    background-color: #f8f9fa;
+}
+</style>
+{% endblock %}

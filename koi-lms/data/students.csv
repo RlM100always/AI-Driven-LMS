@@ -1,0 +1,501 @@
+student_id,first_name,last_name,email,phone,date_of_birth,program,enrollment_date,status,gpa,address,postcode,state,international,scholarship
+KOI000001,Danielle,Johnson,student1@koi.edu.au,(03) 3218 1960,1980-12-01,Bachelor of IT,2023-04-21,Active,3.61,"9 Anna Trail, Robinsonshire, SA, 1265",2823,NSW,True,True
+KOI000002,Susan,Rogers,student2@koi.edu.au,6155.9407,1998-02-24,Bachelor of IT,2023-06-08,Graduated,2.63,"4 Ray Tor, North Donnaport, NSW, 2681",2984,WA,True,True
+KOI000003,Shawn,Flowers,student3@koi.edu.au,07-5341-9283,1985-06-18,Bachelor of IT,2024-11-14,Active,2.85,"Unit 50 056 Jones Ring, Jasonfort, VIC, 2902",2723,SA,True,True
+KOI000004,Julie,Ryan,student4@koi.edu.au,0469.653.287,1982-12-30,Diploma of Business,2023-02-08,Active,3.17,"2 Carlson Lees, Carlsonmouth, SA, 9018",2851,QLD,True,True
+KOI000005,Kelly,Moore,student5@koi.edu.au,4828 1489,1986-09-02,Diploma of Business,2023-07-22,Active,2.92,"8 Carol Pocket, East Sarahport, QLD, 2239",2417,NSW,False,True
+KOI000006,Lisa,Spence,student6@koi.edu.au,0422-782-489,1994-04-20,Bachelor of IT,2023-10-22,On Leave,2.65,"57/7 John Break, Andrewside, QLD, 6301",0903,QLD,False,True
+KOI000007,Carlos,Johnson,student7@koi.edu.au,(02).8347.3829,1999-07-05,Diploma of Business,2024-11-30,Graduated,2.69,"31/656 Owens Trunkway, East Brucemouth, NSW, 2693",2668,WA,True,False
+KOI000008,Shane,Henderson,student8@koi.edu.au,(08) 3178 1080,1983-01-29,Diploma of IT,2023-11-29,Graduated,2.79,"7/602 Smith Line, Saramouth, SA, 2608",2920,VIC,True,True
+KOI000009,Eric,Phillips,student9@koi.edu.au,9805-0097,1997-01-05,Diploma of IT,2025-03-01,Active,3.78,"1 Casey Bridge, Port David, QLD, 6909",2469,VIC,False,False
+KOI000010,Annette,Stewart,student10@koi.edu.au,(03) 5346 2475,2005-06-26,Diploma of Business,2023-03-19,Active,2.74,"Flat 18 842 Ibarra Expressway, Justinmouth, SA, 0880",9412,QLD,True,False
+KOI000011,Joseph,Preston,student11@koi.edu.au,0424-493-534,1997-02-06,Bachelor of IT,2024-12-24,Graduated,3.45,"640 Matthew Concourse, Evanmouth, VIC, 9011",2638,SA,True,True
+KOI000012,Barry,Wood,student12@koi.edu.au,0426-204-505,1987-01-19,Diploma of Business,2025-10-21,On Leave,2.9,"86 Sara Esplanade, West Nicole, ACT, 2655",0234,SA,True,False
+KOI000013,Erik,Haynes,student13@koi.edu.au,+61 2 7337 5433,1980-09-16,Bachelor of IT,2025-09-17,Active,3.73,"414/86 Crosby Circus, Gregoryview, ACT, 2596",2965,QLD,False,False
+KOI000014,Samuel,Joyce,student14@koi.edu.au,69340608,2007-05-06,Bachelor of IT,2025-03-12,Active,3.87,"15/5 Jennifer Garden, Elizabethmouth, VIC, 2928",2623,SA,False,True
+KOI000015,Robert,Bentley,student15@koi.edu.au,+61.429.946.804,1989-08-31,Diploma of Business,2023-10-19,On Leave,3.83,"7/38 Leon Underpass, East Justin, TAS, 2434",2683,WA,True,False
+KOI000016,Dylan,Williams,student16@koi.edu.au,+61276936763,1984-12-03,Bachelor of Business,2025-09-11,Active,3.62,"32 Williams Extension, St. Dennismouth, TAS, 2619",3687,SA,False,False
+KOI000017,Phyllis,Manning,student17@koi.edu.au,+61843487347,1982-07-16,Diploma of Business,2024-02-13,Active,2.83,"581/236 Jasmine Break, Russellside, WA, 0203",0269,NSW,False,True
+KOI000018,Sophia,Smith,student18@koi.edu.au,0467.054.668,2005-05-03,Bachelor of IT,2025-03-24,Active,2.73,"Unit 46 06 Caldwell Loop, St. Samantha, ACT, 2999",5016,NSW,False,True
+KOI000019,Derek,Murray,student19@koi.edu.au,4653-7556,1989-05-16,Diploma of Business,2024-09-11,On Leave,3.39,"08 Zoe Highway, East Kimberly, ACT, 2033",2092,WA,False,True
+KOI000020,John,Wells,student20@koi.edu.au,93745299,2005-05-08,Bachelor of IT,2023-05-23,Graduated,3.63,"Flat 90 96 David Dell, South Curtisport, NSW, 5058",2605,QLD,True,False
+KOI000021,Casey,Holland,student21@koi.edu.au,6716 5726,1985-11-23,Diploma of Business,2025-02-14,Active,3.18,"6/9 Morris Expressway, New Nicolebury, WA, 5965",2075,QLD,True,True
+KOI000022,Hunter,Lewis,student22@koi.edu.au,(07) 4948 0831,1988-02-12,Diploma of IT,2024-08-19,Graduated,3.41,"7 West Anchorage, New Jeffreybury, SA, 6578",8568,NSW,False,True
+KOI000023,Mark,Warner,student23@koi.edu.au,(07) 4313 5182,1986-06-03,Bachelor of IT,2023-10-29,Graduated,2.99,"Level 1 435 Kevin Towers, New Brandon, ACT, 9427",2509,VIC,True,False
+KOI000024,Justin,Mendoza,student24@koi.edu.au,(03).0471.1671,1999-07-15,Diploma of IT,2025-07-31,Active,2.59,"941 David Wade, Obrienbury, VIC, 2617",2939,SA,True,True
+KOI000025,Veronica,Torres,student25@koi.edu.au,+61 409 133 412,1988-01-24,Diploma of Business,2023-08-24,Active,3.97,"679 Carter Entrance, Jasminemouth, NSW, 2684",0993,SA,True,True
+KOI000026,Ronald,Stephens,student26@koi.edu.au,+61-424-210-249,2005-05-21,Diploma of Business,2025-04-29,Graduated,2.75,"Flat 74 6 Mason Point, Millerton, VIC, 2949",2701,SA,False,True
+KOI000027,Jeremy,Craig,student27@koi.edu.au,0490.490.278,2002-01-26,Bachelor of Business,2024-10-13,Active,3.1,"6 Costa Pathway, Rickymouth, NSW, 2645",0274,QLD,False,False
+KOI000028,Elaine,Morales,student28@koi.edu.au,0407-154-516,1997-05-31,Bachelor of IT,2022-11-28,Active,2.84,"Apt. 385 7 Wolf Dip, Andreaport, WA, 2920",2619,QLD,True,True
+KOI000029,Anthony,Mccoy,student29@koi.edu.au,0348086131,1995-08-09,Bachelor of Business,2023-05-28,Active,2.61,"Level 8 4 Davenport Pathway, St. Andrea, VIC, 2669",3214,VIC,True,True
+KOI000030,Kendra,Dickerson,student30@koi.edu.au,(07).0449.9727,1998-03-25,Bachelor of IT,2024-12-18,Active,2.61,"75/396 Melissa Mall, Lake Juliefurt, VIC, 2637",2128,NSW,False,False
+KOI000031,Tammy,Rivera,student31@koi.edu.au,71870262,1982-06-13,Bachelor of Business,2024-11-25,Graduated,2.7,"15/8 Finley Rue, Brennanton, NSW, 2694",2681,SA,False,True
+KOI000032,Ryan,Garcia,student32@koi.edu.au,+61-417-240-050,1989-11-19,Diploma of Business,2024-06-05,On Leave,2.79,"Suite 386 2 Gregory Rotary, Harveybury, WA, 6237",0947,VIC,False,False
+KOI000033,Jonathan,Smith,student33@koi.edu.au,+61.7.8217.5946,2003-05-23,Diploma of Business,2023-12-20,On Leave,3.2,"Unit 67 369 Andrews Top, Andrewfurt, SA, 1909",2920,VIC,True,True
+KOI000034,Marissa,Leach,student34@koi.edu.au,0733942104,2006-09-26,Diploma of Business,2024-10-11,Active,3.7,"Suite 145 6 James Reserve, Alyssaview, NT, 2774",2951,VIC,True,True
+KOI000035,Taylor,Jones,student35@koi.edu.au,0885160481,1995-05-18,Bachelor of Business,2024-06-21,Graduated,3.17,"137/985 Deborah Service Way, Blankenshipport, VIC, 2619",2620,WA,True,False
+KOI000036,Sophia,Torres,student36@koi.edu.au,+61213826758,1994-03-01,Diploma of Business,2025-05-27,Active,3.81,"Flat 79 40 Robinson Parade, Lake Cory, TAS, 4506",2831,VIC,False,True
+KOI000037,Stacy,Holloway,student37@koi.edu.au,3900.5329,1986-11-20,Bachelor of IT,2023-03-13,Graduated,3.75,"529 Joshua Court, New Lauren, NSW, 2020",2963,VIC,True,True
+KOI000038,Brianna,Smith,student38@koi.edu.au,(02) 2681 1775,1997-05-14,Diploma of Business,2025-06-06,On Leave,3.22,"Unit 90 8 Ellis Artery, St. Melaniechester, NSW, 2920",2611,WA,True,True
+KOI000039,Rachel,Morris,student39@koi.edu.au,02 2499 8569,1997-12-15,Diploma of Business,2024-02-28,Active,3.98,"Flat 18 3 Hayes End, Morganmouth, VIC, 0215",2605,QLD,False,False
+KOI000040,Elizabeth,Brooks,student40@koi.edu.au,08 1111 6152,1998-11-01,Diploma of Business,2023-02-28,Graduated,3.49,"56 Tanya Roadway, Michaelshire, QLD, 2637",2681,WA,True,True
+KOI000041,Michael,Hawkins,student41@koi.edu.au,49368998,1980-10-18,Diploma of IT,2025-06-30,Active,3.95,"445 Smith Corso, Jonestown, NSW, 8366",2905,SA,True,False
+KOI000042,Eric,Collins,student42@koi.edu.au,(02).0229.0147,2002-06-05,Bachelor of IT,2024-09-15,Active,3.38,"43/1 Jordan Freeway, Roseport, ACT, 2686",7003,SA,True,True
+KOI000043,Kevin,Clark,student43@koi.edu.au,07 4510 7622,1992-11-03,Bachelor of IT,2025-03-03,Active,2.6,"Flat 60 07 Michelle River, Berrychester, SA, 2619",2990,VIC,True,False
+KOI000044,Tammy,Jackson,student44@koi.edu.au,+61 475 161 369,1993-07-12,Bachelor of IT,2025-02-17,Graduated,2.87,"Level 5 521 Alyssa Dale, Michaelberg, QLD, 2524",2662,SA,True,True
+KOI000045,Carrie,Wolf,student45@koi.edu.au,+61-412-779-979,2001-10-12,Diploma of Business,2025-08-09,Graduated,3.35,"Suite 717 44 Michael Broadway, Steventon, ACT, 2974",2319,QLD,False,True
+KOI000046,Brooke,Cruz,student46@koi.edu.au,0480.793.597,1996-12-17,Diploma of IT,2023-07-19,Active,2.9,"Flat 51 2 John Outlook, Warrenburgh, TAS, 2974",2986,NSW,False,False
+KOI000047,Kim,Shelton,student47@koi.edu.au,5151-8644,2004-07-12,Diploma of IT,2025-09-11,Active,2.51,"Flat 92 46 Brooke Byway, Angelicamouth, NT, 8168",2970,SA,True,True
+KOI000048,Michael,White,student48@koi.edu.au,07.7332.2141,1997-03-06,Bachelor of Business,2025-03-14,Graduated,2.9,"Suite 962 292 Williams Junction, St. Cheryl, WA, 2688",2694,QLD,True,True
+KOI000049,Tammy,Mueller,student49@koi.edu.au,07.9774.6886,1985-06-01,Diploma of IT,2023-10-03,Active,2.74,"Apt. 758 814 Kathryn Footway, Whiteheadberg, VIC, 2437",2960,SA,False,True
+KOI000050,Robert,Sanders,student50@koi.edu.au,(03)61530515,2006-10-30,Diploma of IT,2023-07-11,Active,3.91,"72 West Alley, North Jonathanberg, VIC, 2619",2923,NSW,False,True
+KOI000051,Kevin,Williams,student51@koi.edu.au,+61-8-1179-8089,1988-02-19,Bachelor of IT,2023-07-08,Graduated,2.73,"Apt. 953 6 Elizabeth Byway, Carloshaven, ACT, 2987",2165,QLD,True,False
+KOI000052,Jon,Smith,student52@koi.edu.au,5319.5205,1998-06-25,Bachelor of Business,2024-05-05,Active,3.26,"2/170 Harris Deviation, Lake Sarahhaven, VIC, 4740",2664,QLD,True,True
+KOI000053,Michael,Norman,student53@koi.edu.au,+61-454-156-676,1991-06-10,Diploma of Business,2023-09-13,Active,2.57,"841/6 Ryan Cruiseway, Manuelland, TAS, 2924",2619,QLD,True,False
+KOI000054,Jennifer,Jackson,student54@koi.edu.au,+61.7.7059.6401,2002-09-28,Bachelor of Business,2025-08-13,On Leave,3.33,"Suite 029 7 David Esplanade, Michaelshire, ACT, 7275",2977,WA,True,True
+KOI000055,Kathryn,Berry,student55@koi.edu.au,0456 543 102,1996-11-18,Bachelor of IT,2025-02-08,Active,3.32,"47 Wendy Front, Gonzalezberg, NSW, 2612",2611,QLD,True,False
+KOI000056,Lisa,Ponce,student56@koi.edu.au,(07).1884.4225,1997-03-19,Bachelor of Business,2023-11-10,Active,2.96,"370 Spencer Key, Laraside, NT, 0811",2936,VIC,False,True
+KOI000057,Yvonne,Higgins,student57@koi.edu.au,0466 912 517,1995-10-03,Bachelor of Business,2025-10-18,Active,3.03,"9 Katrina Concourse, Shawton, NSW, 8242",2645,SA,False,True
+KOI000058,Sarah,Perez,student58@koi.edu.au,0441 438 424,2000-10-22,Bachelor of Business,2025-03-04,Active,3.96,"9 George Row, Meganshire, ACT, 2010",5439,NSW,False,True
+KOI000059,Robert,Fowler,student59@koi.edu.au,+61747364710,1985-04-13,Bachelor of Business,2024-10-09,Active,3.67,"3/92 Hensley Glen, Theresaberg, TAS, 3815",2697,WA,True,False
+KOI000060,David,Cole,student60@koi.edu.au,02 0469 6325,1999-07-24,Bachelor of Business,2024-03-26,Active,3.07,"87 Koch Port, East Sierrahaven, WA, 2693",6500,VIC,False,True
+KOI000061,Juan,Harper,student61@koi.edu.au,+61-474-801-624,2004-08-28,Bachelor of Business,2024-06-17,On Leave,3.02,"Apt. 609 3 Tran Broadway, Gordonside, SA, 0891",2621,NSW,True,True
+KOI000062,Phillip,Norton,student62@koi.edu.au,(07).2398.6800,1981-03-24,Bachelor of Business,2023-06-27,On Leave,2.99,"2/8 Mark Rotary, Franciscoport, TAS, 3887",5470,VIC,False,False
+KOI000063,Micheal,Nunez,student63@koi.edu.au,+61-7-0974-9930,1999-10-04,Diploma of Business,2024-12-12,Graduated,3.0,"Suite 309 1 Andrew Glade, Hernandezborough, VIC, 3970",2628,VIC,True,False
+KOI000064,Jared,Nguyen,student64@koi.edu.au,+61.478.652.785,1998-06-28,Bachelor of Business,2024-05-30,Graduated,3.94,"Unit 34 4 Shelly Garden, Janetfort, TAS, 2915",9441,QLD,True,True
+KOI000065,Ashley,Daniels,student65@koi.edu.au,+61 7 2404 1574,2005-05-01,Diploma of Business,2024-12-10,Active,3.59,"4 Taylor Round, South Brent, QLD, 0930",2565,QLD,False,True
+KOI000066,Jennifer,Garcia,student66@koi.edu.au,02 8267 7345,1989-08-13,Diploma of Business,2025-08-26,Graduated,2.79,"9 Amanda Triangle, West Robertburgh, ACT, 2997",2654,VIC,False,True
+KOI000067,Nancy,Smith,student67@koi.edu.au,0491.547.887,1984-06-20,Bachelor of Business,2025-01-18,Active,3.15,"Unit 15 742 Jill Gap, West Cheryl, VIC, 2608",2941,QLD,False,True
+KOI000068,Richard,Davis,student68@koi.edu.au,08 5304 6374,1991-02-13,Diploma of IT,2024-03-10,Graduated,2.96,"301/42 Parks Tor, Hannahport, TAS, 0833",2627,WA,False,False
+KOI000069,Eric,Adkins,student69@koi.edu.au,+61 456 878 339,2006-09-11,Diploma of IT,2023-04-03,Graduated,2.69,"Flat 91 883 Franklin Quays, Wilsonborough, WA, 2487",2272,WA,False,True
+KOI000070,William,Bryant,student70@koi.edu.au,8740-6403,1999-08-01,Diploma of IT,2023-03-20,On Leave,3.32,"180/704 White Copse, Brooksfurt, WA, 2986",2482,VIC,False,False
+KOI000071,Desiree,Bailey,student71@koi.edu.au,08-8230-0478,1994-05-02,Bachelor of Business,2025-03-02,On Leave,3.68,"752 Lopez Triangle, North Lisachester, ACT, 2693",2319,SA,False,False
+KOI000072,Arthur,Harper,student72@koi.edu.au,3067-3830,1984-09-02,Diploma of Business,2025-01-17,On Leave,3.51,"9 Ray Walkway, Joelberg, QLD, 0244",2289,SA,False,True
+KOI000073,Nichole,Buck,student73@koi.edu.au,+61-468-705-685,2003-08-06,Bachelor of IT,2024-09-03,Active,3.27,"62 Allen Elbow, Meredithberg, WA, 2286",0288,SA,False,True
+KOI000074,Dennis,Sanchez,student74@koi.edu.au,07.1751.8304,1992-09-26,Bachelor of Business,2025-10-08,Active,2.84,"983 Clark Grove, Susantown, QLD, 2661",2913,NSW,True,True
+KOI000075,Heather,Padilla,student75@koi.edu.au,+61 3 8546 7854,1988-10-20,Bachelor of IT,2024-06-07,Active,3.98,"Flat 75 556 Anna Edge, North Jose, VIC, 2922",2665,SA,True,False
+KOI000076,Jerry,Hudson,student76@koi.edu.au,0885477725,1985-08-30,Diploma of Business,2023-07-02,Graduated,2.79,"0 Mary Brow, North Robertbury, NSW, 2630",2678,WA,False,False
+KOI000077,Stephen,Brown,student77@koi.edu.au,+61-497-700-886,1980-04-22,Bachelor of Business,2022-12-22,Active,3.48,"Apt. 862 182 James Ramble, Lisaview, VIC, 2456",2909,VIC,True,False
+KOI000078,John,Terry,student78@koi.edu.au,(02)-0166-6870,2001-07-27,Bachelor of Business,2022-12-11,Active,3.71,"65 Patricia Beach, South Rachel, WA, 2801",2889,SA,False,True
+KOI000079,Dominique,White,student79@koi.edu.au,(02).3926.1429,1988-02-01,Bachelor of Business,2025-04-25,Active,3.18,"21/5 Connor Entrance, Lake Cassiefurt, TAS, 2047",2920,WA,False,False
+KOI000080,Jeremy,Tran,student80@koi.edu.au,+61 8 2961 9431,1982-09-11,Diploma of Business,2024-01-17,Graduated,3.17,"Suite 655 104 Ward Footway, West Christopherchester, WA, 9886",2501,NSW,False,False
+KOI000081,Michael,Davis,student81@koi.edu.au,+61 456 046 618,1988-02-29,Diploma of IT,2025-05-03,Active,3.76,"Suite 244 72 Gary Foreshore, Evansland, TAS, 2737",7937,QLD,False,True
+KOI000082,Daniel,Torres,student82@koi.edu.au,+61 7 9657 5692,1990-02-15,Diploma of IT,2024-04-08,On Leave,2.62,"265/79 Mark Formation, Diazshire, QLD, 6828",2073,QLD,True,False
+KOI000083,Samuel,Carter,student83@koi.edu.au,6724.3426,2006-10-02,Diploma of IT,2024-07-04,Active,3.84,"9/88 Stephens Intersection, East Kaylastad, NT, 0809",2995,VIC,True,True
+KOI000084,Tammy,Jordan,student84@koi.edu.au,1438 8899,1987-06-04,Bachelor of Business,2024-10-19,On Leave,3.54,"9/8 Michael Arcade, Garciachester, NSW, 2619",2635,NSW,True,False
+KOI000085,Larry,Gibson,student85@koi.edu.au,08.5717.7514,1981-06-04,Diploma of Business,2023-05-24,Active,3.31,"Flat 23 2 Mark Motorway, Hallfurt, NT, 2656",2990,WA,True,True
+KOI000086,Jo,Ware,student86@koi.edu.au,+61.8.6033.4191,2007-02-08,Diploma of Business,2025-03-10,On Leave,3.86,"371/78 Harper Rotary, Matthewsstad, TAS, 2909",2654,SA,True,False
+KOI000087,Samantha,Lawrence,student87@koi.edu.au,+61.425.134.125,2003-07-01,Diploma of Business,2023-07-04,Active,3.91,"Suite 966 782 Tracy Corner, Lake Megan, ACT, 2960",2920,QLD,False,False
+KOI000088,Derrick,Ochoa,student88@koi.edu.au,0487-676-772,1982-09-19,Bachelor of Business,2025-04-23,On Leave,2.83,"04 Amanda Crossing, Cunninghamfort, NSW, 5148",2978,WA,False,True
+KOI000089,Lynn,Williams,student89@koi.edu.au,+61.3.6134.0745,2007-09-10,Diploma of Business,2023-04-11,Active,3.5,"395 Martin Corner, South Linda, TAS, 4498",2645,WA,True,False
+KOI000090,Tiffany,Carter,student90@koi.edu.au,0448.126.042,2003-10-09,Bachelor of Business,2023-06-21,Graduated,3.3,"5 Kathleen Strip, Burnsshire, SA, 0966",2611,WA,True,True
+KOI000091,Cynthia,Beard,student91@koi.edu.au,6845.7759,1979-12-27,Diploma of Business,2023-04-20,Active,3.8,"Flat 86 637 Morris Freeway, Amyberg, WA, 2950",2117,NSW,True,False
+KOI000092,Allen,Noble,student92@koi.edu.au,08-7063-2424,1983-01-29,Diploma of Business,2025-09-08,Active,2.82,"Flat 52 643 Rios Tor, North Jasonland, NT, 6387",1051,QLD,False,False
+KOI000093,Vanessa,Henderson,student93@koi.edu.au,08 1361 1155,1990-02-01,Diploma of IT,2023-06-28,On Leave,2.88,"2 Alyssa Alleyway, St. Michael, QLD, 0926",0873,VIC,False,True
+KOI000094,Christopher,Garcia,student94@koi.edu.au,96565234,2001-11-02,Bachelor of IT,2023-04-06,Active,2.84,"Apt. 438 8 Julie Gap, South Troyville, QLD, 2920",0991,VIC,True,True
+KOI000095,Allison,Levine,student95@koi.edu.au,(07)26965827,2006-02-11,Bachelor of Business,2023-03-20,Active,3.76,"430 Stacy Little, Courtneyhaven, VIC, 2606",2488,SA,True,True
+KOI000096,Christina,Ramirez,student96@koi.edu.au,(02)-8328-5691,1990-06-16,Bachelor of Business,2025-11-16,On Leave,3.5,"316 Shawn Rosebowl, New Elizabethburgh, NSW, 1202",2920,SA,True,False
+KOI000097,Stephanie,Mills,student97@koi.edu.au,(03) 5241 0564,1997-09-23,Diploma of IT,2023-03-06,Active,2.75,"78 Brown Ring, Lake Eric, NSW, 5138",1003,SA,True,True
+KOI000098,Brandon,Cox,student98@koi.edu.au,03 0863 5365,1989-02-18,Diploma of IT,2023-03-27,Active,3.37,"0 Jeffrey Quay, Port Caseymouth, SA, 2935",2487,QLD,False,False
+KOI000099,Alan,Gonzalez,student99@koi.edu.au,0449.375.973,2004-10-28,Bachelor of Business,2025-03-25,Active,3.39,"603 Fields Thoroughfare, Lake Aaronfurt, SA, 2538",2696,NSW,True,False
+KOI000100,Travis,Brown,student100@koi.edu.au,07 1038 6571,1999-08-31,Bachelor of IT,2023-04-24,Graduated,3.67,"Flat 99 623 Green Glade, Haynesmouth, TAS, 2614",2681,QLD,False,False
+KOI000101,Sherry,Taylor,student101@koi.edu.au,0412.127.756,1984-01-05,Bachelor of IT,2025-03-08,Graduated,3.47,"47 Phelps Centre, New Margaret, ACT, 2675",2631,VIC,False,False
+KOI000102,Jennifer,Schmitt,student102@koi.edu.au,+61 2 4420 6788,1988-05-28,Bachelor of IT,2023-04-23,On Leave,3.94,"100 David Lookout, Ginaland, SA, 2301",2667,WA,True,False
+KOI000103,Lisa,Davis,student103@koi.edu.au,(02).0702.9667,1980-11-27,Bachelor of Business,2024-07-13,Graduated,3.95,"32 Ramirez Courtyard, South Deborahfort, VIC, 9701",2862,QLD,False,False
+KOI000104,Robert,Day,student104@koi.edu.au,0438 065 787,1991-08-11,Diploma of Business,2025-04-23,Graduated,2.9,"Level 2 593 Paula Wynd, Brianfort, TAS, 6321",2693,NSW,True,False
+KOI000105,Joseph,Velasquez,student105@koi.edu.au,3965-2239,1990-09-22,Diploma of Business,2025-11-14,Active,3.63,"5 Anna Cutting, Weaverburgh, WA, 2110",2689,SA,False,False
+KOI000106,Jeffery,Fox,student106@koi.edu.au,5932 5250,1980-08-25,Bachelor of IT,2023-07-14,On Leave,3.78,"5 Nathaniel State Highway, Willismouth, SA, 2942",2646,NSW,False,True
+KOI000107,Latoya,Yu,student107@koi.edu.au,+61-452-895-392,1992-10-11,Diploma of IT,2024-03-17,Active,3.01,"096 Ian Glen, East Sharon, NT, 2951",2695,SA,False,True
+KOI000108,Toni,Jackson,student108@koi.edu.au,5704.3315,1988-08-20,Bachelor of Business,2023-05-13,Active,2.86,"76 Nicole Point, Bellfurt, NSW, 2919",2682,WA,False,True
+KOI000109,Shannon,Lloyd,student109@koi.edu.au,4054-1152,1992-09-05,Diploma of Business,2023-08-03,On Leave,3.17,"99 Bush Mount, Port Eric, NSW, 2953",2666,VIC,True,False
+KOI000110,Heidi,Bowen,student110@koi.edu.au,0444-431-069,1998-08-09,Bachelor of Business,2024-12-28,On Leave,3.54,"06 Kelly State Highway, Gonzaleztown, QLD, 2644",2471,QLD,False,False
+KOI000111,Kyle,Sanders,student111@koi.edu.au,+61718625652,1995-01-26,Diploma of IT,2023-02-04,On Leave,3.99,"4/490 Karen Steps, East Elizabethside, VIC, 6380",2988,SA,False,False
+KOI000112,Robert,Nichols,student112@koi.edu.au,+61374160898,2007-02-20,Diploma of Business,2025-05-02,Active,2.96,"22 Lindsey Common, Port Christianchester, QLD, 0929",2751,NSW,True,True
+KOI000113,Christopher,Hawkins,student113@koi.edu.au,0454-870-998,2006-07-02,Diploma of IT,2024-09-08,Active,3.61,"Suite 299 1 Anna Chase, Mikaylastad, VIC, 2767",5970,NSW,True,True
+KOI000114,Gerald,Powell,student114@koi.edu.au,+61 496 065 307,1989-01-15,Diploma of Business,2024-06-27,Active,3.59,"Level 4 71 Dennis Vale, Schroedermouth, SA, 0291",2667,SA,False,True
+KOI000115,Jason,Holloway,student115@koi.edu.au,+61708214862,2006-06-17,Bachelor of Business,2025-02-18,Active,2.84,"303 Stephen Intersection, New Micheal, WA, 3610",2695,NSW,False,True
+KOI000116,Tracy,Griffin,student116@koi.edu.au,+61752414060,1985-06-12,Bachelor of Business,2025-05-03,Active,2.57,"3 Joseph Lower, North Thomasberg, NT, 7034",7446,VIC,False,True
+KOI000117,Paula,York,student117@koi.edu.au,+61.7.3748.9691,1980-02-26,Diploma of Business,2025-01-29,Active,3.81,"Level 1 15 Davidson Foreshore, Dianaport, QLD, 2638",2690,SA,False,False
+KOI000118,Linda,Lang,student118@koi.edu.au,+61 465 207 446,1993-09-02,Diploma of Business,2024-07-22,On Leave,3.01,"38 Knox Strand, Williamburgh, NT, 2921",2912,VIC,False,False
+KOI000119,Joyce,Hardy,student119@koi.edu.au,0425-135-346,2006-09-20,Bachelor of IT,2024-04-24,Active,3.1,"Level 7 709 Thomas Dale, Port Alyssachester, ACT, 2632",2665,VIC,True,True
+KOI000120,Robert,Hudson,student120@koi.edu.au,+61.3.5217.5250,1980-01-24,Bachelor of Business,2024-10-29,Graduated,3.92,"927 David Nook, Powellfort, VIC, 1083",2970,VIC,True,True
+KOI000121,Patricia,Sherman,student121@koi.edu.au,0430 033 542,1983-05-26,Diploma of Business,2024-07-14,Graduated,3.39,"044 Luna Roadside, Ryanberg, TAS, 2920",2963,SA,True,False
+KOI000122,Frederick,Meadows,student122@koi.edu.au,+61 2 3323 0982,1984-02-04,Diploma of Business,2024-06-18,On Leave,2.95,"Level 8 0 Ebony Square, North Hannahchester, WA, 2981",9472,SA,False,False
+KOI000123,Jamie,Jennings,student123@koi.edu.au,4618 4992,1994-02-25,Bachelor of IT,2023-05-08,Graduated,3.94,"Flat 17 934 Michael Lower, Ethanside, WA, 2677",2953,VIC,True,True
+KOI000124,Aaron,Powers,student124@koi.edu.au,97218114,2001-10-29,Diploma of IT,2023-11-21,Active,2.74,"Level 7 120 Ward Strip, Ronaldville, NSW, 2102",2645,NSW,True,True
+KOI000125,Michael,Kim,student125@koi.edu.au,+61 441 552 166,1995-06-09,Bachelor of IT,2024-01-23,On Leave,3.18,"21/021 Pruitt Plateau, Whitefurt, TAS, 0802",2917,SA,False,False
+KOI000126,Daniel,Jenkins,student126@koi.edu.au,1450-8993,2002-09-11,Bachelor of IT,2024-05-05,Active,2.93,"Unit 75 6 Mary Ridge, North Dawnburgh, WA, 2920",2641,QLD,False,True
+KOI000127,Karen,Flores,student127@koi.edu.au,(07).0838.6631,1995-07-11,Bachelor of Business,2024-10-17,Active,3.68,"75 Tina Vale, East Richardton, ACT, 2499",0948,SA,True,False
+KOI000128,Anna,Pena,student128@koi.edu.au,+61.7.5037.5899,1996-01-01,Bachelor of IT,2025-09-12,Graduated,2.84,"Flat 13 554 Park Bend, St. Donald, VIC, 2549",2663,NSW,False,True
+KOI000129,David,Phelps,student129@koi.edu.au,08.3516.0917,1995-06-20,Bachelor of IT,2025-09-14,Active,2.75,"Apt. 808 97 Heather Crossroad, East Paul, TAS, 3669",2694,QLD,False,False
+KOI000130,Raymond,Cooper,student130@koi.edu.au,(08)-2269-8485,2004-02-15,Bachelor of IT,2025-04-04,On Leave,3.53,"945 Tina Spur, Lake Jennifer, TAS, 9799",0284,WA,False,False
+KOI000131,Natalie,Henderson,student131@koi.edu.au,8106 2003,1988-12-26,Diploma of Business,2023-08-04,Active,3.4,"Suite 043 0 Cervantes Circle, Port John, SA, 2266",0258,WA,False,False
+KOI000132,Brian,Manning,student132@koi.edu.au,08.3598.9334,1995-03-05,Bachelor of IT,2023-08-29,Active,2.84,"816 Roy Ridge, Davidshire, SA, 1572",2125,SA,True,False
+KOI000133,Candice,Ayala,student133@koi.edu.au,+61-494-798-515,1997-10-12,Bachelor of IT,2023-11-03,Active,3.21,"2 Daniels Loop, Lake Jeffreyborough, TAS, 2955",2923,WA,False,True
+KOI000134,Stephanie,Montgomery,student134@koi.edu.au,+61215739930,2003-02-16,Diploma of Business,2024-04-08,On Leave,3.95,"48 Johnson Quay, Williehaven, WA, 2920",2143,WA,False,False
+KOI000135,Luke,Miller,student135@koi.edu.au,28801336,1983-06-10,Diploma of IT,2023-10-12,Active,3.51,"2 Stephen Ground, East Charlesburgh, SA, 9193",2766,NSW,False,False
+KOI000136,Shannon,Sullivan,student136@koi.edu.au,(02).6180.9190,2003-10-02,Diploma of Business,2023-03-19,Active,3.49,"49 Juan Outlook, Fostertown, WA, 2648",2682,WA,True,False
+KOI000137,Julie,Robles,student137@koi.edu.au,0442-450-882,1984-02-05,Bachelor of IT,2023-01-30,Active,2.88,"Flat 43 5 Robert Sound, West Jack, SA, 2661",2659,VIC,False,True
+KOI000138,Melissa,York,student138@koi.edu.au,0478-141-413,2004-08-04,Diploma of Business,2025-05-16,On Leave,2.58,"231/91 Louis Parklands, Christinaport, NT, 5955",2602,SA,False,False
+KOI000139,Adam,Sanchez,student139@koi.edu.au,0845257775,2006-04-07,Diploma of Business,2024-03-15,Active,2.81,"914 Patricia Dell, Jessicaland, NSW, 2080",6969,SA,True,False
+KOI000140,Jason,Johnson,student140@koi.edu.au,(08) 2563 9427,1996-12-14,Diploma of Business,2025-01-27,On Leave,2.68,"803/2 Sean Crossway, St. Sheila, ACT, 2687",2681,SA,True,True
+KOI000141,Joseph,Young,student141@koi.edu.au,+61.438.567.700,2001-12-20,Diploma of IT,2024-04-13,Graduated,2.52,"Level 9 9 Nicholas Lane, Brianaland, SA, 2983",8655,WA,True,True
+KOI000142,Tommy,Olson,student142@koi.edu.au,+61 408 272 318,2001-10-18,Bachelor of IT,2024-02-06,On Leave,3.92,"259 Donna Meander, Jenniferfort, WA, 2913",6260,NSW,False,False
+KOI000143,John,Anderson,student143@koi.edu.au,0422.809.202,1988-09-09,Diploma of IT,2023-09-02,On Leave,3.75,"4 Jay Rosebowl, Dillonburgh, QLD, 0292",6298,WA,True,False
+KOI000144,Joseph,Ramsey,student144@koi.edu.au,(08).9913.6621,1980-06-19,Bachelor of Business,2023-10-07,On Leave,2.79,"1 Thomas Round, East Christopherberg, ACT, 2608",0250,SA,True,True
+KOI000145,Heidi,Patterson,student145@koi.edu.au,+61859916247,2005-12-17,Diploma of IT,2023-11-23,On Leave,3.01,"43/098 April Lane, Lake Robert, NSW, 2636",6448,SA,False,True
+KOI000146,Rodney,Diaz,student146@koi.edu.au,(08) 3688 7258,1998-10-14,Diploma of IT,2024-12-17,Active,3.76,"621/3 Logan Crest, South Williammouth, ACT, 2646",0901,SA,False,True
+KOI000147,Madeline,Ruiz,student147@koi.edu.au,+61 461 143 519,1981-03-10,Diploma of Business,2024-07-16,Graduated,3.23,"Apt. 277 384 Arthur Roadway, West Emily, TAS, 2690",2641,QLD,False,False
+KOI000148,Wendy,Chan,student148@koi.edu.au,(08)69380118,1989-08-01,Diploma of IT,2025-04-13,Active,3.97,"Level 3 3 Spears River, New Gregoryhaven, NSW, 9184",2951,NSW,False,True
+KOI000149,Leah,Frye,student149@koi.edu.au,0494-769-735,2006-04-17,Diploma of Business,2024-11-08,Active,2.98,"14 Patrick Edge, Lake Robert, TAS, 8804",2694,WA,False,False
+KOI000150,Christopher,Nunez,student150@koi.edu.au,(02).8275.5394,1986-02-14,Bachelor of Business,2025-10-23,On Leave,3.95,"Unit 33 33 Mary Route, Ericville, NSW, 2479",1807,NSW,False,True
+KOI000151,Nathan,Stewart,student151@koi.edu.au,0447.284.639,1984-04-07,Diploma of Business,2023-02-19,Active,3.29,"Apt. 856 2 Bray Tollway, Stewarttown, ACT, 2676",6155,WA,True,True
+KOI000152,Chloe,Green,student152@koi.edu.au,0443-479-552,1996-11-15,Diploma of Business,2024-09-15,Active,2.61,"564/29 Tiffany Tarn, East Jennifer, QLD, 9663",2632,QLD,False,False
+KOI000153,Thomas,Smith,student153@koi.edu.au,+61-8-2885-7448,1999-03-23,Bachelor of IT,2023-02-09,Active,3.78,"2 Jason Fire Track, Combsville, WA, 2954",2975,SA,False,False
+KOI000154,Ann,Frederick,student154@koi.edu.au,(07) 0615 9399,2002-01-06,Diploma of Business,2025-08-31,Graduated,2.55,"587/7 Patrick Front, Welchberg, NT, 0956",0999,VIC,True,False
+KOI000155,Richard,Meadows,student155@koi.edu.au,2535.5449,2001-11-02,Bachelor of Business,2024-08-02,Active,3.15,"987/22 David Esplanade, Shelbyland, QLD, 2646",2511,VIC,True,False
+KOI000156,Sharon,Kennedy,student156@koi.edu.au,0681-1492,1982-10-09,Bachelor of Business,2025-09-09,Active,3.86,"Unit 34 22 Anthony State Highway, Michellemouth, WA, 2908",2887,VIC,False,True
+KOI000157,Derek,Fry,student157@koi.edu.au,0429-979-688,1990-06-10,Diploma of IT,2024-05-19,Active,3.06,"745 Green Gardens, North Alexandraberg, TAS, 2927",4077,NSW,True,False
+KOI000158,Kevin,Cannon,student158@koi.edu.au,(03)-0853-6866,1988-05-28,Bachelor of Business,2023-08-07,Active,2.76,"Unit 41 38 Mitchell Vale, Robertland, NT, 2624",2619,SA,False,True
+KOI000159,Dana,Williamson,student159@koi.edu.au,(08) 3502 0802,1983-05-21,Diploma of Business,2024-02-08,Graduated,2.71,"7 Jesse Courtyard, St. Jeffchester, SA, 2920",2977,WA,False,False
+KOI000160,Heidi,Johnson,student160@koi.edu.au,2046.1872,1986-06-11,Diploma of IT,2023-12-20,Active,3.85,"367 Joan Avenue, St. Jill, NSW, 8376",2935,WA,False,True
+KOI000161,Eric,Chandler,student161@koi.edu.au,0481-474-350,2002-08-03,Bachelor of IT,2023-10-31,On Leave,3.92,"6 Smith Foreshore, Port Kristinatown, ACT, 6792",2971,SA,False,False
+KOI000162,John,Porter,student162@koi.edu.au,+61.495.005.281,1984-03-08,Diploma of IT,2024-12-23,On Leave,3.77,"730/6 Ramsey Fairway, St. Jasmineside, SA, 4739",2658,NSW,False,False
+KOI000163,Michael,Oconnor,student163@koi.edu.au,(03) 1827 4485,1995-05-10,Bachelor of IT,2022-11-28,Active,3.07,"959 Malik Break, Leefort, NT, 0845",0251,QLD,False,False
+KOI000164,Cole,Hopkins,student164@koi.edu.au,2203-1731,1980-12-26,Bachelor of IT,2025-05-02,On Leave,2.91,"Level 0 39 Alexander Distributor, Hebertland, WA, 0905",9650,SA,True,False
+KOI000165,Madison,Baker,student165@koi.edu.au,1413-8113,1997-12-29,Diploma of IT,2024-07-17,Active,3.41,"3 Angela Ridge, Reeseshire, TAS, 2906",2522,QLD,True,True
+KOI000166,Andrea,Wagner,student166@koi.edu.au,+61.428.975.585,1992-07-20,Diploma of IT,2024-08-28,Active,3.44,"Unit 98 684 Nixon Park, Smithton, SA, 7082",2930,VIC,False,False
+KOI000167,Kevin,Walker,student167@koi.edu.au,(02).4888.9921,1981-03-09,Bachelor of IT,2024-11-11,Graduated,3.05,"459 Jesse Garden, Port Ashleyborough, NSW, 2947",2657,NSW,True,False
+KOI000168,Margaret,Norris,student168@koi.edu.au,0419.409.610,2006-02-18,Diploma of IT,2024-04-29,On Leave,2.76,"13/9 Cynthia Run, Brownhaven, ACT, 2948",5258,NSW,False,False
+KOI000169,Heidi,Hernandez,student169@koi.edu.au,+61.467.998.136,1989-10-06,Bachelor of Business,2024-07-31,Active,3.87,"17 Amy Flat, Port Warrenberg, NT, 2918",2667,WA,False,False
+KOI000170,Randall,Duncan,student170@koi.edu.au,0498-331-465,2003-03-15,Bachelor of IT,2025-05-09,On Leave,3.94,"6 Diaz Cutting, Melvintown, SA, 2645",0879,NSW,True,False
+KOI000171,Dustin,Williams,student171@koi.edu.au,0352110392,2007-10-23,Diploma of IT,2024-02-16,Active,3.69,"Flat 47 05 Jody Drive, New Ana, NT, 2069",8042,VIC,False,True
+KOI000172,Brian,Gonzalez,student172@koi.edu.au,+61 440 701 645,1983-07-29,Diploma of Business,2022-12-26,Active,3.51,"Unit 68 1 Washington Roadside, West Jamesmouth, ACT, 2138",2935,QLD,False,False
+KOI000173,Tracy,Garner,student173@koi.edu.au,5554 3840,2001-03-13,Bachelor of IT,2024-01-01,Active,3.21,"4 Edward Link, East Jessica, QLD, 0239",2636,SA,False,True
+KOI000174,Tara,Browning,student174@koi.edu.au,(08).8232.9832,1990-06-02,Bachelor of IT,2025-10-31,On Leave,3.86,"Suite 925 881 Lonnie Court, Lake Nicolechester, VIC, 2937",0942,QLD,False,True
+KOI000175,Kimberly,Rodriguez,student175@koi.edu.au,02-9949-9939,1987-10-21,Bachelor of Business,2023-11-20,Active,3.92,"Flat 72 9 Joseph Landing, Port Travis, NT, 2643",2680,QLD,False,True
+KOI000176,Ricky,Novak,student176@koi.edu.au,(08) 3331 2797,2003-04-23,Bachelor of IT,2024-04-14,Active,3.83,"60 Cortez Link, East Shannonton, QLD, 8860",9680,NSW,False,False
+KOI000177,James,Gonzales,student177@koi.edu.au,(07)-7264-9082,1995-09-05,Diploma of IT,2025-08-26,Graduated,3.13,"8 Hector Riviera, Port Robert, WA, 2027",6371,NSW,False,True
+KOI000178,John,Holt,student178@koi.edu.au,02-1175-1868,2000-09-23,Diploma of Business,2023-08-02,Graduated,3.11,"Apt. 259 2 Misty Crossway, Port Kylemouth, SA, 0921",2623,QLD,True,False
+KOI000179,Adam,Cannon,student179@koi.edu.au,7778 0973,1987-04-14,Bachelor of Business,2025-05-29,On Leave,3.17,"71/9 John Retreat, Christineside, QLD, 2222",2250,NSW,False,True
+KOI000180,Dustin,Johnson,student180@koi.edu.au,0494.510.162,1985-05-24,Diploma of IT,2025-10-06,Graduated,3.85,"95 Christopher Garden, Miguelfurt, NSW, 2608",2347,QLD,True,False
+KOI000181,Dennis,Neal,student181@koi.edu.au,(07) 8683 3901,1999-05-06,Diploma of IT,2025-07-31,Active,3.95,"Level 6 5 Fox Row, Sarashire, WA, 8772",0834,WA,True,True
+KOI000182,Tiffany,Smith,student182@koi.edu.au,7139 6605,1991-10-20,Bachelor of IT,2025-04-15,Active,3.68,"3 King Bridge, Kevinside, TAS, 1155",2999,NSW,True,True
+KOI000183,Christina,Johnson,student183@koi.edu.au,03-5577-0272,2001-03-30,Bachelor of IT,2024-11-11,Graduated,2.81,"08/95 Jared Tarn, Laurenstad, NSW, 2634",2056,NSW,True,False
+KOI000184,Courtney,Kirby,student184@koi.edu.au,0496.291.450,1989-02-21,Bachelor of Business,2024-08-30,Graduated,2.5,"Unit 57 38 Thompson Landing, South Robinmouth, ACT, 2918",2633,NSW,True,False
+KOI000185,Matthew,Webb,student185@koi.edu.au,0445 218 230,1995-07-14,Bachelor of Business,2024-07-21,Active,3.49,"09 Mathew Bend, New Andrewport, QLD, 2943",2664,VIC,True,True
+KOI000186,Joshua,Flores,student186@koi.edu.au,+61.2.4224.1098,1997-05-24,Diploma of IT,2023-05-05,Active,3.38,"424/3 Charles Rotary, Amberton, NT, 2070",2560,VIC,True,False
+KOI000187,Christopher,Myers,student187@koi.edu.au,+61 497 954 538,1982-07-30,Bachelor of IT,2024-11-19,Active,3.61,"7 Stanley Tarn, Ruizbury, NT, 0845",2992,SA,True,True
+KOI000188,Holly,Ortega,student188@koi.edu.au,(08).7017.1577,1985-09-18,Diploma of Business,2024-02-08,On Leave,3.67,"1 Roth Circlet, Angelaland, SA, 4769",0239,SA,True,False
+KOI000189,John,Moore,student189@koi.edu.au,+61815396695,1998-06-07,Bachelor of Business,2025-11-09,Graduated,2.57,"1 Wilson Roadside, Nguyenville, WA, 2654",2991,SA,False,False
+KOI000190,Carmen,Jennings,student190@koi.edu.au,+61 465 701 329,2005-08-04,Bachelor of IT,2025-08-11,Active,4.0,"2 Schmidt Line, Gonzalezmouth, SA, 5465",2490,WA,False,True
+KOI000191,Cheryl,Dixon,student191@koi.edu.au,07 0580 0851,1989-07-04,Diploma of Business,2023-01-14,On Leave,2.61,"56/66 Elaine Piazza, South Angela, TAS, 0224",2622,VIC,False,True
+KOI000192,Alexander,Wong,student192@koi.edu.au,08 6212 6796,2001-02-09,Bachelor of IT,2023-09-02,Active,2.91,"6/32 Jacobs River, Bradfordbury, SA, 0289",2970,SA,False,False
+KOI000193,Tiffany,Carroll,student193@koi.edu.au,(02)97128478,1982-07-26,Diploma of IT,2025-02-17,On Leave,3.26,"18 Austin Heights, St. Shawnfort, TAS, 0254",2922,WA,True,True
+KOI000194,Austin,Livingston,student194@koi.edu.au,(07)-0792-9049,1980-10-31,Bachelor of Business,2024-02-15,On Leave,3.18,"814 Anderson Formation, Michaelatown, NSW, 7292",2615,NSW,False,False
+KOI000195,Lindsey,Green,student195@koi.edu.au,0828051292,1996-10-11,Diploma of Business,2024-08-29,On Leave,3.12,"7 Jason Turn, Brianview, NSW, 2227",2997,VIC,False,False
+KOI000196,Kevin,Reese,student196@koi.edu.au,0436-674-286,1980-04-22,Diploma of IT,2024-02-18,Active,3.06,"801/5 Bishop Spur, Matthewview, NSW, 2796",2903,NSW,False,True
+KOI000197,Jessica,Chapman,student197@koi.edu.au,07.2580.0106,1983-03-25,Bachelor of IT,2025-02-19,Active,2.64,"344/009 Brian Roadside, East Jean, NSW, 2492",2989,VIC,False,True
+KOI000198,Linda,Lopez,student198@koi.edu.au,24471746,2003-06-16,Bachelor of IT,2025-09-29,Graduated,3.93,"Suite 140 65 Jonathan Flat, St. Chad, QLD, 0862",2920,SA,False,True
+KOI000199,Daniel,Fernandez,student199@koi.edu.au,+61-3-9174-1011,1999-05-06,Diploma of Business,2023-12-21,Active,3.81,"20 Elizabeth Follow, Lake Rebecca, ACT, 3776",2991,WA,True,False
+KOI000200,Amber,Smith,student200@koi.edu.au,+61298554601,1992-05-02,Diploma of IT,2025-03-06,Active,2.66,"43 Angela Lees, New Heather, NSW, 0957",2473,SA,True,True
+KOI000201,Donald,Lee,student201@koi.edu.au,0437.618.478,2007-07-11,Diploma of Business,2024-10-24,Active,3.77,"05 Richard Drive, Bentleyside, NT, 6310",2637,QLD,False,True
+KOI000202,Desiree,Ruiz,student202@koi.edu.au,+61 403 202 041,1995-06-05,Diploma of IT,2025-07-03,Graduated,2.84,"179 Bryan Deviation, Rogersfurt, TAS, 2619",5825,WA,True,False
+KOI000203,Mary,Mcguire,student203@koi.edu.au,9251-1426,1985-08-15,Bachelor of IT,2025-11-12,Active,2.91,"39 Dennis Run, Stricklandtown, WA, 2400",2651,QLD,False,False
+KOI000204,Jasmine,Wheeler,student204@koi.edu.au,(08)-7232-4876,1988-01-17,Bachelor of IT,2023-08-25,Active,3.8,"7 Courtney Gardens, Robertside, QLD, 2661",8195,SA,False,True
+KOI000205,Michelle,Hatfield,student205@koi.edu.au,0437 340 312,2003-03-21,Bachelor of Business,2024-12-02,Active,2.64,"005 Clark Fairway, Christinamouth, ACT, 2508",2652,SA,True,False
+KOI000206,Kristen,Washington,student206@koi.edu.au,13799563,2005-04-28,Diploma of Business,2025-10-13,On Leave,3.01,"531 Joan Deviation, Vanceland, WA, 6706",2633,QLD,False,False
+KOI000207,Sarah,Gibson,student207@koi.edu.au,+61 7 2735 4352,1980-12-29,Bachelor of IT,2025-11-06,Active,2.73,"Suite 177 25 Olivia Ronde, West Belinda, QLD, 2468",2920,SA,True,True
+KOI000208,Michelle,Robinson,student208@koi.edu.au,+61840633569,1987-06-21,Diploma of IT,2025-06-03,On Leave,3.49,"00 Quinn Quad, Port Amandafort, NSW, 2617",2691,WA,False,False
+KOI000209,Angela,Smith,student209@koi.edu.au,+61-3-2543-1074,1985-05-29,Diploma of IT,2025-11-23,Active,3.63,"72 Lopez Key, Padillatown, NSW, 2985",8046,VIC,False,False
+KOI000210,Karen,Wolfe,student210@koi.edu.au,+61 489 319 508,2002-11-10,Bachelor of IT,2024-06-14,Active,3.52,"57 Michael Crossroad, South Devonmouth, QLD, 4179",2673,SA,False,False
+KOI000211,Luke,Hurst,student211@koi.edu.au,0464 015 577,1996-12-18,Bachelor of IT,2025-02-22,Active,3.09,"Level 7 5 Jacob Part, East Peterburgh, SA, 2312",2812,SA,True,True
+KOI000212,Tyler,Golden,student212@koi.edu.au,0404 682 756,1995-01-03,Bachelor of Business,2025-08-24,Active,3.92,"Unit 10 856 Rios Green, Watkinshaven, WA, 2904",5242,NSW,False,False
+KOI000213,Kristina,Perez,student213@koi.edu.au,(07)02547292,2004-02-15,Diploma of IT,2025-03-07,Active,2.51,"223 Blake Glen, St. Jorge, NT, 2678",2155,WA,True,True
+KOI000214,Earl,West,student214@koi.edu.au,07-1067-2752,1980-01-19,Diploma of Business,2025-03-24,Graduated,3.56,"4/2 Morgan Circuit, Mcculloughberg, NSW, 2930",2999,SA,False,True
+KOI000215,Mary,Griffin,student215@koi.edu.au,5093.9834,1986-07-25,Diploma of Business,2023-01-01,Active,3.15,"Flat 86 759 Rebekah Intersection, Hernandezchester, TAS, 2985",1455,WA,True,False
+KOI000216,Kyle,Griffin,student216@koi.edu.au,0413-767-426,2004-09-10,Diploma of Business,2024-08-31,Graduated,3.11,"347 Jones Roads, Davischester, SA, 0228",2909,WA,False,True
+KOI000217,Karina,Taylor,student217@koi.edu.au,08-4870-4947,1998-12-07,Diploma of Business,2024-11-15,Active,3.95,"244 Martinez Steps, Robertfort, QLD, 2014",2920,NSW,False,False
+KOI000218,Virginia,Jones,student218@koi.edu.au,(08)96471589,1980-07-02,Bachelor of IT,2024-01-04,On Leave,3.77,"572 Martin Footway, Robertstad, ACT, 2924",8183,NSW,False,False
+KOI000219,Katie,White,student219@koi.edu.au,92855445,1983-03-01,Bachelor of IT,2025-03-06,On Leave,3.81,"284 Maxwell Mall, Samanthaburgh, NSW, 2672",3338,QLD,True,False
+KOI000220,Christina,Guerra,student220@koi.edu.au,0488 167 112,1980-06-29,Bachelor of Business,2024-12-10,Active,3.27,"279/5 Jennifer Artery, South Davidberg, QLD, 2932",2672,VIC,True,False
+KOI000221,Tina,Coleman,student221@koi.edu.au,10760310,2006-11-20,Diploma of IT,2025-09-16,Active,2.85,"Flat 40 401 Samantha Dip, West Ellen, ACT, 2424",6552,NSW,False,True
+KOI000222,Melissa,Norman,student222@koi.edu.au,+61 438 911 908,1987-04-15,Bachelor of Business,2023-09-20,Graduated,2.73,"0 Sandra Quad, Richardsonshire, NT, 2611",2655,VIC,True,False
+KOI000223,Tina,Coleman,student223@koi.edu.au,0436 151 718,1984-07-12,Diploma of Business,2025-01-05,Graduated,3.64,"Apt. 157 647 Mcdaniel Parade, Port Kelly, VIC, 2661",2915,WA,False,False
+KOI000224,Harry,Lutz,student224@koi.edu.au,+61267811266,2003-07-21,Bachelor of Business,2025-06-01,On Leave,2.6,"535 Brooke Loop, South Maryfort, SA, 6946",2967,WA,False,False
+KOI000225,Elizabeth,Clements,student225@koi.edu.au,+61727114773,2001-04-14,Bachelor of IT,2023-06-24,Active,3.26,"0 Tyrone Arcade, Port Cassandra, TAS, 2634",0891,QLD,False,False
+KOI000226,Kathleen,Guerrero,student226@koi.edu.au,0477 347 784,1998-05-12,Bachelor of IT,2024-05-13,Active,3.05,"16 Edwards Lane, Stevenston, NT, 9427",2602,QLD,True,True
+KOI000227,Larry,Price,student227@koi.edu.au,97889778,1985-03-22,Diploma of Business,2025-01-22,On Leave,3.37,"Level 7 6 Miranda Freeway, Bryanshire, ACT, 2625",2969,VIC,False,True
+KOI000228,Anthony,Vance,student228@koi.edu.au,(08).1655.6503,1988-04-30,Diploma of IT,2023-11-26,Graduated,3.21,"1 Wilson Crossing, Lake Benjaminchester, VIC, 2807",6056,NSW,True,False
+KOI000229,Ashley,Morris,student229@koi.edu.au,71357852,2000-10-27,Bachelor of IT,2024-03-06,Active,3.97,"Unit 71 3 Baker Garden, Ballardland, NSW, 6541",5876,VIC,True,True
+KOI000230,Jason,Flynn,student230@koi.edu.au,+61-448-468-536,1993-08-04,Bachelor of Business,2023-12-22,On Leave,3.99,"829 Lewis Vale, Adamsside, VIC, 5083",2977,SA,True,False
+KOI000231,Dylan,Hernandez,student231@koi.edu.au,+61.446.651.364,1989-09-02,Diploma of IT,2025-08-26,Active,3.08,"Unit 63 230 Laura Gates, Washingtonchester, VIC, 2132",2820,QLD,True,False
+KOI000232,Jonathan,Lara,student232@koi.edu.au,+61.482.070.015,2000-05-16,Bachelor of IT,2024-03-03,Active,2.64,"162/198 Alejandra Riverway, Tylerland, QLD, 7155",6636,WA,False,False
+KOI000233,Jeffery,Rodriguez,student233@koi.edu.au,07.7649.0785,2003-09-16,Bachelor of Business,2023-05-21,Active,2.62,"3/25 Baldwin Gate, North Mckenzieton, QLD, 2786",2935,NSW,False,False
+KOI000234,Rebecca,Jennings,student234@koi.edu.au,0437-606-441,2007-11-24,Diploma of Business,2023-11-27,Active,3.39,"756 Joshua Bypass, Ruizchester, TAS, 2601",2644,VIC,False,False
+KOI000235,William,Bell,student235@koi.edu.au,+61 485 700 272,1980-01-04,Diploma of IT,2024-08-10,Active,3.51,"911/382 Sparks Glen, Mendozaberg, SA, 2659",2944,SA,True,False
+KOI000236,James,Perry,student236@koi.edu.au,08-6930-0893,1982-12-06,Diploma of IT,2024-11-14,Active,3.04,"Suite 069 94 Christopher Key, East Alexis, VIC, 2907",2619,NSW,True,False
+KOI000237,Jeffrey,Harris,student237@koi.edu.au,(07) 7626 3934,2004-08-18,Diploma of Business,2025-10-13,Active,2.84,"Suite 620 43 Solomon Key, Millerfort, NT, 2946",2676,NSW,True,True
+KOI000238,Jeanette,Fitzgerald,student238@koi.edu.au,(02) 1800 5375,2000-07-14,Diploma of IT,2025-10-04,Active,3.26,"89 Turner Little, Davidside, ACT, 6242",3757,SA,True,False
+KOI000239,David,Stewart,student239@koi.edu.au,0462 415 027,1989-06-19,Bachelor of Business,2024-06-09,Graduated,3.07,"Level 9 85 Stafford Glade, Gallagherberg, WA, 2232",2232,NSW,True,True
+KOI000240,Barry,Green,student240@koi.edu.au,+61.8.1707.5877,1996-09-04,Diploma of Business,2023-05-20,Active,3.12,"13 White Crossing, Annashire, QLD, 6089",2656,NSW,False,False
+KOI000241,Samantha,Sanchez,student241@koi.edu.au,+61250416591,1990-11-29,Diploma of Business,2023-07-23,Active,3.3,"77 Wheeler Alley, Taramouth, TAS, 5230",2925,QLD,False,True
+KOI000242,Lauren,Manning,student242@koi.edu.au,0496-164-236,1982-12-09,Diploma of IT,2022-12-28,Graduated,3.98,"64 David Pocket, Fitzgeraldport, NT, 2961",2978,WA,False,False
+KOI000243,James,Griffin,student243@koi.edu.au,+61 8 4996 1659,1986-03-30,Diploma of Business,2024-10-01,Active,3.73,"857 Deborah Track, St. Alison, NSW, 2927",2601,SA,True,False
+KOI000244,Rebecca,Woods,student244@koi.edu.au,03 4386 4908,1982-07-05,Bachelor of IT,2023-02-05,On Leave,3.81,"17/9 Kelly Riviera, North Danielmouth, NT, 2656",2116,SA,True,True
+KOI000245,Nancy,Evans,student245@koi.edu.au,0477.945.232,1982-07-26,Diploma of IT,2025-06-22,Active,3.64,"80 Randall Amble, St. Steve, VIC, 7749",0856,QLD,False,True
+KOI000246,Linda,Miller,student246@koi.edu.au,02 3103 0372,2002-01-04,Diploma of Business,2023-12-07,Active,3.92,"472 Henderson Circus, West Joanne, WA, 2920",2910,NSW,False,False
+KOI000247,Michelle,Richards,student247@koi.edu.au,07.9605.0166,1996-10-08,Bachelor of IT,2025-05-13,On Leave,2.58,"67 Hall Brae, Port Barbaraside, NSW, 2867",2619,SA,False,True
+KOI000248,Troy,Mcmillan,student248@koi.edu.au,(08)60243757,1987-10-20,Diploma of Business,2025-01-23,Active,3.06,"2/66 Flynn Crest, New Hannah, NSW, 2912",2653,VIC,False,True
+KOI000249,Eric,Vasquez,student249@koi.edu.au,+61-8-4338-0054,1992-01-20,Diploma of IT,2025-10-13,Active,2.71,"0 Matthew Circus, East Anna, WA, 2755",2184,QLD,False,True
+KOI000250,Paula,Castaneda,student250@koi.edu.au,0491 077 119,2000-08-24,Diploma of Business,2023-05-04,On Leave,3.42,"135 Jessica Towers, Gillfort, NSW, 2635",2952,VIC,True,False
+KOI000251,David,Harris,student251@koi.edu.au,+61-2-3754-8214,1992-07-29,Bachelor of Business,2024-09-01,Active,3.32,"863 Laurie Mall, Villanuevahaven, TAS, 2072",1811,SA,False,True
+KOI000252,Matthew,Morales,student252@koi.edu.au,08-0602-9084,1994-03-03,Diploma of IT,2024-08-12,Active,2.95,"048/2 Griffin Dip, Terryfurt, QLD, 2931",2185,VIC,True,False
+KOI000253,Peter,Higgins,student253@koi.edu.au,07 3188 4852,1980-09-13,Diploma of Business,2023-01-09,Active,2.67,"68 Jessica Landing, Courtneystad, NSW, 2217",2939,WA,True,True
+KOI000254,Jillian,Chavez,student254@koi.edu.au,0354492683,1983-06-26,Bachelor of Business,2024-04-19,Active,3.14,"1/661 Bryan Concourse, Lewisland, TAS, 8698",8649,SA,False,True
+KOI000255,Victor,Henderson,student255@koi.edu.au,+61.8.6228.2772,2003-11-16,Diploma of Business,2025-02-01,Active,3.5,"70 Sherry Key, Port Danielstad, SA, 2182",2619,VIC,False,True
+KOI000256,Nathan,Ritter,student256@koi.edu.au,(07)-7022-9604,1989-07-19,Bachelor of IT,2023-10-27,On Leave,3.81,"Apt. 185 067 Knight Gully, Alvarezberg, NT, 3777",2635,VIC,False,False
+KOI000257,Christopher,Weber,student257@koi.edu.au,+61 466 365 807,2004-12-10,Diploma of IT,2024-01-31,Active,3.04,"0 Hoffman Colonnade, South Stephanieside, ACT, 5837",3018,VIC,False,True
+KOI000258,Hector,Smith,student258@koi.edu.au,03.9718.9569,1981-06-08,Bachelor of IT,2024-12-29,Graduated,3.6,"26/856 Davis Chase, New Douglas, SA, 2424",0220,QLD,True,True
+KOI000259,Christina,Nguyen,student259@koi.edu.au,0461 5265,1988-09-05,Diploma of IT,2024-07-02,Graduated,3.01,"399 Trevor View, Averyview, ACT, 2947",9617,NSW,False,False
+KOI000260,Anthony,Schultz,student260@koi.edu.au,4891 3824,1999-03-28,Bachelor of Business,2024-08-19,Active,2.59,"8 Krista Corso, Amberburgh, QLD, 4687",2107,WA,True,False
+KOI000261,Susan,Oliver,student261@koi.edu.au,+61-420-074-946,1991-11-11,Bachelor of Business,2025-08-05,Active,3.69,"Apt. 289 416 Maria Triangle, Natalieborough, TAS, 2954",2614,VIC,False,False
+KOI000262,John,Bird,student262@koi.edu.au,(03).7950.2097,1980-01-19,Diploma of Business,2022-12-11,Graduated,3.21,"6/1 Amanda Strand, Chambersstad, VIC, 7562",1175,VIC,True,False
+KOI000263,Sharon,Wallace,student263@koi.edu.au,0245319433,1996-09-14,Diploma of IT,2024-06-12,Active,3.8,"9/036 Molly Ring, Jacksonborough, NT, 2392",2324,QLD,False,True
+KOI000264,Sarah,Foley,student264@koi.edu.au,0443 089 487,1979-12-21,Diploma of IT,2024-09-20,On Leave,3.83,"64/877 Holmes Bend, North Joshua, VIC, 4750",2993,WA,False,False
+KOI000265,Matthew,Beard,student265@koi.edu.au,3613 3254,1982-01-15,Bachelor of Business,2025-07-26,On Leave,3.54,"60 Pittman Extension, St. Johnmouth, ACT, 2958",2691,QLD,False,True
+KOI000266,Kimberly,Harvey,student266@koi.edu.au,79110065,2003-06-30,Diploma of Business,2023-03-08,Active,3.15,"04 Jones Strip, North Kennethfurt, VIC, 2596",2689,NSW,False,False
+KOI000267,Kristin,Hanson,student267@koi.edu.au,+61.8.7699.1507,1997-07-02,Bachelor of IT,2024-04-19,Active,2.99,"091 Rebecca Common, Michaelfort, WA, 2653",2620,QLD,False,False
+KOI000268,Bruce,Collins,student268@koi.edu.au,+61-7-4982-2749,1991-07-28,Diploma of Business,2024-02-22,Active,3.53,"9 Brian Quad, Port Mauriceborough, QLD, 2353",2917,QLD,False,True
+KOI000269,Carol,Rivera,student269@koi.edu.au,0495.946.521,1995-05-12,Diploma of IT,2023-01-31,Graduated,4.0,"337 John Underpass, Lindsayfurt, QLD, 2992",1501,QLD,True,True
+KOI000270,Michael,Spencer,student270@koi.edu.au,07 7395 0033,1989-07-27,Diploma of Business,2023-08-24,Active,3.27,"Suite 583 302 Lozano Approach, Port Diana, NSW, 2953",2937,NSW,True,True
+KOI000271,John,Pacheco,student271@koi.edu.au,+61.428.961.122,2006-12-13,Diploma of Business,2023-09-17,Active,2.69,"596/3 Kathryn Road, New Kristine, TAS, 2690",0942,NSW,False,False
+KOI000272,Melissa,Schmitt,student272@koi.edu.au,+61317912868,1992-08-21,Diploma of Business,2025-01-09,Graduated,2.55,"58 Baldwin Point, Adamsfurt, ACT, 2673",2667,NSW,False,False
+KOI000273,Michelle,Foster,student273@koi.edu.au,(08)-6925-4812,2005-06-23,Diploma of IT,2023-04-06,On Leave,3.64,"390/89 Simmons Path, Ortizfort, TAS, 2860",2657,SA,True,False
+KOI000274,Jesus,Brewer,student274@koi.edu.au,(02)48881431,1983-12-09,Diploma of Business,2023-03-17,Active,3.47,"3 Gonzalez Ground, Kevinview, QLD, 7284",1445,NSW,True,True
+KOI000275,Krista,Powell,student275@koi.edu.au,+61 2 7826 3337,1987-11-09,Bachelor of Business,2025-02-05,On Leave,3.28,"153/63 Cole Ridge, Lake Donberg, SA, 1755",2686,SA,True,False
+KOI000276,Ronald,Goodwin,student276@koi.edu.au,0445-909-022,1991-02-21,Diploma of IT,2025-04-27,On Leave,2.82,"Unit 61 6 Thomas Ground, Fowlerport, NSW, 2641",9209,SA,False,False
+KOI000277,Tracy,Lopez,student277@koi.edu.au,6433.4817,1981-11-10,Bachelor of Business,2024-06-21,Active,2.7,"66 Veronica Concourse, Mendozaland, VIC, 2672",2674,VIC,False,True
+KOI000278,Ryan,Mckinney,student278@koi.edu.au,+61399493874,1986-10-07,Diploma of Business,2022-12-08,Active,3.72,"Flat 69 859 Stevens River, East Keithmouth, TAS, 2936",0826,QLD,False,True
+KOI000279,John,Yoder,student279@koi.edu.au,+61-8-6291-6032,1989-03-21,Diploma of IT,2025-07-29,Active,3.78,"3 Jenkins Wade, Lake Charlesville, TAS, 0272",2738,NSW,False,True
+KOI000280,Bradley,Johnson,student280@koi.edu.au,+61-476-563-600,1988-06-06,Bachelor of IT,2023-05-24,Active,3.69,"7/11 Jennifer Outlook, St. Lori, NT, 2640",7124,NSW,False,True
+KOI000281,David,Figueroa,student281@koi.edu.au,02-0427-5230,2002-11-15,Diploma of IT,2025-03-02,Graduated,3.36,"Apt. 816 4 Williams Alley, Port Katiebury, TAS, 2693",2406,WA,True,True
+KOI000282,Anthony,Smith,student282@koi.edu.au,02.3122.0681,2007-08-28,Bachelor of IT,2024-04-18,Active,3.1,"3 Mcmillan Close, South Daniel, TAS, 2650",2995,WA,False,False
+KOI000283,Alexander,Lewis,student283@koi.edu.au,0249501364,2006-01-07,Bachelor of IT,2025-06-14,Active,3.96,"8 Johnathan Centreway, Tinafurt, NT, 2952",0957,VIC,False,False
+KOI000284,Carlos,Smith,student284@koi.edu.au,0476.838.903,1980-08-16,Diploma of IT,2025-07-11,Active,3.82,"Unit 63 1 Devin Port, Jamesfurt, QLD, 2139",2615,SA,True,True
+KOI000285,Dennis,Stewart,student285@koi.edu.au,8640-3553,1986-11-27,Diploma of Business,2025-03-13,Graduated,3.87,"3 Boyd Cruiseway, Sotoland, WA, 2330",0923,VIC,True,True
+KOI000286,David,Thompson,student286@koi.edu.au,0433-816-742,2004-06-16,Diploma of IT,2023-09-29,Active,2.74,"Suite 934 97 Joseph Plateau, Lake Raymondburgh, WA, 2616",3962,NSW,False,False
+KOI000287,Lori,Leon,student287@koi.edu.au,6614 9828,2004-08-17,Bachelor of IT,2023-08-26,Active,2.79,"4/46 Jones Copse, Gonzalezborough, ACT, 1857",2996,SA,False,True
+KOI000288,Shelby,Waller,student288@koi.edu.au,(08)74916016,1999-02-24,Diploma of IT,2023-08-06,Graduated,3.3,"Level 5 7 Horton Spur, Housebury, QLD, 2910",2970,SA,True,True
+KOI000289,Heidi,Brewer,student289@koi.edu.au,(08) 2439 9201,2006-02-19,Bachelor of Business,2023-04-19,Graduated,3.58,"Flat 83 26 Holt Promenade, Willischester, NSW, 2595",2634,SA,False,True
+KOI000290,Kaitlyn,Conrad,student290@koi.edu.au,+61 7 0270 1168,1994-02-01,Bachelor of IT,2025-09-08,Active,2.57,"Suite 252 2 Tom Promenade, St. Ashleyborough, NT, 2660",2653,SA,False,True
+KOI000291,Jordan,Barrera,student291@koi.edu.au,+61-8-9121-4161,1989-04-27,Diploma of Business,2023-03-06,Graduated,3.46,"3 Washington Vista, North Brucetown, ACT, 2538",1698,WA,False,False
+KOI000292,Valerie,Juarez,student292@koi.edu.au,+61859655553,1992-03-11,Diploma of Business,2025-09-25,Active,3.71,"Apt. 551 762 Carolyn Ramp, Stephaniebury, TAS, 2619",2918,WA,False,False
+KOI000293,Robert,Lopez,student293@koi.edu.au,+61-450-505-739,1996-05-22,Bachelor of IT,2024-08-09,Active,2.74,"71/6 Lawson Track, North David, NSW, 2938",2902,WA,False,False
+KOI000294,Peggy,Friedman,student294@koi.edu.au,+61333211602,1991-01-05,Bachelor of Business,2024-07-14,Active,3.41,"4 Lynn Strand, West Sandrafort, NSW, 2953",5915,QLD,False,False
+KOI000295,Nicholas,Love,student295@koi.edu.au,+61 8 3341 4111,1991-06-25,Diploma of Business,2025-06-03,Active,3.64,"5 Melissa Laneway, New Bryanside, QLD, 2986",2945,SA,True,False
+KOI000296,Lauren,Peck,student296@koi.edu.au,03 1608 7524,1987-05-09,Bachelor of Business,2025-01-11,On Leave,2.68,"4 Julie Top, Lake Kyleville, SA, 5737",2926,WA,True,True
+KOI000297,Brian,Patrick,student297@koi.edu.au,03 3027 6420,1998-07-19,Bachelor of IT,2024-07-28,Active,2.94,"5/61 Campbell Dale, Davismouth, ACT, 2937",2649,WA,False,True
+KOI000298,Devin,Dominguez,student298@koi.edu.au,(03)-3330-5912,1992-09-18,Bachelor of Business,2024-09-20,Active,3.9,"572 David Quadrant, Brittneyberg, VIC, 2690",2619,QLD,True,True
+KOI000299,John,Burns,student299@koi.edu.au,+61 426 176 475,1980-04-19,Diploma of Business,2023-06-01,Graduated,3.2,"783 Brenda Rise, Hillville, NT, 2987",2604,QLD,False,True
+KOI000300,Ashley,Garcia,student300@koi.edu.au,8260.6888,1996-07-11,Bachelor of IT,2023-03-06,On Leave,3.26,"1 Michelle Thoroughfare, North Angela, TAS, 2619",2129,NSW,True,False
+KOI000301,Jamie,Martin,student301@koi.edu.au,0440-118-458,1985-09-28,Bachelor of IT,2024-09-14,Active,2.92,"08 Hopkins Parade, St. Heather, TAS, 7883",2503,SA,False,False
+KOI000302,Benjamin,Thomas,student302@koi.edu.au,03.9839.5429,1994-04-06,Bachelor of IT,2023-03-22,Active,3.15,"26/14 Bentley Corso, East Crystal, SA, 0935",5892,QLD,False,False
+KOI000303,Robert,Hernandez,student303@koi.edu.au,+61-8-0931-4181,2003-03-06,Diploma of IT,2025-03-27,Active,3.1,"15 Strickland Court, New Alejandro, VIC, 2686",2512,SA,True,False
+KOI000304,Alisha,Hutchinson,student304@koi.edu.au,0471.859.484,2000-07-28,Diploma of IT,2023-04-29,Active,3.08,"62 Shaffer Strip, Woodsberg, SA, 1822",2636,WA,False,True
+KOI000305,Ashley,Adams,student305@koi.edu.au,+61-453-967-275,2007-01-27,Bachelor of Business,2024-11-24,Active,3.09,"83/14 Townsend Centre, East Jessicaland, NT, 5014",9706,QLD,False,True
+KOI000306,Erica,Randolph,student306@koi.edu.au,08 7881 6093,2005-04-13,Bachelor of Business,2022-12-08,Graduated,3.26,"Unit 89 972 Gregory Junction, Lake Stephanie, VIC, 2920",2982,SA,True,True
+KOI000307,Nathaniel,Wilson,student307@koi.edu.au,+61.438.144.744,1987-02-25,Bachelor of IT,2022-11-30,Active,3.57,"80 Stafford Plaza, Lake Adammouth, TAS, 2935",2505,WA,False,True
+KOI000308,Pamela,Lopez,student308@koi.edu.au,(02)16731882,1993-11-17,Bachelor of Business,2023-06-07,Active,3.9,"437 Brooks Junction, Mcclainside, SA, 2577",2642,QLD,True,False
+KOI000309,Michael,Hamilton,student309@koi.edu.au,(03)13402665,1980-12-23,Diploma of IT,2023-08-03,Graduated,3.0,"Level 1 78 Marsh Track, Lake Karen, VIC, 3621",2502,SA,False,False
+KOI000310,Eric,Porter,student310@koi.edu.au,+61.430.569.067,1989-10-02,Diploma of Business,2024-02-08,Active,3.05,"39 Jessica Cul-de-sac, New Katie, SA, 2696",2667,VIC,False,False
+KOI000311,Jasmine,Patrick,student311@koi.edu.au,0492 392 312,1993-07-22,Bachelor of IT,2023-01-25,Graduated,3.21,"609 Christopher Boulevard, Russellport, QLD, 2685",2607,SA,True,True
+KOI000312,Bryan,Simmons,student312@koi.edu.au,4145-4563,1990-10-14,Diploma of Business,2023-02-08,Active,3.29,"053 Kennedy Rosebowl, Port Jackfort, TAS, 2954",2619,SA,False,True
+KOI000313,Collin,Smith,student313@koi.edu.au,0425-559-895,1988-01-04,Bachelor of Business,2025-09-02,Active,3.36,"6 Paige Concourse, North Brendaborough, QLD, 2611",2389,VIC,True,True
+KOI000314,Matthew,Swanson,student314@koi.edu.au,03.0236.8485,1992-05-10,Diploma of Business,2024-10-23,Active,3.13,"Flat 76 8 Gary Foreshore, New Brandon, ACT, 2666",2920,WA,True,False
+KOI000315,Gail,Berg,student315@koi.edu.au,2786.8669,1989-02-21,Diploma of Business,2023-10-14,Active,3.56,"939 Natasha Quadrant, Gordonhaven, SA, 2933",2924,SA,True,False
+KOI000316,Andrea,Jackson,student316@koi.edu.au,8340-2424,2006-10-21,Diploma of Business,2023-02-15,Graduated,3.07,"1 Deborah Run, Markside, SA, 2626",0845,NSW,False,False
+KOI000317,Tracie,Garrett,student317@koi.edu.au,5342 4089,1983-07-11,Diploma of IT,2025-10-30,Active,3.42,"Unit 73 43 Moore Entrance, Richardsonfort, NSW, 2920",2657,NSW,True,False
+KOI000318,Jackson,Huffman,student318@koi.edu.au,08.2404.2269,1986-04-18,Diploma of IT,2023-03-14,Active,3.91,"37 Garcia Ramble, North Carrie, VIC, 2980",2619,QLD,False,True
+KOI000319,Margaret,Hines,student319@koi.edu.au,+61-402-314-290,2006-11-12,Diploma of Business,2022-12-11,Active,3.22,"Flat 32 97 Kyle Place, South Brian, SA, 0981",2001,SA,False,False
+KOI000320,Amy,Garcia,student320@koi.edu.au,+61-3-0303-6625,2002-03-15,Bachelor of IT,2024-02-15,Graduated,3.51,"Flat 72 314 Jones Grove, Lake Sandraland, ACT, 7226",8592,WA,False,False
+KOI000321,Erin,Hernandez,student321@koi.edu.au,+61.449.451.475,1988-12-07,Bachelor of Business,2023-03-25,Active,2.56,"2 Hernandez Park, Briggsville, VIC, 2821",2942,VIC,False,False
+KOI000322,Hunter,Cruz,student322@koi.edu.au,(08).6769.5236,1994-02-23,Diploma of IT,2025-03-29,On Leave,2.82,"Unit 61 6 Jacqueline Esplanade, Aarontown, TAS, 9721",2255,SA,False,False
+KOI000323,Melinda,Delacruz,student323@koi.edu.au,07 7286 3330,2005-04-27,Bachelor of Business,2023-06-29,Active,3.42,"06 Brown Circlet, St. Maryburgh, ACT, 2635",2631,SA,True,True
+KOI000324,John,Smith,student324@koi.edu.au,+61-3-2728-4765,1995-01-04,Bachelor of IT,2025-08-24,Graduated,2.84,"Flat 20 0 Wesley Alleyway, Wallmouth, SA, 5843",2602,NSW,True,True
+KOI000325,Joseph,Davis,student325@koi.edu.au,+61 3 3690 3628,2000-06-28,Diploma of Business,2023-03-26,Active,3.58,"662/563 Rodriguez Brow, Carriemouth, ACT, 2694",2648,VIC,True,True
+KOI000326,Daniel,Lewis,student326@koi.edu.au,4383 0341,1999-04-21,Bachelor of Business,2025-04-22,On Leave,3.48,"Apt. 051 05 Benjamin Promenade, Lake Karen, TAS, 2621",2956,WA,False,True
+KOI000327,Peggy,Gordon,student327@koi.edu.au,0420 967 904,1985-05-22,Diploma of IT,2023-07-20,Active,2.93,"1 Nicole Subway, West Victoria, TAS, 2612",2954,VIC,True,True
+KOI000328,Michael,Chase,student328@koi.edu.au,+61-2-6339-9129,2001-04-06,Bachelor of IT,2025-01-07,Active,3.13,"481 Davis Glade, New Evan, SA, 5551",2327,NSW,True,False
+KOI000329,Jonathan,Kennedy,student329@koi.edu.au,(08) 2197 0546,1993-10-27,Diploma of Business,2025-07-16,Active,3.9,"895/16 Baker Subway, North Joycebury, ACT, 2631",2926,QLD,True,True
+KOI000330,Eric,Ross,student330@koi.edu.au,3671.5778,2007-09-30,Diploma of IT,2024-11-18,Graduated,3.4,"166 Richard Break, Matthewfort, QLD, 2911",2870,QLD,False,False
+KOI000331,Amy,Fry,student331@koi.edu.au,03 5909 6056,1996-01-05,Diploma of Business,2023-10-24,Active,3.78,"644 Christopher Bridge, Richardport, WA, 0283",2720,WA,False,True
+KOI000332,Christopher,Valenzuela,student332@koi.edu.au,(07).2356.7782,2003-08-11,Bachelor of IT,2024-10-05,Active,2.74,"Apt. 893 992 Beck Turn, Alexismouth, NT, 2920",2941,WA,False,True
+KOI000333,Laura,Craig,student333@koi.edu.au,(02) 7279 1033,1994-03-14,Bachelor of IT,2025-11-12,Active,3.69,"Unit 53 905 Smith Gate, St. Deborahmouth, VIC, 0255",4685,SA,True,True
+KOI000334,Daniel,Thompson,student334@koi.edu.au,+61-7-2892-8664,2002-05-07,Diploma of Business,2025-10-31,On Leave,3.27,"Flat 11 096 Tyler View, St. Wesleyton, SA, 0233",2908,VIC,False,True
+KOI000335,Patrick,Gonzalez,student335@koi.edu.au,+61257660538,1989-07-21,Bachelor of Business,2024-01-16,Active,3.22,"30/00 Eric Landing, Matthewshire, VIC, 2698",2993,NSW,True,False
+KOI000336,Christina,Long,student336@koi.edu.au,9626-2658,1985-04-18,Diploma of Business,2024-10-06,Active,3.17,"2 Crystal Link, Maryburgh, TAS, 2671",2406,QLD,False,False
+KOI000337,Alexander,Carrillo,student337@koi.edu.au,02 9819 6027,2001-06-28,Bachelor of IT,2025-08-04,Active,3.48,"343 Jessica Lane, Donnaview, NSW, 2630",0991,NSW,True,True
+KOI000338,Daniel,Ho,student338@koi.edu.au,12442117,1992-03-14,Diploma of Business,2023-10-16,Active,2.74,"06 Tommy Rue, South Gracefurt, TAS, 0972",2654,SA,False,True
+KOI000339,Alejandro,White,student339@koi.edu.au,0490.155.799,1998-07-01,Diploma of IT,2022-12-04,Active,3.42,"Flat 39 808 Javier Junction, South Anthonyberg, QLD, 2424",2873,NSW,True,False
+KOI000340,Stephanie,Bailey,student340@koi.edu.au,0447-768-634,1985-10-15,Bachelor of Business,2023-09-30,On Leave,3.62,"Flat 99 23 Hamilton Park, Carlsonview, TAS, 0819",2986,SA,False,False
+KOI000341,James,Gomez,student341@koi.edu.au,+61-417-208-496,1989-11-21,Diploma of Business,2025-06-22,Graduated,3.7,"Apt. 125 25 Charles Stairs, Nathanmouth, NSW, 1505",2677,NSW,True,True
+KOI000342,Ashley,Morris,student342@koi.edu.au,0264938318,1989-05-13,Diploma of Business,2025-06-28,Graduated,3.56,"55/307 Williams Foreshore, Wilsonmouth, NT, 7596",2699,VIC,True,True
+KOI000343,Andrew,Smith,student343@koi.edu.au,0407.426.088,1981-03-27,Bachelor of Business,2024-05-04,Graduated,3.3,"16 Hill View, Richardside, TAS, 2920",0806,NSW,False,False
+KOI000344,Kenneth,Riggs,student344@koi.edu.au,+61259103002,1983-06-25,Bachelor of IT,2024-04-11,Active,3.58,"135 Sarah Boulevard, Nicoleton, NSW, 2241",2759,WA,True,False
+KOI000345,Latasha,Gray,student345@koi.edu.au,03-9712-5296,2001-07-29,Bachelor of IT,2024-10-21,On Leave,2.7,"7 Bray Grange, Perezview, SA, 2458",2693,WA,False,True
+KOI000346,Heather,Jones,student346@koi.edu.au,+61230376371,1991-06-27,Diploma of Business,2023-10-17,Active,3.58,"2/1 Jeffery Junction, Hesterhaven, QLD, 2993",2346,WA,False,True
+KOI000347,Frank,Parker,student347@koi.edu.au,0412.711.307,1986-04-08,Bachelor of Business,2024-01-15,Graduated,2.61,"5/18 Michael Drive, Port Wayne, TAS, 2274",2971,WA,False,True
+KOI000348,Brandon,Reyes,student348@koi.edu.au,+61-3-4362-9489,1996-09-12,Bachelor of IT,2025-02-09,Active,3.98,"0 Susan Edge, North Pattyshire, SA, 2691",4143,WA,True,False
+KOI000349,Nicole,Lyons,student349@koi.edu.au,+61 8 6134 7323,1991-09-25,Diploma of Business,2025-08-12,Active,3.65,"Apt. 128 9 Stevenson Terrace, West Leslie, NSW, 2642",2957,WA,False,False
+KOI000350,Donald,Smith,student350@koi.edu.au,+61850241209,1991-11-20,Diploma of Business,2024-12-02,On Leave,3.06,"Unit 71 094 Alicia Cross, East Craig, TAS, 2617",2968,SA,True,False
+KOI000351,Jonathan,Tucker,student351@koi.edu.au,(08)05458971,1989-02-01,Bachelor of IT,2025-10-27,Active,3.99,"32 Jimenez Expressway, Howardland, QLD, 2981",2887,WA,True,True
+KOI000352,Vanessa,Liu,student352@koi.edu.au,07-5569-6443,1981-04-20,Bachelor of IT,2025-05-15,Active,3.97,"79 Roberts Alleyway, Hoberg, WA, 2638",2929,WA,False,False
+KOI000353,Angela,Martin,student353@koi.edu.au,+61714070349,1984-02-08,Bachelor of Business,2023-02-17,Active,3.19,"Apt. 650 425 Glover Promenade, East Jennifer, NT, 2666",6143,NSW,False,True
+KOI000354,Antonio,Fitzpatrick,student354@koi.edu.au,0866144942,1999-02-02,Bachelor of IT,2024-10-04,Active,3.71,"3 Taylor Ride, New Kevin, SA, 5782",2986,WA,True,True
+KOI000355,Cody,Rose,student355@koi.edu.au,(07).7567.6670,1998-12-02,Bachelor of Business,2023-01-07,Active,2.65,"943 Martinez Rest, Brianfurt, NT, 2990",2908,VIC,False,True
+KOI000356,Steve,Brown,student356@koi.edu.au,4159-1497,2003-05-27,Bachelor of Business,2024-04-24,Active,3.1,"9 Jacqueline Quay, St. Derek, NT, 2934",1793,NSW,True,True
+KOI000357,Danny,Smith,student357@koi.edu.au,+61 418 133 170,1997-02-10,Bachelor of Business,2024-10-16,Graduated,3.99,"467 Lori Rest, Lorrainemouth, NSW, 2602",0902,NSW,False,False
+KOI000358,Donald,Garner,student358@koi.edu.au,0388377441,1999-12-08,Bachelor of Business,2024-12-31,Active,3.81,"61/66 Anthony Part, Port Alexport, ACT, 0870",2962,SA,True,False
+KOI000359,Taylor,Sharp,student359@koi.edu.au,(02) 2588 3586,1997-05-11,Diploma of IT,2023-03-04,Active,2.59,"95 Espinoza Corner, Kristenport, VIC, 2376",2919,SA,True,False
+KOI000360,Donna,Johnston,student360@koi.edu.au,0484 259 959,2000-11-29,Diploma of Business,2024-08-15,Active,3.96,"231 Victor Strip, Morrisbury, QLD, 2526",0210,WA,False,False
+KOI000361,Cheryl,Wilson,student361@koi.edu.au,7590.2517,1992-10-02,Diploma of Business,2023-06-21,Active,2.95,"77 Perez Upper, Port Lisa, QLD, 2490",0913,NSW,False,True
+KOI000362,Arthur,Taylor,student362@koi.edu.au,5698 1528,1996-10-14,Bachelor of Business,2023-09-18,Active,3.79,"598/176 Sawyer Ring, West Kimberlyport, NSW, 2619",2920,NSW,False,True
+KOI000363,Jerry,Guzman,student363@koi.edu.au,(02).3446.5124,1982-06-13,Diploma of Business,2025-03-06,On Leave,3.34,"90/1 Giles Flat, North Matthewview, QLD, 2950",2623,NSW,False,True
+KOI000364,Amy,Gross,student364@koi.edu.au,+61.403.719.905,1982-04-24,Diploma of IT,2024-09-03,Active,3.0,"Suite 401 783 Reynolds Gardens, North Sarah, ACT, 2668",7608,VIC,False,False
+KOI000365,Timothy,Hughes,student365@koi.edu.au,+61 3 6682 1719,1992-05-31,Bachelor of IT,2024-05-26,Graduated,3.59,"03/190 Robert View, North Morganbury, ACT, 2302",2612,NSW,True,False
+KOI000366,Justin,Edwards,student366@koi.edu.au,+61 434 296 711,1982-07-03,Diploma of Business,2023-12-20,Graduated,3.4,"374/84 Alison Follow, Heidihaven, NSW, 2256",0874,VIC,True,True
+KOI000367,Christian,Barr,student367@koi.edu.au,0434 831 520,1987-11-26,Diploma of Business,2025-11-15,Active,3.8,"Flat 07 449 Evans Byway, New Melissafurt, WA, 2066",2610,QLD,False,True
+KOI000368,Jeffrey,Gray,student368@koi.edu.au,+61.468.040.850,2000-08-13,Bachelor of Business,2024-05-02,Active,3.94,"596 Patton Underpass, East Angelaport, WA, 2609",5842,VIC,False,True
+KOI000369,Susan,Mcdonald,student369@koi.edu.au,0304413845,1999-05-03,Bachelor of Business,2024-07-31,On Leave,3.87,"449/149 Huff Crossway, Fordmouth, ACT, 2900",2967,SA,False,False
+KOI000370,Dana,Hawkins,student370@koi.edu.au,+61-2-9149-8517,1986-01-08,Diploma of Business,2024-01-01,On Leave,3.3,"2/229 Jesse Square, West Gabriellemouth, TAS, 2183",2244,QLD,False,False
+KOI000371,Allen,Kirk,student371@koi.edu.au,(02)93511871,1997-04-16,Diploma of IT,2023-03-27,Graduated,3.82,"95 Jones Motorway, Douglasmouth, TAS, 2956",2977,WA,True,False
+KOI000372,Sherri,Carter,student372@koi.edu.au,2504 2901,2000-08-16,Diploma of IT,2023-10-21,Active,3.06,"Unit 69 261 Susan Elbow, Ryanville, ACT, 7788",2615,WA,True,True
+KOI000373,Joseph,Huff,student373@koi.edu.au,(03)-5353-7513,1995-01-17,Bachelor of Business,2024-08-24,Active,2.89,"88 Robin Square, Jacobsmouth, VIC, 2689",2628,SA,False,False
+KOI000374,John,Blankenship,student374@koi.edu.au,+61.492.944.551,1982-09-04,Bachelor of Business,2024-08-22,Active,2.99,"7 Rachel Parkway, West Davidview, WA, 2520",2600,WA,True,False
+KOI000375,Hannah,Fritz,student375@koi.edu.au,08 6526 8341,1991-05-13,Diploma of IT,2024-05-02,Active,3.65,"576 Yang Nook, Katherineberg, NT, 6812",1995,WA,False,False
+KOI000376,Emily,Chavez,student376@koi.edu.au,(08).2894.1347,1991-07-06,Bachelor of Business,2023-02-10,Active,2.75,"652/036 Andrews Round, Coryport, NT, 2619",2924,SA,False,True
+KOI000377,Tommy,Walker,student377@koi.edu.au,07-4913-4213,1998-09-10,Bachelor of IT,2025-01-25,Graduated,2.55,"0 Adam Arcade, Jamesshire, VIC, 2618",2627,VIC,True,True
+KOI000378,Kenneth,Rodriguez,student378@koi.edu.au,76741241,1991-12-09,Diploma of Business,2023-03-29,Active,3.76,"28 Hill Run, Lake Patriciaton, VIC, 2585",2668,NSW,True,True
+KOI000379,Donna,Rich,student379@koi.edu.au,0329-6334,1995-11-25,Bachelor of IT,2023-07-20,Active,3.26,"7 Anderson Service Way, South Aaronland, WA, 9932",2164,QLD,True,False
+KOI000380,Christina,Welch,student380@koi.edu.au,0778243477,2007-01-05,Diploma of Business,2025-08-01,Active,2.51,"4/314 Montes Green, Port Darrell, WA, 2941",2966,SA,False,True
+KOI000381,Janet,Ayala,student381@koi.edu.au,+61896304483,2006-07-16,Bachelor of IT,2024-08-23,Graduated,3.58,"Level 5 67 Ross Boulevard, Toddbury, TAS, 0904",2616,SA,False,True
+KOI000382,Jeffrey,Hutchinson,student382@koi.edu.au,0431-995-298,1980-07-31,Diploma of Business,2022-12-29,Active,2.66,"5 Wang Ride, North Aprilstad, QLD, 2648",2993,VIC,True,True
+KOI000383,Kelly,Martin,student383@koi.edu.au,(07)63830008,1983-05-24,Bachelor of Business,2025-01-14,Graduated,3.29,"Apt. 244 330 Brady Lane, Andersonview, NSW, 2318",0200,QLD,False,False
+KOI000384,Julia,Weaver,student384@koi.edu.au,02 9639 4568,2005-03-14,Bachelor of IT,2023-01-02,Active,3.94,"3/497 Carter Centre, Port Ann, WA, 2928",3360,WA,True,True
+KOI000385,Victoria,Luna,student385@koi.edu.au,(02)73906375,1996-02-16,Diploma of IT,2025-04-19,Active,3.48,"211/2 Michelle Pocket, East Donald, WA, 8930",2920,VIC,True,False
+KOI000386,Johnathan,Collins,student386@koi.edu.au,(03).0599.6043,2005-08-05,Diploma of Business,2025-04-18,On Leave,3.33,"357/7 Samantha Mews, Port Davidtown, NT, 8123",2611,VIC,True,True
+KOI000387,Benjamin,Coleman,student387@koi.edu.au,08-2866-0416,1989-11-30,Bachelor of IT,2025-10-13,On Leave,3.77,"922/83 Stone Fairway, Fordmouth, NT, 2648",2910,QLD,True,True
+KOI000388,Louis,White,student388@koi.edu.au,+61204331875,1983-02-16,Bachelor of Business,2023-03-01,Active,3.85,"583 Fuller Dale, Justinchester, SA, 2979",2994,SA,False,False
+KOI000389,Ann,May,student389@koi.edu.au,02.9213.4249,1983-05-21,Bachelor of IT,2023-06-11,Active,3.53,"Level 9 7 Gary Entrance, East Sarah, NT, 2632",2910,QLD,True,True
+KOI000390,Marcus,Huang,student390@koi.edu.au,2876-7548,2005-10-06,Diploma of IT,2023-05-28,Active,3.94,"67/48 Schmidt Ronde, West Sonia, SA, 2636",9774,SA,True,False
+KOI000391,Gina,Grant,student391@koi.edu.au,+61-7-2057-5639,1998-12-13,Bachelor of IT,2023-09-19,Active,2.74,"Suite 037 83 Brenda Ground, Lake Ruthhaven, ACT, 7404",2916,NSW,False,False
+KOI000392,Bradley,Dominguez,student392@koi.edu.au,(07) 0907 9772,1996-01-05,Diploma of Business,2025-08-28,Active,3.69,"09 Janice Crossway, East Robert, NSW, 2270",2941,VIC,False,True
+KOI000393,Michaela,Ramirez,student393@koi.edu.au,02.5529.5806,1994-01-26,Bachelor of IT,2025-09-29,On Leave,2.85,"824 Gerald Bend, Charlottehaven, VIC, 2650",2934,VIC,False,False
+KOI000394,Ann,Wilson,student394@koi.edu.au,+61.2.9711.1212,1990-09-15,Diploma of IT,2025-06-02,Active,3.45,"357 Natalie Extension, Maryborough, NT, 2930",2984,WA,False,True
+KOI000395,Gregory,Taylor,student395@koi.edu.au,(08).3343.2447,1988-11-26,Diploma of IT,2023-04-19,Graduated,3.91,"587/2 Stephanie Riviera, Mooreshire, QLD, 2605",2923,WA,True,False
+KOI000396,Matthew,Schmitt,student396@koi.edu.au,0441-834-374,1980-12-21,Bachelor of IT,2023-05-25,Graduated,2.94,"Suite 795 96 Marcus Circle, Mistytown, NT, 0275",2951,NSW,True,True
+KOI000397,Jacob,Howard,student397@koi.edu.au,08-8207-9799,2003-07-14,Diploma of IT,2024-10-02,Active,3.07,"Unit 45 5 Gregory Garden, South Kathrynhaven, NSW, 0264",5690,NSW,False,False
+KOI000398,Frank,Jackson,student398@koi.edu.au,(03)-9225-0142,2007-03-05,Diploma of IT,2024-05-17,Active,2.64,"Suite 702 244 Jack Dip, Davisbury, NT, 9507",2645,QLD,False,False
+KOI000399,Cory,Pierce,student399@koi.edu.au,+61 3 7673 1625,2005-11-12,Diploma of IT,2023-06-22,Active,2.7,"Level 6 6 Michael Strand, South Nicoleburgh, QLD, 2975",2958,NSW,False,False
+KOI000400,Madeline,Bishop,student400@koi.edu.au,+61 2 3273 0346,1983-01-23,Diploma of Business,2024-05-07,Active,2.54,"24 Hughes Plateau, New Susanchester, NT, 2646",8171,QLD,True,False
+KOI000401,Michael,Oconnor,student401@koi.edu.au,+61-460-252-986,2003-04-04,Diploma of Business,2024-11-02,Active,2.94,"60/64 Cassandra Parklands, Kimberlymouth, TAS, 2619",2656,WA,True,True
+KOI000402,Amanda,Reyes,student402@koi.edu.au,+61.412.059.438,2007-07-24,Bachelor of Business,2025-07-08,On Leave,2.75,"Apt. 740 775 Pamela Tarn, Johnnymouth, SA, 2084",2654,QLD,False,False
+KOI000403,Michael,Smith,student403@koi.edu.au,(07).0915.0863,1985-11-12,Diploma of Business,2023-04-06,Active,2.59,"2 Jordan Foreshore, Teresabury, WA, 2115",2970,WA,False,False
+KOI000404,Dwayne,Davila,student404@koi.edu.au,+61-416-815-466,1980-08-31,Diploma of IT,2023-09-08,On Leave,3.67,"13 Cooley Round, North Nicholas, WA, 2676",2824,QLD,False,True
+KOI000405,Walter,Williams,student405@koi.edu.au,+61 3 4406 3062,1989-04-02,Diploma of Business,2024-01-15,Graduated,3.43,"Flat 33 531 Chandler Rosebowl, Matthewsmouth, VIC, 2918",1555,WA,True,True
+KOI000406,Michael,Wallace,student406@koi.edu.au,+61.8.3826.4609,1982-07-30,Diploma of IT,2025-08-03,Active,3.92,"Flat 38 44 Hayes Path, West Colleenburgh, TAS, 5660",2928,QLD,False,False
+KOI000407,Julie,Fritz,student407@koi.edu.au,+61 3 6911 6331,1999-04-28,Diploma of Business,2024-02-19,Active,3.15,"6 Bell Driveway, Lesterview, TAS, 2971",0958,SA,True,False
+KOI000408,Amanda,Myers,student408@koi.edu.au,+61 8 7472 2640,1998-01-10,Diploma of IT,2024-04-28,Graduated,3.92,"1 Carpenter Mew, Jenkinstown, QLD, 2629",0881,NSW,False,False
+KOI000409,Carol,Dennis,student409@koi.edu.au,5932 9715,1980-09-04,Bachelor of Business,2025-06-18,On Leave,3.95,"753 Thomas Track, Lake David, NSW, 2039",2907,QLD,False,True
+KOI000410,John,Morrison,student410@koi.edu.au,0378195237,2004-06-21,Diploma of IT,2023-03-15,On Leave,2.92,"6 Atkins Broadway, Rosarioside, NSW, 7807",2910,WA,False,True
+KOI000411,Kelly,Ross,student411@koi.edu.au,5687-6112,1988-11-01,Bachelor of Business,2025-05-15,Graduated,4.0,"65 Robin Plateau, New Colton, NSW, 2907",2694,NSW,True,False
+KOI000412,Matthew,Norris,student412@koi.edu.au,(08).4949.0228,1989-09-19,Bachelor of Business,2023-01-06,On Leave,3.7,"442/4 Marquez Street, Ericberg, NT, 7464",0930,VIC,False,False
+KOI000413,Melissa,Aguilar,student413@koi.edu.au,02 4588 6792,1991-08-13,Bachelor of Business,2025-08-23,Active,2.86,"672/7 Timothy Laneway, East Matthewport, QLD, 2682",2891,NSW,False,False
+KOI000414,Debra,Kelly,student414@koi.edu.au,+61.2.8335.0615,1997-03-02,Bachelor of IT,2023-03-11,On Leave,3.99,"798 John Upper, South Jeremy, WA, 2650",7484,WA,False,False
+KOI000415,Christopher,Lee,student415@koi.edu.au,2840.3339,2005-10-26,Bachelor of IT,2025-05-17,Active,3.55,"Flat 80 13 Wilson Byway, Gonzalezside, QLD, 7749",1961,SA,True,True
+KOI000416,Jennifer,Ramos,student416@koi.edu.au,+61-439-970-469,1989-02-11,Bachelor of Business,2024-12-31,Active,2.75,"8/44 Matthew Strip, Connieville, NT, 2920",1587,SA,True,False
+KOI000417,Tyler,White,student417@koi.edu.au,+61-7-1758-2313,1987-02-27,Diploma of IT,2024-03-18,On Leave,2.66,"1/4 Ashley Cove, Ericfurt, NT, 2649",2645,VIC,False,True
+KOI000418,Sue,Zavala,student418@koi.edu.au,+61-496-434-745,1984-11-01,Bachelor of Business,2024-03-16,On Leave,3.06,"746/6 Smith Loop, Port Michaelberg, WA, 2803",2674,WA,True,False
+KOI000419,Kenneth,Brooks,student419@koi.edu.au,(08).6588.3398,1994-11-17,Bachelor of IT,2024-01-26,On Leave,2.66,"257 Crane Bend, Wattsfort, QLD, 2899",2980,WA,True,True
+KOI000420,Craig,Bowman,student420@koi.edu.au,(07) 7417 2156,1985-01-25,Bachelor of Business,2023-07-18,Active,2.97,"1 Sanchez Rise, Angelaport, ACT, 2621",2945,WA,True,False
+KOI000421,Rebecca,Griffin,student421@koi.edu.au,03.5737.5534,1988-08-04,Diploma of IT,2025-06-21,On Leave,2.65,"666 Yates Ramp, Lake Allenchester, ACT, 3587",2929,WA,False,True
+KOI000422,Matthew,Jones,student422@koi.edu.au,9181.8281,1999-06-07,Diploma of IT,2024-11-23,Active,3.72,"6 Owens Upper, Lake Charles, TAS, 2908",2600,VIC,True,False
+KOI000423,Richard,Carter,student423@koi.edu.au,+61 460 035 624,1987-06-27,Bachelor of IT,2025-05-22,Active,3.89,"Unit 95 9 Jacob Court, New Hunter, ACT, 4902",4515,NSW,True,True
+KOI000424,Monica,Hebert,student424@koi.edu.au,+61.433.426.433,2006-03-08,Diploma of IT,2024-06-01,Graduated,3.14,"16 Scott Vale, Port Brandon, WA, 2993",2676,WA,True,False
+KOI000425,Brittany,Martinez,student425@koi.edu.au,02-2317-9556,1986-05-27,Bachelor of Business,2023-10-19,Active,3.46,"4/1 Smith Laneway, Rossville, TAS, 2974",2364,WA,False,True
+KOI000426,Jerome,Haynes,student426@koi.edu.au,+61-467-045-023,1985-12-09,Bachelor of Business,2025-04-22,On Leave,3.39,"2 Heather Wade, North Caitlynborough, SA, 2979",0226,WA,True,True
+KOI000427,Gerald,Mayer,student427@koi.edu.au,03 5120 7346,2001-03-07,Bachelor of Business,2024-06-28,Active,3.63,"Apt. 050 02 Williams Lane, West Craig, TAS, 2681",0211,VIC,True,True
+KOI000428,Tanya,Marshall,student428@koi.edu.au,+61-8-2904-7742,1990-11-21,Diploma of IT,2025-09-11,Active,2.8,"79 David Quadrant, West Jeremiah, NSW, 2564",0813,VIC,False,False
+KOI000429,Jeremy,Lopez,student429@koi.edu.au,+61.445.798.894,2005-10-04,Diploma of IT,2023-06-19,Graduated,3.08,"290/6 Laura Cruiseway, West Cynthiabury, NT, 2995",1977,WA,True,False
+KOI000430,Mia,Lopez,student430@koi.edu.au,0467.379.487,1983-11-30,Diploma of IT,2024-02-03,On Leave,3.43,"Suite 457 7 Elizabeth Heights, Bryanstad, VIC, 2082",2537,QLD,True,True
+KOI000431,Maria,Martinez,student431@koi.edu.au,(03)-5476-8182,1993-06-06,Diploma of IT,2025-01-28,Active,2.86,"3 James Vale, Aliciaberg, ACT, 4583",8252,VIC,True,False
+KOI000432,Craig,Martin,student432@koi.edu.au,+61-493-289-634,1981-07-26,Bachelor of Business,2024-08-10,Graduated,3.08,"77/24 Charles Towers, Jasonland, ACT, 0222",2912,SA,True,False
+KOI000433,Kathy,Roman,student433@koi.edu.au,0826693351,1987-08-09,Diploma of Business,2024-01-30,Active,3.23,"Flat 92 724 Smith Close, Alexandriafort, QLD, 2614",2619,SA,True,True
+KOI000434,Amber,Bishop,student434@koi.edu.au,02 5406 4176,1999-10-22,Diploma of Business,2023-08-15,Active,2.71,"Unit 81 995 Molly Steps, Copelandchester, VIC, 2214",2848,QLD,False,True
+KOI000435,Mark,Estrada,student435@koi.edu.au,(07) 1017 3973,2000-01-06,Diploma of IT,2024-09-30,Active,3.23,"7 Obrien Steps, Williamsville, NSW, 5113",2979,NSW,False,False
+KOI000436,Emily,Mckee,student436@koi.edu.au,+61-8-0577-9806,2007-07-28,Diploma of Business,2025-07-29,On Leave,3.12,"920 Garcia Mall, St. Melissaview, TAS, 2965",2694,WA,False,True
+KOI000437,Sean,Williams,student437@koi.edu.au,+61.7.2388.5652,1996-11-28,Bachelor of IT,2023-04-14,Graduated,2.55,"Unit 54 165 Fowler Villas, Harrisfort, TAS, 2957",2972,NSW,False,True
+KOI000438,Susan,Morris,student438@koi.edu.au,39488488,1985-12-15,Diploma of IT,2024-08-06,Active,3.31,"196 Thomas Heights, Randyfurt, NSW, 2929",5153,NSW,False,False
+KOI000439,Scott,Williams,student439@koi.edu.au,0424-073-333,1994-11-20,Bachelor of IT,2025-08-29,Graduated,2.67,"430 Massey Meander, Port Jacob, VIC, 0996",2754,SA,False,True
+KOI000440,Ryan,Diaz,student440@koi.edu.au,0785125389,1984-04-14,Diploma of Business,2023-04-26,Graduated,2.83,"Flat 93 5 Steven River, St. Christinefort, VIC, 2320",9780,WA,True,True
+KOI000441,Paula,Woods,student441@koi.edu.au,02 5149 4097,1994-07-25,Diploma of IT,2025-11-24,Active,3.17,"Unit 74 4 Hall Quadrangle, Thomasside, TAS, 1905",6119,QLD,True,False
+KOI000442,Bryce,Gutierrez,student442@koi.edu.au,03-3922-0715,1982-12-08,Bachelor of IT,2023-04-22,Active,2.81,"67/521 Kelly Towers, Kochfort, NSW, 2654",2993,SA,False,False
+KOI000443,Jeremy,Duke,student443@koi.edu.au,+61-415-718-409,1981-12-22,Bachelor of Business,2025-04-10,Graduated,2.71,"Flat 20 0 Mark Gate, Lake Micheleburgh, QLD, 0997",2658,NSW,True,True
+KOI000444,Jeffery,Reed,student444@koi.edu.au,+61.429.592.728,1984-12-19,Diploma of IT,2024-10-18,Graduated,2.92,"1 Donovan Circlet, Feliciashire, NT, 2573",7295,SA,True,False
+KOI000445,Sharon,Mcfarland,student445@koi.edu.au,0467-181-535,1984-09-18,Diploma of IT,2023-12-03,Active,3.36,"05 Sabrina Place, East Elizabethmouth, VIC, 4345",2627,SA,True,True
+KOI000446,Kathryn,Carter,student446@koi.edu.au,+61-466-661-707,1983-06-15,Diploma of Business,2024-04-09,Active,3.99,"Level 7 08 Jacob Causeway, Patriciashire, NT, 2940",4004,NSW,True,True
+KOI000447,Paul,Bell,student447@koi.edu.au,0406-882-850,1987-03-15,Bachelor of Business,2023-04-29,Active,3.74,"513 Clark Siding, North Sandraborough, NSW, 2920",2695,WA,False,True
+KOI000448,Tracey,Benitez,student448@koi.edu.au,0760229394,1994-04-16,Diploma of IT,2025-10-18,On Leave,3.06,"4 Vaughn Meander, Bennettborough, WA, 2790",0960,VIC,True,False
+KOI000449,Heather,Cole,student449@koi.edu.au,+61.431.112.712,1998-03-04,Diploma of IT,2024-04-18,Active,3.18,"48/49 Rodriguez Close, Carsonborough, NSW, 9732",8077,WA,False,True
+KOI000450,Daniel,Perez,student450@koi.edu.au,+61 3 1136 9572,1994-12-11,Bachelor of IT,2025-06-11,On Leave,3.45,"509 Stacy Heights, Sandrastad, WA, 2660",2996,QLD,True,False
+KOI000451,Eric,Carter,student451@koi.edu.au,3235.7071,1988-04-07,Bachelor of Business,2025-06-18,On Leave,3.74,"850 Gail Lower, West Jennifermouth, TAS, 2121",2680,WA,False,False
+KOI000452,Patrick,Hart,student452@koi.edu.au,+61 2 3098 1079,2001-11-04,Diploma of IT,2024-07-18,Active,3.32,"3/7 Reed Service Way, Mendozaberg, WA, 4532",2922,NSW,False,False
+KOI000453,Sylvia,Price,student453@koi.edu.au,(03) 5064 2076,2004-02-01,Bachelor of IT,2025-03-17,Active,2.65,"Suite 536 67 Wallace Line, Coxmouth, VIC, 2628",2673,WA,True,True
+KOI000454,Jay,Lee,student454@koi.edu.au,07.7865.4362,1995-11-26,Bachelor of Business,2023-05-14,On Leave,3.18,"03/582 Giles Mount, St. Andrew, QLD, 2989",2654,WA,True,True
+KOI000455,Tonya,Becker,student455@koi.edu.au,08 9326 5732,2005-11-07,Diploma of IT,2024-12-22,Active,3.81,"1 Christopher Alleyway, Lake Melissamouth, TAS, 2662",2674,QLD,True,False
+KOI000456,Mary,Cox,student456@koi.edu.au,(08).7524.4182,1985-01-28,Diploma of IT,2023-08-07,Active,3.06,"9 Moore Ride, Gravesview, QLD, 2619",2637,NSW,True,False
+KOI000457,Colton,Williams,student457@koi.edu.au,+61 8 6720 9579,1999-05-13,Diploma of IT,2023-09-05,Active,3.14,"95 Huerta Key, West Dennisport, VIC, 2631",2665,VIC,True,True
+KOI000458,Kelly,Mcguire,student458@koi.edu.au,5970.9962,1992-04-30,Bachelor of Business,2023-12-24,On Leave,2.62,"Apt. 752 344 Ferrell Gully, New Karenmouth, NSW, 2958",2129,SA,True,False
+KOI000459,Alex,Berry,student459@koi.edu.au,(08)-3766-0465,1992-05-20,Bachelor of IT,2025-01-31,Active,3.54,"254/3 Campbell Byway, Sellersland, TAS, 3102",2531,VIC,False,True
+KOI000460,Gregory,Brown,student460@koi.edu.au,0431.100.591,1985-03-21,Diploma of Business,2025-05-20,Active,2.84,"Flat 91 231 Christopher Centre, Port Latashabury, QLD, 2216",2948,VIC,True,True
+KOI000461,James,Roth,student461@koi.edu.au,+61374907280,1982-08-11,Diploma of IT,2023-08-27,Active,3.82,"Suite 893 1 Jacob Grange, West Ralph, SA, 7684",2676,NSW,False,True
+KOI000462,John,Cooper,student462@koi.edu.au,0244210175,2004-11-03,Bachelor of Business,2023-02-28,Active,3.3,"7 Tiffany Street, Lake Briannastad, NSW, 5457",2967,VIC,True,False
+KOI000463,Mitchell,Evans,student463@koi.edu.au,+61783392056,1995-09-22,Diploma of IT,2024-11-13,Active,3.44,"7/22 Barnes Arcade, Lake Patrick, NT, 2995",1622,NSW,False,False
+KOI000464,Brittany,White,student464@koi.edu.au,06724530,1996-10-28,Bachelor of Business,2024-07-28,Active,3.84,"Level 3 797 Graham Crescent, Costaton, TAS, 2515",2919,NSW,True,False
+KOI000465,Keith,Young,student465@koi.edu.au,+61367042549,1994-07-02,Diploma of IT,2025-07-04,On Leave,2.97,"4 Hardy Terrace, Lake Annette, WA, 2307",2976,NSW,True,False
+KOI000466,John,Blackburn,student466@koi.edu.au,0774859532,1990-11-08,Bachelor of IT,2025-08-05,Active,3.33,"797 Lawrence Centreway, Christensenmouth, NSW, 8779",2817,SA,False,True
+KOI000467,Perry,Lee,student467@koi.edu.au,(03) 5073 3055,2001-01-08,Diploma of IT,2024-12-15,Active,3.28,"759/3 Susan Roadside, New Jessicaborough, SA, 2696",2600,SA,True,False
+KOI000468,Kenneth,Harris,student468@koi.edu.au,(02)-0615-7276,1998-10-18,Diploma of IT,2023-07-28,Active,3.68,"Flat 47 39 Mitchell Road, Lake Stephanie, NSW, 2258",2915,NSW,False,False
+KOI000469,Donald,Decker,student469@koi.edu.au,+61 2 6562 5904,1990-12-05,Bachelor of IT,2025-04-23,Active,3.25,"2 Brown Bridge, West Curtis, NT, 2691",2975,SA,True,True
+KOI000470,Matthew,Gutierrez,student470@koi.edu.au,7680.8662,1998-07-21,Diploma of IT,2023-04-14,Active,2.7,"Suite 143 080 Dawn Tollway, St. Bobby, QLD, 2682",2628,SA,False,False
+KOI000471,Luis,Hughes,student471@koi.edu.au,+61-460-847-068,1982-03-20,Bachelor of Business,2023-01-28,On Leave,3.93,"397 Michael Bypass, Williamburgh, VIC, 2672",4094,VIC,True,True
+KOI000472,Joseph,Brooks,student472@koi.edu.au,+61 3 3945 3546,1983-12-16,Bachelor of IT,2025-09-02,Active,2.82,"Apt. 798 32 Bobby Circlet, South Kathleen, SA, 2679",2935,VIC,False,False
+KOI000473,Steven,Holland,student473@koi.edu.au,0738040325,1986-12-04,Diploma of Business,2025-01-11,On Leave,3.55,"6/2 Castillo Roadside, Laurabury, NSW, 0810",2090,VIC,True,False
+KOI000474,Mercedes,Arroyo,student474@koi.edu.au,4769 2105,1987-03-25,Bachelor of IT,2025-08-26,Active,2.62,"146/0 Townsend Close, Donaldmouth, QLD, 2619",0907,NSW,True,False
+KOI000475,Greg,Rodriguez,student475@koi.edu.au,0898440971,2004-10-15,Diploma of Business,2025-11-05,Graduated,3.45,"660 Tyler Path, Thompsontown, ACT, 2344",2913,VIC,False,False
+KOI000476,Laurie,Johnson,student476@koi.edu.au,(03) 3700 9687,2006-11-07,Bachelor of Business,2023-11-21,Active,2.87,"195/78 Nathaniel Landing, Lake Jill, TAS, 0229",2995,WA,True,False
+KOI000477,Taylor,Reed,student477@koi.edu.au,(03)-7865-6194,1984-08-02,Bachelor of IT,2024-04-26,Active,3.5,"8/2 Matthew Rue, Lake Amber, NT, 5236",2461,NSW,True,True
+KOI000478,Veronica,Stephens,student478@koi.edu.au,0419 048 235,1996-07-19,Bachelor of Business,2023-05-27,Active,2.75,"86/956 Jeremiah Slope, Mooreborough, ACT, 3172",2343,QLD,False,True
+KOI000479,Katelyn,Turner,student479@koi.edu.au,02.3000.4132,2006-04-23,Diploma of IT,2025-10-19,Active,3.62,"71 Duffy State Highway, Smithport, TAS, 2985",2674,QLD,True,True
+KOI000480,Roy,Lawrence,student480@koi.edu.au,+61270755047,2007-01-19,Diploma of IT,2024-07-15,On Leave,2.91,"706/717 Stephens Byway, East Shawn, TAS, 2699",2910,VIC,False,True
+KOI000481,Marcus,Tran,student481@koi.edu.au,+61.3.9610.2908,1995-01-10,Diploma of Business,2023-03-14,On Leave,3.27,"Level 9 80 Richards Tollway, Thompsonmouth, SA, 2640",2929,VIC,False,True
+KOI000482,Mark,Rodriguez,student482@koi.edu.au,02 3773 0626,1981-05-25,Diploma of IT,2024-03-10,Active,2.88,"97 Jennifer Top, East Frankberg, ACT, 2617",2976,VIC,True,True
+KOI000483,Andrew,Warren,student483@koi.edu.au,(02)67046861,1982-02-13,Bachelor of IT,2023-04-11,Active,3.79,"6/3 David Crest, West Elizabethmouth, TAS, 9471",2659,VIC,True,True
+KOI000484,Robert,Castro,student484@koi.edu.au,0324260508,2006-09-20,Diploma of Business,2022-12-15,Active,3.07,"Apt. 425 733 Mendoza Drive, West Paulside, NSW, 2632",3217,NSW,True,True
+KOI000485,William,Archer,student485@koi.edu.au,0423.653.460,2005-07-03,Diploma of Business,2024-09-27,Active,2.98,"03/5 Cole Elbow, St. Christina, VIC, 0923",7847,WA,False,False
+KOI000486,Kendra,Reynolds,student486@koi.edu.au,6181 2054,1993-04-14,Bachelor of IT,2024-02-06,Graduated,3.06,"Level 8 5 Wyatt Pathway, Hughesshire, NT, 2915",2475,SA,True,True
+KOI000487,Amanda,Jensen,student487@koi.edu.au,4444.9835,1990-12-07,Bachelor of Business,2023-12-03,Graduated,3.97,"Level 3 86 Baker Mews, West Leah, SA, 2665",4853,WA,True,False
+KOI000488,Lauren,Perkins,student488@koi.edu.au,02-4339-5275,1988-04-05,Diploma of IT,2024-07-27,Active,2.99,"8/24 Johnny Lane, Smithborough, SA, 2920",2908,SA,False,True
+KOI000489,Brandy,Hill,student489@koi.edu.au,0463.406.791,1996-02-11,Diploma of IT,2024-10-06,Active,2.94,"Flat 22 500 Joshua Retreat, Davidville, VIC, 2670",5001,QLD,True,False
+KOI000490,Matthew,Weber,student490@koi.edu.au,(07) 6333 9994,1998-09-15,Diploma of IT,2024-05-29,Graduated,3.96,"895 George Lees, North Stephanie, NSW, 5947",2619,NSW,True,True
+KOI000491,Cody,Bruce,student491@koi.edu.au,0379223410,1988-01-11,Bachelor of IT,2025-10-04,On Leave,2.54,"73/116 Ramos Upper, Jeffersonfurt, ACT, 4437",2608,SA,False,True
+KOI000492,Matthew,Smith,student492@koi.edu.au,0496 793 521,2000-05-08,Diploma of IT,2025-11-16,Active,3.64,"33 Gomez Foreshore, New Rachel, VIC, 7709",2691,WA,False,True
+KOI000493,Shaun,Mcbride,student493@koi.edu.au,+61 7 5607 6761,1994-10-14,Bachelor of Business,2023-12-28,Graduated,3.97,"54 Moore Edge, North Tiffany, TAS, 2231",2641,WA,False,True
+KOI000494,Christina,Tran,student494@koi.edu.au,(02) 8472 4264,1986-03-26,Bachelor of Business,2023-11-17,Active,2.64,"Suite 813 909 Keith Pathway, Jacobsonbury, ACT, 2669",2311,NSW,False,False
+KOI000495,Joseph,Logan,student495@koi.edu.au,0417-852-282,1988-04-05,Diploma of Business,2022-12-10,Active,3.37,"80 Phillip Cross, St. Ericberg, QLD, 7594",2903,SA,True,False
+KOI000496,Spencer,Mckinney,student496@koi.edu.au,0390162047,1997-11-24,Bachelor of IT,2024-12-27,Graduated,3.35,"8/99 Walton Ramble, Jacksonfort, NT, 2131",7541,WA,True,True
+KOI000497,Cassandra,Gutierrez,student497@koi.edu.au,+61 7 5057 3036,2006-04-11,Diploma of IT,2025-08-14,Active,3.78,"Suite 463 037 Tucker Path, Watsonborough, WA, 2626",2232,WA,False,False
+KOI000498,Penny,Livingston,student498@koi.edu.au,(07)-0576-6194,1991-12-22,Diploma of Business,2025-01-31,Active,2.85,"15 Lee Quad, North Victoria, NT, 9400",3385,NSW,True,True
+KOI000499,Andrew,Powell,student499@koi.edu.au,+61 475 954 508,1999-10-30,Bachelor of Business,2023-06-06,Active,2.75,"80/8 Yolanda Cove, Riveramouth, SA, 2632",2661,WA,False,False
+KOI000500,Christina,Hill,student500@koi.edu.au,0204023693,1994-02-10,Bachelor of IT,2023-07-20,Graduated,3.04,"Unit 01 047 Jeffery Cross, Wilsonmouth, TAS, 0857",2798,NSW,False,False

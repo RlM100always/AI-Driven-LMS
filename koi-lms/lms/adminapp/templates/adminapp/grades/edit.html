@@ -1,0 +1,111 @@
+<!-- ============================================ -->
+<!-- FILE: adminapp/templates/adminapp/grades/edit.html -->
+<!-- ============================================ -->
+{% extends 'adminapp/base.html' %}
+
+{% block title %}Edit Grade{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1><i class="fas fa-edit"></i> Edit Grade</h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'grade_list' %}">Grades</a></li>
+            <li class="breadcrumb-item active">Edit</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="data-table p-4">
+            <form method="post">
+                {% csrf_token %}
+                
+                <h5 class="mb-4 text-primary"><i class="fas fa-info-circle"></i> Grade Information</h5>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Grade ID *</label>
+                        {{ form.grade_id }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Assessment Type *</label>
+                        {{ form.assessment_type }}
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Student *</label>
+                        {{ form.student }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Course *</label>
+                        {{ form.course }}
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Assessment ID *</label>
+                    {{ form.assessment_id }}
+                </div>
+                
+                <hr class="my-4">
+                
+                <h5 class="mb-4 text-primary"><i class="fas fa-chart-bar"></i> Marks & Score</h5>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Marks Obtained *</label>
+                        {{ form.marks_obtained }}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Max Marks *</label>
+                        {{ form.max_marks }}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Percentage</label>
+                        {{ form.percentage }}
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Submitted Date</label>
+                        {{ form.submitted_date }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Graded Date</label>
+                        {{ form.graded_date }}
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Feedback</label>
+                    {{ form.feedback }}
+                </div>
+                
+                <hr class="my-4">
+                
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary-custom btn-custom">
+                        <i class="fas fa-save"></i> Update Grade
+                    </button>
+                    <a href="{% url 'grade_list' %}" class="btn btn-secondary btn-custom">
+                        <i class="fas fa-times"></i> Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="stat-card warning">
+            <h6><i class="fas fa-exclamation-triangle"></i> Important</h6>
+            <p class="small text-muted">
+                Grade changes will be reflected in student's overall performance metrics.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

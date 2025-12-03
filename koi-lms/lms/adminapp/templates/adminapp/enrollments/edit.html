@@ -1,0 +1,148 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block title %}Edit Enrollment - KOI LMS{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-warning text-dark">
+                    <h4 class="mb-0">
+                        <i class="fas fa-edit"></i> Edit Enrollment: {{ enrollment.enrollment_id }}
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form method="post" id="enrollmentForm">
+                        {% csrf_token %}
+
+                        <!-- Current Info Alert -->
+                        <div class="alert alert-info">
+                            <strong>Current Enrollment:</strong><br>
+                            Student: {{ enrollment.student.user.get_full_name }} ({{ enrollment.student.student_id }})<br>
+                            Course: {{ enrollment.course.course_code }} - {{ enrollment.course.course_name }}
+                        </div>
+
+                        <!-- Student & Course -->
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Student *</label>
+                            {{ form.student }}
+                            <small class="text-muted">Search by student name or ID</small>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Course *</label>
+                            {{ form.course }}
+                            <div id="courseInfo" class="mt-2"></div>
+                        </div>
+
+                        <!-- Enrollment ID (read-only) -->
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Enrollment ID</label>
+                                <input type="text" class="form-control" value="{{ enrollment.enrollment_id }}" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Enrollment Date *</label>
+                                {{ form.enrollment_date }}
+                            </div>
+                        </div>
+
+                        <!-- Status & Role -->
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Status *</label>
+                                {{ form.status }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Role</label>
+                                {{ form.role }}
+                            </div>
+                        </div>
+
+                        <!-- Notes / Final Grade -->
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Final Grade (%)</label>
+                            {{ form.final_grade }}
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Notes</label>
+                            {{ form.notes }}
+                        </div>
+
+                        <!-- Submit Buttons -->
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'enrollment_list' %}" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Cancel
+                            </a>
+                            <button type="submit" class="btn btn-warning">
+                                <i class="fas fa-save"></i> Update Enrollment
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Preview Card -->
+            <div class="card mt-4" id="previewCard" style="display: none;">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0"><i class="fas fa-eye"></i> Enrollment Preview</h5>
+                </div>
+                <div class="card-body">
+                    <div id="previewContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function updateCourseInfo() {
+    const courseSelect = document.querySelector('[name="course"]');
+    const courseInfo = document.getElementById('courseInfo');
+    const option = courseSelect.options[courseSelect.selectedIndex];
+
+    if (option.value) {
+        courseInfo.innerHTML = `
+            <div class="alert alert-info">
+                <strong>Course Details:</strong><br>
+                Code: ${option.dataset.courseCode || 'N/A'}<br>
+                Credits: ${option.dataset.credits || 'N/A'}<br>
+                Instructor: ${option.dataset.instructor || 'N/A'}
+            </div>
+        `;
+    } else {
+        courseInfo.innerHTML = '';
+    }
+}
+
+function updatePreview() {
+    const studentSelect = document.querySelector('[name="student"]');
+    const courseSelect = document.querySelector('[name="course"]');
+    const previewCard = document.getElementById('previewCard');
+    const previewContent = document.getElementById('previewContent');
+
+    if (studentSelect.value && courseSelect.value) {
+        const studentText = studentSelect.options[studentSelect.selectedIndex].text;
+        const courseText = courseSelect.options[courseSelect.selectedIndex].text;
+        previewCard.style.display = 'block';
+        previewContent.innerHTML = `
+            <p><strong>Student:</strong> ${studentText}</p>
+            <p><strong>Course:</strong> ${courseText}</p>
+            <p><strong>Status:</strong> ${document.querySelector('[name="status"]').value}</p>
+            <p><strong>Role:</strong> ${document.querySelector('[name="role"]').value}</p>
+        `;
+    } else {
+        previewCard.style.display = 'none';
+    }
+}
+
+document.querySelector('[name="course"]').addEventListener('change', updateCourseInfo);
+document.getElementById('enrollmentForm').addEventListener('input', updatePreview);
+
+// Initialize preview on page load
+updateCourseInfo();
+updatePreview();
+</script>
+{% endblock %}

@@ -1,0 +1,279 @@
+{% extends 'adminapp/base.html' %}
+
+{% block title %}Student Details{% endblock %}
+
+{% block content %}
+<div class="page-header d-flex justify-content-between align-items-center">
+    <div>
+        <h1><i class="fas fa-user"></i> Student Profile</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'student_list' %}">Students</a></li>
+                <li class="breadcrumb-item active">{{ student.student_id }}</li>
+            </ol>
+        </nav>
+    </div>
+    <div>
+        <a href="{% url 'student_edit' student.pk %}" class="btn btn-warning btn-custom">
+            <i class="fas fa-edit"></i> Edit
+        </a>
+        <a href="{% url 'student_delete' student.pk %}" class="btn btn-danger btn-custom">
+            <i class="fas fa-trash"></i> Delete
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Personal Information -->
+    <div class="col-md-4">
+        <div class="data-table p-4">
+            <div class="text-center mb-4">
+                <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center" 
+                     style="width: 100px; height: 100px; font-size: 40px;">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h4 class="mt-3 mb-1">{{ student.user.get_full_name }}</h4>
+                <p class="text-muted">{{ student.student_id }}</p>
+                <span class="status-badge status-{% if student.status == 'Active' %}active{% else %}inactive{% endif %}">
+                    {{ student.status }}
+                </span>
+            </div>
+            
+            <hr>
+            
+            <h6 class="text-primary mb-3"><i class="fas fa-id-card"></i> Personal Details</h6>
+            
+            <div class="mb-2">
+                <small class="text-muted">Email</small>
+                <p class="mb-1"><strong>{{ student.user.email }}</strong></p>
+            </div>
+            
+            <div class="mb-2">
+                <small class="text-muted">Phone</small>
+                <p class="mb-1"><strong>{{ student.phone|default:"Not provided" }}</strong></p>
+            </div>
+            
+            <div class="mb-2">
+                <small class="text-muted">Date of Birth</small>
+                <p class="mb-1"><strong>{{ student.date_of_birth|date:"F d, Y"|default:"Not provided" }}</strong></p>
+            </div>
+            
+            <div class="mb-2">
+                <small class="text-muted">Program</small>
+                <p class="mb-1"><strong>{{ student.program }}</strong></p>
+            </div>
+            
+            <div class="mb-2">
+                <small class="text-muted">Enrollment Date</small>
+                <p class="mb-1"><strong>{{ student.enrollment_date|date:"F d, Y" }}</strong></p>
+            </div>
+            
+            <div class="mb-2">
+                <small class="text-muted">GPA</small>
+                <p class="mb-1"><strong class="text-success">{{ student.gpa }}</strong></p>
+            </div>
+            
+            <hr>
+            
+            <h6 class="text-primary mb-3"><i class="fas fa-map-marker-alt"></i> Address</h6>
+            
+            <div class="mb-2">
+                <small class="text-muted">Street Address</small>
+                <p class="mb-1">{{ student.address|default:"Not provided" }}</p>
+            </div>
+            
+            <div class="mb-2">
+                <small class="text-muted">Postcode / State</small>
+                <p class="mb-1">{{ student.postcode|default:"N/A" }}, {{ student.state|default:"N/A" }}</p>
+            </div>
+            
+            <hr>
+            
+            <h6 class="text-primary mb-3"><i class="fas fa-info-circle"></i> Additional Info</h6>
+            
+            <div class="d-flex justify-content-between mb-2">
+                <span>International Student</span>
+                <span>
+                    {% if student.international %}
+                        <i class="fas fa-check-circle text-success"></i> Yes
+                    {% else %}
+                        <i class="fas fa-times-circle text-danger"></i> No
+                    {% endif %}
+                </span>
+            </div>
+            
+            <div class="d-flex justify-content-between mb-2">
+                <span>Scholarship</span>
+                <span>
+                    {% if student.scholarship %}
+                        <i class="fas fa-check-circle text-success"></i> Yes
+                    {% else %}
+                        <i class="fas fa-times-circle text-danger"></i> No
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Enrollments & Grades -->
+    <div class="col-md-8">
+        <!-- Statistics Cards -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="stat-card primary">
+                    <div class="icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h6>Enrolled Courses</h6>
+                    <h2>{{ enrollments.count }}</h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card success">
+                    <div class="icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h6>Total Grades</h6>
+                    <h2>{{ grades.count }}</h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card warning">
+                    <div class="icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <h6>Queries</h6>
+                    <h2>{{ queries.count }}</h2>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Enrollments Table -->
+        <div class="data-table mb-4">
+            <div class="p-3 border-bottom">
+                <h5 class="mb-0"><i class="fas fa-book-open"></i> Course Enrollments</h5>
+            </div>
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>Course Code</th>
+                        <th>Course Name</th>
+                        <th>Term</th>
+                        <th>Status</th>
+                        <th>Final Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for enrollment in enrollments %}
+                    <tr>
+                        <td><strong>{{ enrollment.course.course_code }}</strong></td>
+                        <td>{{ enrollment.course.course_name }}</td>
+                        <td>{{ enrollment.course.term }}</td>
+                        <td>
+                            <span class="status-badge status-{% if enrollment.status == 'Enrolled' %}active{% else %}inactive{% endif %}">
+                                {{ enrollment.status }}
+                            </span>
+                        </td>
+                        <td>
+                            {% if enrollment.final_grade %}
+                                <strong class="text-success">{{ enrollment.final_grade }}%</strong>
+                            {% else %}
+                                <span class="text-muted">In Progress</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center py-4">
+                            <i class="fas fa-inbox fa-2x text-muted mb-2"></i>
+                            <p class="text-muted mb-0">No enrollments found</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Grades Table -->
+        <div class="data-table mb-4">
+            <div class="p-3 border-bottom">
+                <h5 class="mb-0"><i class="fas fa-star"></i> Recent Grades</h5>
+            </div>
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>Course</th>
+                        <th>Assessment</th>
+                        <th>Type</th>
+                        <th>Marks</th>
+                        <th>Percentage</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for grade in grades|slice:":10" %}
+                    <tr>
+                        <td><strong>{{ grade.course.course_code }}</strong></td>
+                        <td>{{ grade.assessment_id }}</td>
+                        <td>{{ grade.assessment_type }}</td>
+                        <td>{{ grade.marks_obtained }}/{{ grade.max_marks }}</td>
+                        <td>
+                            <strong class="{% if grade.percentage >= 70 %}text-success{% elif grade.percentage >= 50 %}text-warning{% else %}text-danger{% endif %}">
+                                {{ grade.percentage }}%
+                            </strong>
+                        </td>
+                        <td>{{ grade.graded_date|date:"M d, Y" }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center py-4">
+                            <i class="fas fa-inbox fa-2x text-muted mb-2"></i>
+                            <p class="text-muted mb-0">No grades available</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Recent Queries -->
+        <div class="data-table">
+            <div class="p-3 border-bottom">
+                <h5 class="mb-0"><i class="fas fa-comments"></i> Recent Queries</h5>
+            </div>
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>Intent</th>
+                        <th>Message</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for query in queries|slice:":5" %}
+                    <tr>
+                        <td><strong>{{ query.intent }}</strong></td>
+                        <td>{{ query.query_text|truncatewords:10 }}</td>
+                        <td>
+                            <span class="status-badge status-{% if query.status == 'Resolved' %}active{% else %}pending{% endif %}">
+                                {{ query.status }}
+                            </span>
+                        </td>
+                        <td>{{ query.timestamp|date:"M d, Y H:i" }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center py-4">
+                            <i class="fas fa-inbox fa-2x text-muted mb-2"></i>
+                            <p class="text-muted mb-0">No queries found</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

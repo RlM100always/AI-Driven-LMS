@@ -1,0 +1,79 @@
+<!-- ============================================ -->
+<!-- FILE: adminapp/templates/adminapp/grades/delete_confirm.html -->
+<!-- ============================================ -->
+{% extends 'adminapp/base.html' %}
+
+{% block title %}Delete Grade{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1><i class="fas fa-trash-alt text-danger"></i> Delete Grade</h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'grade_list' %}">Grades</a></li>
+            <li class="breadcrumb-item active">Delete</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="data-table p-4">
+            <div class="alert alert-danger d-flex align-items-center">
+                <i class="fas fa-exclamation-triangle fa-2x me-3"></i>
+                <div>
+                    <h5 class="mb-1">Warning: This action cannot be undone!</h5>
+                    <p class="mb-0">Deleting this grade will affect student's overall performance.</p>
+                </div>
+            </div>
+            
+            <h5 class="mt-4 mb-3">Grade Details</h5>
+            <table class="table table-bordered">
+                <tr>
+                    <th width="30%">Grade ID</th>
+                    <td><strong>{{ grade.grade_id }}</strong></td>
+                </tr>
+                <tr>
+                    <th>Student</th>
+                    <td>{{ grade.student.student_id }} - {{ grade.student.user.get_full_name }}</td>
+                </tr>
+                <tr>
+                    <th>Course</th>
+                    <td>{{ grade.course.course_code }} - {{ grade.course.course_name }}</td>
+                </tr>
+                <tr>
+                    <th>Assessment</th>
+                    <td>{{ grade.assessment_type }} - {{ grade.assessment_id }}</td>
+                </tr>
+                <tr>
+                    <th>Score</th>
+                    <td><strong>{{ grade.marks_obtained }}/{{ grade.max_marks }} ({{ grade.percentage }}%)</strong></td>
+                </tr>
+            </table>
+            
+            <form method="post" class="mt-4">
+                {% csrf_token %}
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-danger btn-custom">
+                        <i class="fas fa-trash-alt"></i> Yes, Delete Grade
+                    </button>
+                    <a href="{% url 'grade_list' %}" class="btn btn-secondary btn-custom">
+                        <i class="fas fa-arrow-left"></i> No, Go Back
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="stat-card danger">
+            <div class="icon">
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
+            <h6>Impact Warning</h6>
+            <p class="small text-muted">Deleting this grade will recalculate student's GPA and course average.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

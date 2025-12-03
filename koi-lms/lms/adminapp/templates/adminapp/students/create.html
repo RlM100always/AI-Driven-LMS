@@ -1,0 +1,144 @@
+{% extends 'adminapp/base.html' %}
+
+{% block title %}Create Student{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1><i class="fas fa-user-plus"></i> Create New Student</h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'student_list' %}">Students</a></li>
+            <li class="breadcrumb-item active">Create</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="data-table p-4">
+            <form method="post">
+                {% csrf_token %}
+                
+                <h5 class="mb-4 text-primary"><i class="fas fa-user"></i> User Information</h5>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">First Name *</label>
+                        {{ form.first_name }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Last Name *</label>
+                        {{ form.last_name }}
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Username *</label>
+                        {{ form.username }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Email *</label>
+                        {{ form.email }}
+                    </div>
+                </div>
+                
+                <hr class="my-4">
+                
+                <h5 class="mb-4 text-primary"><i class="fas fa-id-card"></i> Student Profile</h5>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Student ID *</label>
+                        {{ form.student_id }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Phone</label>
+                        {{ form.phone }}
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Date of Birth</label>
+                        {{ form.date_of_birth }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Program *</label>
+                        {{ form.program }}
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Enrollment Date *</label>
+                        {{ form.enrollment_date }}
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">Status</label>
+                        {{ form.status }}
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">GPA</label>
+                        {{ form.gpa }}
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Address</label>
+                    {{ form.address }}
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Postcode</label>
+                        {{ form.postcode }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">State</label>
+                        {{ form.state }}
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="form-check">
+                            {{ form.international }}
+                            <label class="form-check-label">International Student</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="form-check">
+                            {{ form.scholarship }}
+                            <label class="form-check-label">Has Scholarship</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <hr class="my-4">
+                
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary-custom btn-custom">
+                        <i class="fas fa-save"></i> Create Student
+                    </button>
+                    <a href="{% url 'student_list' %}" class="btn btn-secondary btn-custom">
+                        <i class="fas fa-times"></i> Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="stat-card info">
+            <h6><i class="fas fa-info-circle"></i> Information</h6>
+            <p class="small text-muted">
+                Default password will be set to <strong>koi@123</strong>. 
+                Students should change their password after first login.
+            </p>
+            <p class="small text-muted">
+                All fields marked with * are required.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

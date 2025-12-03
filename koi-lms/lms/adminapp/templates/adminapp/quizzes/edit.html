@@ -1,0 +1,114 @@
+<!-- ============================================ -->
+<!-- FILE: adminapp/templates/adminapp/quizzes/edit.html -->
+<!-- (Similar structure to create.html with pre-filled data) -->
+<!-- ============================================ -->
+{% extends 'adminapp/base.html' %}
+
+{% block title %}Edit Quiz{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1><i class="fas fa-edit"></i> Edit Quiz</h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'quiz_list' %}">Quizzes</a></li>
+            <li class="breadcrumb-item active">Edit</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="data-table p-4">
+            <form method="post">
+                {% csrf_token %}
+                
+                <h5 class="mb-4 text-primary"><i class="fas fa-info-circle"></i> Basic Information</h5>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Quiz ID *</label>
+                        {{ form.quiz_id }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Course *</label>
+                        {{ form.course }}
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Title *</label>
+                    {{ form.title }}
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Quiz Type *</label>
+                        {{ form.quiz_type }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Date *</label>
+                        {{ form.date }}
+                    </div>
+                </div>
+                
+                <hr class="my-4">
+                
+                <h5 class="mb-4 text-primary"><i class="fas fa-chart-line"></i> Marks & Duration</h5>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Max Marks *</label>
+                        {{ form.max_marks }}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Duration (minutes) *</label>
+                        {{ form.duration_minutes }}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Attempts Allowed</label>
+                        {{ form.attempts_allowed }}
+                    </div>
+                </div>
+                
+                <hr class="my-4">
+                
+                <h5 class="mb-4 text-primary"><i class="fas fa-cog"></i> Settings</h5>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="form-check">
+                            {{ form.time_limit }}
+                            <label class="form-check-label">Enforce Time Limit</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="form-check">
+                            {{ form.shuffle_questions }}
+                            <label class="form-check-label">Shuffle Questions</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <hr class="my-4">
+                
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary-custom btn-custom">
+                        <i class="fas fa-save"></i> Update Quiz
+                    </button>
+                    <a href="{% url 'quiz_list' %}" class="btn btn-secondary btn-custom">
+                        <i class="fas fa-times"></i> Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="stat-card warning">
+            <h6><i class="fas fa-exclamation-triangle"></i> Warning</h6>
+            <p class="small text-muted">
+                Changing quiz settings may affect students who have already started.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

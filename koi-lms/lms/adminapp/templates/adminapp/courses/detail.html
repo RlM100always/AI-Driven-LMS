@@ -1,0 +1,350 @@
+{% extends 'adminapp/base.html' %}
+
+{% block title %}Course Details{% endblock %}
+
+{% block content %}
+<div class="page-header d-flex justify-content-between align-items-center">
+    <div>
+        <h1><i class="fas fa-book-open"></i> Course Details</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'course_list' %}">Courses</a></li>
+                <li class="breadcrumb-item active">{{ course.course_code }}</li>
+            </ol>
+        </nav>
+    </div>
+    <div>
+        <a href="{% url 'course_edit' course.pk %}" class="btn btn-warning btn-custom">
+            <i class="fas fa-edit"></i> Edit
+        </a>
+        <a href="{% url 'course_delete' course.pk %}" class="btn btn-danger btn-custom">
+            <i class="fas fa-trash"></i> Delete
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Course Information -->
+    <div class="col-md-4">
+        <div class="data-table p-4">
+            <div class="text-center mb-4">
+                <div class="bg-primary text-white rounded d-inline-flex align-items-center justify-content-center" 
+                     style="width: 100px; height: 100px; font-size: 40px;">
+                    <i class="fas fa-book"></i>
+                </div>
+                <h4 class="mt-3 mb-1">{{ course.course_code }}</h4>
+                <p class="text-muted">{{ course.course_name }}</p>
+            </div>
+            
+            <hr>
+            
+            <h6 class="text-primary mb-3"><i class="fas fa-info-circle"></i> Course Details</h6>
+            
+            <div class="mb-2">
+                <small class="text-muted">Course ID</small>
+                <p class="mb-1"><strong>{{ course.course_id }}</strong></p>
+            </div>
+            
+            <div class="mb-2">
+                <small class="text-muted">Instructor</small>
+                <p class="mb-1"><strong>{{ course.instructor }}</strong></p>
+            </div>
+            
+            <div class="mb-2">
+                <small class="text-muted">Department</small>
+                <p class="mb-1"><strong>{{ course.department }}</strong></p>
+            </div>
+            
+            <div class="mb-2">
+                <small class="text-muted">Term</small>
+                <p class="mb-1"><strong>{{ course.term }}</strong></p>
+            </div>
+            
+            <div class="mb-2">
+                <small class="text-muted">Level</small>
+                <p class="mb-1"><strong>Level {{ course.level }}</strong></p>
+            </div>
+            
+            <div class="mb-2">
+                <small class="text-muted">Credits</small>
+                <p class="mb-1"><strong>{{ course.credits }} Credits</strong></p>
+            </div>
+            
+            <div class="mb-2">
+                <small class="text-muted">Mode</small>
+                <p class="mb-1">
+                    <span class="status-badge status-active">{{ course.mode }}</span>
+                </p>
+            </div>
+            
+            <hr>
+            
+            <h6 class="text-primary mb-3"><i class="fas fa-calendar-alt"></i> Schedule</h6>
+            
+            <div class="mb-2">
+                <small class="text-muted">Start Date</small>
+                <p class="mb-1"><strong>{{ course.start_date|date:"F d, Y" }}</strong></p>
+            </div>
+            
+            <div class="mb-2">
+                <small class="text-muted">End Date</small>
+                <p class="mb-1"><strong>{{ course.end_date|date:"F d, Y" }}</strong></p>
+            </div>
+            
+            <hr>
+            
+            <h6 class="text-primary mb-3"><i class="fas fa-users"></i> Enrollment</h6>
+            
+            <div class="mb-2">
+                <small class="text-muted">Enrolled / Maximum</small>
+                <p class="mb-2">
+                    <strong>{{ course.enrolled_count|default:0 }} / {{ course.max_students }}</strong>
+                </p>
+                <div class="progress" style="height: 25px;">
+                    {% widthratio course.enrolled_count course.max_students 100 as percentage %}
+                    <div class="progress-bar {% if percentage >= 90 %}bg-danger{% elif percentage >= 70 %}bg-warning{% else %}bg-success{% endif %}" 
+                         role="progressbar" style="width: {{ percentage }}%">
+                        {{ percentage }}%
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        {% if course.description %}
+        <div class="data-table p-4 mt-3">
+            <h6 class="text-primary mb-3"><i class="fas fa-align-left"></i> Description</h6>
+            <p class="text-muted small">{{ course.description }}</p>
+        </div>
+        {% endif %}
+    </div>
+    
+    <!-- Enrollments, Assignments, Quizzes -->
+    <div class="col-md-8">
+        <!-- Statistics Cards -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="stat-card primary">
+                    <div class="icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h6>Students</h6>
+                    <h2>{{ enrollments.count }}</h2>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card success">
+                    <div class="icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h6>Assignments</h6>
+                    <h2>{{ assignments.count }}</h2>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card warning">
+                    <div class="icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <h6>Quizzes</h6>
+                    <h2>{{ quizzes.count }}</h2>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card info">
+                    <div class="icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h6>Forums</h6>
+                    <h2>{{ forums.count }}</h2>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Enrolled Students -->
+        <div class="data-table mb-4">
+            <div class="p-3 border-bottom d-flex justify-content-between align-items-center">
+                <h5 class="mb-0"><i class="fas fa-user-graduate"></i> Enrolled Students</h5>
+                <a href="{% url 'enrollment_create' %}" class="btn btn-sm btn-primary-custom">
+                    <i class="fas fa-plus"></i> Add Student
+                </a>
+            </div>
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Enrollment Date</th>
+                        <th>Status</th>
+                        <th>Final Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for enrollment in enrollments %}
+                    <tr>
+                        <td><strong>{{ enrollment.student.student_id }}</strong></td>
+                        <td>{{ enrollment.student.user.get_full_name }}</td>
+                        <td>{{ enrollment.student.user.email }}</td>
+                        <td>{{ enrollment.enrollment_date|date:"M d, Y" }}</td>
+                        <td>
+                            <span class="status-badge status-{% if enrollment.status == 'Enrolled' %}active{% else %}inactive{% endif %}">
+                                {{ enrollment.status }}
+                            </span>
+                        </td>
+                        <td>
+                            {% if enrollment.final_grade %}
+                                <strong class="text-success">{{ enrollment.final_grade }}%</strong>
+                            {% else %}
+                                <span class="text-muted">-</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center py-4">
+                            <i class="fas fa-inbox fa-2x text-muted mb-2"></i>
+                            <p class="text-muted mb-0">No students enrolled</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Assignments -->
+        <div class="data-table mb-4">
+            <div class="p-3 border-bottom d-flex justify-content-between align-items-center">
+                <h5 class="mb-0"><i class="fas fa-tasks"></i> Assignments</h5>
+                <a href="{% url 'assignment_create' %}" class="btn btn-sm btn-success">
+                    <i class="fas fa-plus"></i> New Assignment
+                </a>
+            </div>
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>Assignment ID</th>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Max Marks</th>
+                        <th>Due Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for assignment in assignments %}
+                    <tr>
+                        <td><strong>{{ assignment.assignment_id }}</strong></td>
+                        <td>{{ assignment.title }}</td>
+                        <td>{{ assignment.assignment_type }}</td>
+                        <td>{{ assignment.max_marks }}</td>
+                        <td>{{ assignment.due_date|date:"M d, Y H:i" }}</td>
+                        <td>
+                            <a href="{% url 'assignment_edit' assignment.pk %}" class="btn btn-sm btn-warning">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center py-4">
+                            <i class="fas fa-inbox fa-2x text-muted mb-2"></i>
+                            <p class="text-muted mb-0">No assignments created</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Quizzes -->
+        <div class="data-table mb-4">
+            <div class="p-3 border-bottom d-flex justify-content-between align-items-center">
+                <h5 class="mb-0"><i class="fas fa-question-circle"></i> Quizzes</h5>
+                <a href="{% url 'quiz_create' %}" class="btn btn-sm btn-warning">
+                    <i class="fas fa-plus"></i> New Quiz
+                </a>
+            </div>
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>Quiz ID</th>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Max Marks</th>
+                        <th>Duration</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for quiz in quizzes %}
+                    <tr>
+                        <td><strong>{{ quiz.quiz_id }}</strong></td>
+                        <td>{{ quiz.title }}</td>
+                        <td>{{ quiz.quiz_type }}</td>
+                        <td>{{ quiz.max_marks }}</td>
+                        <td>{{ quiz.duration_minutes }} min</td>
+                        <td>{{ quiz.date|date:"M d, Y" }}</td>
+                        <td>
+                            <a href="{% url 'quiz_edit' quiz.pk %}" class="btn btn-sm btn-warning">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="7" class="text-center py-4">
+                            <i class="fas fa-inbox fa-2x text-muted mb-2"></i>
+                            <p class="text-muted mb-0">No quizzes created</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Forums -->
+        <div class="data-table">
+            <div class="p-3 border-bottom">
+                <h5 class="mb-0"><i class="fas fa-comments"></i> Discussion Forums</h5>
+            </div>
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>Topic</th>
+                        <th>Created By</th>
+                        <th>Posts</th>
+                        <th>Views</th>
+                        <th>Status</th>
+                        <th>Created</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for forum in forums %}
+                    <tr>
+                        <td><strong>{{ forum.topic }}</strong></td>
+                        <td>{{ forum.created_by }}</td>
+                        <td>{{ forum.posts_count }}</td>
+                        <td>{{ forum.views }}</td>
+                        <td>
+                            <span class="status-badge status-{% if forum.status == 'Open' %}active{% else %}inactive{% endif %}">
+                                {{ forum.status }}
+                            </span>
+                        </td>
+                        <td>{{ forum.created_date|date:"M d, Y" }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center py-4">
+                            <i class="fas fa-inbox fa-2x text-muted mb-2"></i>
+                            <p class="text-muted mb-0">No forums created</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
