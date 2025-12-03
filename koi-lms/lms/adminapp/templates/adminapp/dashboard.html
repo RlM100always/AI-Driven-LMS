@@ -1,0 +1,147 @@
+{% extends 'adminapp/base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1><i class="fas fa-tachometer-alt"></i> Dashboard</h1>
+    <p class="text-muted">Welcome back! Here's an overview of your system.</p>
+</div>
+
+<!-- Statistics Cards -->
+<div class="row">
+    <div class="col-md-3">
+        <div class="stat-card primary">
+            <div class="icon">
+                <i class="fas fa-user-graduate"></i>
+            </div>
+            <h6>Total Students</h6>
+            <h2>{{ total_students }}</h2>
+            <small class="text-muted">Active learners</small>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="stat-card success">
+            <div class="icon">
+                <i class="fas fa-book"></i>
+            </div>
+            <h6>Total Courses</h6>
+            <h2>{{ total_courses }}</h2>
+            <small class="text-muted">Available courses</small>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="stat-card warning">
+            <div class="icon">
+                <i class="fas fa-user-check"></i>
+            </div>
+            <h6>Active Enrollments</h6>
+            <h2>{{ total_enrollments }}</h2>
+            <small class="text-muted">Current semester</small>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="stat-card danger">
+            <div class="icon">
+                <i class="fas fa-tasks"></i>
+            </div>
+            <h6>Assignments</h6>
+            <h2>{{ total_assignments }}</h2>
+            <small class="text-muted">Total tasks</small>
+        </div>
+    </div>
+</div>
+
+<!-- Average GPA Card -->
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="stat-card info">
+            <div class="icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <h6>Average Student GPA</h6>
+            <h2>{{ avg_gpa }}</h2>
+            <small class="text-muted">Overall performance</small>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Activities -->
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="data-table">
+            <div class="p-3 border-bottom">
+                <h5 class="mb-0"><i class="fas fa-clock"></i> Recent Enrollments</h5>
+            </div>
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Course</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for enrollment in recent_enrollments %}
+                    <tr>
+                        <td>{{ enrollment.student.student_id }}</td>
+                        <td>{{ enrollment.course.course_code }}</td>
+                        <td>{{ enrollment.enrollment_date|date:"M d, Y" }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="data-table">
+            <div class="p-3 border-bottom">
+                <h5 class="mb-0"><i class="fas fa-question-circle"></i> Recent Queries</h5>
+            </div>
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Intent</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for query in recent_queries %}
+                    <tr>
+                        <td>{{ query.student.student_id|default:"Anonymous" }}</td>
+                        <td>{{ query.intent }}</td>
+                        <td><span class="status-badge status-{% if query.status == 'Resolved' %}active{% else %}pending{% endif %}">{{ query.status }}</span></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="page-header">
+            <h5><i class="fas fa-bolt"></i> Quick Actions</h5>
+            <div class="mt-3">
+                <a href="{% url 'student_create' %}" class="btn btn-primary-custom btn-custom me-2">
+                    <i class="fas fa-user-plus"></i> Add Student
+                </a>
+                <a href="{% url 'course_create' %}" class="btn btn-success btn-custom me-2">
+                    <i class="fas fa-book-medical"></i> Create Course
+                </a>
+                <a href="{% url 'assignment_create' %}" class="btn btn-warning btn-custom me-2">
+                    <i class="fas fa-plus-square"></i> New Assignment
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
