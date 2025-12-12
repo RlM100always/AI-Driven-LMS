@@ -2,278 +2,859 @@
 
 {% block title %}Student Details{% endblock %}
 
+{% block breadcrumbs %}
+<li class="breadcrumb-item"><a href="{% url 'student_list' %}">Students</a></li>
+<li class="breadcrumb-item active">{{ student.student_id }}</li>
+{% endblock %}
+
 {% block content %}
-<div class="page-header d-flex justify-content-between align-items-center">
-    <div>
-        <h1><i class="fas fa-user"></i> Student Profile</h1>
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'student_list' %}">Students</a></li>
-                <li class="breadcrumb-item active">{{ student.student_id }}</li>
-            </ol>
-        </nav>
-    </div>
-    <div>
-        <a href="{% url 'student_edit' student.pk %}" class="btn btn-warning btn-custom">
-            <i class="fas fa-edit"></i> Edit
-        </a>
-        <a href="{% url 'student_delete' student.pk %}" class="btn btn-danger btn-custom">
-            <i class="fas fa-trash"></i> Delete
-        </a>
+<div class="page-header">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4">
+        <div class="mb-3 mb-md-0">
+            <div class="d-flex align-items-center mb-2">
+                <div class="avatar-lg me-3 d-none d-md-flex">
+                    <div class="avatar-title bg-primary bg-opacity-10 text-primary rounded-circle">
+                        {{ student.user.get_full_name|first|upper }}
+                    </div>
+                </div>
+                <div>
+                    <h1 class="mb-0">
+                        <i class="fas fa-user me-2"></i>
+                        {{ student.user.get_full_name }}
+                    </h1>
+                    <div class="d-flex flex-wrap align-items-center gap-2 mt-2">
+                        <span class="badge bg-secondary">{{ student.student_id }}</span>
+                        <span class="status-badge status-{% if student.status == 'Active' %}active{% elif student.status == 'Graduated' %}success{% else %}warning{% endif %}">
+                            <i class="fas fa-circle me-1" style="font-size: 8px;"></i>
+                            {{ student.status }}
+                        </span>
+                        <span class="badge bg-{% if student.international %}info{% else %}light text-dark{% endif %}">
+                            <i class="fas fa-globe me-1"></i>
+                            {% if student.international %}International{% else %}Domestic{% endif %}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+            <a href="{% url 'student_edit' student.pk %}" class="btn btn-warning btn-custom">
+                <i class="fas fa-edit me-1"></i>
+                <span class="d-none d-sm-inline">Edit</span>
+            </a>
+            <a href="{% url 'student_delete' student.pk %}" class="btn btn-danger btn-custom">
+                <i class="fas fa-trash me-1"></i>
+                <span class="d-none d-sm-inline">Delete</span>
+            </a>
+            <button class="btn btn-outline-secondary d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#infoSidebar">
+                <i class="fas fa-info-circle"></i>
+            </button>
+        </div>
     </div>
 </div>
 
-<div class="row">
-    <!-- Personal Information -->
-    <div class="col-md-4">
-        <div class="data-table p-4">
-            <div class="text-center mb-4">
-                <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center" 
-                     style="width: 100px; height: 100px; font-size: 40px;">
-                    <i class="fas fa-user"></i>
-                </div>
-                <h4 class="mt-3 mb-1">{{ student.user.get_full_name }}</h4>
-                <p class="text-muted">{{ student.student_id }}</p>
-                <span class="status-badge status-{% if student.status == 'Active' %}active{% else %}inactive{% endif %}">
-                    {{ student.status }}
-                </span>
-            </div>
-            
-            <hr>
-            
-            <h6 class="text-primary mb-3"><i class="fas fa-id-card"></i> Personal Details</h6>
-            
-            <div class="mb-2">
-                <small class="text-muted">Email</small>
-                <p class="mb-1"><strong>{{ student.user.email }}</strong></p>
-            </div>
-            
-            <div class="mb-2">
-                <small class="text-muted">Phone</small>
-                <p class="mb-1"><strong>{{ student.phone|default:"Not provided" }}</strong></p>
-            </div>
-            
-            <div class="mb-2">
-                <small class="text-muted">Date of Birth</small>
-                <p class="mb-1"><strong>{{ student.date_of_birth|date:"F d, Y"|default:"Not provided" }}</strong></p>
-            </div>
-            
-            <div class="mb-2">
-                <small class="text-muted">Program</small>
-                <p class="mb-1"><strong>{{ student.program }}</strong></p>
-            </div>
-            
-            <div class="mb-2">
-                <small class="text-muted">Enrollment Date</small>
-                <p class="mb-1"><strong>{{ student.enrollment_date|date:"F d, Y" }}</strong></p>
-            </div>
-            
-            <div class="mb-2">
-                <small class="text-muted">GPA</small>
-                <p class="mb-1"><strong class="text-success">{{ student.gpa }}</strong></p>
-            </div>
-            
-            <hr>
-            
-            <h6 class="text-primary mb-3"><i class="fas fa-map-marker-alt"></i> Address</h6>
-            
-            <div class="mb-2">
-                <small class="text-muted">Street Address</small>
-                <p class="mb-1">{{ student.address|default:"Not provided" }}</p>
-            </div>
-            
-            <div class="mb-2">
-                <small class="text-muted">Postcode / State</small>
-                <p class="mb-1">{{ student.postcode|default:"N/A" }}, {{ student.state|default:"N/A" }}</p>
-            </div>
-            
-            <hr>
-            
-            <h6 class="text-primary mb-3"><i class="fas fa-info-circle"></i> Additional Info</h6>
-            
-            <div class="d-flex justify-content-between mb-2">
-                <span>International Student</span>
-                <span>
-                    {% if student.international %}
-                        <i class="fas fa-check-circle text-success"></i> Yes
-                    {% else %}
-                        <i class="fas fa-times-circle text-danger"></i> No
-                    {% endif %}
-                </span>
-            </div>
-            
-            <div class="d-flex justify-content-between mb-2">
-                <span>Scholarship</span>
-                <span>
-                    {% if student.scholarship %}
-                        <i class="fas fa-check-circle text-success"></i> Yes
-                    {% else %}
-                        <i class="fas fa-times-circle text-danger"></i> No
-                    {% endif %}
-                </span>
-            </div>
-        </div>
+<!-- Mobile Info Offcanvas -->
+<div class="offcanvas offcanvas-start d-md-none" tabindex="-1" id="infoSidebar" aria-labelledby="infoSidebarLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="infoSidebarLabel">Student Information</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    
-    <!-- Enrollments & Grades -->
-    <div class="col-md-8">
-        <!-- Statistics Cards -->
-        <div class="row mb-4">
-            <div class="col-md-4">
-                <div class="stat-card primary">
-                    <div class="icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <h6>Enrolled Courses</h6>
-                    <h2>{{ enrollments.count }}</h2>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="stat-card success">
-                    <div class="icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h6>Total Grades</h6>
-                    <h2>{{ grades.count }}</h2>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="stat-card warning">
-                    <div class="icon">
-                        <i class="fas fa-question-circle"></i>
-                    </div>
-                    <h6>Queries</h6>
-                    <h2>{{ queries.count }}</h2>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Enrollments Table -->
-        <div class="data-table mb-4">
-            <div class="p-3 border-bottom">
-                <h5 class="mb-0"><i class="fas fa-book-open"></i> Course Enrollments</h5>
-            </div>
-            <table class="table table-hover mb-0">
-                <thead>
-                    <tr>
-                        <th>Course Code</th>
-                        <th>Course Name</th>
-                        <th>Term</th>
-                        <th>Status</th>
-                        <th>Final Grade</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for enrollment in enrollments %}
-                    <tr>
-                        <td><strong>{{ enrollment.course.course_code }}</strong></td>
-                        <td>{{ enrollment.course.course_name }}</td>
-                        <td>{{ enrollment.course.term }}</td>
-                        <td>
-                            <span class="status-badge status-{% if enrollment.status == 'Enrolled' %}active{% else %}inactive{% endif %}">
-                                {{ enrollment.status }}
-                            </span>
-                        </td>
-                        <td>
-                            {% if enrollment.final_grade %}
-                                <strong class="text-success">{{ enrollment.final_grade }}%</strong>
-                            {% else %}
-                                <span class="text-muted">In Progress</span>
-                            {% endif %}
-                        </td>
-                    </tr>
-                    {% empty %}
-                    <tr>
-                        <td colspan="5" class="text-center py-4">
-                            <i class="fas fa-inbox fa-2x text-muted mb-2"></i>
-                            <p class="text-muted mb-0">No enrollments found</p>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        
-        <!-- Grades Table -->
-        <div class="data-table mb-4">
-            <div class="p-3 border-bottom">
-                <h5 class="mb-0"><i class="fas fa-star"></i> Recent Grades</h5>
-            </div>
-            <table class="table table-hover mb-0">
-                <thead>
-                    <tr>
-                        <th>Course</th>
-                        <th>Assessment</th>
-                        <th>Type</th>
-                        <th>Marks</th>
-                        <th>Percentage</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for grade in grades|slice:":10" %}
-                    <tr>
-                        <td><strong>{{ grade.course.course_code }}</strong></td>
-                        <td>{{ grade.assessment_id }}</td>
-                        <td>{{ grade.assessment_type }}</td>
-                        <td>{{ grade.marks_obtained }}/{{ grade.max_marks }}</td>
-                        <td>
-                            <strong class="{% if grade.percentage >= 70 %}text-success{% elif grade.percentage >= 50 %}text-warning{% else %}text-danger{% endif %}">
-                                {{ grade.percentage }}%
-                            </strong>
-                        </td>
-                        <td>{{ grade.graded_date|date:"M d, Y" }}</td>
-                    </tr>
-                    {% empty %}
-                    <tr>
-                        <td colspan="6" class="text-center py-4">
-                            <i class="fas fa-inbox fa-2x text-muted mb-2"></i>
-                            <p class="text-muted mb-0">No grades available</p>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        
-        <!-- Recent Queries -->
-        <div class="data-table">
-            <div class="p-3 border-bottom">
-                <h5 class="mb-0"><i class="fas fa-comments"></i> Recent Queries</h5>
-            </div>
-            <table class="table table-hover mb-0">
-                <thead>
-                    <tr>
-                        <th>Intent</th>
-                        <th>Message</th>
-                        <th>Status</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for query in queries|slice:":5" %}
-                    <tr>
-                        <td><strong>{{ query.intent }}</strong></td>
-                        <td>{{ query.query_text|truncatewords:10 }}</td>
-                        <td>
-                            <span class="status-badge status-{% if query.status == 'Resolved' %}active{% else %}pending{% endif %}">
-                                {{ query.status }}
-                            </span>
-                        </td>
-                        <td>{{ query.timestamp|date:"M d, Y H:i" }}</td>
-                    </tr>
-                    {% empty %}
-                    <tr>
-                        <td colspan="4" class="text-center py-4">
-                            <i class="fas fa-inbox fa-2x text-muted mb-2"></i>
-                            <p class="text-muted mb-0">No queries found</p>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+    <div class="offcanvas-body">
+        <div class="personal-info-card">
+            <!-- Personal Information will be loaded here via JS -->
         </div>
     </div>
 </div>
+
+<div class="row g-4">
+    <!-- Main Content Area -->
+    <div class="col-lg-8 col-md-7">
+        <!-- Quick Stats -->
+        <div class="row g-3 mb-4">
+            <div class="col-6 col-md-4">
+                <div class="stat-card small">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-sm bg-primary bg-opacity-10 text-primary rounded-circle me-3">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-0 text-muted">Courses</h6>
+                            <h4 class="mb-0">{{ enrollments.count }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4">
+                <div class="stat-card small">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-sm bg-success bg-opacity-10 text-success rounded-circle me-3">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-0 text-muted">GPA</h6>
+                            <h4 class="mb-0">{{ student.gpa }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4">
+                <div class="stat-card small">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-sm bg-warning bg-opacity-10 text-warning rounded-circle me-3">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-0 text-muted">Queries</h6>
+                            <h4 class="mb-0">{{ queries.count }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course Enrollments -->
+        <div class="data-table mb-4">
+            <div class="d-flex justify-content-between align-items-center p-3 border-bottom">
+                <h5 class="mb-0">
+                    <i class="fas fa-book-open me-2"></i>
+                    <span class="d-none d-md-inline">Course Enrollments</span>
+                    <span class="d-inline d-md-none">Courses</span>
+                </h5>
+                <a href="#" class="btn btn-sm btn-outline-primary">
+                    View All
+                </a>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th>Course</th>
+                            <th class="d-none d-md-table-cell">Name</th>
+                            <th>Term</th>
+                            <th>Status</th>
+                            <th>Grade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for enrollment in enrollments %}
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar-sm me-2">
+                                        <div class="avatar-title bg-primary bg-opacity-10 text-primary rounded-circle">
+                                            {{ enrollment.course.course_code|first|upper }}
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="fw-medium">{{ enrollment.course.course_code }}</div>
+                                        <small class="text-muted d-block d-md-none">{{ enrollment.course.course_name|truncatechars:20 }}</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="d-none d-md-table-cell">{{ enrollment.course.course_name }}</td>
+                            <td>{{ enrollment.course.term }}</td>
+                            <td>
+                                <span class="status-badge status-{% if enrollment.status == 'Enrolled' %}active{% else %}inactive{% endif %}">
+                                    <span class="d-none d-md-inline">{{ enrollment.status }}</span>
+                                    <span class="d-inline d-md-none">{{ enrollment.status|slice:":1" }}</span>
+                                </span>
+                            </td>
+                            <td>
+                                {% if enrollment.final_grade %}
+                                <div class="d-flex align-items-center">
+                                    <strong class="text-success me-2">{{ enrollment.final_grade }}%</strong>
+                                    <div class="progress" style="height: 6px; width: 40px;">
+                                        <div class="progress-bar bg-success" 
+                                             style="width: {% widthratio enrollment.final_grade 100 100 %}%">
+                                        </div>
+                                    </div>
+                                </div>
+                                {% else %}
+                                <span class="text-muted">In Progress</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5" class="text-center py-4">
+                                <div class="empty-state">
+                                    <i class="fas fa-book fa-3x text-muted mb-3"></i>
+                                    <h5 class="text-muted">No enrollments</h5>
+                                    <p class="text-muted mb-0">Student is not enrolled in any courses</p>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Recent Grades & Queries Tabs -->
+        <div class="data-table mb-4">
+            <ul class="nav nav-tabs" id="studentTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="grades-tab" data-bs-toggle="tab" data-bs-target="#grades" type="button" role="tab">
+                        <i class="fas fa-star me-1"></i>
+                        <span class="d-none d-md-inline">Recent Grades</span>
+                        <span class="d-inline d-md-none">Grades</span>
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="queries-tab" data-bs-toggle="tab" data-bs-target="#queries" type="button" role="tab">
+                        <i class="fas fa-comments me-1"></i>
+                        <span class="d-none d-md-inline">Recent Queries</span>
+                        <span class="d-inline d-md-none">Queries</span>
+                    </button>
+                </li>
+                <li class="nav-item ms-auto">
+                    <button class="nav-link text-primary" type="button" onclick="printStudentInfo()">
+                        <i class="fas fa-print"></i>
+                    </button>
+                </li>
+            </ul>
+            <div class="tab-content p-3" id="studentTabsContent">
+                <!-- Grades Tab -->
+                <div class="tab-pane fade show active" id="grades" role="tabpanel">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Course</th>
+                                    <th>Assessment</th>
+                                    <th class="d-none d-md-table-cell">Type</th>
+                                    <th>Marks</th>
+                                    <th>%</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for grade in grades|slice:":5" %}
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar-sm me-2">
+                                                <div class="avatar-title bg-info bg-opacity-10 text-info rounded-circle">
+                                                    {{ grade.course.course_code|first|upper }}
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="fw-medium">{{ grade.course.course_code }}</div>
+                                                <small class="text-muted d-block d-md-none">{{ grade.assessment_type }}</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>{{ grade.assessment_id }}</td>
+                                    <td class="d-none d-md-table-cell">{{ grade.assessment_type }}</td>
+                                    <td>
+                                        {{ grade.marks_obtained }}/{{ grade.max_marks }}
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-{% if grade.percentage >= 70 %}success{% elif grade.percentage >= 50 %}warning{% else %}danger{% endif %}">
+                                            {{ grade.percentage }}%
+                                        </span>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="5" class="text-center py-4">
+                                        <div class="empty-state">
+                                            <i class="fas fa-star fa-3x text-muted mb-3"></i>
+                                            <h5 class="text-muted">No grades available</h5>
+                                            <p class="text-muted mb-0">No assessment grades recorded yet</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Queries Tab -->
+                <div class="tab-pane fade" id="queries" role="tabpanel">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Intent</th>
+                                    <th class="d-none d-md-table-cell">Message</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for query in queries|slice:":5" %}
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar-sm me-2">
+                                                <div class="avatar-title bg-warning bg-opacity-10 text-warning rounded-circle">
+                                                    <i class="fas fa-question"></i>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="fw-medium">{{ query.intent }}</div>
+                                                <small class="text-muted d-block d-md-none">{{ query.query_text|truncatechars:20 }}</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="d-none d-md-table-cell">{{ query.query_text|truncatechars:30 }}</td>
+                                    <td>
+                                        <span class="status-badge status-{% if query.status == 'Resolved' %}active{% else %}pending{% endif %}">
+                                            <span class="d-none d-md-inline">{{ query.status }}</span>
+                                            <span class="d-inline d-md-none">{{ query.status|slice:":1" }}</span>
+                                        </span>
+                                    </td>
+                                    <td>{{ query.timestamp|date:"M d" }}</td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="4" class="text-center py-4">
+                                        <div class="empty-state">
+                                            <i class="fas fa-comments fa-3x text-muted mb-3"></i>
+                                            <h5 class="text-muted">No queries</h5>
+                                            <p class="text-muted mb-0">Student has not submitted any queries</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GPA Progress Chart (Desktop only) -->
+        <div class="data-table d-none d-md-block">
+            <div class="p-3 border-bottom">
+                <h5 class="mb-0">
+                    <i class="fas fa-chart-line me-2"></i>
+                    GPA Progress
+                </h5>
+            </div>
+            <div class="p-3">
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <div class="progress" style="height: 20px;">
+                            <div class="progress-bar bg-success" role="progressbar" 
+                                 style="width: {% widthratio student.gpa 4.0 100 %}%" 
+                                 aria-valuenow="{{ student.gpa }}" 
+                                 aria-valuemin="0" 
+                                 aria-valuemax="4.0">
+                                {{ student.gpa }} GPA
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between mt-2">
+                            <small class="text-muted">0.0</small>
+                            <small class="text-muted">4.0</small>
+                        </div>
+                    </div>
+                    <div class="col-4 text-center">
+                        <h2 class="text-success mb-0">{{ student.gpa }}</h2>
+                        <small class="text-muted">Current GPA</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar - Personal Information (Desktop) -->
+    <div class="col-lg-4 col-md-5 d-none d-md-block">
+        <div class="sticky-top" style="top: 20px;">
+            <div class="personal-info-card">
+                <!-- Personal Information Card Content -->
+                <div class="data-table">
+                    <div class="text-center p-4">
+                        <div class="avatar-xxl mx-auto mb-3">
+                            <div class="avatar-title bg-primary bg-opacity-10 text-primary rounded-circle">
+                                {{ student.user.get_full_name|first|upper }}
+                            </div>
+                        </div>
+                        <h4 class="mb-1">{{ student.user.get_full_name }}</h4>
+                        <p class="text-muted mb-3">{{ student.student_id }}</p>
+                        
+                        <div class="d-flex justify-content-center gap-2 mb-4">
+                            <a href="mailto:{{ student.user.email }}" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-envelope"></i> Email
+                            </a>
+                            {% if student.phone %}
+                            <a href="tel:{{ student.phone }}" class="btn btn-sm btn-outline-success">
+                                <i class="fas fa-phone"></i> Call
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="p-3 border-top">
+                        <h6 class="text-primary mb-3">
+                            <i class="fas fa-id-card me-2"></i>
+                            Personal Details
+                        </h6>
+                        
+                        <div class="info-item">
+                            <div class="icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <small class="text-muted d-block">Email</small>
+                                <div>{{ student.user.email }}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <small class="text-muted d-block">Phone</small>
+                                <div>{{ student.phone|default:"Not provided" }}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="icon">
+                                <i class="fas fa-birthday-cake"></i>
+                            </div>
+                            <div>
+                                <small class="text-muted d-block">Date of Birth</small>
+                                <div>{{ student.date_of_birth|date:"F d, Y"|default:"Not provided" }}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div>
+                                <small class="text-muted d-block">Program</small>
+                                <div>{{ student.program }}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div>
+                                <small class="text-muted d-block">Enrollment Date</small>
+                                <div>{{ student.enrollment_date|date:"F d, Y" }}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div>
+                                <small class="text-muted d-block">GPA</small>
+                                <div class="d-flex align-items-center">
+                                    <strong class="text-success me-2">{{ student.gpa }}</strong>
+                                    <div class="progress flex-grow-1" style="height: 6px;">
+                                        <div class="progress-bar bg-success" 
+                                             style="width: {% widthratio student.gpa 4.0 100 %}%">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-3 border-top">
+                        <h6 class="text-primary mb-3">
+                            <i class="fas fa-map-marker-alt me-2"></i>
+                            Address
+                        </h6>
+                        
+                        <div class="info-item">
+                            <div class="icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div>
+                                <small class="text-muted d-block">Address</small>
+                                <div>{{ student.address|default:"Not provided" }}</div>
+                            </div>
+                        </div>
+                        
+                        {% if student.postcode or student.state %}
+                        <div class="info-item">
+                            <div class="icon">
+                                <i class="fas fa-location-arrow"></i>
+                            </div>
+                            <div>
+                                <small class="text-muted d-block">Location</small>
+                                <div>{{ student.postcode|default:"" }} {{ student.state|default:"" }}</div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="p-3 border-top">
+                        <h6 class="text-primary mb-3">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Additional Info
+                        </h6>
+                        
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span>International Student</span>
+                            <span class="badge bg-{% if student.international %}info{% else %}light text-dark{% endif %}">
+                                {% if student.international %}Yes{% else %}No{% endif %}
+                            </span>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span>Scholarship</span>
+                            <span class="badge bg-{% if student.scholarship %}success{% else %}light text-dark{% endif %}">
+                                {% if student.scholarship %}Yes{% else %}No{% endif %}
+                            </span>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span>Status</span>
+                            <span class="status-badge status-{% if student.status == 'Active' %}active{% elif student.status == 'Graduated' %}success{% else %}warning{% endif %}">
+                                {{ student.status }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Mobile Floating Actions -->
+<div class="d-md-none">
+    <div class="fab-container">
+        <div class="btn-group dropup">
+            <button type="button" class="btn btn-primary-custom btn-fab rounded-circle" data-bs-toggle="dropdown">
+                <i class="fas fa-ellipsis-v"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="{% url 'student_edit' student.pk %}">
+                    <i class="fas fa-edit me-2"></i>Edit Profile
+                </a></li>
+                <li><a class="dropdown-item" href="mailto:{{ student.user.email }}">
+                    <i class="fas fa-envelope me-2"></i>Send Email
+                </a></li>
+                {% if student.phone %}
+                <li><a class="dropdown-item" href="tel:{{ student.phone }}">
+                    <i class="fas fa-phone me-2"></i>Make Call
+                </a></li>
+                {% endif %}
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="{% url 'student_delete' student.pk %}">
+                    <i class="fas fa-trash me-2"></i>Delete Student
+                </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Custom styles for student details */
+    .avatar-xxl {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .avatar-lg {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .avatar-sm {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .avatar-title {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 1.5rem;
+    }
+    
+    .info-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 15px;
+    }
+    
+    .info-item .icon {
+        width: 30px;
+        color: #6c757d;
+        margin-right: 10px;
+        flex-shrink: 0;
+    }
+    
+    .personal-info-card {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    
+    .sticky-top {
+        position: sticky;
+        z-index: 1020;
+    }
+    
+    .empty-state {
+        padding: 30px 20px;
+        text-align: center;
+    }
+    
+    .fab-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1050;
+    }
+    
+    .btn-fab {
+        width: 56px;
+        height: 56px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    
+    .btn-fab.rounded-circle {
+        border-radius: 50% !important;
+    }
+    
+    /* Status badge colors */
+    .status-active {
+        background: #d4edda;
+        color: #155724;
+    }
+    
+    .status-success {
+        background: #d1e7dd;
+        color: #0f5132;
+    }
+    
+    .status-warning {
+        background: #fff3cd;
+        color: #856404;
+    }
+    
+    .status-pending {
+        background: #cfe2ff;
+        color: #084298;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .page-header h1 {
+            font-size: 22px;
+        }
+        
+        .avatar-lg {
+            width: 50px;
+            height: 50px;
+        }
+        
+        .data-table {
+            margin: 0 -12px;
+            border-radius: 0;
+            box-shadow: none;
+            border: 1px solid #dee2e6;
+        }
+        
+        .nav-tabs .nav-link {
+            padding: 8px 12px;
+            font-size: 14px;
+        }
+        
+        .offcanvas {
+            width: 85%;
+            max-width: 300px;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .page-header h1 {
+            font-size: 20px;
+        }
+        
+        .stat-card.small {
+            padding: 12px;
+        }
+        
+        .stat-card.small h4 {
+            font-size: 18px;
+        }
+        
+        .empty-state i {
+            font-size: 2.5rem;
+        }
+        
+        .info-item {
+            margin-bottom: 12px;
+        }
+    }
+    
+    @media (min-width: 992px) {
+        .sticky-top {
+            top: 90px;
+        }
+    }
+    
+    /* Print styles */
+    @media print {
+        .sidebar,
+        .top-navbar,
+        .btn-fab,
+        .offcanvas,
+        .nav-tabs,
+        .btn-custom {
+            display: none !important;
+        }
+        
+        .main-content {
+            margin-left: 0 !important;
+        }
+        
+        .data-table {
+            box-shadow: none;
+            border: 1px solid #ddd;
+        }
+        
+        body {
+            background: white;
+            font-size: 12px;
+        }
+        
+        .page-header {
+            padding: 15px 0;
+            margin-bottom: 20px;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Copy personal info to mobile offcanvas
+        const personalInfoCard = document.querySelector('.personal-info-card');
+        const mobileInfoCard = document.querySelector('.offcanvas .personal-info-card');
+        
+        if (personalInfoCard && mobileInfoCard) {
+            mobileInfoCard.innerHTML = personalInfoCard.innerHTML;
+        }
+        
+        // Initialize tabs
+        const tabTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tab"]'));
+        tabTriggerList.map(function (tabTriggerEl) {
+            return new bootstrap.Tab(tabTriggerEl);
+        });
+        
+        // Initialize offcanvas
+        const offcanvasElement = document.getElementById('infoSidebar');
+        if (offcanvasElement) {
+            const offcanvas = new bootstrap.Offcanvas(offcanvasElement);
+            
+            // Close offcanvas when clicking outside on mobile
+            offcanvasElement.addEventListener('click', function(e) {
+                if (e.target.classList.contains('offcanvas-backdrop')) {
+                    offcanvas.hide();
+                }
+            });
+        }
+        
+        // Email and Phone click handlers
+        const emailButtons = document.querySelectorAll('a[href^="mailto:"]');
+        const phoneButtons = document.querySelectorAll('a[href^="tel:"]');
+        
+        emailButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Log email interaction
+                console.log('Email sent to:', this.href.replace('mailto:', ''));
+            });
+        });
+        
+        phoneButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Log call interaction
+                console.log('Call initiated to:', this.href.replace('tel:', ''));
+            });
+        });
+        
+        // Print functionality
+        window.printStudentInfo = function() {
+            window.print();
+        };
+        
+        // Responsive table adjustments
+        function adjustTableHeaders() {
+            const tables = document.querySelectorAll('.table-responsive table');
+            tables.forEach(table => {
+                const theadCells = table.querySelectorAll('thead th');
+                const tbodyRows = table.querySelectorAll('tbody tr');
+                
+                tbodyRows.forEach(row => {
+                    const cells = row.querySelectorAll('td');
+                    cells.forEach((cell, index) => {
+                        if (theadCells[index]) {
+                            cell.setAttribute('data-label', theadCells[index].textContent.trim());
+                        }
+                    });
+                });
+            });
+        }
+        
+        adjustTableHeaders();
+        window.addEventListener('resize', adjustTableHeaders);
+        
+        // Mobile swipe for tabs
+        if (window.innerWidth < 768) {
+            const tabContent = document.getElementById('studentTabsContent');
+            let touchStartX = 0;
+            
+            if (tabContent) {
+                tabContent.addEventListener('touchstart', e => {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, false);
+                
+                tabContent.addEventListener('touchend', e => {
+                    const touchEndX = e.changedTouches[0].screenX;
+                    const swipeThreshold = 50;
+                    const swipeDistance = touchEndX - touchStartX;
+                    
+                    if (Math.abs(swipeDistance) > swipeThreshold) {
+                        const activeTab = document.querySelector('.nav-link.active');
+                        const tabs = document.querySelectorAll('.nav-link');
+                        const activeIndex = Array.from(tabs).indexOf(activeTab);
+                        
+                        if (swipeDistance > 0 && activeIndex > 0) {
+                            // Swipe right - go to previous tab
+                            tabs[activeIndex - 1].click();
+                        } else if (swipeDistance < 0 && activeIndex < tabs.length - 1) {
+                            // Swipe left - go to next tab
+                            tabs[activeIndex + 1].click();
+                        }
+                    }
+                }, false);
+            }
+        }
+        
+        // Lazy load images
+        const images = document.querySelectorAll('img[data-src]');
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.remove('lazy');
+                    imageObserver.unobserve(img);
+                }
+            });
+        });
+        
+        images.forEach(img => imageObserver.observe(img));
+    });
+</script>
 {% endblock %}
