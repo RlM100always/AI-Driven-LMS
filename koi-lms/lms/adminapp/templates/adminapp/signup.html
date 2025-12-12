@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacher Signup | KOI LMS</title>
+    <title>Admin Signup | KOI LMS</title>
 
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -15,52 +15,61 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             background: linear-gradient(135deg, #f4f5f6 0%, #f7f6f7 100%);
             min-height: 100vh;
-            margin: 100px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         .signup-container {
             background: white;
             border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
             overflow: hidden;
-            max-width: 900px;
             width: 100%;
+            max-width: 900px;
         }
 
         .signup-left {
             background: linear-gradient(135deg, #003366 0%, #001f3f 100%);
             color: white;
-            padding: 60px 40px;
+            padding: 40px 30px;
         }
 
         .signup-right {
-            padding: 60px 40px;
+            padding: 40px 30px;
         }
 
         .logo {
-            font-size: 48px;
-            margin-bottom: 20px;
+            font-size: 36px;
+            margin-bottom: 15px;
+            text-align: center;
         }
 
         .signup-title {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 700;
             color: #003366;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            text-align: center;
         }
 
         .form-control {
             border-radius: 10px;
-            padding: 12px 20px;
+            padding: 12px 15px;
             border: 2px solid #e0e0e0;
             transition: all 0.3s;
+            font-size: 16px;
         }
 
         .form-control:focus {
@@ -73,6 +82,7 @@
             border: 2px solid #e0e0e0;
             border-right: none;
             border-radius: 10px 0 0 10px;
+            padding: 0 15px;
         }
 
         .input-group .form-control {
@@ -88,6 +98,8 @@
             padding: 12px;
             font-weight: 600;
             transition: all 0.3s;
+            width: 100%;
+            font-size: 16px;
         }
 
         .btn-signup:hover {
@@ -98,23 +110,147 @@
         .feature-item {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .feature-icon {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
             background: rgba(255,255,255,0.2);
-            border-radius: 10px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 15px;
-            font-size: 24px;
+            margin-right: 12px;
+            font-size: 20px;
         }
 
         .alert {
             border-radius: 10px;
+            font-size: 14px;
+        }
+        
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+                align-items: flex-start;
+                min-height: auto;
+            }
+            
+            .signup-container {
+                border-radius: 15px;
+                margin: 20px 0;
+            }
+            
+            .signup-left, .signup-right {
+                padding: 30px 20px;
+            }
+            
+            .logo {
+                font-size: 32px;
+                margin-bottom: 10px;
+            }
+            
+            .signup-title {
+                font-size: 24px;
+                margin-bottom: 5px;
+            }
+            
+            .form-control, .btn-signup {
+                padding: 10px 15px;
+            }
+            
+            .feature-item {
+                margin-bottom: 12px;
+            }
+            
+            .feature-icon {
+                width: 35px;
+                height: 35px;
+                min-width: 35px;
+                font-size: 18px;
+                margin-right: 10px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            body {
+                padding: 10px;
+                background: white;
+            }
+            
+            .signup-container {
+                box-shadow: none;
+                border-radius: 0;
+                margin: 0;
+            }
+            
+            .signup-left, .signup-right {
+                padding: 25px 15px;
+            }
+            
+            .logo {
+                font-size: 28px;
+            }
+            
+            .signup-title {
+                font-size: 22px;
+            }
+            
+            .btn-signup {
+                padding: 12px;
+            }
+            
+            .input-group-text {
+                padding: 0 12px;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .signup-left, .signup-right {
+                padding: 20px 12px;
+            }
+            
+            .logo {
+                font-size: 24px;
+            }
+            
+            .signup-title {
+                font-size: 20px;
+            }
+            
+            .form-control {
+                font-size: 14px;
+                padding: 10px 12px;
+            }
+        }
+        
+        /* Tablet Landscape */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .signup-container {
+                max-width: 95%;
+            }
+            
+            .signup-left, .signup-right {
+                padding: 35px 25px;
+            }
+        }
+        
+        /* Small height devices */
+        @media (max-height: 700px) {
+            body {
+                align-items: flex-start;
+                padding-top: 30px;
+                padding-bottom: 30px;
+            }
+        }
+        
+        /* Prevent horizontal scroll */
+        html, body {
+            overflow-x: hidden;
+            max-width: 100%;
         }
     </style>
 </head>
@@ -122,7 +258,7 @@
     <div class="signup-container">
         <div class="row g-0">
             <!-- Left Side - Info -->
-            <div class="col-md-5 signup-left">
+            <div class="col-lg-5 col-md-5 signup-left d-none d-md-block">
                 <div class="logo">
                     <i class="fas fa-chalkboard-teacher"></i>
                 </div>
@@ -160,13 +296,36 @@
                 </div>
             </div>
 
+            <!-- Mobile Info Header -->
+            <div class="col-12 signup-left d-md-none">
+                <div class="logo">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <h2 class="mb-3 text-center">KOI LMS</h2>
+                <p class="mb-3 text-center">Admin Dashboard Signup</p>
+                
+                <div class="row">
+                    <div class="col-12">
+                        <div class="feature-item justify-content-center">
+                            <div class="feature-icon">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <div>
+                                <strong class="d-block text-center">Create Account</strong>
+                                <p class="mb-0 small text-center">Join as an administrator</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Right Side - Signup Form -->
-            <div class="col-md-7 signup-right">
+            <div class="col-lg-7 col-md-7 col-12 signup-right">
                 <div class="text-center mb-4">
-                    <i class="fas fa-user-plus" style="font-size: 60px; color: #667eea;"></i>
+                    <i class="fas fa-user-plus" style="font-size: 50px; color: #667eea;"></i>
                 </div>
                 
-                <h1 class="signup-title text-center">Admin Signup</h1>
+                <h1 class="signup-title">Admin Signup</h1>
                 <p class="text-center text-muted mb-4">Fill in your details to create an account</p>
                 
                 {% if messages %}
@@ -185,27 +344,42 @@
                         <label class="form-label">Username</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
-                            {{ form.username|add_class:"form-control" }}
+                            {{ form.username|add_class:"form-control"|attr:"placeholder:Enter username" }}
                         </div>
+                        {% if form.username.errors %}
+                            <div class="text-danger small mt-1">
+                                {{ form.username.errors }}
+                            </div>
+                        {% endif %}
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Email</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                            {{ form.email|add_class:"form-control" }}
+                            {{ form.email|add_class:"form-control"|attr:"placeholder:Enter email address" }}
                         </div>
+                        {% if form.email.errors %}
+                            <div class="text-danger small mt-1">
+                                {{ form.email.errors }}
+                            </div>
+                        {% endif %}
                     </div>
 
                     <div class="mb-4">
                         <label class="form-label">Password</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                            {{ form.password|add_class:"form-control" }}
+                            {{ form.password|add_class:"form-control"|attr:"placeholder:Create password" }}
                         </div>
+                        {% if form.password.errors %}
+                            <div class="text-danger small mt-1">
+                                {{ form.password.errors }}
+                            </div>
+                        {% endif %}
                     </div>
 
-                    <button type="submit" class="btn btn-signup w-100">
+                    <button type="submit" class="btn btn-signup">
                         <i class="fas fa-user-check me-1"></i> Create Account
                     </button>
                 </form>
@@ -217,7 +391,7 @@
 
                 <div class="text-center mt-4">
                     <p class="text-muted small">
-                        <i class="fas fa-shield-alt"></i> Secure teacher-only access
+                        <i class="fas fa-shield-alt"></i> Secure admin-only access
                     </p>
                 </div>
             </div>
@@ -226,5 +400,41 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Make form controls responsive
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle mobile viewport
+            function handleViewport() {
+                const isMobile = window.innerWidth <= 768;
+                const isSmallMobile = window.innerWidth <= 360;
+                
+                if (isSmallMobile) {
+                    document.body.style.padding = '5px';
+                } else if (isMobile) {
+                    document.body.style.padding = '10px';
+                }
+            }
+            
+            // Initial call
+            handleViewport();
+            
+            // Update on resize
+            window.addEventListener('resize', handleViewport);
+            
+            // Add responsive behavior to form inputs
+            const formInputs = document.querySelectorAll('.form-control');
+            formInputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    if (window.innerWidth <= 576) {
+                        // Scroll to input on focus for mobile
+                        setTimeout(() => {
+                            this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }, 300);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
