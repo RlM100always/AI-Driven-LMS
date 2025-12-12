@@ -9,253 +9,542 @@
     <div class="page-header mb-4">
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
             <div class="mb-3 mb-md-0">
-                <h1 class="mb-2">
-                    <i class="fas fa-tachometer-alt text-primary me-2"></i>
-                    Welcome, {{ student.user.first_name }}!
-                </h1>
-                <p class="text-muted mb-0">Student ID: {{ student.student_id }} | Semester: {{ current_semester|default:"Not specified" }}</p>
+                <div class="d-flex align-items-center mb-2">
+                    <div class="avatar-lg me-3">
+                        <div class="avatar-title bg-primary bg-opacity-10 text-primary rounded-circle">
+                            {{ student.user.first_name|first|upper }}{{ student.user.last_name|first|upper }}
+                        </div>
+                    </div>
+                    <div>
+                        <h1 class="mb-1">
+                            Welcome back, {{ student.user.first_name }}!
+                        </h1>
+                        <p class="text-muted mb-0">
+                            <i class="fas fa-id-badge me-1"></i>{{ student.student_id }} 
+                            <span class="mx-2">•</span>
+                            <i class="fas fa-calendar-alt me-1"></i>{{ current_semester|default:"Current Semester" }}
+                        </p>
+                    </div>
+                </div>
             </div>
             <div class="d-none d-md-block">
-                <a href="{% url 'ai_query' %}" class="btn btn-info mobile-tap-target">
-                    <i class="fas fa-robot me-1"></i> AI Assistant
+                <a href="{% url 'ai_query' %}" class="btn btn-primary mobile-tap-target px-4 py-2">
+                    <i class="fas fa-robot me-2"></i> AI Assistant
                 </a>
             </div>
         </div>
     </div>
 
-    <!-- Stats Section -->
-    <div class="row g-2 g-md-3 mb-4">
-        <div class="col-6 col-md-3">
-            <div class="stat-card primary">
-                <div class="stat-icon">
-                    <i class="fas fa-book"></i>
-                </div>
+    <!-- Main Stats -->
+    <div class="row g-3 mb-4">
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="stat-card gradient-primary">
                 <div class="stat-content">
-                    <h6>Enrolled Courses</h6>
-                    <h3 class="mb-0">{{ total_courses }}</h3>
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <div class="stat-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <span class="badge badge-light">Active</span>
+                    </div>
+                    <h6 class="stat-label">Enrolled Courses</h6>
+                    <h3 class="stat-value mb-2">{{ enrolled_count }}</h3>
+                    <div class="stat-progress">
+                        <div class="progress">
+                            <div class="progress-bar" style="width: {% widthratio enrolled_count total_courses 100 %}%"></div>
+                        </div>
+                        <small class="text-muted">{{ total_courses }} total courses</small>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-6 col-md-3">
-            <div class="stat-card success">
-                <div class="stat-icon">
-                    <i class="fas fa-chart-line"></i>
-                </div>
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="stat-card gradient-success">
                 <div class="stat-content">
-                    <h6>Average Grade</h6>
-                    <h3 class="mb-0">{{ avg_grade }}%</h3>
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <div class="stat-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <span class="badge badge-light">{{ gpa }}</span>
+                    </div>
+                    <h6 class="stat-label">Current GPA</h6>
+                    <h3 class="stat-value mb-2">{{ avg_grade }}%</h3>
+                    <div class="stat-progress">
+                        <div class="progress">
+                            <div class="progress-bar" style="width: {{ avg_grade }}%"></div>
+                        </div>
+                        <small class="text-muted">Overall average grade</small>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-6 col-md-3">
-            <div class="stat-card warning">
-                <div class="stat-icon">
-                    <i class="fas fa-tasks"></i>
-                </div>
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="stat-card gradient-warning">
                 <div class="stat-content">
-                    <h6>Pending Tasks</h6>
-                    <h3 class="mb-0">{{ upcoming_assignments|length }}</h3>
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <div class="stat-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <span class="badge badge-light">{{ upcoming_assignments|length }}</span>
+                    </div>
+                    <h6 class="stat-label">Pending Tasks</h6>
+                    <h3 class="stat-value mb-2">{{ upcoming_assignments|length }}</h3>
+                    <div class="stat-progress">
+                        <div class="progress">
+                            {% if upcoming_assignments %}
+                                {% with total=upcoming_assignments|length %}
+                                    <div class="progress-bar" style="width: 100%"></div>
+                                {% endwith %}
+                            {% else %}
+                                <div class="progress-bar" style="width: 0%"></div>
+                            {% endif %}
+                        </div>
+                        <small class="text-muted">Upcoming assignments</small>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-6 col-md-3">
-            <div class="stat-card info">
-                <div class="stat-icon">
-                    <i class="fas fa-graduation-cap"></i>
-                </div>
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="stat-card gradient-info">
                 <div class="stat-content">
-                    <h6>GPA</h6>
-                    <h3 class="mb-0">{{ student.gpa }}</h3>
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <span class="badge badge-light">{{ completed_count }}</span>
+                    </div>
+                    <h6 class="stat-label">Completed</h6>
+                    <h3 class="stat-value mb-2">{{ completed_count }}</h3>
+                    <div class="stat-progress">
+                        <div class="progress">
+                            <div class="progress-bar" style="width: {% widthratio completed_count total_courses 100 %}%"></div>
+                        </div>
+                        <small class="text-muted">{{ total_courses }} total courses</small>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="row">
-        <!-- Left Column (Main Content) -->
-        <div class="col-12 col-lg-8 mb-4 mb-lg-0">
-            <!-- My Courses -->
-            <div class="card shadow-sm mb-4">
-                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center py-3">
-                    <h5 class="mb-0">
-                        <i class="fas fa-book-open me-2"></i> My Courses
-                    </h5>
-                    <span class="badge bg-white text-primary">{{ total_courses }}</span>
+    <!-- Detailed Stats -->
+    <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3">
+            <div class="stat-card-small secondary">
+                <div class="stat-content">
+                    <h6 class="stat-label">Total Courses</h6>
+                    <h4 class="stat-value">{{ total_courses }}</h4>
                 </div>
-                <div class="card-body p-0">
-                    {% if enrollments %}
-                    <div class="courses-list">
-                        {% for enrollment in enrollments %}
-                        <a href="{% url 'course_detail' enrollment.course.course_id %}" 
-                           class="course-item mobile-tap-target">
-                            <div class="course-header">
-                                <div class="course-code">{{ enrollment.course.course_code }}</div>
-                                <div class="course-status">
-                                    <span class="badge bg-light text-dark">{{ enrollment.status }}</span>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="stat-card-small danger">
+                <div class="stat-content">
+                    <h6 class="stat-label">Failed</h6>
+                    <h4 class="stat-value">{{ failed_count }}</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="stat-card-small dark">
+                <div class="stat-content">
+                    <h6 class="stat-label">Withdrawn</h6>
+                    <h4 class="stat-value">{{ withdrawn_count }}</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="stat-card-small purple">
+                <div class="stat-content">
+                    <h6 class="stat-label">In Progress</h6>
+                    <h4 class="stat-value">{{ enrolled_count }}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="row">
+        <!-- Left Column - Courses & Assignments -->
+        <div class="col-12 col-lg-8 mb-4 mb-lg-0">
+            <!-- Courses Section -->
+            <div class="card card-elevated mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-circle bg-primary me-3">
+                            <i class="fas fa-book-open text-white"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-0">My Courses</h5>
+                            <p class="text-muted mb-0 small">Track your academic progress</p>
+                        </div>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-sm btn-outline-primary active" data-filter="enrolled">
+                            Enrolled ({{ enrolled_count }})
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-primary" data-filter="completed">
+                            Completed ({{ completed_count }})
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-primary" data-filter="all">
+                            All ({{ total_courses }})
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- Enrolled Courses -->
+                    <div class="course-list" id="enrolled-courses">
+                        {% if enrolled_courses %}
+                            {% for enrollment in enrolled_courses %}
+                            <a href="{% url 'course_detail' enrollment.course.course_id %}" 
+                               class="course-card mobile-tap-target">
+                                <div class="course-card-header">
+                                    <div class="course-badge">
+                                        <span class="badge bg-primary">{{ enrollment.course.course_code }}</span>
+                                    </div>
+                                    <div class="course-status">
+                                        <span class="status-badge status-active">Active</span>
+                                    </div>
+                                </div>
+                                <div class="course-card-body">
+                                    <h6 class="course-title">{{ enrollment.course.course_name }}</h6>
+                                    <div class="course-meta">
+                                        <div class="meta-item">
+                                            <i class="fas fa-user-tie"></i>
+                                            <span>{{ enrollment.course.instructor|truncatechars:20 }}</span>
+                                        </div>
+                                        <div class="meta-item">
+                                            <i class="fas fa-clock"></i>
+                                            <span>{{ enrollment.course.term }}</span>
+                                        </div>
+                                        <div class="meta-item">
+                                            <i class="fas fa-calendar"></i>
+                                            <span>Enrolled {{ enrollment.enrollment_date|date:"M d" }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="course-card-footer">
+                                    <div class="progress course-progress">
+                                        <div class="progress-bar" style="width: 65%"></div>
+                                    </div>
+                                </div>
+                            </a>
+                            {% endfor %}
+                        {% else %}
+                        <div class="empty-state">
+                            <div class="empty-state-icon">
+                                <i class="fas fa-book fa-2x"></i>
+                            </div>
+                            <h6>No enrolled courses</h6>
+                            <p class="text-muted">You are not currently enrolled in any courses</p>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Completed Courses -->
+                    <div class="course-list d-none" id="completed-courses">
+                        {% if completed_courses %}
+                            {% for enrollment in completed_courses %}
+                            <div class="course-card completed">
+                                <div class="course-card-header">
+                                    <div class="course-badge">
+                                        <span class="badge bg-success">{{ enrollment.course.course_code }}</span>
+                                    </div>
+                                    <div class="course-status">
+                                        <span class="status-badge status-completed">Completed</span>
+                                    </div>
+                                </div>
+                                <div class="course-card-body">
+                                    <h6 class="course-title">{{ enrollment.course.course_name }}</h6>
+                                    <div class="course-meta">
+                                        <div class="meta-item">
+                                            <i class="fas fa-user-tie"></i>
+                                            <span>{{ enrollment.course.instructor|truncatechars:20 }}</span>
+                                        </div>
+                                        <div class="meta-item">
+                                            <i class="fas fa-clock"></i>
+                                            <span>{{ enrollment.course.term }}</span>
+                                        </div>
+                                        <div class="meta-item">
+                                            <i class="fas fa-graduation-cap"></i>
+                                            <span>
+                                                {% with grade=enrollment.grades.first %}
+                                                    {% if grade %}
+                                                        {{ grade.percentage }}% Grade
+                                                    {% else %}
+                                                        Grade Pending
+                                                    {% endif %}
+                                                {% endwith %}
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="course-title">{{ enrollment.course.course_name|truncatechars:50 }}</div>
-                            <div class="course-meta">
-                                <span class="text-muted">
-                                    <i class="fas fa-user-tie me-1"></i>{{ enrollment.course.instructor }}
-                                </span>
-                                <span class="text-muted ms-3">
-                                    <i class="fas fa-clock me-1"></i>{{ enrollment.course.term }}
-                                </span>
+                            {% endfor %}
+                        {% else %}
+                        <div class="empty-state">
+                            <div class="empty-state-icon">
+                                <i class="fas fa-check-circle fa-2x"></i>
                             </div>
-                        </a>
-                        {% endfor %}
+                            <h6>No completed courses</h6>
+                            <p class="text-muted">You haven't completed any courses yet</p>
+                        </div>
+                        {% endif %}
                     </div>
-                    {% else %}
-                    <div class="empty-state p-4 text-center">
-                        <i class="fas fa-book fa-2x text-muted mb-3"></i>
-                        <h6 class="text-muted">No enrolled courses yet</h6>
-                        <p class="text-muted small">Contact your academic advisor to enroll in courses</p>
+
+                    <!-- All Courses -->
+                    <div class="course-list d-none" id="all-courses">
+                        {% if enrollments %}
+                            {% for enrollment in enrollments %}
+                            <div class="course-card {% if enrollment.status == 'Enrolled' %}active{% elif enrollment.status == 'Completed' %}completed{% elif enrollment.status == 'Failed' %}failed{% else %}withdrawn{% endif %}">
+                                <div class="course-card-header">
+                                    <div class="course-badge">
+                                        <span class="badge 
+                                            {% if enrollment.status == 'Enrolled' %}bg-primary
+                                            {% elif enrollment.status == 'Completed' %}bg-success
+                                            {% elif enrollment.status == 'Failed' %}bg-danger
+                                            {% else %}bg-secondary{% endif %}">
+                                            {{ enrollment.course.course_code }}
+                                        </span>
+                                    </div>
+                                    <div class="course-status">
+                                        <span class="status-badge 
+                                            {% if enrollment.status == 'Enrolled' %}status-active
+                                            {% elif enrollment.status == 'Completed' %}status-completed
+                                            {% elif enrollment.status == 'Failed' %}status-failed
+                                            {% else %}status-withdrawn{% endif %}">
+                                            {{ enrollment.status }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="course-card-body">
+                                    <h6 class="course-title">{{ enrollment.course.course_name }}</h6>
+                                    <div class="course-meta">
+                                        <div class="meta-item">
+                                            <i class="fas fa-user-tie"></i>
+                                            <span>{{ enrollment.course.instructor|truncatechars:20 }}</span>
+                                        </div>
+                                        <div class="meta-item">
+                                            <i class="fas fa-clock"></i>
+                                            <span>{{ enrollment.course.term }}</span>
+                                        </div>
+                                        <div class="meta-item">
+                                            <i class="fas fa-calendar"></i>
+                                            <span>{{ enrollment.enrollment_date|date:"M d, Y" }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                        <div class="empty-state">
+                            <div class="empty-state-icon">
+                                <i class="fas fa-book fa-2x"></i>
+                            </div>
+                            <h6>No courses found</h6>
+                            <p class="text-muted">You haven't taken any courses yet</p>
+                        </div>
+                        {% endif %}
                     </div>
-                    {% endif %}
                 </div>
             </div>
 
             <!-- Upcoming Assignments -->
-            <div class="card shadow-sm">
-                <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center py-3">
-                    <h5 class="mb-0">
-                        <i class="fas fa-clock me-2"></i> Upcoming Assignments
-                    </h5>
-                    <span class="badge bg-dark text-white">{{ upcoming_assignments|length }}</span>
+            <div class="card card-elevated">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-circle bg-warning me-3">
+                            <i class="fas fa-clock text-white"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-0">Upcoming Assignments</h5>
+                            <p class="text-muted mb-0 small">Deadlines approaching</p>
+                        </div>
+                    </div>
+                    <span class="badge bg-warning text-dark">{{ upcoming_assignments|length }}</span>
                 </div>
-                <div class="card-body p-0">
+                <div class="card-body">
                     {% if upcoming_assignments %}
-                    <div class="assignments-list">
+                    <div class="assignment-list">
                         {% for assignment in upcoming_assignments %}
-                        <div class="assignment-item mobile-tap-target">
-                            <div class="assignment-header">
-                                <div class="assignment-title">
-                                    <strong>{{ assignment.course.course_code }}</strong>: {{ assignment.title|truncatechars:40 }}
-                                </div>
-                                <div class="assignment-due text-danger">
-                                    <i class="fas fa-calendar-alt me-1"></i>
-                                    <small>{{ assignment.due_date|date:"M d" }}</small>
-                                </div>
+                        <div class="assignment-card mobile-tap-target">
+                            <div class="assignment-icon">
+                                <i class="fas fa-file-alt"></i>
                             </div>
-                            <div class="assignment-details">
-                                <span class="badge bg-light text-dark">{{ assignment.assignment_type }}</span>
-                                <span class="text-muted ms-2">{{ assignment.max_marks }} marks</span>
-                            </div>
-                            <div class="assignment-progress">
-                                <div class="progress" style="height: 4px;">
-                                    {% with days_left=assignment.days_until_due %}
-                                    {% if days_left > 7 %}
-                                    <div class="progress-bar bg-success" style="width: 100%"></div>
-                                    {% elif days_left > 3 %}
-                                    <div class="progress-bar bg-warning" style="width: 70%"></div>
-                                    {% else %}
-                                    <div class="progress-bar bg-danger" style="width: 30%"></div>
-                                    {% endif %}
-                                    {% endwith %}
+                            <div class="assignment-content">
+                                <div class="assignment-header">
+                                    <div class="assignment-title">
+                                        <strong>{{ assignment.course.course_code }}</strong>: {{ assignment.title }}
+                                    </div>
+                                    <div class="assignment-deadline {% if assignment.days_until_due <= 3 %}text-danger{% elif assignment.days_until_due <= 7 %}text-warning{% else %}text-success{% endif %}">
+                                        <i class="fas fa-calendar-alt me-1"></i>
+                                        {{ assignment.due_date|date:"M d, Y" }}
+                                    </div>
+                                </div>
+                                <div class="assignment-details">
+                                    <span class="badge bg-light text-dark">{{ assignment.assignment_type }}</span>
+                                    <span class="text-muted mx-2">•</span>
+                                    <span class="text-muted">{{ assignment.max_marks }} marks</span>
+                                    <span class="text-muted mx-2">•</span>
+                                    <span class="text-muted">{{ assignment.weight }}% weight</span>
+                                </div>
+                                <div class="assignment-progress">
+                                    <div class="progress">
+                                        {% with days_left=assignment.days_until_due %}
+                                            {% if days_left > 14 %}
+                                                <div class="progress-bar bg-success" style="width: 100%"></div>
+                                            {% elif days_left > 7 %}
+                                                <div class="progress-bar bg-success" style="width: 70%"></div>
+                                            {% elif days_left > 3 %}
+                                                <div class="progress-bar bg-warning" style="width: 40%"></div>
+                                            {% else %}
+                                                <div class="progress-bar bg-danger" style="width: 20%"></div>
+                                            {% endif %}
+                                        {% endwith %}
+                                    </div>
+                                    <small class="text-muted">
+                                        {% if assignment.days_until_due == 0 %}
+                                            Due today
+                                        {% elif assignment.days_until_due == 1 %}
+                                            1 day left
+                                        {% else %}
+                                            {{ assignment.days_until_due }} days left
+                                        {% endif %}
+                                    </small>
                                 </div>
                             </div>
                         </div>
                         {% endfor %}
                     </div>
                     {% else %}
-                    <div class="empty-state p-4 text-center">
-                        <i class="fas fa-check-circle fa-2x text-success mb-3"></i>
-                        <h6 class="text-muted">No upcoming assignments</h6>
-                        <p class="text-muted small">All caught up! Check back later for new assignments</p>
+                    <div class="empty-state">
+                        <div class="empty-state-icon">
+                            <i class="fas fa-check-circle fa-2x text-success"></i>
+                        </div>
+                        <h6>No upcoming assignments</h6>
+                        <p class="text-muted">You're all caught up!</p>
                     </div>
                     {% endif %}
                 </div>
             </div>
         </div>
 
-        <!-- Right Column (Sidebar) -->
+        <!-- Right Column - Grades & Actions -->
         <div class="col-12 col-lg-4">
             <!-- Recent Grades -->
-            <div class="card shadow-sm mb-4">
-                <div class="card-header bg-success text-white d-flex justify-content-between align-items-center py-3">
-                    <h5 class="mb-0">
-                        <i class="fas fa-chart-bar me-2"></i> Recent Grades
-                    </h5>
+            <div class="card card-elevated mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-circle bg-success me-3">
+                            <i class="fas fa-chart-bar text-white"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-0">Recent Grades</h5>
+                            <p class="text-muted mb-0 small">Latest assessments</p>
+                        </div>
+                    </div>
                     {% if recent_grades %}
-                    <span class="badge bg-white text-success">{{ recent_grades|length }}</span>
+                    <span class="badge bg-success">{{ recent_grades|length }}</span>
                     {% endif %}
                 </div>
-                <div class="card-body p-0">
+                <div class="card-body">
                     {% if recent_grades %}
                     <div class="grades-list">
                         {% for grade in recent_grades %}
-                        <div class="grade-item mobile-tap-target">
+                        <div class="grade-card">
                             <div class="grade-header">
-                                <div class="course-code">{{ grade.course.course_code }}</div>
-                                <div class="grade-percentage">
-                                    <span class="badge {% if grade.percentage >= 80 %}bg-success{% elif grade.percentage >= 50 %}bg-warning{% else %}bg-danger{% endif %}">
+                                <div class="grade-course">
+                                    <span class="badge bg-light text-dark">{{ grade.course.course_code }}</span>
+                                </div>
+                                <div class="grade-score">
+                                    <span class="score-badge 
+                                        {% if grade.percentage >= 85 %}score-hd
+                                        {% elif grade.percentage >= 75 %}score-d
+                                        {% elif grade.percentage >= 65 %}score-c
+                                        {% elif grade.percentage >= 50 %}score-p
+                                        {% else %}score-f{% endif %}">
                                         {{ grade.percentage }}%
                                     </span>
                                 </div>
                             </div>
-                            <div class="grade-details">
-                                <small class="text-muted">{{ grade.assessment_type }}</small>
-                                <small class="text-muted ms-2">
-                                    {{ grade.marks_obtained }}/{{ grade.max_marks }}
-                                </small>
+                            <div class="grade-body">
+                                <h6 class="grade-title">{{ grade.assessment_type }}</h6>
+                                <div class="grade-meta">
+                                    <span class="text-muted">{{ grade.marks_obtained }}/{{ grade.max_marks }}</span>
+                                    <span class="text-muted mx-2">•</span>
+                                    <span class="text-muted">{{ grade.graded_date|date:"M d" }}</span>
+                                </div>
+                                {% if grade.feedback %}
+                                <div class="grade-feedback">
+                                    <small class="text-muted">
+                                        <i class="fas fa-comment me-1"></i>
+                                        {{ grade.feedback|truncatechars:40 }}
+                                    </small>
+                                </div>
+                                {% endif %}
                             </div>
-                            {% if grade.feedback %}
-                            <div class="grade-feedback">
-                                <small class="text-muted">
-                                    <i class="fas fa-comment me-1"></i>
-                                    {{ grade.feedback|truncatechars:30 }}
-                                </small>
-                            </div>
-                            {% endif %}
                         </div>
                         {% endfor %}
                     </div>
                     {% else %}
-                    <div class="empty-state p-4 text-center">
-                        <i class="fas fa-chart-line fa-2x text-muted mb-3"></i>
-                        <h6 class="text-muted">No grades yet</h6>
-                        <p class="text-muted small">Grades will appear here after assessments</p>
+                    <div class="empty-state">
+                        <div class="empty-state-icon">
+                            <i class="fas fa-chart-line fa-2x"></i>
+                        </div>
+                        <h6>No grades yet</h6>
+                        <p class="text-muted">Grades will appear here</p>
                     </div>
                     {% endif %}
                 </div>
             </div>
 
             <!-- Quick Actions -->
-            <div class="card shadow-sm">
-                <div class="card-header bg-info text-white py-3">
-                    <h5 class="mb-0">
-                        <i class="fas fa-bolt me-2"></i> Quick Actions
-                    </h5>
+            <div class="card card-elevated">
+                <div class="card-header">
+                    <h5 class="mb-0">Quick Actions</h5>
                 </div>
                 <div class="card-body">
-                    <div class="d-grid gap-2">
-                        <a href="{% url 'ai_query' %}" class="btn btn-info mobile-tap-target text-start">
-                            <i class="fas fa-robot me-2"></i> AI Assistant
-                        </a>
-                        {% if enrollments %}
-                        <a href="{% url 'course_list' %}" class="btn btn-outline-primary mobile-tap-target text-start">
-                            <i class="fas fa-list me-2"></i> All Courses
-                        </a>
-                        {% endif %}
-                        <a href="{% url 'grade_list' %}" class="btn btn-outline-success mobile-tap-target text-start">
-                            <i class="fas fa-chart-bar me-2"></i> My Grades
-                        </a>
-                        <a href="#" class="btn btn-outline-warning mobile-tap-target text-start">
-                            <i class="fas fa-calendar me-2"></i> Academic Calendar
-                        </a>
-                    </div>
-                    
-                    <!-- Mobile Only - Floating Action Button -->
-                    <div class="d-md-none mt-4">
-                        <div class="fab-container">
-                            <a href="{% url 'ai_query' %}" class="btn btn-info btn-fab rounded-circle mobile-tap-target">
+                    <div class="actions-grid">
+                        <a href="{% url 'ai_query' %}" class="action-card action-primary">
+                            <div class="action-icon">
                                 <i class="fas fa-robot"></i>
-                            </a>
-                        </div>
+                            </div>
+                            <div class="action-content">
+                                <h6>AI Assistant</h6>
+                                <small>Get help with studies</small>
+                            </div>
+                        </a>
+                        
+                        <a href="{% url 'course_list' %}" class="action-card action-secondary">
+                            <div class="action-icon">
+                                <i class="fas fa-list"></i>
+                            </div>
+                            <div class="action-content">
+                                <h6>All Courses</h6>
+                                <small>Browse courses</small>
+                            </div>
+                        </a>
+                        
+                        <a href="{% url 'grade_list' %}" class="action-card action-success">
+                            <div class="action-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div class="action-content">
+                                <h6>My Grades</h6>
+                                <small>View all grades</small>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="action-card action-warning">
+                            <div class="action-icon">
+                                <i class="fas fa-calendar"></i>
+                            </div>
+                            <div class="action-content">
+                                <h6>Calendar</h6>
+                                <small>Academic schedule</small>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -263,18 +552,49 @@
     </div>
 </div>
 
+<!-- Mobile Floating Action Button -->
+<div class="d-md-none">
+    <div class="fab-container">
+        <a href="{% url 'ai_query' %}" class="btn btn-primary btn-fab shadow-lg mobile-tap-target">
+            <i class="fas fa-robot"></i>
+        </a>
+    </div>
+</div>
+
 <style>
 /* ==================== */
 /* BASE STYLES */
 /* ==================== */
+.dashboard-container {
+    padding: 0;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
 .mobile-tap-target {
     min-height: 44px;
     min-width: 44px;
     cursor: pointer;
 }
 
-.dashboard-container {
-    padding: 0;
+/* ==================== */
+/* AVATARS */
+/* ==================== */
+.avatar-lg {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+}
+
+.avatar-title {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.5rem;
+    border-radius: 50%;
 }
 
 /* ==================== */
@@ -283,20 +603,33 @@
 .page-header h1 {
     font-size: 1.75rem;
     font-weight: 600;
+    color: #2c3e50;
+}
+
+.page-header .text-muted {
+    font-size: 0.875rem;
+    color: #7b8a8b;
 }
 
 @media (max-width: 768px) {
     .page-header h1 {
         font-size: 1.5rem;
     }
-    .page-header .text-muted {
-        font-size: 0.875rem;
+    .avatar-lg {
+        width: 48px;
+        height: 48px;
+    }
+    .avatar-title {
+        font-size: 1.25rem;
     }
 }
 
 @media (max-width: 576px) {
     .page-header h1 {
         font-size: 1.25rem;
+    }
+    .page-header .text-muted {
+        font-size: 0.75rem;
     }
 }
 
@@ -305,152 +638,332 @@
 /* ==================== */
 .stat-card {
     background: white;
-    border-radius: 8px;
-    padding: 16px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    border: 1px solid #eef2f7;
     height: 100%;
-    display: flex;
-    align-items: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+.stat-card.gradient-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.stat-card.gradient-success {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    color: white;
+}
+
+.stat-card.gradient-warning {
+    background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%);
+    color: white;
+}
+
+.stat-card.gradient-info {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
 }
 
 .stat-icon {
     width: 48px;
     height: 48px;
-    border-radius: 50%;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 12px;
-    flex-shrink: 0;
+    font-size: 1.25rem;
+    background: rgba(255,255,255,0.2);
 }
 
-.stat-card.primary .stat-icon {
-    background: rgba(13, 110, 253, 0.1);
-    color: #0d6efd;
-}
-
-.stat-card.success .stat-icon {
-    background: rgba(25, 135, 84, 0.1);
-    color: #198754;
-}
-
-.stat-card.warning .stat-icon {
-    background: rgba(255, 193, 7, 0.1);
-    color: #ffc107;
-}
-
-.stat-card.info .stat-icon {
-    background: rgba(13, 202, 240, 0.1);
-    color: #0dcaf0;
-}
-
-.stat-content h6 {
+.stat-content .stat-label {
     font-size: 0.875rem;
-    color: #6c757d;
-    margin-bottom: 4px;
     font-weight: 500;
+    margin-bottom: 8px;
+    opacity: 0.9;
 }
 
-.stat-content h3 {
-    font-size: 1.75rem;
+.stat-content .stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.stat-progress .progress {
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.3);
+    margin-bottom: 4px;
+}
+
+.stat-progress .progress-bar {
+    background: white;
+    border-radius: 3px;
+}
+
+.stat-progress small {
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+
+.badge-light {
+    background: rgba(255,255,255,0.2);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+/* Small Stat Cards */
+.stat-card-small {
+    background: white;
+    border-radius: 8px;
+    padding: 16px;
+    border: 1px solid #eef2f7;
+    height: 100%;
+}
+
+.stat-card-small .stat-label {
+    font-size: 0.75rem;
+    color: #7b8a8b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.stat-card-small .stat-value {
+    font-size: 1.5rem;
     font-weight: 600;
-    margin: 0;
+    color: #2c3e50;
+}
+
+.stat-card-small.secondary {
+    border-left: 4px solid #6c757d;
+}
+
+.stat-card-small.danger {
+    border-left: 4px solid #dc3545;
+}
+
+.stat-card-small.dark {
+    border-left: 4px solid #343a40;
+}
+
+.stat-card-small.purple {
+    border-left: 4px solid #6f42c1;
 }
 
 @media (max-width: 768px) {
     .stat-card {
-        padding: 12px;
+        padding: 20px;
     }
-    
     .stat-icon {
         width: 40px;
         height: 40px;
-        margin-right: 10px;
+        font-size: 1rem;
     }
-    
-    .stat-content h3 {
-        font-size: 1.5rem;
+    .stat-content .stat-value {
+        font-size: 1.75rem;
     }
 }
 
 @media (max-width: 576px) {
     .stat-card {
-        padding: 10px;
+        padding: 16px;
     }
-    
-    .stat-icon {
-        width: 36px;
-        height: 36px;
-        margin-right: 8px;
+    .stat-content .stat-value {
+        font-size: 1.5rem;
     }
-    
-    .stat-content h6 {
-        font-size: 0.75rem;
-    }
-    
-    .stat-content h3 {
+    .stat-card-small .stat-value {
         font-size: 1.25rem;
     }
 }
 
 /* ==================== */
-/* COURSES LIST */
+/* CARD STYLES */
 /* ==================== */
-.courses-list {
-    max-height: 400px;
-    overflow-y: auto;
+.card-elevated {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #eef2f7;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    margin-bottom: 24px;
 }
 
-.course-item {
-    display: block;
-    padding: 16px;
-    border-bottom: 1px solid #e9ecef;
-    text-decoration: none;
-    color: inherit;
-    transition: background-color 0.2s;
+.card-elevated .card-header {
+    background: white;
+    border-bottom: 1px solid #eef2f7;
+    padding: 20px 24px;
+    border-radius: 12px 12px 0 0;
 }
 
-.course-item:hover {
-    background-color: #f8f9fa;
-    text-decoration: none;
+.card-elevated .card-body {
+    padding: 24px;
 }
 
-.course-header {
+.icon-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ==================== */
+/* COURSE CARDS */
+/* ==================== */
+.course-list {
+    display: grid;
+    gap: 16px;
+}
+
+.course-card {
+    background: white;
+    border: 1px solid #eef2f7;
+    border-radius: 10px;
+    padding: 20px;
+    transition: all 0.3s;
+}
+
+.course-card:hover {
+    border-color: #667eea;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+    transform: translateY(-2px);
+}
+
+.course-card.active {
+    border-left: 4px solid #667eea;
+}
+
+.course-card.completed {
+    border-left: 4px solid #11998e;
+}
+
+.course-card.failed {
+    border-left: 4px solid #dc3545;
+}
+
+.course-card.withdrawn {
+    border-left: 4px solid #6c757d;
+}
+
+.course-card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;
-}
-
-.course-code {
-    font-weight: 600;
-    color: #0d6efd;
-    font-size: 1rem;
+    margin-bottom: 12px;
 }
 
 .course-title {
-    font-weight: 500;
-    margin-bottom: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 12px;
     line-height: 1.4;
 }
 
 .course-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
     font-size: 0.875rem;
 }
 
-/* ==================== */
-/* ASSIGNMENTS LIST */
-/* ==================== */
-.assignments-list {
-    max-height: 400px;
-    overflow-y: auto;
+.meta-item {
+    display: flex;
+    align-items: center;
+    color: #7b8a8b;
 }
 
-.assignment-item {
+.meta-item i {
+    margin-right: 6px;
+    opacity: 0.7;
+}
+
+.course-progress {
+    height: 6px;
+    border-radius: 3px;
+    margin-top: 16px;
+}
+
+.course-progress .progress-bar {
+    background: linear-gradient(to right, #667eea, #764ba2);
+}
+
+/* Status Badges */
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-active {
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+}
+
+.status-completed {
+    background: rgba(17, 153, 142, 0.1);
+    color: #11998e;
+}
+
+.status-failed {
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+}
+
+.status-withdrawn {
+    background: rgba(108, 117, 125, 0.1);
+    color: #6c757d;
+}
+
+/* ==================== */
+/* ASSIGNMENT CARDS */
+/* ==================== */
+.assignment-list {
+    display: grid;
+    gap: 16px;
+}
+
+.assignment-card {
+    display: flex;
+    align-items: flex-start;
     padding: 16px;
-    border-bottom: 1px solid #e9ecef;
-    transition: background-color 0.2s;
+    border: 1px solid #eef2f7;
+    border-radius: 10px;
+    transition: all 0.3s;
+}
+
+.assignment-card:hover {
+    border-color: #f7971e;
+    background: rgba(247, 151, 30, 0.02);
+}
+
+.assignment-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(247, 151, 30, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 16px;
+    color: #f7971e;
+    flex-shrink: 0;
+}
+
+.assignment-content {
+    flex: 1;
 }
 
 .assignment-header {
@@ -461,92 +974,247 @@
 }
 
 .assignment-title {
-    flex: 1;
+    font-size: 0.95rem;
     font-weight: 500;
-    line-height: 1.4;
+    color: #2c3e50;
+    flex: 1;
 }
 
-.assignment-due {
+.assignment-deadline {
     font-size: 0.875rem;
+    font-weight: 600;
+    margin-left: 12px;
     white-space: nowrap;
-    margin-left: 10px;
 }
 
 .assignment-details {
-    margin-bottom: 8px;
+    font-size: 0.875rem;
+    color: #7b8a8b;
+    margin-bottom: 12px;
 }
 
-.assignment-progress {
-    margin-top: 8px;
+.assignment-progress .progress {
+    height: 4px;
+    border-radius: 2px;
+    margin-bottom: 4px;
+}
+
+.assignment-progress small {
+    font-size: 0.75rem;
+    color: #7b8a8b;
 }
 
 /* ==================== */
-/* GRADES LIST */
+/* GRADE CARDS */
 /* ==================== */
 .grades-list {
-    max-height: 300px;
-    overflow-y: auto;
+    display: grid;
+    gap: 16px;
 }
 
-.grade-item {
+.grade-card {
     padding: 16px;
-    border-bottom: 1px solid #e9ecef;
-    transition: background-color 0.2s;
+    border: 1px solid #eef2f7;
+    border-radius: 10px;
+    transition: all 0.3s;
+}
+
+.grade-card:hover {
+    border-color: #11998e;
+    background: rgba(17, 153, 142, 0.02);
 }
 
 .grade-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
 }
 
-.course-code {
-    font-weight: 600;
-    color: #198754;
+.grade-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #2c3e50;
+    margin-bottom: 4px;
 }
 
-.grade-details {
+.grade-meta {
     font-size: 0.875rem;
+    color: #7b8a8b;
 }
 
 .grade-feedback {
-    margin-top: 6px;
-    padding-top: 6px;
-    border-top: 1px dashed #e9ecef;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed #eef2f7;
+    font-size: 0.875rem;
+    color: #7b8a8b;
+}
+
+/* Score Badges */
+.score-badge {
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.score-hd {
+    background: rgba(17, 153, 142, 0.1);
+    color: #11998e;
+    border: 1px solid rgba(17, 153, 142, 0.2);
+}
+
+.score-d {
+    background: rgba(52, 152, 219, 0.1);
+    color: #3498db;
+    border: 1px solid rgba(52, 152, 219, 0.2);
+}
+
+.score-c {
+    background: rgba(155, 89, 182, 0.1);
+    color: #9b59b6;
+    border: 1px solid rgba(155, 89, 182, 0.2);
+}
+
+.score-p {
+    background: rgba(243, 156, 18, 0.1);
+    color: #f39c12;
+    border: 1px solid rgba(243, 156, 18, 0.2);
+}
+
+.score-f {
+    background: rgba(231, 76, 60, 0.1);
+    color: #e74c3c;
+    border: 1px solid rgba(231, 76, 60, 0.2);
+}
+
+/* ==================== */
+/* QUICK ACTIONS */
+/* ==================== */
+.actions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.action-card {
+    padding: 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.action-card:hover {
+    transform: translateY(-4px);
+    text-decoration: none;
+}
+
+.action-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+}
+
+.action-content h6 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #2c3e50;
+}
+
+.action-content small {
+    font-size: 0.75rem;
+    color: #7b8a8b;
+}
+
+.action-primary {
+    background: rgba(102, 126, 234, 0.05);
+    border: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+.action-primary .action-icon {
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+}
+
+.action-secondary {
+    background: rgba(108, 117, 125, 0.05);
+    border: 1px solid rgba(108, 117, 125, 0.1);
+}
+
+.action-secondary .action-icon {
+    background: rgba(108, 117, 125, 0.1);
+    color: #6c757d;
+}
+
+.action-success {
+    background: rgba(17, 153, 142, 0.05);
+    border: 1px solid rgba(17, 153, 142, 0.1);
+}
+
+.action-success .action-icon {
+    background: rgba(17, 153, 142, 0.1);
+    color: #11998e;
+}
+
+.action-warning {
+    background: rgba(247, 151, 30, 0.05);
+    border: 1px solid rgba(247, 151, 30, 0.1);
+}
+
+.action-warning .action-icon {
+    background: rgba(247, 151, 30, 0.1);
+    color: #f7971e;
 }
 
 /* ==================== */
 /* EMPTY STATES */
 /* ==================== */
 .empty-state {
-    color: #6c757d;
+    text-align: center;
+    padding: 40px 20px;
 }
 
-.empty-state i {
-    opacity: 0.5;
+.empty-state-icon {
+    width: 64px;
+    height: 64px;
+    background: #f8f9fa;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    color: #bdc3c7;
+}
+
+.empty-state h6 {
+    font-size: 1rem;
+    color: #7b8a8b;
+    margin-bottom: 8px;
+}
+
+.empty-state p {
+    font-size: 0.875rem;
+    color: #bdc3c7;
 }
 
 /* ==================== */
-/* QUICK ACTIONS */
-/* ==================== */
-.btn.text-start {
-    text-align: left;
-    justify-content: flex-start;
-    padding: 12px 16px;
-}
-
-.btn.text-start i {
-    width: 20px;
-}
-
-/* ==================== */
-/* FLOATING ACTION BUTTON (MOBILE) */
+/* FLOATING ACTION BUTTON */
 /* ==================== */
 .fab-container {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 24px;
+    right: 24px;
     z-index: 1000;
 }
 
@@ -554,15 +1222,12 @@
     width: 56px;
     height: 56px;
     padding: 0;
+    border: none;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    border: none;
-}
-
-.btn-fab.rounded-circle {
-    border-radius: 50% !important;
+    font-size: 1.25rem;
 }
 
 /* ==================== */
@@ -572,62 +1237,63 @@
 /* Extra small devices (phones) */
 @media (max-width: 576px) {
     .dashboard-container {
-        padding: 0 8px;
+        padding: 0 12px;
     }
     
-    .course-item,
-    .assignment-item,
-    .grade-item {
+    .stat-card {
+        padding: 16px;
+    }
+    
+    .card-elevated .card-header,
+    .card-elevated .card-body {
+        padding: 16px;
+    }
+    
+    .course-card,
+    .assignment-card,
+    .grade-card {
         padding: 12px;
     }
     
-    .course-title,
-    .assignment-title {
-        font-size: 0.9rem;
+    .assignment-header {
+        flex-direction: column;
+        align-items: flex-start;
     }
     
-    .course-meta,
-    .assignment-due,
-    .grade-details {
+    .assignment-deadline {
+        margin-left: 0;
+        margin-top: 4px;
+    }
+    
+    .actions-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .btn-group .btn {
+        padding: 6px 8px;
         font-size: 0.75rem;
-    }
-    
-    .badge {
-        font-size: 0.7rem;
-        padding: 4px 8px;
-    }
-    
-    .btn.text-start {
-        padding: 10px 12px;
-        font-size: 0.875rem;
     }
 }
 
 /* Small devices (tablets) */
 @media (min-width: 577px) and (max-width: 768px) {
     .dashboard-container {
-        padding: 0 12px;
-    }
-    
-    .course-item,
-    .assignment-item,
-    .grade-item {
-        padding: 14px;
+        padding: 0 16px;
     }
     
     .fab-container {
         display: none;
+    }
+    
+    .actions-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 /* Medium devices (laptops) */
 @media (min-width: 769px) and (max-width: 992px) {
     .dashboard-container {
-        padding: 0 15px;
-    }
-    
-    .stat-content h3 {
-        font-size: 1.5rem;
+        padding: 0 24px;
     }
     
     .fab-container {
@@ -656,20 +1322,11 @@
         transition: all 0.1s;
     }
     
-    /* Prevent text selection on mobile */
-    .course-item,
-    .assignment-item,
-    .grade-item,
-    .btn {
+    .course-card,
+    .assignment-card,
+    .action-card {
         user-select: none;
         -webkit-user-select: none;
-    }
-    
-    /* Better scrolling on mobile */
-    .courses-list,
-    .assignments-list,
-    .grades-list {
-        -webkit-overflow-scrolling: touch;
     }
 }
 
@@ -677,46 +1334,49 @@
 /* DARK MODE SUPPORT */
 /* ==================== */
 @media (prefers-color-scheme: dark) {
-    .stat-card {
+    .dashboard-container {
+        background: #1a1d23;
+    }
+    
+    .stat-card,
+    .card-elevated,
+    .course-card,
+    .assignment-card,
+    .grade-card,
+    .action-card,
+    .stat-card-small {
         background: #2d3748;
         border-color: #4a5568;
+        color: #e2e8f0;
     }
     
-    .card {
-        background: #2d3748;
-        border-color: #4a5568;
+    .page-header h1,
+    .course-title,
+    .assignment-title,
+    .grade-title,
+    .action-content h6 {
+        color: #e2e8f0;
     }
     
-    .card-header.bg-primary {
-        background: #2b6cb0 !important;
-    }
-    
-    .card-header.bg-warning {
-        background: #d69e2e !important;
-        color: #1a202c !important;
-    }
-    
-    .card-header.bg-success {
-        background: #38a169 !important;
-    }
-    
-    .card-header.bg-info {
-        background: #3182ce !important;
-    }
-    
-    .course-item:hover,
-    .assignment-item:hover,
-    .grade-item:hover {
-        background-color: #4a5568;
-    }
-    
-    .text-muted {
+    .text-muted,
+    .meta-item,
+    .assignment-details,
+    .grade-meta,
+    .grade-feedback,
+    .action-content small {
         color: #a0aec0 !important;
     }
     
-    .badge.bg-light {
-        background: #4a5568 !important;
-        color: #e2e8f0 !important;
+    .empty-state-icon {
+        background: #4a5568;
+        color: #a0aec0;
+    }
+    
+    .gradient-primary,
+    .gradient-success,
+    .gradient-warning,
+    .gradient-info {
+        filter: brightness(0.9);
     }
 }
 
@@ -727,25 +1387,38 @@
     .fab-container,
     .mobile-tap-target,
     .btn,
-    .progress {
+    .progress,
+    .empty-state-icon {
         display: none !important;
     }
     
-    .stat-card {
-        box-shadow: none !important;
-        border: 1px solid #ddd !important;
+    .dashboard-container {
+        max-width: 100%;
+        padding: 0;
     }
     
-    .card {
+    .stat-card,
+    .card-elevated {
         border: 1px solid #000 !important;
         box-shadow: none !important;
         break-inside: avoid;
     }
     
-    .card-header {
-        background: #fff !important;
+    .gradient-primary,
+    .gradient-success,
+    .gradient-warning,
+    .gradient-info {
+        background: white !important;
         color: #000 !important;
-        border-bottom: 2px solid #000 !important;
+        border: 2px solid #000 !important;
+    }
+    
+    .badge,
+    .status-badge,
+    .score-badge {
+        background: white !important;
+        color: #000 !important;
+        border: 1px solid #000 !important;
     }
     
     body {
@@ -757,120 +1430,147 @@
         color: #000 !important;
         text-decoration: none !important;
     }
-    
-    .badge {
-        background: #fff !important;
-        color: #000 !important;
-        border: 1px solid #000 !important;
-    }
 }
 </style>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // ====================
+    // COURSE FILTERING
+    // ====================
+    const filterButtons = document.querySelectorAll('[data-filter]');
+    const courseLists = {
+        'enrolled': document.getElementById('enrolled-courses'),
+        'completed': document.getElementById('completed-courses'),
+        'all': document.getElementById('all-courses')
+    };
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const filter = this.getAttribute('data-filter');
+            
+            // Update active button
+            filterButtons.forEach(btn => {
+                btn.classList.remove('active');
+                btn.classList.add('btn-outline-primary');
+            });
+            this.classList.add('active');
+            this.classList.remove('btn-outline-primary');
+            
+            // Show selected course list
+            Object.keys(courseLists).forEach(key => {
+                if (key === filter) {
+                    courseLists[key].classList.remove('d-none');
+                } else {
+                    courseLists[key].classList.add('d-none');
+                }
+            });
+            
+            // Save filter preference
+            localStorage.setItem('courseFilter', filter);
+        });
+    });
+
+    // Restore filter preference
+    const savedFilter = localStorage.getItem('courseFilter') || 'enrolled';
+    const savedButton = document.querySelector(`[data-filter="${savedFilter}"]`);
+    if (savedButton) {
+        savedButton.click();
+    }
+
+    // ====================
     // MOBILE TOUCH ENHANCEMENTS
     // ====================
     function enhanceMobileTouch() {
         if (window.innerWidth <= 768) {
-            // Add touch feedback to all interactive elements
-            document.querySelectorAll('.mobile-tap-target').forEach(el => {
+            // Add touch feedback to interactive elements
+            document.querySelectorAll('.mobile-tap-target, .action-card, .course-card').forEach(el => {
                 el.addEventListener('touchstart', function() {
                     this.style.opacity = '0.7';
-                    this.style.transform = 'scale(0.98)';
                 });
                 
                 el.addEventListener('touchend', function() {
                     this.style.opacity = '';
-                    this.style.transform = '';
                 });
             });
             
-            // Make sure all buttons are touch-friendly
-            document.querySelectorAll('.btn').forEach(btn => {
+            // Make filter buttons more touch-friendly
+            filterButtons.forEach(btn => {
                 btn.style.minHeight = '44px';
-                btn.style.display = 'flex';
-                btn.style.alignItems = 'center';
-                btn.style.justifyContent = 'center';
+                btn.style.padding = '10px 12px';
             });
         }
     }
-    
+
     // ====================
-    // ADJUST STAT CARD LAYOUT FOR MOBILE
+    // STAT CARD ANIMATIONS
     // ====================
-    function adjustStatCards() {
-        if (window.innerWidth <= 576) {
-            // Make stat icons smaller on very small screens
-            document.querySelectorAll('.stat-icon').forEach(icon => {
-                icon.style.width = '32px';
-                icon.style.height = '32px';
-                icon.style.fontSize = '14px';
-            });
+    function animateStatCards() {
+        const statCards = document.querySelectorAll('.stat-card');
+        statCards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
             
-            // Adjust stat text sizes
-            document.querySelectorAll('.stat-content h3').forEach(h3 => {
-                h3.style.fontSize = '1.1rem';
-            });
-        }
-    }
-    
-    // ====================
-    // MANAGE SCROLLING LISTS
-    // ====================
-    function manageScrollableLists() {
-        const lists = document.querySelectorAll('.courses-list, .assignments-list, .grades-list');
-        
-        lists.forEach(list => {
-            if (list.scrollHeight > list.clientHeight) {
-                // Add scroll indicator for mobile
-                if (window.innerWidth <= 768) {
-                    list.style.borderBottom = '2px solid #e9ecef';
-                    list.style.position = 'relative';
-                    
-                    // Add fade effect at bottom
-                    const fade = document.createElement('div');
-                    fade.className = 'scroll-fade';
-                    fade.style.cssText = `
-                        position: absolute;
-                        bottom: 0;
-                        left: 0;
-                        right: 0;
-                        height: 20px;
-                        background: linear-gradient(to bottom, transparent, white);
-                        pointer-events: none;
-                    `;
-                    list.appendChild(fade);
-                }
-            }
+            setTimeout(() => {
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 100);
         });
     }
-    
+
     // ====================
-    // FLOATING ACTION BUTTON BEHAVIOR
+    // PROGRESS BAR UPDATES
+    // ====================
+    function updateProgressBars() {
+        const progressBars = document.querySelectorAll('.progress-bar');
+        progressBars.forEach(bar => {
+            const width = bar.style.width;
+            bar.style.width = '0%';
+            
+            setTimeout(() => {
+                bar.style.transition = 'width 1s ease-in-out';
+                bar.style.width = width;
+            }, 300);
+        });
+    }
+
+    // ====================
+    // FLOATING ACTION BUTTON
     // ====================
     function setupFloatingButton() {
         const fab = document.querySelector('.btn-fab');
         if (fab && window.innerWidth <= 768) {
-            // Hide FAB when scrolling down
             let lastScrollTop = 0;
             window.addEventListener('scroll', function() {
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                 
                 if (scrollTop > lastScrollTop && scrollTop > 100) {
-                    // Scrolling down
-                    fab.style.transform = 'translateY(100px)';
+                    fab.style.transform = 'translateY(100px) scale(0.8)';
                     fab.style.opacity = '0';
                 } else {
-                    // Scrolling up
-                    fab.style.transform = 'translateY(0)';
+                    fab.style.transform = 'translateY(0) scale(1)';
                     fab.style.opacity = '1';
                 }
                 lastScrollTop = scrollTop;
             });
         }
     }
-    
+
+    // ====================
+    // RESPONSIVE ADJUSTMENTS
+    // ====================
+    function adjustForScreenSize() {
+        if (window.innerWidth <= 576) {
+            // Stack filter buttons on very small screens
+            const btnGroup = document.querySelector('.btn-group');
+            if (btnGroup) {
+                btnGroup.classList.add('flex-column');
+                btnGroup.classList.remove('btn-group');
+            }
+        }
+    }
+
     // ====================
     // PREVENT DOUBLE-TAP ZOOM
     // ====================
@@ -882,41 +1582,45 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         lastTouchEnd = now;
     }, false);
-    
+
     // ====================
-    // INITIALIZE ALL FUNCTIONS
+    // INITIALIZE
     // ====================
     enhanceMobileTouch();
-    adjustStatCards();
-    manageScrollableLists();
+    animateStatCards();
+    updateProgressBars();
     setupFloatingButton();
-    
+    adjustForScreenSize();
+
     // ====================
     // WINDOW RESIZE HANDLER
     // ====================
     window.addEventListener('resize', function() {
         enhanceMobileTouch();
-        adjustStatCards();
-        manageScrollableLists();
+        adjustForScreenSize();
+        setupFloatingButton();
     });
-    
+
     // ====================
-    // LOADING INDICATOR FOR LINKS
+    // LAZY LOAD ANIMATIONS
     // ====================
-    document.querySelectorAll('a[href]').forEach(link => {
-        link.addEventListener('click', function(e) {
-            if (window.innerWidth <= 768) {
-                // Add loading feedback on mobile
-                this.style.opacity = '0.5';
-                this.style.pointerEvents = 'none';
-                
-                // Restore after 1 second if still on page
-                setTimeout(() => {
-                    this.style.opacity = '';
-                    this.style.pointerEvents = '';
-                }, 1000);
+    const observerOptions = {
+        root: null,
+        rootMargin: '50px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
             }
         });
+    }, observerOptions);
+
+    // Observe course and assignment cards
+    document.querySelectorAll('.course-card, .assignment-card, .grade-card').forEach(card => {
+        observer.observe(card);
     });
 });
 </script>

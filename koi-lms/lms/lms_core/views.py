@@ -97,7 +97,6 @@ def update_profile(request):
 
 
 
-
 @login_required
 def dashboard(request):
     """Main dashboard view"""
@@ -107,25 +106,39 @@ def dashboard(request):
         messages.warning(request, 'Student profile not found. Please contact administration.')
         return redirect('login')
     
-    # Get enrolled courses
+    # Get all enrollments with different statuses
     enrollments = Enrollment.objects.filter(
-        student=student,
-        status='Enrolled'
-    ).select_related('course')
+        student=student
+    ).select_related('course').order_by('-enrollment_date')
     
-    # Get upcoming assignments
+    # Get enrolled courses (active)
+    enrolled_courses = enrollments.filter(status='Enrolled')
+    
+    # Get completed courses
+    completed_courses = enrollments.filter(status='Completed')
+    
+    # Get failed courses
+    failed_courses = enrollments.filter(status='Failed')
+    
+    # Get withdrawn courses
+    withdrawn_courses = enrollments.filter(status='Withdrawn')
+    
+    # Get all active courses for assignments
+    active_courses = enrollments.filter(status='Enrolled')
+    
+    # Get upcoming assignments from active courses
     upcoming_assignments = []
-    for enrollment in enrollments:
+    for enrollment in active_courses:
         assignments = Assignment.objects.filter(
             course=enrollment.course,
             due_date__gte=timezone.now()
         ).order_by('due_date')[:3]
         upcoming_assignments.extend(assignments)
     
-    # Sort by due date
+    # Sort by due date and limit
     upcoming_assignments = sorted(upcoming_assignments, key=lambda x: x.due_date)[:5]
     
-    # Get recent grades
+    # Get recent grades from all courses
     recent_grades = Grade.objects.filter(
         student=student
     ).select_related('course').order_by('-graded_date')[:5]
@@ -134,13 +147,54 @@ def dashboard(request):
     all_grades = Grade.objects.filter(student=student)
     avg_grade = all_grades.aggregate(Avg('percentage'))['percentage__avg'] or 0
     
+    # Calculate GPA (example calculation)
+    total_credits = 0
+    weighted_points = 0
+    
+    for enrollment in completed_courses:
+        # Get the latest grade for this course
+        latest_grade = Grade.objects.filter(
+            student=student,
+            course=enrollment.course
+        ).order_by('-graded_date').first()
+        
+        if latest_grade and latest_grade.percentage is not None:
+            # Convert percentage to GPA points
+            if latest_grade.percentage >= 85:
+                points = 4.0  # HD
+            elif latest_grade.percentage >= 75:
+                points = 3.5  # D
+            elif latest_grade.percentage >= 65:
+                points = 3.0  # C
+            elif latest_grade.percentage >= 50:
+                points = 2.0  # P
+            else:
+                points = 0.0  # F
+            
+            # Assume each course has 3 credits (adjust based on your model)
+            credits = 3
+            weighted_points += points * credits
+            total_credits += credits
+    
+    gpa = weighted_points / total_credits if total_credits > 0 else 0.0
+    
     context = {
         'student': student,
         'enrollments': enrollments,
+        'enrolled_courses': enrolled_courses,
+        'completed_courses': completed_courses,
+        'failed_courses': failed_courses,
+        'withdrawn_courses': withdrawn_courses,
+        'active_courses': active_courses,
         'upcoming_assignments': upcoming_assignments,
         'recent_grades': recent_grades,
         'avg_grade': round(avg_grade, 2),
+        'gpa': round(gpa, 2),
         'total_courses': enrollments.count(),
+        'enrolled_count': enrolled_courses.count(),
+        'completed_count': completed_courses.count(),
+        'failed_count': failed_courses.count(),
+        'withdrawn_count': withdrawn_courses.count(),
     }
     
     return render(request, 'lms_core/dashboard.html', context)
