@@ -2,86 +2,589 @@
 
 {% block title %}Delete Course{% endblock %}
 
+{% block breadcrumbs %}
+<li class="breadcrumb-item"><a href="{% url 'course_list' %}">Courses</a></li>
+<li class="breadcrumb-item active">Delete</li>
+{% endblock %}
+
 {% block content %}
 <div class="page-header">
-    <h1><i class="fas fa-trash-alt text-danger"></i> Delete Course</h1>
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="{% url 'course_list' %}">Courses</a></li>
-            <li class="breadcrumb-item active">Delete</li>
-        </ol>
-    </nav>
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4">
+        <div class="mb-3 mb-md-0">
+            <h1 class="mb-2">
+                <i class="fas fa-trash-alt text-danger me-2"></i>
+                Delete Course
+            </h1>
+            <nav aria-label="breadcrumb" class="d-none d-md-block">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'course_list' %}">Courses</a></li>
+                    <li class="breadcrumb-item active">Delete</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="d-flex gap-2">
+            <a href="{% url 'course_detail' course.pk %}" class="btn btn-outline-secondary btn-custom">
+                <i class="fas fa-arrow-left me-1"></i>
+                <span class="d-none d-sm-inline">Cancel</span>
+                <span class="d-inline d-sm-none">Back</span>
+            </a>
+        </div>
+    </div>
 </div>
 
-<div class="row">
-    <div class="col-md-8">
-        <div class="data-table p-4">
-            <div class="alert alert-danger d-flex align-items-center" role="alert">
-                <i class="fas fa-exclamation-triangle fa-2x me-3"></i>
-                <div>
-                    <h5 class="mb-1">Warning: This action cannot be undone!</h5>
-                    <p class="mb-0">You are about to delete this course and all associated records.</p>
+<div class="row g-4">
+    <!-- Main Content -->
+    <div class="col-lg-8 col-md-7">
+        <!-- Warning Alert -->
+        <div class="data-table mb-4">
+            <div class="alert alert-danger d-flex align-items-start p-3" role="alert">
+                <i class="fas fa-exclamation-triangle fa-lg me-3 mt-1"></i>
+                <div class="flex-grow-1">
+                    <h5 class="alert-heading mb-1">Warning: This action cannot be undone!</h5>
+                    <p class="mb-0">You are about to permanently delete "<strong>{{ course.course_code }}: {{ course.course_name }}</strong>" and all associated records.</p>
                 </div>
             </div>
-            
-            <h5 class="mt-4 mb-3">Course Details</h5>
-            <table class="table table-bordered">
-                <tr>
-                    <th width="30%">Course Code</th>
-                    <td><strong>{{ course.course_code }}</strong></td>
-                </tr>
-                <tr>
-                    <th>Course Name</th>
-                    <td>{{ course.course_name }}</td>
-                </tr>
-                <tr>
-                    <th>Instructor</th>
-                    <td>{{ course.instructor }}</td>
-                </tr>
-                <tr>
-                    <th>Department</th>
-                    <td>{{ course.department }}</td>
-                </tr>
-                <tr>
-                    <th>Enrolled Students</th>
-                    <td><span class="badge bg-warning">{{ course.enrolled_count }}</span></td>
-                </tr>
-            </table>
-            
-            <div class="alert alert-warning mt-4">
-                <h6><i class="fas fa-info-circle"></i> The following related records will also be deleted:</h6>
-                <ul class="mb-0">
-                    <li>All enrollments ({{ course.enrolled_count }} students)</li>
-                    <li>All assignments and submissions</li>
-                    <li>All quizzes and results</li>
-                    <li>All grades for this course</li>
-                    <li>All forum discussions</li>
-                </ul>
+        </div>
+
+        <!-- Course Details -->
+        <div class="data-table mb-4">
+            <div class="p-3 border-bottom">
+                <h5 class="mb-0">
+                    <i class="fas fa-info-circle me-2"></i>
+                    Course Details
+                </h5>
             </div>
-            
-            <form method="post" class="mt-4">
-                {% csrf_token %}
-                <div class="d-flex gap-2">
-                    <button type="submit" class="btn btn-danger btn-custom">
-                        <i class="fas fa-trash-alt"></i> Yes, Delete Course
-                    </button>
-                    <a href="{% url 'course_detail' course.pk %}" class="btn btn-secondary btn-custom">
-                        <i class="fas fa-arrow-left"></i> No, Go Back
-                    </a>
+            <div class="p-3">
+                <div class="table-responsive">
+                    <table class="table table-bordered mb-0">
+                        <tbody>
+                            <tr>
+                                <th scope="row" class="w-40">Course Code</th>
+                                <td><strong class="text-primary">{{ course.course_code }}</strong></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Course Name</th>
+                                <td>{{ course.course_name }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Instructor</th>
+                                <td>{{ course.instructor }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Department</th>
+                                <td>{{ course.department }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Term</th>
+                                <td>{{ course.term }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Enrolled Students</th>
+                                <td>
+                                    <span class="badge bg-warning">{{ course.enrolled_count }}</span>
+                                    <span class="text-muted ms-2">students</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-            </form>
+            </div>
+        </div>
+
+        <!-- Impact Warning -->
+        <div class="data-table mb-4">
+            <div class="p-3 border-bottom">
+                <h5 class="mb-0">
+                    <i class="fas fa-exclamation-triangle text-warning me-2"></i>
+                    Impact Summary
+                </h5>
+            </div>
+            <div class="p-3">
+                <div class="alert alert-warning mb-0">
+                    <h6 class="alert-heading mb-3">
+                        <i class="fas fa-info-circle me-2"></i>
+                        The following related records will also be permanently deleted:
+                    </h6>
+                    <div class="row g-2">
+                        <div class="col-12 col-sm-6">
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="icon-sm bg-warning bg-opacity-10 text-warning rounded-circle me-3">
+                                    <i class="fas fa-user-graduate"></i>
+                                </div>
+                                <div>
+                                    <div class="fw-medium">Student Enrollments</div>
+                                    <small class="text-muted">{{ course.enrolled_count }} students affected</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="icon-sm bg-warning bg-opacity-10 text-warning rounded-circle me-3">
+                                    <i class="fas fa-tasks"></i>
+                                </div>
+                                <div>
+                                    <div class="fw-medium">Assignments</div>
+                                    <small class="text-muted">All assignments & submissions</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="icon-sm bg-warning bg-opacity-10 text-warning rounded-circle me-3">
+                                    <i class="fas fa-question-circle"></i>
+                                </div>
+                                <div>
+                                    <div class="fw-medium">Quizzes</div>
+                                    <small class="text-muted">All quizzes & results</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="icon-sm bg-warning bg-opacity-10 text-warning rounded-circle me-3">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div>
+                                    <div class="fw-medium">Grades</div>
+                                    <small class="text-muted">All student grades</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="icon-sm bg-warning bg-opacity-10 text-warning rounded-circle me-3">
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                                <div>
+                                    <div class="fw-medium">Discussion Forums</div>
+                                    <small class="text-muted">All forum discussions and posts</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delete Confirmation -->
+        <div class="data-table">
+            <div class="p-3 border-bottom">
+                <h5 class="mb-0">
+                    <i class="fas fa-shield-alt text-danger me-2"></i>
+                    Confirm Deletion
+                </h5>
+            </div>
+            <div class="p-3">
+                <form method="post" id="deleteForm">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="confirmationText" class="form-label small text-muted">
+                            Type "<strong>{{ course.course_code }}</strong>" to confirm deletion:
+                        </label>
+                        <input type="text" class="form-control" id="confirmationText" 
+                               placeholder="Enter course code to confirm" 
+                               required pattern="{{ course.course_code }}"
+                               oninput="validateConfirmation()">
+                        <div class="invalid-feedback" id="confirmationError">
+                            Please enter the exact course code shown above.
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid gap-2 d-md-flex">
+                        <button type="submit" class="btn btn-danger btn-custom flex-fill" id="deleteBtn" disabled>
+                            <i class="fas fa-trash-alt me-2"></i>
+                            <span class="d-none d-sm-inline">Yes, Permanently Delete Course</span>
+                            <span class="d-inline d-sm-none">Delete Course</span>
+                        </button>
+                        <a href="{% url 'course_detail' course.pk %}" class="btn btn-outline-secondary flex-fill">
+                            <i class="fas fa-times me-2"></i>
+                            Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-    
-    <div class="col-md-4">
-        <div class="stat-card danger">
-            <div class="icon">
-                <i class="fas fa-exclamation-circle"></i>
+
+    <!-- Sidebar - Stats & Warning -->
+    <div class="col-lg-4 col-md-5">
+        <div class="sticky-top" style="top: 20px;">
+            <!-- High Impact Warning -->
+            <div class="data-table mb-4">
+                <div class="p-4 text-center">
+                    <div class="avatar-xxl mx-auto mb-3">
+                        <div class="avatar-title bg-danger bg-opacity-10 text-danger rounded-circle">
+                            <i class="fas fa-exclamation-triangle fa-2x"></i>
+                        </div>
+                    </div>
+                    <h4 class="text-danger mb-3">High Impact Action</h4>
+                    <div class="alert alert-danger mb-3">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-user-graduate fa-lg me-3"></i>
+                            <div>
+                                <h6 class="mb-0">{{ course.enrolled_count }}</h6>
+                                <small class="text-muted">Students Affected</small>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-muted small mb-0">
+                        <i class="fas fa-info-circle me-1"></i>
+                        This deletion will permanently remove all course data and cannot be recovered.
+                    </p>
+                </div>
             </div>
-            <h6>High Impact Deletion</h6>
-            <p class="small text-muted">This will affect {{ course.enrolled_count }} enrolled students and all course materials.</p>
+
+            <!-- Alternative Actions -->
+            <div class="data-table">
+                <div class="p-3 border-bottom">
+                    <h6 class="mb-0">
+                        <i class="fas fa-lightbulb me-2"></i>
+                        Alternative Actions
+                    </h6>
+                </div>
+                <div class="p-3">
+                    <div class="mb-3">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="icon-sm bg-info bg-opacity-10 text-info rounded-circle me-3">
+                                <i class="fas fa-archive"></i>
+                            </div>
+                            <div>
+                                <div class="fw-medium">Archive Course</div>
+                                <small class="text-muted">Hide from active lists without deleting data</small>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-sm btn-outline-info w-100">
+                            <i class="fas fa-archive me-1"></i> Archive Instead
+                        </a>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="icon-sm bg-warning bg-opacity-10 text-warning rounded-circle me-3">
+                                <i class="fas fa-ban"></i>
+                            </div>
+                            <div>
+                                <div class="fw-medium">Disable Enrollments</div>
+                                <small class="text-muted">Keep course but prevent new enrollments</small>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-sm btn-outline-warning w-100">
+                            <i class="fas fa-ban me-1"></i> Disable Instead
+                        </a>
+                    </div>
+                    
+                    <div class="mb-0">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="icon-sm bg-success bg-opacity-10 text-success rounded-circle me-3">
+                                <i class="fas fa-edit"></i>
+                            </div>
+                            <div>
+                                <div class="fw-medium">Edit Course</div>
+                                <small class="text-muted">Modify course details instead of deleting</small>
+                            </div>
+                        </div>
+                        <a href="{% url 'course_edit' course.pk %}" class="btn btn-sm btn-outline-success w-100">
+                            <i class="fas fa-edit me-1"></i> Edit Instead
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<!-- Mobile Confirmation Modal -->
+<div class="modal fade" id="mobileConfirmationModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+                <div class="modal-title d-flex align-items-center">
+                    <div class="avatar-lg me-3">
+                        <div class="avatar-title bg-danger bg-opacity-10 text-danger rounded-circle">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h5 class="mb-0">Final Confirmation</h5>
+                        <small class="text-muted">This is your last chance to cancel</small>
+                    </div>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-circle me-2"></i>
+                    Are you absolutely sure you want to delete 
+                    <strong>{{ course.course_code }}</strong>?
+                </div>
+                <p class="text-muted small">
+                    This action will affect <strong>{{ course.enrolled_count }} students</strong> 
+                    and cannot be undone.
+                </p>
+            </div>
+            <div class="modal-footer border-top-0">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Cancel
+                </button>
+                <button type="button" class="btn btn-danger" onclick="confirmDeletion()">
+                    Yes, Delete Permanently
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Custom styles for delete page */
+    .avatar-xxl {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .avatar-lg {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .avatar-title {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+    }
+    
+    .icon-sm {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+    }
+    
+    .w-40 {
+        width: 40% !important;
+    }
+    
+    .sticky-top {
+        position: sticky;
+        z-index: 1020;
+    }
+    
+    .table th {
+        font-weight: 600;
+        background-color: #f8f9fa;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .page-header h1 {
+            font-size: 24px;
+        }
+        
+        .data-table {
+            margin: 0 -12px;
+            border-radius: 0;
+            box-shadow: none;
+            border: 1px solid #dee2e6;
+        }
+        
+        .modal-dialog {
+            margin: 10px;
+        }
+        
+        .table th.w-40 {
+            width: 35% !important;
+        }
+        
+        .alert {
+            padding: 12px 15px;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .page-header h1 {
+            font-size: 22px;
+        }
+        
+        .avatar-xxl {
+            width: 60px;
+            height: 60px;
+        }
+        
+        .avatar-lg {
+            width: 40px;
+            height: 40px;
+        }
+        
+        .table-bordered th,
+        .table-bordered td {
+            padding: 8px;
+            font-size: 14px;
+        }
+        
+        .icon-sm {
+            width: 32px;
+            height: 32px;
+            font-size: 14px;
+        }
+        
+        .btn-custom {
+            padding: 10px 15px;
+        }
+        
+        .modal-title h5 {
+            font-size: 18px;
+        }
+    }
+    
+    @media (min-width: 992px) {
+        .sticky-top {
+            top: 90px;
+        }
+    }
+    
+    /* Form validation styles */
+    #confirmationText:invalid {
+        border-color: #dc3545;
+    }
+    
+    #confirmationText:valid {
+        border-color: #198754;
+    }
+    
+    /* Print styles */
+    @media print {
+        .sidebar,
+        .top-navbar,
+        .btn-custom,
+        .modal,
+        .sticky-top .data-table:last-child {
+            display: none !important;
+        }
+        
+        .main-content {
+            margin-left: 0 !important;
+        }
+        
+        .data-table {
+            box-shadow: none;
+            border: 1px solid #ddd;
+            page-break-inside: avoid;
+        }
+        
+        body {
+            background: white;
+            font-size: 12px;
+        }
+        
+        .page-header {
+            padding: 15px 0;
+            margin-bottom: 20px;
+        }
+        
+        form {
+            display: none;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Form validation
+        const confirmationInput = document.getElementById('confirmationText');
+        const deleteBtn = document.getElementById('deleteBtn');
+        const deleteForm = document.getElementById('deleteForm');
+        
+        function validateConfirmation() {
+            const isValid = confirmationInput.value === "{{ course.course_code }}";
+            deleteBtn.disabled = !isValid;
+            
+            if (confirmationInput.value && !isValid) {
+                confirmationInput.classList.add('is-invalid');
+            } else {
+                confirmationInput.classList.remove('is-invalid');
+            }
+        }
+        
+        confirmationInput.addEventListener('input', validateConfirmation);
+        
+        // Mobile confirmation modal
+        function setupMobileConfirmation() {
+            if (window.innerWidth < 768) {
+                deleteForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const modal = new bootstrap.Modal(document.getElementById('mobileConfirmationModal'));
+                    modal.show();
+                });
+            } else {
+                deleteForm.addEventListener('submit', function(e) {
+                    if (!deleteBtn.disabled) {
+                        // Desktop: Show browser confirmation
+                        const confirmed = confirm(
+                            `Are you sure you want to permanently delete "${course.course_code}: ${course.course_name}"?\n\n` +
+                            `This will affect ${course.enrolled_count} students and cannot be undone.`
+                        );
+                        
+                        if (!confirmed) {
+                            e.preventDefault();
+                        }
+                    } else {
+                        e.preventDefault();
+                    }
+                });
+            }
+        }
+        
+        window.confirmDeletion = function() {
+            // Close modal and submit form
+            const modal = bootstrap.Modal.getInstance(document.getElementById('mobileConfirmationModal'));
+            modal.hide();
+            deleteForm.submit();
+        };
+        
+        setupMobileConfirmation();
+        
+        // Adjust layout on resize
+        window.addEventListener('resize', setupMobileConfirmation);
+        
+        // Disable form submission on enter key
+        confirmationInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+            }
+        });
+        
+        // Focus management for better UX
+        confirmationInput.focus();
+        
+        // Add visual feedback for destructive action
+        deleteBtn.addEventListener('mouseover', function() {
+            if (!this.disabled) {
+                this.classList.add('shadow');
+            }
+        });
+        
+        deleteBtn.addEventListener('mouseout', function() {
+            this.classList.remove('shadow');
+        });
+        
+        // Touch feedback for mobile
+        if ('ontouchstart' in window) {
+            const touchButtons = document.querySelectorAll('.btn');
+            touchButtons.forEach(btn => {
+                btn.addEventListener('touchstart', function() {
+                    this.classList.add('active');
+                });
+                
+                btn.addEventListener('touchend', function() {
+                    this.classList.remove('active');
+                });
+            });
+        }
+    });
+</script>
 {% endblock %}
