@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('lms_core.urls')),
-    path('teacher/', include('adminapp.urls')),  # <- Add this
+    path('adminapp/', include('adminapp.urls')),  # <- Add this
 
 ]
 

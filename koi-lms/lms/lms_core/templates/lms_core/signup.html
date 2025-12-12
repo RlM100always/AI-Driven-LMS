@@ -4,26 +4,281 @@
 
 {% block content %}
 <div class="row justify-content-center">
-    <div class="col-md-8 col-lg-6">
-        <div class="card shadow">
-            <div class="card-body p-5">
-                <h2 class="text-center mb-4">
-                    <i class="fas fa-user-plus text-primary"></i>
-                    Create Account
-                </h2>
-                <form method="post">
+    <div class="col-md-6 col-lg-4">
+        <div class="card shadow-lg border-0">
+            <div class="card-header bg-primary text-white text-center py-4">
+                <i class="fas fa-user-plus fa-2x mb-3"></i>
+                <h3 class="mb-0">Create Account</h3>
+            </div>
+            <div class="card-body p-4 p-md-5">
+                
+                {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="fas fa-exclamation-circle me-2"></i>
+                    <strong>Error!</strong> Please check the form below for errors.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endif %}
+                
+                <form method="post" novalidate class="needs-validation">
                     {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit" class="btn btn-primary w-100">
-                        <i class="fas fa-user-plus"></i> Sign Up
-                    </button>
+                    
+                    <!-- Username Field -->
+                    <div class="mb-3">
+                        <label for="id_username" class="form-label fw-semibold">
+                           Username
+                        </label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            <input type="text" 
+                                   class="form-control {% if form.username.errors %}is-invalid{% endif %}" 
+                                   id="id_username" 
+                                   name="username"
+                                   value="{{ form.username.value|default:'' }}"
+                                   required
+                                   placeholder="Enter username">
+                            {% if form.username.errors %}
+                            <div class="invalid-feedback">
+                                {{ form.username.errors|join:", " }}
+                            </div>
+                            {% endif %}
+                        </div>
+                        <small class="form-text text-muted">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small>
+                    </div>
+                    
+                    <!-- Email Field -->
+                    <div class="mb-3">
+                        <label for="id_email" class="form-label fw-semibold">
+                           Email Address
+                        </label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                            <input type="email" 
+                                   class="form-control {% if form.email.errors %}is-invalid{% endif %}" 
+                                   id="id_email" 
+                                   name="email"
+                                   value="{{ form.email.value|default:'' }}"
+                                   required
+                                   placeholder="Enter email">
+                            {% if form.email.errors %}
+                            <div class="invalid-feedback">
+                                {{ form.email.errors|join:", " }}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <!-- Password Field -->
+                    <div class="mb-3">
+                        <label for="id_password1" class="form-label fw-semibold">
+                           Password
+                        </label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                            <input type="password" 
+                                   class="form-control {% if form.password1.errors %}is-invalid{% endif %}" 
+                                   id="id_password1" 
+                                   name="password1"
+                                   required
+                                   placeholder="Enter password">
+                            <button class="btn btn-outline-secondary" type="button" id="togglePassword1">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            {% if form.password1.errors %}
+                            <div class="invalid-feedback">
+                                {{ form.password1.errors|join:", " }}
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="mt-2" id="password-strength"></div>
+                    </div>
+                    
+                    <!-- Password Confirmation -->
+                    <div class="mb-4">
+                        <label for="id_password2" class="form-label fw-semibold">
+                            Confirm Password
+                        </label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                            <input type="password" 
+                                   class="form-control {% if form.password2.errors %}is-invalid{% endif %}" 
+                                   id="id_password2" 
+                                   name="password2"
+                                   required
+                                   placeholder="Confirm password">
+                            <button class="btn btn-outline-secondary" type="button" id="togglePassword2">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            {% if form.password2.errors %}
+                            <div class="invalid-feedback">
+                                {{ form.password2.errors|join:", " }}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <!-- Terms & Conditions -->
+                    <div class="mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="terms" required>
+                            <label class="form-check-label" for="terms">
+                                I agree to the <a href="#" class="text-primary fw-semibold">Terms & Conditions</a> and <a href="#" class="text-primary fw-semibold">Privacy Policy</a>
+                            </label>
+                            <div class="invalid-feedback">
+                                You must agree before submitting.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <div class="d-grid gap-2 mb-3">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-user-plus me-2"></i>Create Account
+                        </button>
+                    </div>
+                    
+                    <!-- Divider -->
+                    <div class="text-center my-4">
+                        <span class="text-muted">or sign up with</span>
+                    </div>
+                    
+                   
                 </form>
-                <hr>
-                <p class="text-center mb-0">
-                    Already have an account? <a href="{% url 'login' %}">Login</a>
-                </p>
+                
+                <!-- Login Link -->
+                <div class="text-center pt-3 border-top">
+                    <p class="text-muted mb-0">
+                        Already have an account? 
+                        <a href="{% url 'login' %}" class="text-primary fw-semibold text-decoration-none">
+                            <i class="fas fa-sign-in-alt me-1"></i>Login here
+                        </a>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    // Toggle password visibility
+    document.getElementById('togglePassword1').addEventListener('click', function() {
+        const password = document.getElementById('id_password1');
+        const icon = this.querySelector('i');
+        if (password.type === 'password') {
+            password.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            password.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    });
+    
+    document.getElementById('togglePassword2').addEventListener('click', function() {
+        const password = document.getElementById('id_password2');
+        const icon = this.querySelector('i');
+        if (password.type === 'password') {
+            password.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            password.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    });
+    
+    // Password strength indicator
+    document.getElementById('id_password1').addEventListener('input', function() {
+        const password = this.value;
+        const strengthBar = document.getElementById('password-strength');
+        let strength = 0;
+        
+        if (password.length >= 8) strength++;
+        if (/[A-Z]/.test(password)) strength++;
+        if (/[a-z]/.test(password)) strength++;
+        if (/[0-9]/.test(password)) strength++;
+        if (/[^A-Za-z0-9]/.test(password)) strength++;
+        
+        const colors = ['danger', 'warning', 'info', 'success', 'success'];
+        const texts = ['Very Weak', 'Weak', 'Fair', 'Good', 'Strong'];
+        
+        strengthBar.innerHTML = `
+            <div class="progress" style="height: 5px;">
+                <div class="progress-bar bg-${colors[strength]}" role="progressbar" style="width: ${strength * 20}%"></div>
+            </div>
+            <small class="text-${colors[strength]} mt-1 d-block">
+                <i class="fas fa-shield-alt"></i> Password Strength: ${texts[strength]}
+            </small>
+        `;
+    });
+    
+    // Form validation
+    (function() {
+        'use strict'
+        const forms = document.querySelectorAll('.needs-validation')
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+</script>
+
+<style>
+    .card {
+        border-radius: 15px;
+        overflow: hidden;
+    }
+    
+    .card-header {
+        border-radius: 15px 15px 0 0;
+    }
+    
+    .input-group-text {
+        background-color: #f8f9fa;
+        border-right: none;
+    }
+    
+    .form-control {
+        border-left: none;
+        padding-left: 0;
+    }
+    
+    .form-control:focus {
+        border-color: #dee2e6;
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.1);
+    }
+    
+    .form-control:focus + .input-group-text {
+        border-color: #86b7fe;
+    }
+    
+    .btn-outline-secondary:hover {
+        background-color: #f8f9fa;
+        border-color: #dee2e6;
+    }
+    
+    .btn-primary {
+        background: #2f32f8;
+        border: none;
+        padding: 0.75rem;
+        font-weight: 600;
+    }
+    
+    
+    
+    .btn-lg {
+        border-radius: 10px;
+    }
+    
+    .shadow-lg {
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1) !important;
+    }
+</style>
 {% endblock %}
