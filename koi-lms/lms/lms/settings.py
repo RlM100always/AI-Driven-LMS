@@ -25,7 +25,11 @@ SECRET_KEY = 'django-insecure-qs#$9#)xknl4qhme^)t#k+e4^5^)w+0d#3df5_42)6k$s(&ir8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'ai-driven-lms.onrender.com',
+    'localhost',
+    '127.0.0.1',
+]
 
 APPEND_SLASH = True
 
