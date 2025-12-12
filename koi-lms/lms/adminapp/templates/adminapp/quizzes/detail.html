@@ -2,157 +2,1048 @@
 
 {% block title %}Quiz Details{% endblock %}
 
+{% block breadcrumbs %}
+<li class="breadcrumb-item"><a href="{% url 'quiz_list' %}">Quizzes</a></li>
+<li class="breadcrumb-item active">{{ quiz.quiz_id }}</li>
+{% endblock %}
+
 {% block content %}
-<div class="page-header d-flex justify-content-between align-items-center">
-    <div>
-        <h1><i class="fas fa-question-circle"></i> Quiz Details</h1>
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'quiz_list' %}">Quizzes</a></li>
-                <li class="breadcrumb-item active">{{ quiz.quiz_id }}</li>
-            </ol>
-        </nav>
-    </div>
-    <div>
-        <a href="{% url 'quiz_edit' quiz.pk %}" class="btn btn-warning btn-custom">
-            <i class="fas fa-edit"></i> Edit
-        </a>
-        <a href="{% url 'quiz_delete' quiz.pk %}" class="btn btn-danger btn-custom">
-            <i class="fas fa-trash"></i> Delete
-        </a>
+<div class="page-header">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4">
+        <div class="mb-3 mb-md-0">
+            <div class="d-flex align-items-center mb-2">
+                <div class="avatar-lg me-3 d-none d-md-flex">
+                    <div class="avatar-title bg-warning bg-opacity-10 text-warning rounded-circle">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                </div>
+                <div>
+                    <h1 class="mb-0">
+                        <i class="fas fa-question-circle me-2 d-md-none"></i>
+                        {{ quiz.title }}
+                    </h1>
+                    <div class="d-flex flex-wrap align-items-center gap-2 mt-2">
+                        <span class="badge bg-secondary">{{ quiz.quiz_id }}</span>
+                        <span class="badge bg-primary">{{ quiz.course.course_code }}</span>
+                        <span class="status-badge status-{% if quiz.is_active %}active{% else %}inactive{% endif %}">
+                            <i class="fas fa-circle me-1" style="font-size: 8px;"></i>
+                            {% if quiz.is_active %}Active{% else %}Inactive{% endif %}
+                        </span>
+                        <span class="badge bg-info">{{ quiz.quiz_type }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+            <a href="{% url 'quiz_edit' quiz.pk %}" class="btn btn-warning btn-custom">
+                <i class="fas fa-edit me-1"></i>
+                <span class="d-none d-sm-inline">Edit</span>
+            </a>
+            <a href="{% url 'quiz_delete' quiz.pk %}" class="btn btn-danger btn-custom">
+                <i class="fas fa-trash me-1"></i>
+                <span class="d-none d-sm-inline">Delete</span>
+            </a>
+            <button class="btn btn-outline-secondary d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#quizSidebar">
+                <i class="fas fa-chart-bar"></i>
+            </button>
+        </div>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-8">
-        <div class="data-table p-4 mb-4">
-            <h5 class="mb-4"><i class="fas fa-info-circle text-primary"></i> Quiz Information</h5>
-            <table class="table table-bordered">
-                <tr>
-                    <th width="30%">Quiz ID</th>
-                    <td><strong>{{ quiz.quiz_id }}</strong></td>
-                </tr>
-                <tr>
-                    <th>Title</th>
-                    <td>{{ quiz.title }}</td>
-                </tr>
-                <tr>
-                    <th>Course</th>
-                    <td>
-                        <span class="badge bg-primary">{{ quiz.course.course_code }}</span>
-                        {{ quiz.course.course_name }}
-                    </td>
-                </tr>
-                <tr>
-                    <th>Type</th>
-                    <td>{{ quiz.quiz_type }}</td>
-                </tr>
-                <tr>
-                    <th>Max Marks</th>
-                    <td><strong>{{ quiz.max_marks }}</strong></td>
-                </tr>
-                <tr>
-                    <th>Duration</th>
-                    <td>{{ quiz.duration_minutes }} minutes</td>
-                </tr>
-                <tr>
-                    <th>Date</th>
-                    <td>{{ quiz.date|date:"l, F d, Y h:i A" }}</td>
-                </tr>
-                <tr>
-                    <th>Attempts Allowed</th>
-                    <td>{{ quiz.attempts_allowed }}</td>
-                </tr>
-                <tr>
-                    <th>Time Limit</th>
-                    <td>
-                        {% if quiz.time_limit %}
-                            <span class="badge bg-success">Enforced</span>
-                        {% else %}
-                            <span class="badge bg-secondary">Not Enforced</span>
-                        {% endif %}
-                    </td>
-                </tr>
-                <tr>
-                    <th>Shuffle Questions</th>
-                    <td>
-                        {% if quiz.shuffle_questions %}
-                            <span class="badge bg-success">Yes</span>
-                        {% else %}
-                            <span class="badge bg-secondary">No</span>
-                        {% endif %}
-                    </td>
-                </tr>
-            </table>
-        </div>
-        
-        <!-- Student Results -->
-        <div class="data-table">
-            <div class="p-3 border-bottom">
-                <h5 class="mb-0"><i class="fas fa-chart-bar"></i> Student Results</h5>
-            </div>
-            <table class="table table-hover mb-0">
-                <thead>
-                    <tr>
-                        <th>Student ID</th>
-                        <th>Name</th>
-                        <th>Score</th>
-                        <th>Percentage</th>
-                        <th>Attempts</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for result in results %}
-                    <tr>
-                        <td><strong>{{ result.student.student_id }}</strong></td>
-                        <td>{{ result.student.user.get_full_name }}</td>
-                        <td>{{ result.marks_obtained }}/{{ quiz.max_marks }}</td>
-                        <td><strong>{{ result.percentage }}%</strong></td>
-                        <td>{{ result.attempts_used }}/{{ quiz.attempts_allowed }}</td>
-                        <td>
-                            {% if result.completed %}
-                                <span class="badge bg-success">Completed</span>
-                            {% else %}
-                                <span class="badge bg-warning">In Progress</span>
-                            {% endif %}
-                        </td>
-                    </tr>
-                    {% empty %}
-                    <tr>
-                        <td colspan="6" class="text-center py-3 text-muted">No results yet</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+<!-- Mobile Stats Offcanvas -->
+<div class="offcanvas offcanvas-start d-md-none" tabindex="-1" id="quizSidebar" aria-labelledby="quizSidebarLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="quizSidebarLabel">Quiz Statistics</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    
-    <div class="col-md-4">
-        <div class="stat-card primary">
-            <div class="icon">
-                <i class="fas fa-users"></i>
-            </div>
-            <h6>Total Participants</h6>
-            <h2>{{ total_participants }}</h2>
-        </div>
-        
-        <div class="stat-card success mt-3">
-            <div class="icon">
-                <i class="fas fa-check-circle"></i>
-            </div>
-            <h6>Completed</h6>
-            <h2>{{ completed_count }}</h2>
-        </div>
-        
-        <div class="stat-card info mt-3">
-            <div class="icon">
-                <i class="fas fa-chart-line"></i>
-            </div>
-            <h6>Average Score</h6>
-            <h2>{{ average_score|default:"N/A" }}%</h2>
+    <div class="offcanvas-body">
+        <div class="quiz-stats-card">
+            <!-- Quiz stats will be loaded here via JS -->
         </div>
     </div>
 </div>
+
+<div class="row g-4">
+    <!-- Main Content Area -->
+    <div class="col-lg-8 col-md-7">
+        <!-- Quick Stats -->
+        <div class="row g-3 mb-4 d-md-none">
+            <div class="col-6">
+                <div class="stat-card small">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-sm bg-primary bg-opacity-10 text-primary rounded-circle me-3">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-0 text-muted">Participants</h6>
+                            <h4 class="mb-0">{{ total_participants }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="stat-card small">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-sm bg-success bg-opacity-10 text-success rounded-circle me-3">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-0 text-muted">Completed</h6>
+                            <h4 class="mb-0">{{ completed_count }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="stat-card small">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-sm bg-warning bg-opacity-10 text-warning rounded-circle me-3">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-0 text-muted">In Progress</h6>
+                            <h4 class="mb-0">{{ in_progress_count }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="stat-card small">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-sm bg-info bg-opacity-10 text-info rounded-circle me-3">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-0 text-muted">Average Score</h6>
+                            <h4 class="mb-0">{{ average_score|default:"N/A" }}%</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Information -->
+        <div class="data-table mb-4">
+            <div class="d-flex justify-content-between align-items-center p-3 border-bottom">
+                <h5 class="mb-0">
+                    <i class="fas fa-info-circle me-2"></i>
+                    Quiz Information
+                </h5>
+                <button class="btn btn-sm btn-outline-primary d-none d-md-block" onclick="printQuizInfo()">
+                    <i class="fas fa-print"></i> Print
+                </button>
+            </div>
+            <div class="p-3">
+                <div class="table-responsive">
+                    <table class="table table-bordered mb-0">
+                        <tbody>
+                            <tr>
+                                <th scope="row" class="w-40">Quiz ID</th>
+                                <td><strong class="text-warning">{{ quiz.quiz_id }}</strong></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Title</th>
+                                <td>{{ quiz.title }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Course</th>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <span class="badge bg-primary me-2">{{ quiz.course.course_code }}</span>
+                                        <span>{{ quiz.course.course_name|truncatechars:30 }}</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Type</th>
+                                <td>
+                                    <span class="badge bg-info bg-opacity-10 text-info border border-info">
+                                        {{ quiz.quiz_type }}
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Assessment Details</th>
+                                <td>
+                                    <div class="row g-2">
+                                        <div class="col-md-6">
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-star text-warning me-2"></i>
+                                                <div>
+                                                    <small class="text-muted d-block">Max Marks</small>
+                                                    <div class="fw-medium">{{ quiz.max_marks }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-clock text-info me-2"></i>
+                                                <div>
+                                                    <small class="text-muted d-block">Duration</small>
+                                                    <div class="fw-medium">{{ quiz.duration_minutes }} min</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Quiz Date</th>
+                                <td>
+                                    <div class="d-flex flex-column">
+                                        <div class="fw-medium">{{ quiz.date|date:"l, F d, Y" }}</div>
+                                        <div class="text-muted small">{{ quiz.date|date:"h:i A" }}</div>
+                                        {% if quiz.is_upcoming %}
+                                        <span class="badge bg-success mt-1">
+                                            <i class="fas fa-calendar-check me-1"></i>
+                                            Upcoming
+                                        </span>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Attempts</th>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-redo text-primary me-2"></i>
+                                        <div>
+                                            <div class="fw-medium">{{ quiz.attempts_allowed }} allowed</div>
+                                            <small class="text-muted">{{ attempts_used }} attempts used so far</small>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Time Limit</th>
+                                <td>
+                                    {% if quiz.time_limit %}
+                                    <div class="d-flex align-items-center">
+                                        <span class="badge bg-success me-2">Enforced</span>
+                                        <div>
+                                            <small class="text-muted d-block">Strict timing</small>
+                                            <div>{{ quiz.duration_minutes }} minutes per attempt</div>
+                                        </div>
+                                    </div>
+                                    {% else %}
+                                    <span class="badge bg-secondary">Not Enforced</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Shuffle Questions</th>
+                                <td>
+                                    {% if quiz.shuffle_questions %}
+                                    <div class="d-flex align-items-center">
+                                        <span class="badge bg-success me-2">Yes</span>
+                                        <div>
+                                            <small class="text-muted d-block">Randomized order</small>
+                                            <div>Different for each attempt</div>
+                                        </div>
+                                    </div>
+                                    {% else %}
+                                    <span class="badge bg-secondary">No</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Tabs -->
+        <div class="data-table">
+            <ul class="nav nav-tabs" id="resultsTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="student-results-tab" data-bs-toggle="tab" data-bs-target="#student-results" type="button" role="tab">
+                        <i class="fas fa-user-graduate me-1"></i>
+                        <span class="d-none d-md-inline">Student Results</span>
+                        <span class="d-inline d-md-none">Results</span>
+                        <span class="badge bg-primary ms-1">{{ results|length }}</span>
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="statistics-tab" data-bs-toggle="tab" data-bs-target="#statistics" type="button" role="tab">
+                        <i class="fas fa-chart-pie me-1"></i>
+                        <span class="d-none d-md-inline">Statistics</span>
+                        <span class="d-inline d-md-none">Stats</span>
+                    </button>
+                </li>
+                <li class="nav-item ms-auto">
+                    <a href="#" class="nav-link text-primary">
+                        <i class="fas fa-download"></i>
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content p-3" id="resultsTabsContent">
+                <!-- Student Results Tab -->
+                <div class="tab-pane fade show active" id="student-results" role="tabpanel">
+                    {% if results %}
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th class="d-none d-md-table-cell">Score</th>
+                                    <th>%</th>
+                                    <th>Attempts</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for result in results %}
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar-sm me-2">
+                                                <div class="avatar-title bg-primary bg-opacity-10 text-primary rounded-circle">
+                                                    {{ result.student.user.get_full_name|first|upper }}
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="fw-medium">{{ result.student.student_id }}</div>
+                                                <small class="text-muted">{{ result.student.user.get_full_name|truncatechars:15 }}</small>
+                                                <small class="text-muted d-block d-md-none">
+                                                    {{ result.marks_obtained }}/{{ quiz.max_marks }}
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="d-none d-md-table-cell">
+                                        {{ result.marks_obtained }}/{{ quiz.max_marks }}
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-{% if result.percentage >= 70 %}success{% elif result.percentage >= 50 %}warning{% else %}danger{% endif %}">
+                                            {{ result.percentage }}%
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <span class="fw-medium me-1">{{ result.attempts_used }}</span>
+                                            <small class="text-muted">/{{ quiz.attempts_allowed }}</small>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        {% if result.completed %}
+                                        <span class="status-badge status-active">
+                                            <span class="d-none d-md-inline">Completed</span>
+                                            <span class="d-inline d-md-none">✓</span>
+                                        </span>
+                                        {% else %}
+                                        <span class="status-badge status-warning">
+                                            <span class="d-none d-md-inline">In Progress</span>
+                                            <span class="d-inline d-md-none">…</span>
+                                        </span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm">
+                                            <a href="#" class="btn btn-outline-info" title="View Details">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-outline-warning" title="Regrade">
+                                                <i class="fas fa-redo"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="empty-state text-center py-4">
+                        <i class="fas fa-chart-bar fa-3x text-muted mb-3"></i>
+                        <h5 class="text-muted">No results yet</h5>
+                        <p class="text-muted mb-3">No students have attempted this quiz yet</p>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Statistics Tab -->
+                <div class="tab-pane fade" id="statistics" role="tabpanel">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h6 class="card-title text-muted mb-3">Participation</h6>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span>Completed</span>
+                                        <span class="badge bg-success">{{ completed_count }}</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span>In Progress</span>
+                                        <span class="badge bg-warning">{{ in_progress_count }}</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span>Not Started</span>
+                                        <span class="badge bg-secondary">{{ not_started_count }}</span>
+                                    </div>
+                                    <div class="progress mt-3" style="height: 20px;">
+                                        <div class="progress-bar bg-success" style="width: {% widthratio completed_count total_participants 100 %}%">
+                                            {{ completed_count }}
+                                        </div>
+                                        <div class="progress-bar bg-warning" style="width: {% widthratio in_progress_count total_participants 100 %}%">
+                                            {{ in_progress_count }}
+                                        </div>
+                                        <div class="progress-bar bg-secondary" style="width: {% widthratio not_started_count total_participants 100 %}%">
+                                            {{ not_started_count }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h6 class="card-title text-muted mb-3">Performance Summary</h6>
+                                    <div class="text-center py-3">
+                                        <h1 class="display-4 text-primary mb-2">{{ average_score|default:"N/A" }}%</h1>
+                                        <small class="text-muted">Average Score</small>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-6 text-center">
+                                            <div class="fw-bold text-success">{{ highest_score|default:"N/A" }}%</div>
+                                            <small class="text-muted">Highest</small>
+                                        </div>
+                                        <div class="col-6 text-center">
+                                            <div class="fw-bold text-danger">{{ lowest_score|default:"N/A" }}%</div>
+                                            <small class="text-muted">Lowest</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar - Stats (Desktop) -->
+    <div class="col-lg-4 col-md-5 d-none d-md-block">
+        <div class="sticky-top" style="top: 20px;">
+            <div class="quiz-stats-card">
+                <div class="data-table">
+                    <div class="text-center p-4">
+                        <div class="avatar-xxl mx-auto mb-3">
+                            <div class="avatar-title bg-warning bg-opacity-10 text-warning rounded-circle">
+                                <i class="fas fa-question-circle fa-2x"></i>
+                            </div>
+                        </div>
+                        <h4 class="mb-1">{{ quiz.quiz_id }}</h4>
+                        <p class="text-muted mb-3">{{ quiz.title|truncatechars:40 }}</p>
+                        
+                        <div class="d-flex justify-content-center gap-2 mb-4">
+                            <a href="{% url 'quiz_edit' quiz.pk %}" class="btn btn-sm btn-outline-warning">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            <a href="#" class="btn btn-sm btn-outline-info" onclick="printQuizInfo()">
+                                <i class="fas fa-print"></i> Print
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="p-3 border-top">
+                        <h6 class="text-primary mb-3">
+                            <i class="fas fa-chart-pie me-2"></i>
+                            Performance Stats
+                        </h6>
+                        
+                        <div class="stat-item mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <span>Total Participants</span>
+                                <span class="fw-medium">{{ total_participants }}</span>
+                            </div>
+                            <div class="progress" style="height: 6px;">
+                                <div class="progress-bar bg-primary" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-item mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <span>Completed</span>
+                                <span class="fw-medium text-success">{{ completed_count }}</span>
+                            </div>
+                            <div class="progress" style="height: 6px;">
+                                <div class="progress-bar bg-success" style="width: {% widthratio completed_count total_participants 100 %}%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-item mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <span>In Progress</span>
+                                <span class="fw-medium text-warning">{{ in_progress_count }}</span>
+                            </div>
+                            <div class="progress" style="height: 6px;">
+                                <div class="progress-bar bg-warning" style="width: {% widthratio in_progress_count total_participants 100 %}%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-item mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <span>Average Score</span>
+                                <span class="fw-medium text-info">{{ average_score|default:"N/A" }}%</span>
+                            </div>
+                            <div class="progress" style="height: 6px;">
+                                <div class="progress-bar bg-info" style="width: {% widthratio average_score 100 100 %}%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-3 border-top">
+                        <h6 class="text-primary mb-3">
+                            <i class="fas fa-clock me-2"></i>
+                            Quiz Timing
+                        </h6>
+                        
+                        <div class="alert alert-info mb-3">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-calendar-alt fa-lg me-3"></i>
+                                <div>
+                                    <div class="fw-medium">{{ quiz.date|date:"F d, Y" }}</div>
+                                    <small class="text-muted">{{ quiz.date|date:"h:i A" }}</small>
+                                    {% if quiz.is_upcoming %}
+                                    <div class="mt-1">
+                                        <small class="text-success">
+                                            <i class="fas fa-hourglass-start me-1"></i>
+                                            Upcoming
+                                        </small>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-clock text-primary me-2"></i>
+                                    <div>
+                                        <small class="text-muted d-block">Duration</small>
+                                        <div class="fw-medium">{{ quiz.duration_minutes }} min</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-redo text-warning me-2"></i>
+                                    <div>
+                                        <small class="text-muted d-block">Attempts</small>
+                                        <div class="fw-medium">{{ quiz.attempts_allowed }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-3 border-top">
+                        <h6 class="text-primary mb-3">
+                            <i class="fas fa-cogs me-2"></i>
+                            Quick Actions
+                        </h6>
+                        
+                        <div class="d-grid gap-2">
+                            <a href="#" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-download me-2"></i>
+                                Download Results
+                            </a>
+                            <a href="#" class="btn btn-sm btn-outline-success">
+                                <i class="fas fa-envelope me-2"></i>
+                                Send Reminder
+                            </a>
+                            <a href="#" class="btn btn-sm btn-outline-warning">
+                                <i class="fas fa-chart-bar me-2"></i>
+                                View Analytics
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Mobile Floating Actions -->
+<div class="d-md-none">
+    <div class="fab-container">
+        <div class="btn-group dropup">
+            <button type="button" class="btn btn-primary-custom btn-fab rounded-circle" data-bs-toggle="dropdown">
+                <i class="fas fa-ellipsis-v"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="{% url 'quiz_edit' quiz.pk %}">
+                    <i class="fas fa-edit me-2"></i>Edit Quiz
+                </a></li>
+                <li><a class="dropdown-item" href="#">
+                    <i class="fas fa-download me-2"></i>Download Results
+                </a></li>
+                <li><a class="dropdown-item" href="#">
+                    <i class="fas fa-envelope me-2"></i>Send Reminder
+                </a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="{% url 'quiz_delete' quiz.pk %}">
+                    <i class="fas fa-trash me-2"></i>Delete Quiz
+                </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Custom styles for quiz details */
+    .avatar-xxl {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .avatar-lg {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .avatar-sm {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .avatar-title {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+    }
+    
+    .stat-item {
+        padding-bottom: 15px;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .stat-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+    
+    .quiz-stats-card {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    
+    .sticky-top {
+        position: sticky;
+        z-index: 1020;
+    }
+    
+    .empty-state {
+        padding: 30px 20px;
+        text-align: center;
+    }
+    
+    .fab-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1050;
+    }
+    
+    .btn-fab {
+        width: 56px;
+        height: 56px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    
+    .btn-fab.rounded-circle {
+        border-radius: 50% !important;
+    }
+    
+    /* Status badge colors */
+    .status-active {
+        background: #d4edda;
+        color: #155724;
+    }
+    
+    .status-inactive {
+        background: #f8d7da;
+        color: #721c24;
+    }
+    
+    .status-warning {
+        background: #fff3cd;
+        color: #856404;
+    }
+    
+    /* Quiz-specific colors */
+    .bg-info.bg-opacity-10 {
+        background-color: rgba(13, 202, 240, 0.1) !important;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .page-header h1 {
+            font-size: 22px;
+        }
+        
+        .avatar-lg {
+            width: 50px;
+            height: 50px;
+        }
+        
+        .data-table {
+            margin: 0 -12px;
+            border-radius: 0;
+            box-shadow: none;
+            border: 1px solid #dee2e6;
+        }
+        
+        .nav-tabs .nav-link {
+            padding: 8px 12px;
+            font-size: 14px;
+        }
+        
+        .offcanvas {
+            width: 85%;
+            max-width: 300px;
+        }
+        
+        .table th.w-40 {
+            width: 35% !important;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .page-header h1 {
+            font-size: 20px;
+        }
+        
+        .stat-card.small {
+            padding: 12px;
+        }
+        
+        .stat-card.small h4 {
+            font-size: 18px;
+        }
+        
+        .empty-state {
+            padding: 25px 15px;
+        }
+        
+        .empty-state i {
+            font-size: 2.5rem;
+        }
+        
+        .table-bordered th,
+        .table-bordered td {
+            padding: 8px;
+            font-size: 14px;
+        }
+        
+        .tab-content .card {
+            margin-bottom: 15px;
+        }
+        
+        .tab-content .display-4 {
+            font-size: 2.5rem;
+        }
+        
+        .row.g-2 .col-md-6 {
+            margin-bottom: 10px;
+        }
+    }
+    
+    @media (max-width: 400px) {
+        .table-responsive {
+            font-size: 14px;
+        }
+        
+        .btn-group.btn-group-sm .btn {
+            padding: 4px 6px;
+        }
+        
+        .avatar-sm {
+            width: 28px;
+            height: 28px;
+            font-size: 12px;
+        }
+        
+        .badge.ms-1 {
+            margin-left: 0.3rem !important;
+            font-size: 0.6rem;
+        }
+    }
+    
+    @media (min-width: 992px) {
+        .sticky-top {
+            top: 90px;
+        }
+    }
+    
+    /* Print styles */
+    @media print {
+        .sidebar,
+        .top-navbar,
+        .btn-fab,
+        .offcanvas,
+        .nav-tabs,
+        .btn-custom,
+        .dropdown-menu,
+        .fab-container {
+            display: none !important;
+        }
+        
+        .main-content {
+            margin-left: 0 !important;
+        }
+        
+        .col-lg-4, .col-md-5 {
+            display: none !important;
+        }
+        
+        .col-lg-8, .col-md-7 {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+        
+        .data-table {
+            box-shadow: none;
+            border: 1px solid #ddd;
+            page-break-inside: avoid;
+        }
+        
+        body {
+            background: white;
+            font-size: 12px;
+        }
+        
+        .page-header {
+            padding: 15px 0;
+            margin-bottom: 20px;
+        }
+        
+        .tab-content > .tab-pane {
+            display: block !important;
+            opacity: 1 !important;
+        }
+        
+        #statistics {
+            display: none !important;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Copy stats to mobile offcanvas
+        const statsCard = document.querySelector('.quiz-stats-card');
+        const mobileStatsCard = document.querySelector('.offcanvas .quiz-stats-card');
+        
+        if (statsCard && mobileStatsCard) {
+            mobileStatsCard.innerHTML = statsCard.innerHTML;
+        }
+        
+        // Initialize tabs
+        const tabTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tab"]'));
+        tabTriggerList.map(function (tabTriggerEl) {
+            return new bootstrap.Tab(tabTriggerEl);
+        });
+        
+        // Initialize offcanvas
+        const offcanvasElement = document.getElementById('quizSidebar');
+        if (offcanvasElement) {
+            const offcanvas = new bootstrap.Offcanvas(offcanvasElement);
+            
+            // Close offcanvas when clicking outside on mobile
+            offcanvasElement.addEventListener('click', function(e) {
+                if (e.target.classList.contains('offcanvas-backdrop')) {
+                    offcanvas.hide();
+                }
+            });
+        }
+        
+        // Print functionality
+        window.printQuizInfo = function() {
+            // Store current active tab
+            const activeTab = document.querySelector('#resultsTabs .nav-link.active');
+            const activeTabId = activeTab ? activeTab.getAttribute('data-bs-target') : null;
+            
+            // Show all tabs for printing
+            if (activeTabId) {
+                const tabPanes = document.querySelectorAll('.tab-pane');
+                tabPanes.forEach(pane => {
+                    pane.classList.add('d-block');
+                    pane.classList.remove('fade');
+                    pane.style.opacity = '1';
+                });
+            }
+            
+            window.print();
+            
+            // Restore tab state
+            if (activeTabId) {
+                const tabPanes = document.querySelectorAll('.tab-pane');
+                tabPanes.forEach(pane => {
+                    pane.classList.remove('d-block');
+                    pane.classList.add('fade');
+                    pane.style.opacity = '';
+                });
+                document.querySelector(activeTabId).classList.add('show', 'active');
+            }
+        };
+        
+        // Mobile swipe for tabs
+        if (window.innerWidth < 768) {
+            const tabContent = document.getElementById('resultsTabsContent');
+            let touchStartX = 0;
+            
+            if (tabContent) {
+                tabContent.addEventListener('touchstart', e => {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, false);
+                
+                tabContent.addEventListener('touchend', e => {
+                    const touchEndX = e.changedTouches[0].screenX;
+                    const swipeThreshold = 50;
+                    const swipeDistance = touchEndX - touchStartX;
+                    
+                    if (Math.abs(swipeDistance) > swipeThreshold) {
+                        const activeTab = document.querySelector('.nav-link.active');
+                        const tabs = document.querySelectorAll('.nav-link');
+                        const activeIndex = Array.from(tabs).indexOf(activeTab);
+                        
+                        if (swipeDistance > 0 && activeIndex > 0) {
+                            // Swipe right - go to previous tab
+                            tabs[activeIndex - 1].click();
+                        } else if (swipeDistance < 0 && activeIndex < tabs.length - 1) {
+                            // Swipe left - go to next tab
+                            tabs[activeIndex + 1].click();
+                        }
+                    }
+                }, false);
+            }
+        }
+        
+        // Score highlighting
+        function highlightScores() {
+            const scoreBadges = document.querySelectorAll('td .badge');
+            scoreBadges.forEach(badge => {
+                const scoreText = badge.textContent.replace('%', '');
+                const score = parseFloat(scoreText);
+                if (!isNaN(score)) {
+                    if (score >= 70) {
+                        badge.classList.remove('bg-danger', 'bg-warning');
+                        badge.classList.add('bg-success');
+                    } else if (score >= 50) {
+                        badge.classList.remove('bg-success', 'bg-danger');
+                        badge.classList.add('bg-warning');
+                    } else {
+                        badge.classList.remove('bg-success', 'bg-warning');
+                        badge.classList.add('bg-danger');
+                    }
+                }
+            });
+        }
+        
+        highlightScores();
+        
+        // Responsive table adjustments
+        function adjustTableHeaders() {
+            const tables = document.querySelectorAll('.table-responsive table');
+            tables.forEach(table => {
+                const theadCells = table.querySelectorAll('thead th');
+                const tbodyRows = table.querySelectorAll('tbody tr');
+                
+                tbodyRows.forEach(row => {
+                    const cells = row.querySelectorAll('td');
+                    cells.forEach((cell, index) => {
+                        if (theadCells[index]) {
+                            cell.setAttribute('data-label', theadCells[index].textContent.trim());
+                        }
+                    });
+                });
+            });
+        }
+        
+        adjustTableHeaders();
+        window.addEventListener('resize', adjustTableHeaders);
+        
+        // Upcoming quiz highlighting
+        {% if quiz.is_upcoming %}
+        const quizDateRow = document.querySelector('tr:has(th:contains("Quiz Date"))');
+        if (quizDateRow) {
+            quizDateRow.classList.add('table-success');
+            quizDateRow.style.animation = 'pulseSuccess 2s infinite';
+            
+            // Add CSS animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes pulseSuccess {
+                    0% { background-color: rgba(25, 135, 84, 0.1); }
+                    50% { background-color: rgba(25, 135, 84, 0.2); }
+                    100% { background-color: rgba(25, 135, 84, 0.1); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        {% endif %}
+        
+        // Mobile performance optimization
+        if (window.innerWidth < 768) {
+            // Lazy load images
+            const images = document.querySelectorAll('img[data-src]');
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+            
+            images.forEach(img => imageObserver.observe(img));
+        }
+        
+        // Quiz timer for upcoming quizzes
+        {% if quiz.is_upcoming %}
+        function updateQuizTimer() {
+            const quizDate = new Date('{{ quiz.date|date:"c" }}');
+            const now = new Date();
+            const timeDiff = quizDate - now;
+            
+            if (timeDiff > 0) {
+                const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+                
+                const timerElement = document.getElementById('quizTimer');
+                if (timerElement) {
+                    timerElement.innerHTML = `${days}d ${hours}h ${minutes}m`;
+                }
+            }
+        }
+        
+        // Create timer display
+        const quizDateRow = document.querySelector('tr:has(th:contains("Quiz Date"))');
+        if (quizDateRow) {
+            const timerCell = quizDateRow.querySelector('td');
+            const timerSpan = document.createElement('div');
+            timerSpan.id = 'quizTimer';
+            timerSpan.className = 'text-success small mt-1';
+            timerCell.appendChild(timerSpan);
+            
+            updateQuizTimer();
+            setInterval(updateQuizTimer, 60000); // Update every minute
+        }
+        {% endif %}
+    });
+</script>
 {% endblock %}

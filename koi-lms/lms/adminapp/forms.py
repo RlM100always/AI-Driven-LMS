@@ -173,6 +173,29 @@ class GradeForm(forms.ModelForm):
         }
 
 class EnrollmentForm(forms.ModelForm):
+    # Add choice fields for better UX
+    status = forms.ChoiceField(
+        choices=[
+            ('Enrolled', 'Enrolled'),
+            ('Pending', 'Pending'),
+            ('Withdrawn', 'Withdrawn'),
+            ('Completed', 'Completed'),
+            ('Failed', 'Failed'),
+        ],
+        widget=forms.Select(attrs={'class': 'form-control'}),
+        initial='Enrolled'
+    )
+    
+    role = forms.ChoiceField(
+        choices=[
+            ('Student', 'Student'),
+            ('Auditor', 'Auditor'),
+            ('TA', 'Teaching Assistant'),
+        ],
+        widget=forms.Select(attrs={'class': 'form-control'}),
+        initial='Student'
+    )
+    
     class Meta:
         model = Enrollment
         fields = '__all__'
@@ -180,10 +203,16 @@ class EnrollmentForm(forms.ModelForm):
             'enrollment_id': forms.TextInput(attrs={'class': 'form-control'}),
             'student': forms.Select(attrs={'class': 'form-control'}),
             'course': forms.Select(attrs={'class': 'form-control'}),
-            'enrollment_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
-            'role': forms.TextInput(attrs={'class': 'form-control'}),
-            'final_grade': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01'}),
-            'status': forms.Select(attrs={'class': 'form-control'}),  # <--- fix here
+            'enrollment_date': forms.DateInput(attrs={
+                'class': 'form-control', 
+                'type': 'date'
+            }),
+            'final_grade': forms.NumberInput(attrs={
+                'class': 'form-control',
+                'step': '0.01',
+                'min': '0',
+                'max': '100'
+            }),
         }
 
 

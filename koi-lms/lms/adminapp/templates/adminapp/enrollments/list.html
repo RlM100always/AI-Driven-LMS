@@ -1,129 +1,1005 @@
-<!-- ============================================ -->
-<!-- FILE: adminapp/templates/adminapp/enrollments/list.html -->
-<!-- ============================================ -->
 {% extends 'adminapp/base.html' %}
 
 {% block title %}Enrollments{% endblock %}
 
+{% block breadcrumbs %}
+<li class="breadcrumb-item active" aria-current="page">Enrollments</li>
+{% endblock %}
+
 {% block content %}
-<div class="page-header d-flex justify-content-between align-items-center">
-    <div>
-        <h1><i class="fas fa-user-check"></i> Enrollments</h1>
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
-                <li class="breadcrumb-item active">Enrollments</li>
-            </ol>
-        </nav>
-    </div>
-    <div>
-        <a href="{% url 'enrollment_create' %}" class="btn btn-primary-custom btn-custom">
-            <i class="fas fa-plus"></i> New Enrollment
-        </a>
+<div class="page-header">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4">
+        <div class="mb-3 mb-md-0">
+            <h1 class="mb-1">
+                <i class="fas fa-user-check me-2"></i>
+                Course Enrollments
+            </h1>
+            <p class="text-muted mb-0">Manage student course registrations and status</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+            <a href="{% url 'enrollment_create' %}" class="btn btn-primary mobile-tap-target px-3 py-2">
+                <i class="fas fa-plus me-1"></i>
+                <span class="d-none d-sm-inline">New Enrollment</span>
+                <span class="d-inline d-sm-none">Add</span>
+            </a>
+            <button class="btn btn-outline-secondary d-md-none mobile-tap-target px-3 py-2" type="button" 
+                    data-bs-toggle="collapse" data-bs-target="#filterCollapse" 
+                    aria-expanded="false" aria-controls="filterCollapse">
+                <i class="fas fa-filter"></i>
+                <span class="visually-hidden">Toggle filters</span>
+            </button>
+        </div>
     </div>
 </div>
 
 <!-- Search and Filter -->
-<div class="search-box">
-    <form method="get" class="row g-3">
-        <div class="col-md-4">
-            <input type="text" name="student" class="form-control" placeholder="Student ID...">
+<div class="collapse d-md-block mb-4" id="filterCollapse">
+    <div class="card">
+        <div class="card-body">
+            <form method="get" class="row g-2 g-md-3 align-items-end">
+                <div class="col-12 col-md-4">
+                    <label class="form-label small text-muted mb-1">Student</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light">
+                            <i class="fas fa-user-graduate"></i>
+                        </span>
+                        <input type="text" name="student" class="form-control" 
+                               placeholder="Search by student..." 
+                               value="{{ student_filter }}"
+                               aria-label="Search student">
+                    </div>
+                </div>
+                
+                <div class="col-12 col-md-3">
+                    <label class="form-label small text-muted mb-1">Status</label>
+                    <select name="status" class="form-select">
+                        <option value="">All Status</option>
+                        <option value="Enrolled" {% if status_filter == 'Enrolled' %}selected{% endif %}>Enrolled</option>
+                        <option value="Completed" {% if status_filter == 'Completed' %}selected{% endif %}>Completed</option>
+                        <option value="Withdrawn" {% if status_filter == 'Withdrawn' %}selected{% endif %}>Withdrawn</option>
+                        <option value="Pending" {% if status_filter == 'Pending' %}selected{% endif %}>Pending</option>
+                    </select>
+                </div>
+                <div class="col-12 col-md-2">
+                    <div class="d-grid gap-2 d-md-block">
+                        <button type="submit" class="btn btn-primary w-100 mobile-tap-target">
+                            <i class="fas fa-search me-1"></i>
+                            <span class="d-none d-md-inline">Search</span>
+                        </button>
+                        <a href="{% url 'enrollment_list' %}" class="btn btn-outline-secondary w-100 mt-2 mobile-tap-target">
+                            <i class="fas fa-redo me-1"></i>
+                            <span class="d-none d-md-inline">Reset</span>
+                        </a>
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="col-md-4">
-            <select name="course" class="form-control">
-                <option value="">All Courses</option>
-                {% for course in all_courses %}
-                <option value="{{ course.course_code }}">{{ course.course_code }}</option>
+    </div>
+</div>
+
+<!-- Statistics Summary -->
+<div class="row g-2 g-md-3 mb-4">
+    <div class="col-6 col-md-3">
+        <div class="stat-card small mobile-tap-target">
+            <div class="d-flex align-items-center">
+                <div class="icon-sm bg-primary bg-opacity-10 text-primary rounded-circle me-2 me-md-3">
+                    <i class="fas fa-user-check"></i>
+                </div>
+                <div>
+                    <p class="small text-muted mb-0">Total</p>
+                    <h5 class="mb-0 fw-bold">{{ total_count }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="stat-card small mobile-tap-target">
+            <div class="d-flex align-items-center">
+                <div class="icon-sm bg-success bg-opacity-10 text-success rounded-circle me-2 me-md-3">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div>
+                    <p class="small text-muted mb-0">Active</p>
+                    <h5 class="mb-0 fw-bold">{{ enrolled_count }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="stat-card small mobile-tap-target">
+            <div class="d-flex align-items-center">
+                <div class="icon-sm bg-info bg-opacity-10 text-info rounded-circle me-2 me-md-3">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <p class="small text-muted mb-0">Completed</p>
+                    <h5 class="mb-0 fw-bold">{{ completed_count }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="stat-card small mobile-tap-target">
+            <div class="d-flex align-items-center">
+                <div class="icon-sm bg-warning bg-opacity-10 text-warning rounded-circle me-2 me-md-3">
+                    <i class="fas fa-user-times"></i>
+                </div>
+                <div>
+                    <p class="small text-muted mb-0">Withdrawn</p>
+                    <h5 class="mb-0 fw-bold">{{ withdrawn_count }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- View Toggle -->
+<div class="d-flex justify-content-end mb-3">
+    <div class="btn-group btn-group-sm" role="group" aria-label="View toggle">
+        <button type="button" class="btn btn-outline-primary mobile-tap-target px-3 py-2" id="cardViewBtn">
+            <i class="fas fa-th-large me-1"></i>
+            <span class="d-none d-md-inline">Cards</span>
+        </button>
+        <button type="button" class="btn btn-primary mobile-tap-target px-3 py-2" id="tableViewBtn">
+            <i class="fas fa-list me-1"></i>
+            <span class="d-none d-md-inline">Table</span>
+        </button>
+    </div>
+</div>
+
+<!-- Table View -->
+<div id="tableView" class="data-table">
+    <div class="table-responsive">
+        <table class="table table-hover mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Enrollment</th>
+                    <th class="d-none d-lg-table-cell">Student</th>
+                    <th>Course</th>
+                    <th class="d-none d-md-table-cell">Date</th>
+                    <th class="d-none d-lg-table-cell">Role</th>
+                    <th>Status</th>
+                    <th class="text-end">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for enrollment in enrollments %}
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <div class="avatar-sm me-2">
+                                <div class="avatar-title bg-primary bg-opacity-10 text-primary rounded-circle">
+                                    {{ enrollment.enrollment_id|slice:":2" }}
+                                </div>
+                            </div>
+                            <div>
+                                <div class="fw-medium">{{ enrollment.enrollment_id }}</div>
+                                <small class="text-muted d-block d-lg-none">{{ enrollment.student.student_id }}</small>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="d-none d-lg-table-cell">
+                        <div class="d-flex align-items-center">
+                            <div class="avatar-xs me-2">
+                                <div class="avatar-title bg-secondary bg-opacity-10 text-secondary rounded-circle">
+                                    {{ enrollment.student.user.get_full_name|first|upper }}
+                                </div>
+                            </div>
+                            <div>
+                                <div class="fw-medium">{{ enrollment.student.student_id }}</div>
+                                <small class="text-muted d-block">{{ enrollment.student.user.get_full_name|truncatechars:20 }}</small>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <span class="badge bg-primary">{{ enrollment.course.course_code }}</span>
+                            <small class="text-muted d-block d-md-none mt-1">{{ enrollment.course.course_name|truncatechars:20 }}</small>
+                            <small class="text-muted d-none d-md-block">{{ enrollment.course.course_name|truncatechars:30 }}</small>
+                        </div>
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                        <div class="small">{{ enrollment.enrollment_date|date:"M d, Y" }}</div>
+                    </td>
+                    <td class="d-none d-lg-table-cell">
+                        <span class="badge bg-light text-dark border">{{ enrollment.role }}</span>
+                    </td>
+                    <td>
+                        {% if enrollment.status == 'Enrolled' %}
+                        <span class="badge bg-success">Enrolled</span>
+                        {% elif enrollment.status == 'Completed' %}
+                        <span class="badge bg-info">Completed</span>
+                        {% elif enrollment.status == 'Withdrawn' %}
+                        <span class="badge bg-danger">Withdrawn</span>
+                        {% elif enrollment.status == 'Pending' %}
+                        <span class="badge bg-warning">Pending</span>
+                        {% else %}
+                        <span class="badge bg-secondary">{{ enrollment.status }}</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <div class="d-flex justify-content-end gap-1">
+                            <a href="{% url 'enrollment_detail' enrollment.pk %}" class="btn btn-sm btn-outline-info mobile-tap-target px-2 py-1" title="View">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a href="{% url 'enrollment_edit' enrollment.pk %}" class="btn btn-sm btn-outline-warning mobile-tap-target px-2 py-1" title="Edit">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="{% url 'enrollment_delete' enrollment.pk %}" class="btn btn-sm btn-outline-danger mobile-tap-target px-2 py-1 d-none d-md-inline-block" title="Delete">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7" class="text-center py-5">
+                        <div class="empty-state">
+                            <i class="fas fa-user-check fa-3x text-muted mb-3"></i>
+                            <h5 class="text-muted mb-2">No enrollments found</h5>
+                            <p class="text-muted mb-3">Try adjusting your search filters or create a new enrollment</p>
+                            <a href="{% url 'enrollment_create' %}" class="btn btn-primary mobile-tap-target">
+                                <i class="fas fa-plus me-1"></i> Create First Enrollment
+                            </a>
+                        </div>
+                    </td>
+                </tr>
                 {% endfor %}
-            </select>
-        </div>
-        <div class="col-md-2">
-            <select name="status" class="form-control">
-                <option value="">All Status</option>
-                <option value="Enrolled">Enrolled</option>
-                <option value="Completed">Completed</option>
-                <option value="Withdrawn">Withdrawn</option>
-            </select>
-        </div>
-        <div class="col-md-2">
-            <button type="submit" class="btn btn-primary-custom w-100">
-                <i class="fas fa-search"></i> Search
-            </button>
-        </div>
-    </form>
+            </tbody>
+        </table>
+    </div>
 </div>
 
-<!-- Enrollments Table -->
-<div class="data-table">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Enrollment ID</th>
-                <th>Student</th>
-                <th>Course</th>
-                <th>Enrollment Date</th>
-                <th>Role</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for enrollment in enrollments %}
-            <tr>
-                <td><strong>{{ enrollment.enrollment_id }}</strong></td>
-                <td>
-                    {{ enrollment.student.student_id }}<br>
-                    <small class="text-muted">{{ enrollment.student.user.get_full_name }}</small>
-                </td>
-                <td><span class="badge bg-primary">{{ enrollment.course.course_code }}</span></td>
-                <td>{{ enrollment.enrollment_date|date:"M d, Y" }}</td>
-                <td>{{ enrollment.role }}</td>
-                <td>
-                    <span class="status-badge status-{% if enrollment.status == 'Enrolled' %}active{% elif enrollment.status == 'Completed' %}pending{% else %}inactive{% endif %}">
-                        {{ enrollment.status }}
-                    </span>
-                </td>
-               
-                <td>
-                    <a href="{% url 'enrollment_detail' enrollment.pk %}" class="btn btn-sm btn-info" title="View">
-                        <i class="fas fa-eye"></i>
-                    </a>
-                    <a href="{% url 'enrollment_edit' enrollment.pk %}" class="btn btn-sm btn-warning" title="Edit">
-                        <i class="fas fa-edit"></i>
-                    </a>
-                    <a href="{% url 'enrollment_delete' enrollment.pk %}" class="btn btn-sm btn-danger" title="Delete">
-                        <i class="fas fa-trash"></i>
-                    </a>
-                </td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="8" class="text-center py-4">
-                    <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
-                    <p class="text-muted">No enrollments found.</p>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
-
-<!-- Pagination -->
-{% if enrollments.has_other_pages %}
-<nav aria-label="Page navigation" class="mt-4">
-    <ul class="pagination justify-content-center">
-        {% if enrollments.has_previous %}
-        <li class="page-item"><a class="page-link" href="?page={{ enrollments.previous_page_number }}">Previous</a></li>
-        {% endif %}
-        {% for num in enrollments.paginator.page_range %}
-        <li class="page-item {% if enrollments.number == num %}active{% endif %}">
-            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
-        </li>
+<!-- Card View -->
+<div id="cardView" class="d-none">
+    <div class="row g-2 g-md-3">
+        {% for enrollment in enrollments %}
+        <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+            <div class="card enrollment-card h-100">
+                <div class="card-header bg-light py-2">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            <div class="avatar-sm me-2">
+                                <div class="avatar-title bg-primary bg-opacity-10 text-primary rounded-circle">
+                                    {{ enrollment.enrollment_id|slice:":2" }}
+                                </div>
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">{{ enrollment.enrollment_id }}</h6>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn btn-link text-dark p-0 border-0 mobile-tap-target" type="button" 
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item mobile-tap-target" href="{% url 'enrollment_detail' enrollment.pk %}">
+                                    <i class="fas fa-eye me-2"></i>View Details
+                                </a></li>
+                                <li><a class="dropdown-item mobile-tap-target" href="{% url 'enrollment_edit' enrollment.pk %}">
+                                    <i class="fas fa-edit me-2"></i>Edit
+                                </a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-danger mobile-tap-target" href="{% url 'enrollment_delete' enrollment.pk %}">
+                                    <i class="fas fa-trash me-2"></i>Delete
+                                </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- Student Info -->
+                    <div class="mb-3">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="avatar-xs me-2">
+                                <div class="avatar-title bg-secondary bg-opacity-10 text-secondary rounded-circle">
+                                    {{ enrollment.student.user.get_full_name|first|upper }}
+                                </div>
+                            </div>
+                            <div>
+                                <div class="fw-medium">{{ enrollment.student.student_id }}</div>
+                                <small class="text-muted">{{ enrollment.student.user.get_full_name|truncatechars:20 }}</small>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-center">
+                            <span class="badge bg-primary me-2">{{ enrollment.course.course_code }}</span>
+                            <span class="text-muted small">{{ enrollment.course.course_name|truncatechars:20 }}</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Enrollment Details -->
+                    <div class="row g-2 mb-3">
+                        <div class="col-6">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-calendar-alt text-info me-2"></i>
+                                <div>
+                                    <small class="text-muted d-block">Date</small>
+                                    <div class="small">{{ enrollment.enrollment_date|date:"M d" }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-user-tag text-warning me-2"></i>
+                                <div>
+                                    <small class="text-muted d-block">Role</small>
+                                    <div class="small">{{ enrollment.role }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Status -->
+                    <div class="mb-3">
+                        {% if enrollment.status == 'Enrolled' %}
+                        <span class="badge bg-success w-100 py-2">Enrolled</span>
+                        {% elif enrollment.status == 'Completed' %}
+                        <span class="badge bg-info w-100 py-2">Completed</span>
+                        {% elif enrollment.status == 'Withdrawn' %}
+                        <span class="badge bg-danger w-100 py-2">Withdrawn</span>
+                        {% elif enrollment.status == 'Pending' %}
+                        <span class="badge bg-warning w-100 py-2">Pending</span>
+                        {% else %}
+                        <span class="badge bg-secondary w-100 py-2">{{ enrollment.status }}</span>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Action Buttons (Visible on Mobile) -->
+                    <div class="d-flex gap-2">
+                        <a href="{% url 'enrollment_detail' enrollment.pk %}" class="btn btn-outline-info btn-sm flex-fill mobile-tap-target">
+                            <i class="fas fa-eye me-1"></i> View
+                        </a>
+                        <a href="{% url 'enrollment_edit' enrollment.pk %}" class="btn btn-outline-warning btn-sm flex-fill mobile-tap-target">
+                            <i class="fas fa-edit me-1"></i> Edit
+                        </a>
+                        <a href="{% url 'enrollment_delete' enrollment.pk %}" class="btn btn-outline-danger btn-sm flex-fill mobile-tap-target">
+                            <i class="fas fa-trash me-1"></i> Delete
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="empty-state text-center py-5">
+                <i class="fas fa-user-check fa-3x text-muted mb-3"></i>
+                <h5 class="text-muted mb-2">No enrollments found</h5>
+                <p class="text-muted mb-3">Try adjusting your search filters or create a new enrollment</p>
+                <a href="{% url 'enrollment_create' %}" class="btn btn-primary mobile-tap-target">
+                    <i class="fas fa-plus me-1"></i> Create First Enrollment
+                </a>
+            </div>
+        </div>
         {% endfor %}
-        {% if enrollments.has_next %}
-        <li class="page-item"><a class="page-link" href="?page={{ enrollments.next_page_number }}">Next</a></li>
-        {% endif %}
-    </ul>
-</nav>
-{% endif %}
+    </div>
+</div>
+
+<!-- Mobile Floating Action Button -->
+<div class="d-md-none">
+    <div class="fab-container">
+        <button type="button" class="btn btn-primary btn-fab rounded-circle mobile-tap-target" 
+                onclick="window.location.href='{% url 'enrollment_create' %}'">
+            <i class="fas fa-plus"></i>
+        </button>
+    </div>
+</div>
+
+<style>
+    /* ==================== */
+    /* BASE STYLES */
+    /* ==================== */
+    
+    .mobile-tap-target {
+        min-height: 44px;
+        min-width: 44px;
+        cursor: pointer;
+    }
+    
+    .btn.mobile-tap-target {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* ==================== */
+    /* STAT CARDS */
+    /* ==================== */
+    
+    .stat-card.small {
+        background: white;
+        border-radius: 8px;
+        padding: 12px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        border: 1px solid #eee;
+    }
+    
+    .icon-sm {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        flex-shrink: 0;
+    }
+    
+    /* ==================== */
+    /* CARDS */
+    /* ==================== */
+    
+    .enrollment-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        transition: transform 0.2s, box-shadow 0.2s;
+        height: 100%;
+    }
+    
+    .enrollment-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .enrollment-card .card-header {
+        border-bottom: 1px solid #e0e0e0;
+        padding: 12px 16px;
+    }
+    
+    .enrollment-card .card-body {
+        padding: 16px;
+    }
+    
+    /* ==================== */
+    /* AVATARS */
+    /* ==================== */
+    
+    .avatar-sm {
+        width: 36px;
+        height: 36px;
+        flex-shrink: 0;
+    }
+    
+    .avatar-xs {
+        width: 28px;
+        height: 28px;
+        flex-shrink: 0;
+    }
+    
+    .avatar-title {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        border-radius: 50%;
+    }
+    
+    /* ==================== */
+    /* TABLE */
+    /* ==================== */
+    
+    .data-table {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        border: 1px solid #eee;
+    }
+    
+    .data-table table {
+        margin-bottom: 0;
+    }
+    
+    .data-table th {
+        font-weight: 600;
+        color: #555;
+        border-bottom-width: 2px;
+    }
+    
+    /* ==================== */
+    /* EMPTY STATE */
+    /* ==================== */
+    
+    .empty-state {
+        padding: 40px 20px;
+    }
+    
+    /* ==================== */
+    /* FLOATING ACTION BUTTON */
+    /* ==================== */
+    
+    .fab-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+    }
+    
+    .btn-fab {
+        width: 56px;
+        height: 56px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        border: none;
+    }
+    
+    .btn-fab.rounded-circle {
+        border-radius: 50% !important;
+    }
+    
+    /* ==================== */
+    /* RESPONSIVE FIXES */
+    /* ==================== */
+    
+    /* Small mobile (up to 576px) */
+    @media (max-width: 576px) {
+        .page-header h1 {
+            font-size: 20px;
+        }
+        
+        .stat-card.small {
+            padding: 10px;
+        }
+        
+        .icon-sm {
+            width: 36px;
+            height: 36px;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        
+        .enrollment-card .card-body {
+            padding: 12px;
+        }
+        
+        .enrollment-card .btn-sm {
+            padding: 6px 8px;
+            font-size: 12px;
+        }
+        
+        .enrollment-card .btn-sm i {
+            margin-right: 4px;
+        }
+        
+        .col-12.col-sm-6 {
+            padding: 6px;
+        }
+        
+        .data-table {
+            margin: 0 -15px;
+            border-radius: 0;
+            border-left: none;
+            border-right: none;
+        }
+        
+        .btn-fab {
+            width: 50px;
+            height: 50px;
+        }
+    }
+    
+    /* Mobile (576px - 768px) */
+    @media (min-width: 576px) and (max-width: 768px) {
+        .enrollment-card .card-body {
+            padding: 14px;
+        }
+        
+        .enrollment-card .btn-sm {
+            padding: 8px 10px;
+            font-size: 13px;
+        }
+        
+        .col-sm-6 {
+            padding: 8px;
+        }
+    }
+    
+    /* Tablet (768px - 992px) */
+    @media (min-width: 768px) and (max-width: 992px) {
+        .enrollment-card .card-body {
+            padding: 16px;
+        }
+        
+        .col-md-6 {
+            padding: 10px;
+        }
+        
+        .fab-container {
+            display: none;
+        }
+    }
+    
+    /* Desktop (992px and up) */
+    @media (min-width: 992px) {
+        .enrollment-card .card-body {
+            padding: 20px;
+        }
+        
+        .col-lg-4 {
+            padding: 12px;
+        }
+        
+        .fab-container {
+            display: none;
+        }
+    }
+    
+    /* Extra large screens (1200px and up) */
+    @media (min-width: 1200px) {
+        .col-xl-3 {
+            padding: 14px;
+        }
+    }
+    
+    /* ==================== */
+    /* FIXES FOR MOBILE ICONS */
+    /* ==================== */
+    
+    /* Ensure icons are visible */
+    .fas, .far, .fab {
+        display: inline-block;
+        line-height: 1;
+        vertical-align: middle;
+    }
+    
+    /* Fix dropdown menu icons */
+    .dropdown-menu .fas {
+        width: 18px;
+        text-align: center;
+        margin-right: 8px;
+    }
+    
+    /* Fix button icon spacing */
+    .btn i {
+        margin-right: 4px;
+    }
+    
+    .btn-sm i {
+        margin-right: 3px;
+    }
+    
+    /* Fix dropdown toggle buttons */
+    .dropdown-toggle::after {
+        margin-left: 5px;
+    }
+    
+    /* ==================== */
+    /* TOUCH IMPROVEMENTS */
+    /* ==================== */
+    
+    @media (max-width: 768px) {
+        /* Larger touch targets for mobile */
+        .btn-group-sm .btn {
+            min-height: 44px;
+            padding: 10px 12px;
+        }
+        
+        .dropdown-item {
+            padding: 12px 16px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+        }
+        
+        /* Prevent text selection on mobile */
+        * {
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+        
+        /* Allow text selection on input fields */
+        input, textarea, select {
+            user-select: text;
+        }
+        
+        /* Better touch feedback */
+        .btn:active, .card:active {
+            opacity: 0.8;
+            transform: scale(0.98);
+        }
+    }
+    
+    /* ==================== */
+    /* IOS SPECIFIC FIXES */
+    /* ==================== */
+    
+    @supports (-webkit-touch-callout: none) {
+        .mobile-tap-target {
+            cursor: pointer;
+        }
+        
+        /* Fix for iOS Safari hover states */
+        body {
+            cursor: pointer;
+        }
+        
+        /* Prevent zoom on double-tap */
+        button, a {
+            touch-action: manipulation;
+        }
+    }
+    
+    /* ==================== */
+    /* PRINT STYLES */
+    /* ==================== */
+    
+    @media print {
+        .sidebar, .top-navbar, .btn-fab, .btn-custom, 
+        .dropdown-menu, .fab-container, .btn-group,
+        .search-box, .stat-card, .pagination,
+        #cardViewBtn, #tableViewBtn {
+            display: none !important;
+        }
+        
+        .main-content {
+            margin-left: 0 !important;
+        }
+        
+        #tableView {
+            display: block !important;
+        }
+        
+        #cardView {
+            display: none !important;
+        }
+        
+        .data-table {
+            box-shadow: none;
+            border: 1px solid #ddd;
+        }
+        
+        body {
+            background: white;
+            font-size: 11px;
+        }
+        
+        .page-header {
+            padding: 10px 0;
+            margin-bottom: 15px;
+        }
+        
+        .table th, .table td {
+            padding: 6px 8px;
+        }
+        
+        .avatar-sm, .avatar-xs, .avatar-title {
+            display: none !important;
+        }
+        
+        .badge {
+            background-color: #ddd !important;
+            color: #000 !important;
+            border: 1px solid #999;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // ============================================
+        // VIEW TOGGLE FUNCTIONALITY
+        // ============================================
+        const cardViewBtn = document.getElementById('cardViewBtn');
+        const tableViewBtn = document.getElementById('tableViewBtn');
+        const cardView = document.getElementById('cardView');
+        const tableView = document.getElementById('tableView');
+        
+        if (cardViewBtn && tableViewBtn) {
+            // Load saved view preference
+            const savedView = localStorage.getItem('enrollmentViewMode') || 'table';
+            
+            if (savedView === 'cards') {
+                cardViewBtn.classList.add('btn-primary');
+                cardViewBtn.classList.remove('btn-outline-primary');
+                tableViewBtn.classList.add('btn-outline-primary');
+                tableViewBtn.classList.remove('btn-primary');
+                cardView.classList.remove('d-none');
+                tableView.classList.add('d-none');
+            } else {
+                tableViewBtn.classList.add('btn-primary');
+                tableViewBtn.classList.remove('btn-outline-primary');
+                cardViewBtn.classList.add('btn-outline-primary');
+                cardViewBtn.classList.remove('btn-primary');
+                tableView.classList.remove('d-none');
+                cardView.classList.add('d-none');
+            }
+            
+            // Card view button click
+            cardViewBtn.addEventListener('click', function() {
+                this.classList.add('btn-primary');
+                this.classList.remove('btn-outline-primary');
+                tableViewBtn.classList.add('btn-outline-primary');
+                tableViewBtn.classList.remove('btn-primary');
+                cardView.classList.remove('d-none');
+                tableView.classList.add('d-none');
+                localStorage.setItem('enrollmentViewMode', 'cards');
+            });
+            
+            // Table view button click
+            tableViewBtn.addEventListener('click', function() {
+                this.classList.add('btn-primary');
+                this.classList.remove('btn-outline-primary');
+                cardViewBtn.classList.add('btn-outline-primary');
+                cardViewBtn.classList.remove('btn-primary');
+                tableView.classList.remove('d-none');
+                cardView.classList.add('d-none');
+                localStorage.setItem('enrollmentViewMode', 'table');
+            });
+        }
+        
+        // ============================================
+        // MOBILE DROPDOWN FIXES
+        // ============================================
+        function fixMobileDropdowns() {
+            const dropdowns = document.querySelectorAll('.dropdown');
+            
+            dropdowns.forEach(dropdown => {
+                const toggle = dropdown.querySelector('[data-bs-toggle="dropdown"]');
+                if (toggle) {
+                    // Remove any existing listeners to avoid duplicates
+                    toggle.removeEventListener('click', handleMobileDropdown);
+                    toggle.addEventListener('click', handleMobileDropdown);
+                }
+            });
+        }
+        
+        function handleMobileDropdown(e) {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const toggle = this;
+                const dropdown = toggle.closest('.dropdown');
+                const menu = dropdown.querySelector('.dropdown-menu');
+                
+                if (menu) {
+                    // Close all other dropdowns
+                    document.querySelectorAll('.dropdown-menu.show').forEach(openMenu => {
+                        if (openMenu !== menu) {
+                            openMenu.classList.remove('show');
+                        }
+                    });
+                    
+                    // Toggle current dropdown
+                    menu.classList.toggle('show');
+                    
+                    // Position menu properly
+                    if (menu.classList.contains('show')) {
+                        const rect = toggle.getBoundingClientRect();
+                        menu.style.position = 'fixed';
+                        menu.style.top = (rect.bottom + 5) + 'px';
+                        menu.style.left = Math.max(10, rect.left) + 'px';
+                        menu.style.right = 'auto';
+                        menu.style.minWidth = '200px';
+                        menu.style.maxHeight = 'calc(100vh - ' + (rect.bottom + 10) + 'px)';
+                        menu.style.overflowY = 'auto';
+                        menu.style.zIndex = '1060';
+                    } else {
+                        menu.style.position = '';
+                        menu.style.top = '';
+                        menu.style.left = '';
+                    }
+                }
+            }
+        }
+        
+        // Close dropdown when clicking outside on mobile
+        document.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768) {
+                const dropdowns = document.querySelectorAll('.dropdown-menu.show');
+                dropdowns.forEach(menu => {
+                    const dropdown = menu.closest('.dropdown');
+                    if (!dropdown.contains(e.target)) {
+                        menu.classList.remove('show');
+                        menu.style.position = '';
+                        menu.style.top = '';
+                        menu.style.left = '';
+                    }
+                });
+            }
+        });
+        
+        // ============================================
+        // FILTER COLLAPSE TOGGLE
+        // ============================================
+        const filterCollapse = document.getElementById('filterCollapse');
+        if (filterCollapse) {
+            const filterBtn = document.querySelector('[data-bs-target="#filterCollapse"]');
+            if (filterBtn) {
+                filterCollapse.addEventListener('show.bs.collapse', function() {
+                    filterBtn.innerHTML = '<i class="fas fa-times"></i>';
+                });
+                
+                filterCollapse.addEventListener('hide.bs.collapse', function() {
+                    filterBtn.innerHTML = '<i class="fas fa-filter"></i>';
+                });
+            }
+        }
+        
+        // ============================================
+        // TOUCH FEEDBACK FOR MOBILE
+        // ============================================
+        function addTouchFeedback() {
+            const touchElements = document.querySelectorAll('.mobile-tap-target, .btn, .card, .dropdown-item');
+            
+            touchElements.forEach(element => {
+                element.addEventListener('touchstart', function() {
+                    this.classList.add('active');
+                });
+                
+                element.addEventListener('touchend', function() {
+                    this.classList.remove('active');
+                });
+            });
+        }
+        
+        // ============================================
+        // FIX ACTION BUTTONS ON MOBILE
+        // ============================================
+        function fixActionButtons() {
+            if (window.innerWidth <= 768) {
+                // Make action buttons larger on mobile
+                document.querySelectorAll('.btn-group-sm .btn').forEach(btn => {
+                    btn.style.padding = '10px 12px';
+                    btn.style.minWidth = '44px';
+                    btn.style.minHeight = '44px';
+                });
+                
+                // Fix card action buttons
+                document.querySelectorAll('.enrollment-card .btn-sm').forEach(btn => {
+                    btn.style.padding = '8px 10px';
+                    btn.style.minHeight = '40px';
+                });
+            }
+        }
+        
+        // ============================================
+        // INITIALIZE ALL FIXES
+        // ============================================
+        fixMobileDropdowns();
+        addTouchFeedback();
+        fixActionButtons();
+        
+        // Re-apply fixes on window resize
+        window.addEventListener('resize', function() {
+            fixMobileDropdowns();
+            fixActionButtons();
+        });
+        
+        // ============================================
+        // PREVENT DOUBLE-TAP ZOOM ON MOBILE
+        // ============================================
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+        
+        // ============================================
+        // ENSURE FONT AWESOME ICONS ARE VISIBLE
+        // ============================================
+        // Check if Font Awesome is loaded
+        setTimeout(function() {
+            const icons = document.querySelectorAll('.fas, .far, .fab');
+            icons.forEach(icon => {
+                if (getComputedStyle(icon).display === 'none') {
+                    console.warn('Icon not visible:', icon.className);
+                    // Fallback: show text alternative
+                    const iconName = icon.className.match(/fa-([a-z-]+)/);
+                    if (iconName) {
+                        icon.setAttribute('aria-label', iconName[1].replace('-', ' '));
+                    }
+                }
+            });
+        }, 1000);
+    });
+</script>
 {% endblock %}

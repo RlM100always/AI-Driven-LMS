@@ -1,176 +1,1001 @@
-<!-- ============================================ -->
-<!-- FILE: adminapp/templates/adminapp/assignments/detail.html -->
-<!-- ============================================ -->
 {% extends 'adminapp/base.html' %}
 
 {% block title %}Assignment Details{% endblock %}
 
+{% block breadcrumbs %}
+<li class="breadcrumb-item"><a href="{% url 'assignment_list' %}">Assignments</a></li>
+<li class="breadcrumb-item active">{{ assignment.assignment_id }}</li>
+{% endblock %}
+
 {% block content %}
-<div class="page-header d-flex justify-content-between align-items-center">
-    <div>
-        <h1><i class="fas fa-tasks"></i> Assignment Details</h1>
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'assignment_list' %}">Assignments</a></li>
-                <li class="breadcrumb-item active">{{ assignment.assignment_id }}</li>
-            </ol>
-        </nav>
-    </div>
-    <div>
-        <a href="{% url 'assignment_edit' assignment.pk %}" class="btn btn-warning btn-custom">
-            <i class="fas fa-edit"></i> Edit
-        </a>
-        <a href="{% url 'assignment_delete' assignment.pk %}" class="btn btn-danger btn-custom">
-            <i class="fas fa-trash"></i> Delete
-        </a>
+<div class="page-header">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4">
+        <div class="mb-3 mb-md-0">
+            <div class="d-flex align-items-center mb-2">
+                <div class="avatar-lg me-3 d-none d-md-flex">
+                    <div class="avatar-title bg-primary bg-opacity-10 text-primary rounded-circle">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                </div>
+                <div>
+                    <h1 class="mb-0">
+                        <i class="fas fa-tasks me-2 d-md-none"></i>
+                        {{ assignment.title }}
+                    </h1>
+                    <div class="d-flex flex-wrap align-items-center gap-2 mt-2">
+                        <span class="badge bg-secondary">{{ assignment.assignment_id }}</span>
+                        <span class="badge bg-primary">{{ assignment.course.course_code }}</span>
+                        <span class="status-badge status-{% if assignment.is_overdue %}danger{% else %}warning{% endif %}">
+                            <i class="fas fa-clock me-1" style="font-size: 8px;"></i>
+                            {% if assignment.due_date %}
+                                Due {{ assignment.due_date|date:"M d" }}
+                            {% else %}
+                                No due date
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+            <a href="{% url 'assignment_edit' assignment.pk %}" class="btn btn-warning btn-custom">
+                <i class="fas fa-edit me-1"></i>
+                <span class="d-none d-sm-inline">Edit</span>
+            </a>
+            <a href="{% url 'assignment_delete' assignment.pk %}" class="btn btn-danger btn-custom">
+                <i class="fas fa-trash me-1"></i>
+                <span class="d-none d-sm-inline">Delete</span>
+            </a>
+            <button class="btn btn-outline-secondary d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#assignmentSidebar">
+                <i class="fas fa-chart-bar"></i>
+            </button>
+        </div>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-8">
-        <div class="data-table p-4 mb-4">
-            <h5 class="mb-4"><i class="fas fa-info-circle text-primary"></i> Assignment Information</h5>
-            <table class="table table-bordered">
-                <tr>
-                    <th width="30%">Assignment ID</th>
-                    <td><strong>{{ assignment.assignment_id }}</strong></td>
-                </tr>
-                <tr>
-                    <th>Title</th>
-                    <td>{{ assignment.title }}</td>
-                </tr>
-                <tr>
-                    <th>Course</th>
-                    <td>
-                        <span class="badge bg-primary">{{ assignment.course.course_code }}</span>
-                        {{ assignment.course.course_name }}
-                    </td>
-                </tr>
-                <tr>
-                    <th>Type</th>
-                    <td>{{ assignment.assignment_type }}</td>
-                </tr>
-                <tr>
-                    <th>Description</th>
-                    <td>{{ assignment.description|default:"No description available" }}</td>
-                </tr>
-                <tr>
-                    <th>Max Marks</th>
-                    <td><strong>{{ assignment.max_marks }}</strong></td>
-                </tr>
-                <tr>
-                    <th>Weight</th>
-                    <td>{{ assignment.weight }}%</td>
-                </tr>
-                <tr>
-                    <th>Due Date</th>
-                    <td>
-                        {% if assignment.due_date %}
-                            {{ assignment.due_date|date:"l, F d, Y h:i A" }}
-                        {% else %}
-                            No due date set
-                        {% endif %}
-                    </td>
-                </tr>
-                <tr>
-                    <th>Submission Type</th>
-                    <td>{{ assignment.submission_type }}</td>
-                </tr>
-                <tr>
-                    <th>Late Submissions</th>
-                    <td>
-                        {% if assignment.allow_late %}
-                            <span class="badge bg-success">Allowed</span>
-                            ({{ assignment.late_penalty }}% penalty per day)
-                        {% else %}
-                            <span class="badge bg-danger">Not Allowed</span>
-                        {% endif %}
-                    </td>
-                </tr>
-            </table>
-        </div>
-        
-        <!-- Submissions/Grades -->
-        <div class="data-table">
-            <div class="p-3 border-bottom">
-                <h5 class="mb-0"><i class="fas fa-file-upload"></i> Submissions & Grades</h5>
-            </div>
-            <table class="table table-hover mb-0">
-                <thead>
-                    <tr>
-                        <th>Student ID</th>
-                        <th>Student Name</th>
-                        <th>Submitted</th>
-                        <th>Marks</th>
-                        <th>Percentage</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for grade in grades %}
-                    <tr>
-                        <td><strong>{{ grade.student.student_id }}</strong></td>
-                        <td>{{ grade.student.user.get_full_name }}</td>
-                        <td>
-                            {% if grade.submitted_date %}
-                                {{ grade.submitted_date|date:"M d, Y" }}
-                            {% else %}
-                                -
-                            {% endif %}
-                        </td>
-                        <td>{{ grade.marks_obtained }}/{{ grade.max_marks }}</td>
-                        <td><strong>{{ grade.percentage }}%</strong></td>
-                        <td>
-                            {% if grade.graded_date %}
-                                <span class="badge bg-success">Graded</span>
-                            {% else %}
-                                <span class="badge bg-warning">Pending</span>
-                            {% endif %}
-                        </td>
-                    </tr>
-                    {% empty %}
-                    <tr>
-                        <td colspan="6" class="text-center py-3 text-muted">No submissions yet</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+<!-- Mobile Stats Offcanvas -->
+<div class="offcanvas offcanvas-start d-md-none" tabindex="-1" id="assignmentSidebar" aria-labelledby="assignmentSidebarLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="assignmentSidebarLabel">Assignment Stats</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    
-    <div class="col-md-4">
-        <div class="stat-card primary">
-            <div class="icon">
-                <i class="fas fa-users"></i>
-            </div>
-            <h6>Total Students</h6>
-            <h2>{{ total_students }}</h2>
-        </div>
-        
-        <div class="stat-card success mt-3">
-            <div class="icon">
-                <i class="fas fa-check-circle"></i>
-            </div>
-            <h6>Submitted</h6>
-            <h2>{{ submitted_count }}</h2>
-        </div>
-        
-        <div class="stat-card warning mt-3">
-            <div class="icon">
-                <i class="fas fa-clock"></i>
-            </div>
-            <h6>Pending</h6>
-            <h2>{{ pending_count }}</h2>
-        </div>
-        
-        <div class="stat-card info mt-3">
-            <div class="icon">
-                <i class="fas fa-chart-line"></i>
-            </div>
-            <h6>Average Score</h6>
-            <h2>{{ average_score|default:"N/A" }}%</h2>
+    <div class="offcanvas-body">
+        <div class="assignment-stats-card">
+            <!-- Assignment stats will be loaded here via JS -->
         </div>
     </div>
 </div>
+
+<div class="row g-4">
+    <!-- Main Content Area -->
+    <div class="col-lg-8 col-md-7">
+        <!-- Quick Stats -->
+        <div class="row g-3 mb-4 d-md-none">
+            <div class="col-6">
+                <div class="stat-card small">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-sm bg-primary bg-opacity-10 text-primary rounded-circle me-3">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-0 text-muted">Students</h6>
+                            <h4 class="mb-0">{{ total_students }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="stat-card small">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-sm bg-success bg-opacity-10 text-success rounded-circle me-3">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-0 text-muted">Submitted</h6>
+                            <h4 class="mb-0">{{ submitted_count }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="stat-card small">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-sm bg-warning bg-opacity-10 text-warning rounded-circle me-3">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-0 text-muted">Pending</h6>
+                            <h4 class="mb-0">{{ pending_count }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="stat-card small">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-sm bg-info bg-opacity-10 text-info rounded-circle me-3">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-0 text-muted">Average</h6>
+                            <h4 class="mb-0">{{ average_score|default:"N/A" }}%</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Assignment Information -->
+        <div class="data-table mb-4">
+            <div class="d-flex justify-content-between align-items-center p-3 border-bottom">
+                <h5 class="mb-0">
+                    <i class="fas fa-info-circle me-2"></i>
+                    Assignment Information
+                </h5>
+                <button class="btn btn-sm btn-outline-primary d-none d-md-block" onclick="printAssignmentInfo()">
+                    <i class="fas fa-print"></i> Print
+                </button>
+            </div>
+            <div class="p-3">
+                <div class="table-responsive">
+                    <table class="table table-bordered mb-0">
+                        <tbody>
+                            <tr>
+                                <th scope="row" class="w-40">Assignment ID</th>
+                                <td><strong class="text-primary">{{ assignment.assignment_id }}</strong></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Title</th>
+                                <td>{{ assignment.title }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Course</th>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <span class="badge bg-primary me-2">{{ assignment.course.course_code }}</span>
+                                        <span>{{ assignment.course.course_name }}</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Type</th>
+                                <td>
+                                    <span class="badge bg-light text-dark">{{ assignment.assignment_type }}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Description</th>
+                                <td>
+                                    <div class="assignment-description">
+                                        {{ assignment.description|default:"No description available"|linebreaks }}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Assessment Details</th>
+                                <td>
+                                    <div class="row g-2">
+                                        <div class="col-md-6">
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-star text-warning me-2"></i>
+                                                <div>
+                                                    <small class="text-muted d-block">Max Marks</small>
+                                                    <div class="fw-medium">{{ assignment.max_marks }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-weight text-info me-2"></i>
+                                                <div>
+                                                    <small class="text-muted d-block">Weight</small>
+                                                    <div class="fw-medium">{{ assignment.weight }}%</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Due Date</th>
+                                <td>
+                                    {% if assignment.due_date %}
+                                    <div class="d-flex flex-column">
+                                        <div class="fw-medium">{{ assignment.due_date|date:"l, F d, Y" }}</div>
+                                        <div class="text-muted small">{{ assignment.due_date|date:"h:i A" }}</div>
+                                        {% if assignment.is_overdue %}
+                                        <span class="badge bg-danger mt-1">
+                                            <i class="fas fa-exclamation-circle me-1"></i>
+                                            Overdue
+                                        </span>
+                                        {% endif %}
+                                    </div>
+                                    {% else %}
+                                    <span class="text-muted">No due date set</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Submission Type</th>
+                                <td>{{ assignment.submission_type }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Late Submissions</th>
+                                <td>
+                                    {% if assignment.allow_late %}
+                                    <div class="d-flex align-items-center">
+                                        <span class="badge bg-success me-2">Allowed</span>
+                                        <div>
+                                            <small class="text-muted d-block">Penalty per day</small>
+                                            <div>{{ assignment.late_penalty }}%</div>
+                                        </div>
+                                    </div>
+                                    {% else %}
+                                    <span class="badge bg-danger">Not Allowed</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Submissions & Grades Tabs -->
+        <div class="data-table">
+            <ul class="nav nav-tabs" id="submissionTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="grades-tab" data-bs-toggle="tab" data-bs-target="#grades" type="button" role="tab">
+                        <i class="fas fa-graduation-cap me-1"></i>
+                        <span class="d-none d-md-inline">Submissions & Grades</span>
+                        <span class="d-inline d-md-none">Grades</span>
+                        <span class="badge bg-primary ms-1">{{ grades|length }}</span>
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="statistics-tab" data-bs-toggle="tab" data-bs-target="#statistics" type="button" role="tab">
+                        <i class="fas fa-chart-bar me-1"></i>
+                        <span class="d-none d-md-inline">Statistics</span>
+                        <span class="d-inline d-md-none">Stats</span>
+                    </button>
+                </li>
+                <li class="nav-item ms-auto">
+                    <a href="#" class="nav-link text-primary">
+                        <i class="fas fa-download"></i>
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content p-3" id="submissionTabsContent">
+                <!-- Grades Tab -->
+                <div class="tab-pane fade show active" id="grades" role="tabpanel">
+                    {% if grades %}
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th class="d-none d-md-table-cell">Submitted</th>
+                                    <th>Marks</th>
+                                    <th>%</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for grade in grades %}
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar-sm me-2">
+                                                <div class="avatar-title bg-primary bg-opacity-10 text-primary rounded-circle">
+                                                    {{ grade.student.user.get_full_name|first|upper }}
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="fw-medium">{{ grade.student.student_id }}</div>
+                                                <small class="text-muted">{{ grade.student.user.get_full_name|truncatechars:15 }}</small>
+                                                <small class="text-muted d-block d-md-none">{{ grade.submitted_date|date:"M d"|default:"Not submitted" }}</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="d-none d-md-table-cell">
+                                        {% if grade.submitted_date %}
+                                            {{ grade.submitted_date|date:"M d, Y" }}
+                                        {% else %}
+                                            <span class="text-muted">-</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {{ grade.marks_obtained }}/{{ grade.max_marks }}
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-{% if grade.percentage >= 70 %}success{% elif grade.percentage >= 50 %}warning{% else %}danger{% endif %}">
+                                            {{ grade.percentage }}%
+                                        </span>
+                                    </td>
+                                    <td>
+                                        {% if grade.graded_date %}
+                                        <span class="status-badge status-active">
+                                            <span class="d-none d-md-inline">Graded</span>
+                                            <span class="d-inline d-md-none">✓</span>
+                                        </span>
+                                        {% else %}
+                                        <span class="status-badge status-pending">
+                                            <span class="d-none d-md-inline">Pending</span>
+                                            <span class="d-inline d-md-none">…</span>
+                                        </span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm">
+                                            <a href="#" class="btn btn-outline-info" title="View Submission">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-outline-warning" title="Grade">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="empty-state text-center py-4">
+                        <i class="fas fa-file-upload fa-3x text-muted mb-3"></i>
+                        <h5 class="text-muted">No submissions yet</h5>
+                        <p class="text-muted mb-3">Students haven't submitted work for this assignment</p>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Statistics Tab -->
+                <div class="tab-pane fade" id="statistics" role="tabpanel">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h6 class="card-title text-muted mb-3">Submission Status</h6>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span>Submitted</span>
+                                        <span class="badge bg-success">{{ submitted_count }}</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span>Pending</span>
+                                        <span class="badge bg-warning">{{ pending_count }}</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span>Total Students</span>
+                                        <span class="badge bg-primary">{{ total_students }}</span>
+                                    </div>
+                                    <div class="progress mt-3" style="height: 20px;">
+                                        <div class="progress-bar bg-success" style="width: {% widthratio submitted_count total_students 100 %}%">
+                                            {{ submitted_count }}
+                                        </div>
+                                        <div class="progress-bar bg-warning" style="width: {% widthratio pending_count total_students 100 %}%">
+                                            {{ pending_count }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h6 class="card-title text-muted mb-3">Performance Summary</h6>
+                                    <div class="text-center py-3">
+                                        <h1 class="display-4 text-primary mb-2">{{ average_score|default:"N/A" }}%</h1>
+                                        <small class="text-muted">Average Score</small>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <small class="text-muted">High: {{ highest_score|default:"N/A" }}%</small>
+                                        <small class="text-muted">Low: {{ lowest_score|default:"N/A" }}%</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar - Stats (Desktop) -->
+    <div class="col-lg-4 col-md-5 d-none d-md-block">
+        <div class="sticky-top" style="top: 20px;">
+            <div class="assignment-stats-card">
+                <div class="data-table">
+                    <div class="text-center p-4">
+                        <div class="avatar-xxl mx-auto mb-3">
+                            <div class="avatar-title bg-primary bg-opacity-10 text-primary rounded-circle">
+                                <i class="fas fa-tasks fa-2x"></i>
+                            </div>
+                        </div>
+                        <h4 class="mb-1">{{ assignment.assignment_id }}</h4>
+                        <p class="text-muted mb-3">{{ assignment.title|truncatechars:40 }}</p>
+                        
+                        <div class="d-flex justify-content-center gap-2 mb-4">
+                            <a href="{% url 'assignment_edit' assignment.pk %}" class="btn btn-sm btn-outline-warning">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            <a href="#" class="btn btn-sm btn-outline-info" onclick="printAssignmentInfo()">
+                                <i class="fas fa-print"></i> Print
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="p-3 border-top">
+                        <h6 class="text-primary mb-3">
+                            <i class="fas fa-chart-pie me-2"></i>
+                            Performance Stats
+                        </h6>
+                        
+                        <div class="stat-item mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <span>Total Students</span>
+                                <span class="fw-medium">{{ total_students }}</span>
+                            </div>
+                            <div class="progress" style="height: 6px;">
+                                <div class="progress-bar bg-primary" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-item mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <span>Submitted</span>
+                                <span class="fw-medium text-success">{{ submitted_count }}</span>
+                            </div>
+                            <div class="progress" style="height: 6px;">
+                                <div class="progress-bar bg-success" style="width: {% widthratio submitted_count total_students 100 %}%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-item mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <span>Pending</span>
+                                <span class="fw-medium text-warning">{{ pending_count }}</span>
+                            </div>
+                            <div class="progress" style="height: 6px;">
+                                <div class="progress-bar bg-warning" style="width: {% widthratio pending_count total_students 100 %}%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-item mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <span>Average Score</span>
+                                <span class="fw-medium text-info">{{ average_score|default:"N/A" }}%</span>
+                            </div>
+                            <div class="progress" style="height: 6px;">
+                                <div class="progress-bar bg-info" style="width: {% widthratio average_score 100 100 %}%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-3 border-top">
+                        <h6 class="text-primary mb-3">
+                            <i class="fas fa-clock me-2"></i>
+                            Due Date Status
+                        </h6>
+                        
+                        {% if assignment.due_date %}
+                        <div class="alert alert-{% if assignment.is_overdue %}danger{% else %}warning{% endif %} mb-3">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-{% if assignment.is_overdue %}exclamation-triangle{% else %}clock{% endif %} fa-lg me-3"></i>
+                                <div>
+                                    <div class="fw-medium">{{ assignment.due_date|date:"F d, Y" }}</div>
+                                    <small class="text-muted">{{ assignment.due_date|date:"h:i A" }}</small>
+                                    {% if assignment.is_overdue %}
+                                    <div class="mt-1">
+                                        <small class="text-danger">
+                                            <i class="fas fa-exclamation-circle me-1"></i>
+                                            Overdue
+                                        </small>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">Time Remaining</small>
+                            <small class="fw-medium">
+                                {% if assignment.is_overdue %}
+                                    <span class="text-danger">Past due</span>
+                                {% else %}
+                                    {{ assignment.time_remaining }}
+                                {% endif %}
+                            </small>
+                        </div>
+                        {% else %}
+                        <div class="alert alert-secondary">
+                            <i class="fas fa-infinity me-2"></i>
+                            No due date set
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="p-3 border-top">
+                        <h6 class="text-primary mb-3">
+                            <i class="fas fa-cogs me-2"></i>
+                            Quick Actions
+                        </h6>
+                        
+                        <div class="d-grid gap-2">
+                            <a href="#" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-download me-2"></i>
+                                Download All Submissions
+                            </a>
+                            <a href="#" class="btn btn-sm btn-outline-success">
+                                <i class="fas fa-envelope me-2"></i>
+                                Email Reminder
+                            </a>
+                            <a href="#" class="btn btn-sm btn-outline-warning">
+                                <i class="fas fa-chart-bar me-2"></i>
+                                View Analytics
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Mobile Floating Actions -->
+<div class="d-md-none">
+    <div class="fab-container">
+        <div class="btn-group dropup">
+            <button type="button" class="btn btn-primary-custom btn-fab rounded-circle" data-bs-toggle="dropdown">
+                <i class="fas fa-ellipsis-v"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="{% url 'assignment_edit' assignment.pk %}">
+                    <i class="fas fa-edit me-2"></i>Edit Assignment
+                </a></li>
+                <li><a class="dropdown-item" href="#">
+                    <i class="fas fa-download me-2"></i>Download Submissions
+                </a></li>
+                <li><a class="dropdown-item" href="#">
+                    <i class="fas fa-envelope me-2"></i>Send Reminder
+                </a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="{% url 'assignment_delete' assignment.pk %}">
+                    <i class="fas fa-trash me-2"></i>Delete Assignment
+                </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Custom styles for assignment details */
+    .avatar-xxl {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .avatar-lg {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .avatar-sm {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .avatar-title {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+    }
+    
+    .stat-item {
+        padding-bottom: 15px;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .stat-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+    
+    .assignment-stats-card {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    
+    .sticky-top {
+        position: sticky;
+        z-index: 1020;
+    }
+    
+    .empty-state {
+        padding: 30px 20px;
+        text-align: center;
+    }
+    
+    .assignment-description {
+        max-height: 150px;
+        overflow-y: auto;
+        padding-right: 10px;
+    }
+    
+    .fab-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1050;
+    }
+    
+    .btn-fab {
+        width: 56px;
+        height: 56px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    
+    .btn-fab.rounded-circle {
+        border-radius: 50% !important;
+    }
+    
+    /* Status badge colors */
+    .status-active {
+        background: #d4edda;
+        color: #155724;
+    }
+    
+    .status-pending {
+        background: #fff3cd;
+        color: #856404;
+    }
+    
+    .status-warning {
+        background: #ffeaa7;
+        color: #5d4c00;
+    }
+    
+    .status-danger {
+        background: #f8d7da;
+        color: #721c24;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .page-header h1 {
+            font-size: 22px;
+        }
+        
+        .avatar-lg {
+            width: 50px;
+            height: 50px;
+        }
+        
+        .data-table {
+            margin: 0 -12px;
+            border-radius: 0;
+            box-shadow: none;
+            border: 1px solid #dee2e6;
+        }
+        
+        .nav-tabs .nav-link {
+            padding: 8px 12px;
+            font-size: 14px;
+        }
+        
+        .offcanvas {
+            width: 85%;
+            max-width: 300px;
+        }
+        
+        .table th.w-40 {
+            width: 35% !important;
+        }
+        
+        .assignment-description {
+            max-height: 100px;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .page-header h1 {
+            font-size: 20px;
+        }
+        
+        .stat-card.small {
+            padding: 12px;
+        }
+        
+        .stat-card.small h4 {
+            font-size: 18px;
+        }
+        
+        .empty-state {
+            padding: 25px 15px;
+        }
+        
+        .empty-state i {
+            font-size: 2.5rem;
+        }
+        
+        .table-bordered th,
+        .table-bordered td {
+            padding: 8px;
+            font-size: 14px;
+        }
+        
+        .tab-content .card {
+            margin-bottom: 15px;
+        }
+        
+        .tab-content .display-4 {
+            font-size: 2.5rem;
+        }
+    }
+    
+    @media (max-width: 400px) {
+        .table-responsive {
+            font-size: 14px;
+        }
+        
+        .btn-group.btn-group-sm .btn {
+            padding: 4px 6px;
+        }
+        
+        .avatar-sm {
+            width: 28px;
+            height: 28px;
+            font-size: 12px;
+        }
+    }
+    
+    @media (min-width: 992px) {
+        .sticky-top {
+            top: 90px;
+        }
+        
+        .assignment-description {
+            max-height: 200px;
+        }
+    }
+    
+    /* Print styles */
+    @media print {
+        .sidebar,
+        .top-navbar,
+        .btn-fab,
+        .offcanvas,
+        .nav-tabs,
+        .btn-custom,
+        .dropdown-menu,
+        .fab-container {
+            display: none !important;
+        }
+        
+        .main-content {
+            margin-left: 0 !important;
+        }
+        
+        .col-lg-4, .col-md-5 {
+            display: none !important;
+        }
+        
+        .col-lg-8, .col-md-7 {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+        
+        .data-table {
+            box-shadow: none;
+            border: 1px solid #ddd;
+            page-break-inside: avoid;
+        }
+        
+        body {
+            background: white;
+            font-size: 12px;
+        }
+        
+        .page-header {
+            padding: 15px 0;
+            margin-bottom: 20px;
+        }
+        
+        .assignment-description {
+            max-height: none;
+            overflow: visible;
+        }
+        
+        .tab-content > .tab-pane {
+            display: block !important;
+            opacity: 1 !important;
+        }
+        
+        #statistics {
+            display: none !important;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Copy stats to mobile offcanvas
+        const statsCard = document.querySelector('.assignment-stats-card');
+        const mobileStatsCard = document.querySelector('.offcanvas .assignment-stats-card');
+        
+        if (statsCard && mobileStatsCard) {
+            mobileStatsCard.innerHTML = statsCard.innerHTML;
+        }
+        
+        // Initialize tabs
+        const tabTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tab"]'));
+        tabTriggerList.map(function (tabTriggerEl) {
+            return new bootstrap.Tab(tabTriggerEl);
+        });
+        
+        // Initialize offcanvas
+        const offcanvasElement = document.getElementById('assignmentSidebar');
+        if (offcanvasElement) {
+            const offcanvas = new bootstrap.Offcanvas(offcanvasElement);
+            
+            // Close offcanvas when clicking outside on mobile
+            offcanvasElement.addEventListener('click', function(e) {
+                if (e.target.classList.contains('offcanvas-backdrop')) {
+                    offcanvas.hide();
+                }
+            });
+        }
+        
+        // Print functionality
+        window.printAssignmentInfo = function() {
+            // Store current active tab
+            const activeTab = document.querySelector('#submissionTabs .nav-link.active');
+            const activeTabId = activeTab ? activeTab.getAttribute('data-bs-target') : null;
+            
+            // Show all tabs for printing
+            if (activeTabId) {
+                const tabPanes = document.querySelectorAll('.tab-pane');
+                tabPanes.forEach(pane => {
+                    pane.classList.add('d-block');
+                    pane.classList.remove('fade');
+                    pane.style.opacity = '1';
+                });
+            }
+            
+            window.print();
+            
+            // Restore tab state
+            if (activeTabId) {
+                const tabPanes = document.querySelectorAll('.tab-pane');
+                tabPanes.forEach(pane => {
+                    pane.classList.remove('d-block');
+                    pane.classList.add('fade');
+                    pane.style.opacity = '';
+                });
+                document.querySelector(activeTabId).classList.add('show', 'active');
+            }
+        };
+        
+        // Mobile swipe for tabs
+        if (window.innerWidth < 768) {
+            const tabContent = document.getElementById('submissionTabsContent');
+            let touchStartX = 0;
+            
+            if (tabContent) {
+                tabContent.addEventListener('touchstart', e => {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, false);
+                
+                tabContent.addEventListener('touchend', e => {
+                    const touchEndX = e.changedTouches[0].screenX;
+                    const swipeThreshold = 50;
+                    const swipeDistance = touchEndX - touchStartX;
+                    
+                    if (Math.abs(swipeDistance) > swipeThreshold) {
+                        const activeTab = document.querySelector('.nav-link.active');
+                        const tabs = document.querySelectorAll('.nav-link');
+                        const activeIndex = Array.from(tabs).indexOf(activeTab);
+                        
+                        if (swipeDistance > 0 && activeIndex > 0) {
+                            // Swipe right - go to previous tab
+                            tabs[activeIndex - 1].click();
+                        } else if (swipeDistance < 0 && activeIndex < tabs.length - 1) {
+                            // Swipe left - go to next tab
+                            tabs[activeIndex + 1].click();
+                        }
+                    }
+                }, false);
+            }
+        }
+        
+        // Grade highlighting
+        function highlightGrades() {
+            const gradeBadges = document.querySelectorAll('td .badge');
+            gradeBadges.forEach(badge => {
+                const grade = parseInt(badge.textContent);
+                if (!isNaN(grade)) {
+                    if (grade >= 70) {
+                        badge.classList.remove('bg-danger', 'bg-warning');
+                        badge.classList.add('bg-success');
+                    } else if (grade >= 50) {
+                        badge.classList.remove('bg-success', 'bg-danger');
+                        badge.classList.add('bg-warning');
+                    } else {
+                        badge.classList.remove('bg-success', 'bg-warning');
+                        badge.classList.add('bg-danger');
+                    }
+                }
+            });
+        }
+        
+        highlightGrades();
+        
+        // Responsive table adjustments
+        function adjustTableHeaders() {
+            const tables = document.querySelectorAll('.table-responsive table');
+            tables.forEach(table => {
+                const theadCells = table.querySelectorAll('thead th');
+                const tbodyRows = table.querySelectorAll('tbody tr');
+                
+                tbodyRows.forEach(row => {
+                    const cells = row.querySelectorAll('td');
+                    cells.forEach((cell, index) => {
+                        if (theadCells[index]) {
+                            cell.setAttribute('data-label', theadCells[index].textContent.trim());
+                        }
+                    });
+                });
+            });
+        }
+        
+        adjustTableHeaders();
+        window.addEventListener('resize', adjustTableHeaders);
+        
+        // Overdue assignment highlighting
+        {% if assignment.is_overdue %}
+        const dueDateRow = document.querySelector('tr:has(th:contains("Due Date"))');
+        if (dueDateRow) {
+            dueDateRow.classList.add('table-danger');
+            dueDateRow.style.animation = 'pulse 2s infinite';
+            
+            // Add CSS animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes pulse {
+                    0% { background-color: rgba(220, 53, 69, 0.1); }
+                    50% { background-color: rgba(220, 53, 69, 0.2); }
+                    100% { background-color: rgba(220, 53, 69, 0.1); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        {% endif %}
+        
+        // Mobile performance optimization
+        if (window.innerWidth < 768) {
+            // Lazy load images
+            const images = document.querySelectorAll('img[data-src]');
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+            
+            images.forEach(img => imageObserver.observe(img));
+        }
+    });
+</script>
 {% endblock %}

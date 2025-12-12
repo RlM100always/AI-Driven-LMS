@@ -584,6 +584,7 @@ def enrollment_create(request):
     
     return render(request, 'adminapp/enrollments/create.html', {'form': form})
 
+
 @teacher_required
 def enrollment_edit(request, pk):
     enrollment = get_object_or_404(Enrollment, pk=pk)
@@ -591,13 +592,35 @@ def enrollment_edit(request, pk):
     if request.method == 'POST':
         form = EnrollmentForm(request.POST, instance=enrollment)
         if form.is_valid():
+            # Update enrolled_count in the Course model
+            if 'status' in form.changed_data:
+                new_status = form.cleaned_data['status']
+                old_status = enrollment.status
+                
+                if old_status == 'Enrolled' and new_status != 'Enrolled':
+                    # Decrease enrolled_count
+                    enrollment.course.enrolled_count = max(0, enrollment.course.enrolled_count - 1)
+                    enrollment.course.save()
+                elif old_status != 'Enrolled' and new_status == 'Enrolled':
+                    # Increase enrolled_count
+                    enrollment.course.enrolled_count += 1
+                    enrollment.course.save()
+            
             form.save()
             messages.success(request, 'Enrollment updated successfully!')
             return redirect('enrollment_list')
+        else:
+            messages.error(request, 'Please correct the errors below.')
     else:
         form = EnrollmentForm(instance=enrollment)
     
-    return render(request, 'adminapp/enrollments/edit.html', {'form': form, 'enrollment': enrollment})
+    context = {
+        'form': form,
+        'enrollment': enrollment,
+    }
+    
+    return render(request, 'adminapp/enrollments/edit.html', context)
+
 
 @teacher_required
 def enrollment_delete(request, pk):
