@@ -5,3 +5,4 @@ numpy
 scikit-learn
 python-dotenv
 Pillow
+gunicorn==23.0.0
