@@ -373,7 +373,6 @@ def ai_query_view(request):
             
             # Save query
             query = Query.objects.create(
-                query_id=f"Q{Query.objects.count() + 1:06d}",
                 student=student,
                 query_text=query_text,
                 intent=ai_response['intent'],

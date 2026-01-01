@@ -133,22 +133,29 @@ class Forum(models.Model):
     class Meta:
         ordering = ['-created_date']
 
+
 class Query(models.Model):
-    query_id = models.CharField(max_length=20, unique=True)
-    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='queries', null=True, blank=True)
+    student = models.ForeignKey(
+        Student,
+        on_delete=models.CASCADE,
+        related_name='queries',
+        null=True,
+        blank=True
+    )
     query_text = models.TextField()
     intent = models.CharField(max_length=50)
     timestamp = models.DateTimeField(default=timezone.now)
     status = models.CharField(max_length=20, default='Pending')
     priority = models.CharField(max_length=20, default='Medium')
     response_text = models.TextField(blank=True)
-    
+
     def __str__(self):
-        return f"{self.query_id} - {self.intent}"
-    
+        return f"Query #{self.id} - {self.intent}"
+
     class Meta:
         ordering = ['-timestamp']
         verbose_name_plural = 'Queries'
+
 
 class ResponseTemplate(models.Model):
     intent = models.CharField(max_length=50, unique=True)
