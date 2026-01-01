@@ -13,5 +13,9 @@ urlpatterns = [
     path('quizzes/', views.quizzes_view, name='quizzes'),
     path('grades/', views.grades_view, name='grades'),
     path('forums/', views.forums_view, name='forums'),
-    path('ai-query/', views.ai_query_view, name='ai_query'),
+    # path('ai-query/', views.ai_query_view, name='ai_query'),
+    path('ai-assistant/', views.ai_chat, name='ai_query'),
+    path('ai-chat-api/', views.ai_chat_api, name='ai_chat_api'),
+    path('clear-conversation/', views.clear_conversation, name='clear_conversation'),
+
 ]

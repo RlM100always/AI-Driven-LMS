@@ -1,0 +1,23 @@
+{
+  "intents": {
+    "greeting": {
+      "patterns": [
+        "hello",
+        "hi",
+        "hey"
+      ],
+      "responses": [
+        "Hello! How can I help you?"
+      ],
+      "suggestions": []
+    }
+  },
+  "user_data": {
+    "name": "Student",
+    "student_id": "S000000"
+  },
+  "system_info": {
+    "academic_year": "2024",
+    "semester": "Semester 1"
+  }
+}

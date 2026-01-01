@@ -1,108 +1,894 @@
-{% extends 'lms_core/base.html' %}
-
-{% block title %}AI Assistant - KOI LMS{% endblock %}
-
-{% block content %}
-<div class="row mb-4">
-    <div class="col-12">
-        <h1><i class="fas fa-robot text-primary"></i> AI Assistant</h1>
-        <p class="lead">Ask me anything about your courses, assignments, grades, or general queries!</p>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-lg-8">
-        <div class="card mb-4">
-            <div class="card-header bg-primary text-white">
-                <h5 class="mb-0"><i class="fas fa-comments"></i> Ask a Question</h5>
-            </div>
-            <div class="card-body">
-                <form method="post">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-paper-plane"></i> Ask AI Assistant
-                    </button>
-                </form>
-            </div>
-        </div>
-
-        {% if response %}
-        <div class="card mb-4">
-            <div class="card-header bg-success text-white">
-                <h5 class="mb-0">
-                    <i class="fas fa-check-circle"></i> AI Response
-                    <span class="badge bg-light text-dark float-end">
-                        Confidence: {{ confidence|floatformat:0 }}%
-                    </span>
-                </h5>
-            </div>
-            <div class="card-body">
-                <div class="alert alert-light">
-                    <strong>Your Question:</strong>
-                    <p class="mb-0">{{ query }}</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KOI LMS - AI Learning Assistant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(45deg, #4361ee, #3a0ca3);
+            --success-gradient: linear-gradient(45deg, #4cc9f0, #4361ee);
+            --warning-gradient: linear-gradient(45deg, #f72585, #b5179e);
+            --light-bg: #f8f9fa;
+            --dark-text: #212529;
+            --light-text: #6c757d;
+            --user-bubble: linear-gradient(45deg, #4361ee, #3a0ca3);
+            --bot-bubble: #ffffff;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --glow: 0 0 20px rgba(67, 97, 238, 0.2);
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(103, 58, 183, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(33, 150, 243, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(76, 175, 80, 0.1) 0%, transparent 50%);
+        }
+        
+        /* Chat Container */
+        .chat-container {
+            height: 600px;
+            overflow-y: auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: var(--shadow);
+        }
+        
+        /* Messages */
+        .message {
+            margin-bottom: 20px;
+            animation: slideIn 0.3s ease-out;
+            max-width: 85%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .user-message {
+            margin-left: auto;
+            align-items: flex-end;
+        }
+        
+        .bot-message {
+            margin-right: auto;
+            align-items: flex-start;
+        }
+        
+        .message-bubble {
+            padding: 15px 20px;
+            border-radius: 20px;
+            position: relative;
+            max-width: 100%;
+            word-wrap: break-word;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .user-message .message-bubble {
+            background: var(--user-bubble);
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .bot-message .message-bubble {
+            background: var(--bot-bubble);
+            color: var(--dark-text);
+            border-bottom-left-radius: 5px;
+        }
+        
+        /* Typing Indicator */
+        .typing-indicator {
+            display: none;
+            padding: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .typing-dots {
+            display: flex;
+            gap: 6px;
+            padding: 15px 25px;
+            background: white;
+            border-radius: 25px;
+            box-shadow: var(--shadow);
+        }
+        
+        .typing-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            animation: typing-bounce 1.4s infinite ease-in-out;
+        }
+        
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        
+        @keyframes typing-bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+        
+        /* Suggestions */
+        .suggestion-chip {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            border: none;
+            border-radius: 25px;
+            padding: 10px 22px;
+            margin: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            color: white;
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.2);
+            font-weight: 500;
+        }
+        
+        .suggestion-chip:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.3);
+        }
+        
+        /* Cards */
+        .card {
+            border: none;
+            border-radius: 25px;
+            box-shadow: var(--shadow);
+            margin-bottom: 25px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        .card-header {
+            border: none;
+            padding: 25px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            position: relative;
+        }
+        
+        .card-header.bg-primary {
+            background: linear-gradient(45deg, #4361ee, #3a0ca3) !important;
+        }
+        
+        /* Welcome Message */
+        .welcome-message {
+            text-align: center;
+            padding: 60px 30px;
+            color: white;
+            animation: fadeIn 0.8s ease-out;
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.95), rgba(58, 12, 163, 0.95));
+            border-radius: 25px;
+            margin: 15px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Stats Cards */
+        .stat-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* PDF Export Styles */
+        .pdf-content {
+            display: none;
+        }
+        
+        .export-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .export-modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .export-option {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            margin: 10px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .export-option:hover {
+            transform: translateY(-3px);
+            border-color: #4361ee;
+            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.15);
+        }
+        
+        .export-option i {
+            font-size: 2rem;
+            margin-right: 20px;
+            color: #4361ee;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .chat-container { height: 500px; }
+            .message { max-width: 95%; }
+            .welcome-message { padding: 40px 20px; }
+            .export-modal-content { width: 95%; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+    
+    <!-- Export Modal -->
+    <div id="exportModal" class="export-modal">
+        <div class="export-modal-content">
+            <h4 class="mb-4 text-center"><i class="fas fa-download me-2"></i>Export Chat</h4>
+            <p class="text-muted mb-4 text-center">Choose your preferred format to download the chat history</p>
+            
+            
+            
+            <div class="export-option" onclick="downloadJSON()">
+                <i class="fas fa-file-code"></i>
+                <div>
+                    <h6 class="mb-1">Download as JSON</h6>
+                    <p class="mb-0 text-muted">Raw data format for analysis and backup</p>
                 </div>
-                <div class="response-text">
-                    {{ response|linebreaks }}
+            </div>
+            
+            <div class="export-option" onclick="downloadTXT()">
+                <i class="fas fa-file-alt"></i>
+                <div>
+                    <h6 class="mb-1">Download as Text</h6>
+                    <p class="mb-0 text-muted">Simple text file with chat history</p>
                 </div>
-                <hr>
-                <small class="text-muted">
-                    <i class="fas fa-tag"></i> Detected Intent: <strong>{{ intent }}</strong>
-                </small>
+            </div>
+            
+            <div class="mt-4 text-center">
+                <button class="btn btn-secondary" onclick="closeExportModal()">Cancel</button>
             </div>
         </div>
-        {% endif %}
     </div>
-
-    <div class="col-lg-4">
-        <div class="card mb-4">
-            <div class="card-header bg-info text-white">
-                <h5 class="mb-0"><i class="fas fa-lightbulb"></i> Example Questions</h5>
-            </div>
-            <div class="card-body">
-                <ul class="list-unstyled">
-                    <li class="mb-2">
-                        <i class="fas fa-chevron-right text-primary"></i>
-                        "When is COMP101 Assignment 2 due?"
-                    </li>
-                    <li class="mb-2">
-                        <i class="fas fa-chevron-right text-primary"></i>
-                        "Show me my grades for WEB201"
-                    </li>
-                    <li class="mb-2">
-                        <i class="fas fa-chevron-right text-primary"></i>
-                        "What's the exam schedule for DATA303?"
-                    </li>
-                    <li class="mb-2">
-                        <i class="fas fa-chevron-right text-primary"></i>
-                        "I'm having login issues"
-                    </li>
-                    <li class="mb-2">
-                        <i class="fas fa-chevron-right text-primary"></i>
-                        "How do I access course materials?"
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        {% if recent_queries %}
-        <div class="card">
-            <div class="card-header bg-secondary text-white">
-                <h5 class="mb-0"><i class="fas fa-history"></i> Recent Queries</h5>
-            </div>
-            <div class="card-body">
-                <div class="list-group">
-                    {% for q in recent_queries %}
-                    <div class="list-group-item">
-                        <small class="text-muted">{{ q.timestamp|date:"M d, H:i" }}</small>
-                        <p class="mb-1 small">{{ q.query_text|truncatewords:10 }}</p>
-                        <span class="badge bg-primary">{{ q.intent }}</span>
+    
+    <div class="container py-5">
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="d-flex align-items-center gap-4 mb-4">
+                    <div>
+                        <i class="fas fa-robot fa-4x text-primary"></i>
                     </div>
-                    {% endfor %}
+                    <div>
+                        <h1 class="display-5 fw-bold text-dark mb-3">AI Learning Assistant</h1>
+                        <p class="lead text-muted mb-0">Your intelligent companion for all academic queries at KOI!</p>
+                    </div>
                 </div>
             </div>
         </div>
-        {% endif %}
+
+        <div class="row">
+            <!-- Main Chat Area -->
+            <div class="col-12">
+                <!-- Chat Interface -->
+                <div class="card mb-4 border-0">
+                    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="fas fa-comments fa-lg"></i>
+                            <h4 class="mb-0">Chat with AI Assistant</h4>
+                            <span class="badge bg-light text-primary ms-2">Live</span>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button id="exportChat" class="btn btn-sm btn-light">
+                                <i class="fas fa-download"></i> Export
+                            </button>
+                            <button id="clearChat" class="btn btn-sm btn-light">
+                                <i class="fas fa-trash"></i> Clear
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <!-- Chat Container -->
+                        <div id="chatContainer" class="chat-container">
+                            <!-- Welcome Message -->
+                            <div class="welcome-message">
+                                <i class="fas fa-robot fa-4x mb-4"></i>
+                                <h2>Welcome to KOI LMS! 🎓</h2>
+                                <p class="lead mb-4">I'm your AI Learning Assistant, ready to help you with all academic needs</p>
+                                <div class="row justify-content-center mt-4">
+                                    <div class="col-auto">
+                                        <span class="badge bg-white text-primary p-3 m-2 fs-6">📅 Assignments & Deadlines</span>
+                                        <span class="badge bg-white text-primary p-3 m-2 fs-6">📊 Grades & Analytics</span>
+                                        <span class="badge bg-white text-primary p-3 m-2 fs-6">📚 Course Materials</span>
+                                        <span class="badge bg-white text-primary p-3 m-2 fs-6">⏰ Exam Schedule</span>
+                                        <span class="badge bg-white text-primary p-3 m-2 fs-6">🏛️ Library Resources</span>
+                                        <span class="badge bg-white text-primary p-3 m-2 fs-6">📋 Academic Calendar</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Typing Indicator -->
+                        <div id="typingIndicator" class="typing-indicator">
+                            <div class="typing-dots">
+                                <div class="typing-dot"></div>
+                                <div class="typing-dot"></div>
+                                <div class="typing-dot"></div>
+                                <span class="ms-3 text-muted">AI Assistant is thinking...</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Input Form -->
+                        <div class="p-4 border-top">
+                            <form id="chatForm">
+                                <div class="input-group input-group-lg">
+                                    <span class="input-group-text bg-white">
+                                        <i class="fas fa-comment text-primary"></i>
+                                    </span>
+                                    <input type="text" 
+                                           id="queryInput" 
+                                           class="form-control" 
+                                           placeholder="Ask me anything about your courses, assignments, grades, or schedule..." 
+                                           autocomplete="off"
+                                           autofocus>
+                                    <button type="submit" class="btn btn-primary px-4">
+                                        <i class="fas fa-paper-plane me-2"></i> Send
+                                    </button>
+                                </div>
+                            </form>
+                            
+                            <!-- Quick Suggestions -->
+                            <div class="mt-4">
+                                <small class="text-muted d-block mb-3">Quick Questions:</small>
+                                <div class="d-flex flex-wrap" id="quickSuggestions">
+                                    <button class="suggestion-chip" onclick="quickQuestion('When are my assignment deadlines?')">
+                                        <i class="fas fa-calendar me-2"></i>Assignment Deadlines
+                                    </button>
+                                    <button class="suggestion-chip" onclick="quickQuestion('Show my current grades and GPA')">
+                                        <i class="fas fa-chart-bar me-2"></i>Check Grades
+                                    </button>
+                                    <button class="suggestion-chip" onclick="quickQuestion('What is my exam schedule?')">
+                                        <i class="fas fa-calendar-alt me-2"></i>Exam Schedule
+                                    </button>
+                                    <button class="suggestion-chip" onclick="quickQuestion('Show available course materials')">
+                                        <i class="fas fa-book me-2"></i>Course Materials
+                                    </button>
+                                    <button class="suggestion-chip" onclick="quickQuestion('What courses am I enrolled in?')">
+                                        <i class="fas fa-graduation-cap me-2"></i>My Courses
+                                    </button>
+                                    <button class="suggestion-chip" onclick="quickQuestion('Library hours and resources')">
+                                        <i class="fas fa-university me-2"></i>Library Info
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-{% endblock %}
+
+    <!-- PDF Content (Hidden) -->
+    <div id="pdfContent" class="pdf-content" style="display: none;">
+        <div style="padding: 40px; font-family: Arial, sans-serif; background: white;">
+            <!-- Header -->
+            <div style="text-align: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 2px solid #4361ee;">
+                <h1 style="color: #4361ee; margin: 10px 0; font-size: 28px;">KOI LMS - AI Assistant Chat</h1>
+               
+            </div>
+            
+            <!-- Chat Content -->
+            <div id="pdfChatContent" style="margin-bottom: 40px;"></div>
+            
+            <!-- Footer -->
+            <div style="text-align: center; color: #666; font-size: 12px; padding-top: 20px; border-top: 1px solid #eee; margin-top: 40px;">
+                <div style="margin: 5px 0;">KOI - King's Own Institute | Sydney, Australia</div>
+                <div style="margin: 5px 0;">Generated by AI Learning Assistant</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comprehensive JSON Dataset -->
+    <script>
+        const KOI_DATASET = {
+            student_info: {
+                id: "S123456",
+                name: "John Alexander Smith",
+                email: "john.smith@student.koi.edu.au",
+                year: 2,
+                semester: "Spring 2024",
+                program: "Bachelor of Information Technology (Major in Software Development)",
+                specialization: "Full Stack Web Development",
+                enrollment_date: "2023-02-15",
+                expected_graduation: "2025-12-15",
+                status: "Active (Full-time)",
+                gpa: 3.4,
+                cgpa: 3.2,
+                total_credits: 144,
+                completed_credits: 96,
+                academic_standing: "Good Standing",
+                scholarship: "Academic Excellence Scholarship (30% tuition)",
+                advisor: "Dr. Emily Johnson",
+                advisor_email: "emily.johnson@koi.edu.au",
+                advisor_meeting: "2024-04-15 14:00",
+                next_review: "2024-07-20",
+                attendance_rate: 91.5,
+                library_fines: 0,
+                outstanding_fees: 0,
+                campus_involvement: ["Programming Club", "AI Research Group", "Student Mentor"],
+                skills: ["Python", "JavaScript", "React", "SQL", "Django", "AWS"],
+                career_goals: ["Software Engineer", "Full Stack Developer", "AI Specialist"],
+                learning_preferences: {
+                    style: "Visual & Practical",
+                    best_time: "Morning (9am-12pm)",
+                    study_location: "Library Study Rooms",
+                    group_study: "Yes (Weekly)"
+                }
+            }
+        };
+
+        // AI Response Patterns (Simplified)
+        const AI_RESPONSES = {
+            greeting: [
+                "Hello! 👋 Welcome to KOI LMS AI Assistant. I'm here to help you navigate your academic journey. How can I assist you today?",
+                "Hi there! I'm your AI Learning Assistant. Ready to help with assignments, grades, schedules, or any academic queries you have!",
+                "Greetings! I'm your virtual academic companion. Whether it's deadlines, grades, or study resources, I'm here to help!"
+            ],
+            
+            assignment_deadline: [
+                "📅 **Upcoming Assignment Deadlines:**\n\n" +
+                "1. **COMP101 Assignment 2** (Object-Oriented Programming)\n" +
+                "   • Due: April 20, 2024 at 23:59\n" +
+                "   • Weight: 20%\n" +
+                "   • Status: In Progress (40% complete)\n\n" +
+                "2. **WEB201 Project** (E-commerce Website)\n" +
+                "   • Due: April 10, 2024 at 23:59\n" +
+                "   • Weight: 25%\n" +
+                "   • Status: In Progress (65% complete)\n" +
+                "   • Next Milestone: Backend due April 3\n\n" +
+                "3. **DBMS301 Assignment 1** (SQL Queries)\n" +
+                "   • Due: March 25, 2024 at 23:59\n" +
+                "   • Weight: 15%\n" +
+                "   • Status: Submitted (Late - 1 hour)\n" +
+                "   • Grade: 78/100\n\n" +
+                "💡 **Recommendation**: Start working on COMP101 Assignment 2 now to avoid last-minute rush!"
+            ],
+            
+            grades_query: [
+                "📊 **Academic Performance Dashboard:**\n\n" +
+                "**Overall GPA**: 3.4/4.0\n\n" +
+                "**Course Breakdown**:\n\n" +
+                "🎯 **COMP101 (Programming Fundamentals)**\n" +
+                "• Current Grade: HD (89.5%)\n" +
+                "• Class Rank: 8/45\n" +
+                "• Trend: 📈 Improving\n" +
+                "• Key Scores: Assignment 1: 85/100\n\n" +
+                "🎯 **WEB201 (Web Development)**\n" +
+                "• Current Grade: D (80.0%)\n" +
+                "• Class Rank: 15/40\n" +
+                "• Trend: ➡️ Stable\n" +
+                "• Key Scores: Project Proposal: 75/100, Milestone 1: 80/100\n\n" +
+                "🎯 **DBMS301 (Database Management)**\n" +
+                "• Current Grade: C (75.5%)\n" +
+                "• Class Rank: 22/38\n" +
+                "• Trend: 📉 Declining\n" +
+                "• Weak Areas: Query optimization\n\n" +
+                "🎯 **NET401 (Networking)**\n" +
+                "• Current Grade: P (67.5%)\n" +
+                "• Class Rank: 28/42\n" +
+                "• ⚠️ Warning: Borderline - Needs improvement\n\n" +
+                "💡 **Recommendation**: Focus on NET401 and DBMS301 to bring grades up!"
+            ],
+            
+            exam_schedule: [
+                "⏰ **Exam Schedule & Preparation Plan:**\n\n" +
+                "**Upcoming Exams**:\n\n" +
+                "1. **COMP101 Midterm**\n" +
+                "   • Date: April 5, 2024\n" +
+                "   • Time: 9:00 AM - 11:00 AM\n" +
+                "   • Venue: Exam Hall A\n" +
+                "   • Weight: 20%\n\n" +
+                "2. **WEB201 Practical Exam**\n" +
+                "   • Date: June 18, 2024\n" +
+                "   • Time: 2:00 PM - 5:00 PM\n" +
+                "   • Venue: Computer Lab 3\n" +
+                "   • Weight: 35%\n\n" +
+                "3. **DBMS301 Theory Exam**\n" +
+                "   • Date: June 20, 2024\n" +
+                "   • Time: 10:00 AM - 1:00 PM\n" +
+                "   • Venue: Exam Hall B\n" +
+                "   • Weight: 45%\n\n" +
+                "📅 **Study Timeline**:\n" +
+                "• Now - April 5: Focus on COMP101 Midterm\n" +
+                "• April - May: Work on assignments\n" +
+                "• June: Final exam preparation"
+            ],
+            
+            course_materials: [
+                "📚 **Available Course Resources:**\n\n" +
+                "**COMP101**:\n" +
+                "• **Textbook**: 'Python Crash Course, 3rd Edition' (E-Book available)\n" +
+                "• Lecture slides (Weeks 1-10)\n" +
+                "• Python exercise solutions\n" +
+                "• Past exam papers (3 years)\n\n" +
+                "**WEB201**:\n" +
+                "• **Textbook**: 'HTML and CSS: Design and Build Websites' (Borrowed, due April 15)\n" +
+                "• HTML/CSS templates\n" +
+                "• JavaScript tutorials\n" +
+                "• Project guidelines\n\n" +
+                "**DBMS301**:\n" +
+                "• **Textbook**: 'Database System Concepts' (E-Book available)\n" +
+                "• SQL cheat sheet\n" +
+                "• Database design templates\n\n" +
+                "🌐 **Access Links**:\n" +
+                "• LMS Course Pages: https://lms.koi.edu.au/courses/\n" +
+                "• Online Library: https://library.koi.edu.au/\n\n" +
+                "Need specific materials for a topic?"
+            ],
+            
+            default: [
+                "I understand you're asking about: \"{query}\"\n\n" +
+                "I can help you with a wide range of academic topics:\n\n" +
+                "📚 **Course Information**:\n" +
+                "• Course materials and resources\n" +
+                "• Instructor details and office hours\n" +
+                "• Schedule and timetable\n\n" +
+                "📅 **Assignments & Deadlines**:\n" +
+                "• Upcoming assignment due dates\n" +
+                "• Project milestones and progress\n" +
+                "• Submission guidelines\n\n" +
+                "📊 **Grades & Performance**:\n" +
+                "• Current grades and GPA\n" +
+                "• Class ranking and averages\n" +
+                "• Improvement recommendations\n\n" +
+                "Could you please rephrase or specify your question?"
+            ]
+        };
+
+        // Intent Patterns
+        const INTENT_PATTERNS = {
+            greeting: ["hi", "hello", "hey", "good morning", "good afternoon", "good evening", "howdy", "greetings", "what's up"],
+            assignment_deadline: ["assignment", "due", "deadline", "submit", "homework", "project due", "submission", "when is", "due date", "hand in"],
+            grades_query: ["grade", "mark", "score", "result", "gpa", "performance", "how did i do", "what's my grade", "assessment", "evaluation"],
+            exam_schedule: ["exam", "test", "final", "midterm", "assessment", "when is the exam", "exam date", "test schedule", "examination"],
+            course_materials: ["material", "resource", "slide", "lecture", "textbook", "book", "notes", "reading", "reference", "study material"],
+            timetable: ["timetable", "schedule", "class time", "when is class", "what time", "weekly schedule", "class schedule", "time table"],
+            library: ["library", "book", "borrow", "study room", "research", "quiet study", "library hours", "borrowing", "reserve"],
+            farewell: ["bye", "goodbye", "see you", "thanks", "thank you", "that's all", "no more questions", "done", "exit"]
+        };
+    </script>
+
+    <script>
+        // DOM Elements
+        const chatContainer = document.getElementById('chatContainer');
+        const chatForm = document.getElementById('chatForm');
+        const queryInput = document.getElementById('queryInput');
+        const typingIndicator = document.getElementById('typingIndicator');
+        const clearChatBtn = document.getElementById('clearChat');
+        const exportChatBtn = document.getElementById('exportChat');
+        const quickSuggestions = document.getElementById('quickSuggestions');
+        const exportModal = document.getElementById('exportModal');
+        const pdfContent = document.getElementById('pdfContent');
+        const pdfDate = document.getElementById('pdfDate');
+        const pdfChatContent = document.getElementById('pdfChatContent');
+
+        // Chat History
+        let chatHistory = [];
+
+        // Open export modal
+        exportChatBtn.addEventListener('click', function() {
+            if (chatHistory.length === 0) {
+                alert("No chat history to export.");
+                return;
+            }
+            exportModal.style.display = 'flex';
+        });
+
+        // Close export modal
+        function closeExportModal() {
+            exportModal.style.display = 'none';
+        }
+
+
+
+
+        // Download JSON
+        function downloadJSON() {
+            closeExportModal();
+            const exportData = {
+                exported_at: new Date().toISOString(),
+                student_id: KOI_DATASET.student_info.id,
+                student_name: KOI_DATASET.student_info.name,
+                chat_history: chatHistory
+            };
+            
+            const dataStr = JSON.stringify(exportData, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const exportFileDefaultName = `KOI_AI_Chat_Export_${new Date().toISOString().split('T')[0]}.json`;
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', url);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            document.body.appendChild(linkElement);
+            linkElement.click();
+            document.body.removeChild(linkElement);
+            
+            addMessage("✅ Chat exported as JSON successfully!", false);
+        }
+
+        // Download TXT
+        function downloadTXT() {
+            closeExportModal();
+            let txtContent = "KOI LMS - AI Assistant Chat History\n";
+            txtContent += "====================================\n\n";
+            txtContent += `Student: ${KOI_DATASET.student_info.name}\n`;
+            txtContent += `ID: ${KOI_DATASET.student_info.id}\n`;
+            txtContent += `Generated: ${new Date().toLocaleString()}\n\n`;
+            txtContent += "=".repeat(50) + "\n\n";
+            
+            chatHistory.forEach((msg, index) => {
+                const sender = msg.type === 'user' ? 'You' : 'AI Assistant';
+                txtContent += `${sender}:\n`;
+                txtContent += `${msg.content.replace(/\*\*/g, '').replace(/<br>/g, '\n')}\n\n`;
+                txtContent += "-".repeat(30) + "\n\n";
+            });
+            
+            const blob = new Blob([txtContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const exportFileDefaultName = `KOI_AI_Chat_${new Date().toISOString().split('T')[0]}.txt`;
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', url);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            document.body.appendChild(linkElement);
+            linkElement.click();
+            document.body.removeChild(linkElement);
+            
+            addMessage("✅ Chat exported as text file successfully!", false);
+        }
+
+        // Detect intent from query
+        function detectIntent(query) {
+            const lowerQuery = query.toLowerCase();
+            
+            for (const [intent, patterns] of Object.entries(INTENT_PATTERNS)) {
+                for (const pattern of patterns) {
+                    if (lowerQuery.includes(pattern)) {
+                        return {
+                            intent: intent,
+                            confidence: 0.85 + Math.random() * 0.14,
+                            entities: {}
+                        };
+                    }
+                }
+            }
+            
+            return {
+                intent: "default",
+                confidence: 0.5 + Math.random() * 0.3,
+                entities: {}
+            };
+        }
+
+        // Generate AI response
+        function generateResponse(intent, query) {
+            const responses = AI_RESPONSES[intent] || AI_RESPONSES.default;
+            const randomIndex = Math.floor(Math.random() * responses.length);
+            let response = responses[randomIndex];
+            response = response.replace("{query}", query);
+            return response;
+        }
+
+        // Add message to chat
+        function addMessage(content, isUser = false) {
+            // Remove welcome message if it's the first user message
+            const welcomeMessage = document.querySelector('.welcome-message');
+            if (welcomeMessage && isUser) {
+                welcomeMessage.remove();
+            }
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+            
+            let html = `<div class="message-header mb-1">`;
+            html += `<i class="fas fa-${isUser ? 'user' : 'robot'} me-2"></i>`;
+            html += `<span class="fw-bold">${isUser ? 'You' : 'AI Assistant'}</span>`;
+            html += `</div>`;
+            html += `<div class="message-bubble">`;
+            html += `<div class="message-content">${formatResponse(content)}</div>`;
+            html += `</div>`;
+            
+            messageDiv.innerHTML = html;
+            chatContainer.appendChild(messageDiv);
+            
+            // Add to history
+            chatHistory.push({
+                type: isUser ? 'user' : 'bot',
+                content: content,
+                time: new Date().toISOString()
+            });
+            
+            // Smooth scroll
+            setTimeout(() => {
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }, 100);
+            
+            return messageDiv;
+        }
+
+        // Format response with markdown-like styling
+        function formatResponse(text) {
+            if (!text) return '';
+            text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
+            text = text.replace(/\n/g, '<br>');
+            text = text.replace(/[👋📅📊📚⏰🗓️🏛️🎉👍📘✅🔴🟡🟢📈📉⚠️🎯📖💻🎬🔍🎓💼🏢📝🤝📊🏫👨‍⚕️💬💼🖥️🏋️🍽️👥🚌🔒🌟💪🤝💰🏠]/g, '<span class="emoji">$&</span>');
+            text = text.replace(/• (.*?)(?=<br>|$)/g, '<span class="d-block">• $1</span>');
+            text = text.replace(/\d+\. (.*?)(?=<br>|$)/g, '<span class="d-block">$&</span>');
+            text = text.replace(/◦ (.*?)(?=<br>|$)/g, '<span class="d-block ms-3">◦ $1</span>');
+            return text;
+        }
+
+        // Process user query
+        async function processQuery(query) {
+            const intentData = detectIntent(query);
+            const response = generateResponse(intentData.intent, query);
+            
+            // Simulate processing delay
+            await new Promise(resolve => setTimeout(resolve, 800 + Math.random() * 1200));
+            
+            return { response };
+        }
+
+        // Send message
+        async function sendMessage(message) {
+            if (!message.trim()) return;
+            
+            addMessage(message, true);
+            queryInput.value = '';
+            
+            typingIndicator.style.display = 'flex';
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+            
+            try {
+                const result = await processQuery(message);
+                typingIndicator.style.display = 'none';
+                addMessage(result.response, false);
+            } catch (error) {
+                typingIndicator.style.display = 'none';
+                addMessage("Sorry, I encountered an error. Please try again.", false);
+                console.error('Error:', error);
+            }
+        }
+
+        // Quick question
+        function quickQuestion(question) {
+            queryInput.value = question;
+            chatForm.dispatchEvent(new Event('submit'));
+        }
+
+        // Clear chat
+        clearChatBtn.addEventListener('click', function() {
+            if (confirm("Clear all chat history? This action cannot be undone.")) {
+                chatContainer.innerHTML = `
+                    <div class="welcome-message">
+                        <i class="fas fa-robot fa-4x mb-4"></i>
+                        <h2>Welcome to KOI LMS! 🎓</h2>
+                        <p class="lead mb-4">I'm your AI Learning Assistant, ready to help you with all academic needs</p>
+                        <div class="row justify-content-center mt-4">
+                            <div class="col-auto">
+                                <span class="badge bg-white text-primary p-3 m-2 fs-6">📅 Assignments & Deadlines</span>
+                                <span class="badge bg-white text-primary p-3 m-2 fs-6">📊 Grades & Analytics</span>
+                                <span class="badge bg-white text-primary p-3 m-2 fs-6">📚 Course Materials</span>
+                                <span class="badge bg-white text-primary p-3 m-2 fs-6">⏰ Exam Schedule</span>
+                                <span class="badge bg-white text-primary p-3 m-2 fs-6">🏛️ Library Resources</span>
+                                <span class="badge bg-white text-primary p-3 m-2 fs-6">📋 Academic Calendar</span>
+                            </div>
+                        </div>
+                        <p class="mt-5"><small>Session: Spring 2024 | Student: John Smith</small></p>
+                    </div>
+                `;
+                chatHistory = [];
+            }
+        });
+
+        // Event listeners
+        chatForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const message = queryInput.value.trim();
+            if (message) {
+                sendMessage(message);
+            }
+        });
+
+        queryInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                chatForm.dispatchEvent(new Event('submit'));
+            }
+        });
+
+        // Initialize
+        window.addEventListener('load', function() {
+            queryInput.focus();
+        });
+
+        // Close modal when clicking outside
+        exportModal.addEventListener('click', function(e) {
+            if (e.target === exportModal) {
+                closeExportModal();
+            }
+        });
+
+        // Test the PDF download with sample chat
+        window.addEventListener('load', function() {
+            // Add a test message to ensure PDF works
+            setTimeout(() => {
+                if (chatHistory.length === 0) {
+                    addMessage("Hello! I'm your AI Assistant. How can I help you today? 👋", false);
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

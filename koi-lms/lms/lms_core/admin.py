@@ -66,3 +66,29 @@ class KnowledgeBaseAdmin(admin.ModelAdmin):
     list_display = ['category', 'title', 'created_at']
     list_filter = ['category']
     search_fields = ['title', 'content']
+
+
+
+# admin.py
+from .models import ConversationState, QueryLog, IntentPattern
+
+@admin.register(ConversationState)
+class ConversationStateAdmin(admin.ModelAdmin):
+    list_display = ['session_id', 'student', 'intent', 'timestamp', 'is_active']
+    list_filter = ['is_active', 'intent', 'timestamp']
+    search_fields = ['session_id', 'student__username', 'last_query']
+
+@admin.register(QueryLog)
+class QueryLogAdmin(admin.ModelAdmin):
+    list_display = ['session_id', 'intent', 'confidence', 'processing_time', 'timestamp']
+    list_filter = ['intent', 'timestamp']
+    search_fields = ['original_query', 'corrected_query']
+    readonly_fields = ['timestamp']
+
+@admin.register(IntentPattern)
+class IntentPatternAdmin(admin.ModelAdmin):
+    list_display = ['intent', 'examples_count']
+    
+    def examples_count(self, obj):
+        return len(obj.examples)
+    examples_count.short_description = 'Examples'

@@ -2,6 +2,55 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 
+
+
+
+class ConversationState(models.Model):
+    """Stores conversation context for follow-up questions"""
+    student = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    session_id = models.CharField(max_length=100)
+    intent = models.CharField(max_length=50, null=True, blank=True)
+    entities = models.JSONField(default=dict)
+    last_query = models.TextField(null=True, blank=True)
+    last_response = models.TextField(null=True, blank=True)
+    context_data = models.JSONField(default=dict)  # Store course, assignment, etc.
+    timestamp = models.DateTimeField(auto_now=True)
+    is_active = models.BooleanField(default=True)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['session_id', 'is_active']),
+        ]
+
+class QueryLog(models.Model):
+    """Enhanced query logging"""
+    student = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    session_id = models.CharField(max_length=100)
+    original_query = models.TextField()
+    corrected_query = models.TextField()
+    intent = models.CharField(max_length=50)
+    entities = models.JSONField(default=dict)
+    response_text = models.TextField()
+    confidence = models.FloatField()
+    processing_time = models.FloatField()  # milliseconds
+    timestamp = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ['-timestamp']
+
+class IntentPattern(models.Model):
+    """NLP-based intent patterns"""
+    intent = models.CharField(max_length=50)
+    pattern_text = models.TextField()  # Training patterns
+    examples = models.JSONField(default=list)  # Example queries
+    synonyms = models.JSONField(default=list)  # Word synonyms
+    
+    def __str__(self):
+        return self.intent
+    
+    
+    
+
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='student_profile')
     student_id = models.CharField(max_length=20, unique=True)
