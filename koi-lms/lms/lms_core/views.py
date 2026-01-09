@@ -32,6 +32,8 @@ def home(request):
     return redirect('login')
 
 from .models import Student
+import random
+
 
 def signup_view(request):
     if request.method == 'POST':
@@ -39,8 +41,18 @@ def signup_view(request):
         if form.is_valid():
             user = form.save()
             
-            # Auto-create student profile
-            Student.objects.create(user=user)
+            # Generate unique student_id
+            while True:
+                student_id = f"ST{random.randint(1000, 9999999)}"  # Example: S1234
+                if not Student.objects.filter(student_id=student_id).exists():
+                    break
+            
+            # Auto-create student profile with student_id
+            Student.objects.create(
+                user=user,
+                student_id=student_id,
+                program='',  # temporary empty or default
+            )
             
             login(request, user)
             messages.success(request, 'Account created successfully! Please complete your profile.')
@@ -48,6 +60,7 @@ def signup_view(request):
     else:
         form = SignUpForm()
     return render(request, 'lms_core/signup.html', {'form': form})
+
 
 
 def login_view(request):

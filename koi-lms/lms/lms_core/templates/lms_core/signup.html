@@ -45,6 +45,46 @@
                         </div>
                         <small class="form-text text-muted">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small>
                     </div>
+
+                    <!-- First Name -->
+                    <div class="mb-3">
+                        <label for="id_first_name" class="form-label fw-semibold">First Name</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
+                            <input type="text"
+                                   class="form-control {% if form.first_name.errors %}is-invalid{% endif %}"
+                                   id="id_first_name"
+                                   name="first_name"
+                                   value="{{ form.first_name.value|default:'' }}"
+                                   required
+                                   placeholder="Enter first name">
+                            {% if form.first_name.errors %}
+                            <div class="invalid-feedback">
+                                {{ form.first_name.errors|join:", " }}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="mb-3">
+                        <label for="id_last_name" class="form-label fw-semibold">Last Name</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
+                            <input type="text"
+                                   class="form-control {% if form.last_name.errors %}is-invalid{% endif %}"
+                                   id="id_last_name"
+                                   name="last_name"
+                                   value="{{ form.last_name.value|default:'' }}"
+                                   required
+                                   placeholder="Enter last name">
+                            {% if form.last_name.errors %}
+                            <div class="invalid-feedback">
+                                {{ form.last_name.errors|join:", " }}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
                     
                     <!-- Email Field -->
                     <div class="mb-3">
@@ -270,8 +310,6 @@
         padding: 0.75rem;
         font-weight: 600;
     }
-    
-    
     
     .btn-lg {
         border-radius: 10px;
